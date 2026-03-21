@@ -178,9 +178,9 @@ function calculateROI() {
     const medias = parseInt(document.getElementById('tareas-medias').value) / 100;
     const altas = parseInt(document.getElementById('tareas-altas').value) / 100;
     
-    // Calculate value per hour
+    // Calculate value per hour (guard against zero hours)
     const horasMes = horasSemana * 4.33;
-    const valorHora = Math.round(ingresos / horasMes);
+    const valorHora = horasMes > 0 ? Math.round(ingresos / horasMes) : 0;
     
     // 1. Calculate Weighted Delegable Potential (The Ceiling)
     const horasSimples = horasSemana * simples * 0.80; 

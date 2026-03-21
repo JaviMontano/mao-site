@@ -997,9 +997,9 @@ function calculateROI() {
     // Check mode
     const isEnterprise = (typeof rutaMode !== 'undefined' && rutaMode === 'empresas');
     
-    // Calculate value per hour
+    // Calculate value per hour (guard against zero hours)
     const horasMes = horasSemana * 4;
-    const valorHora = Math.round(ingresos / horasMes);
+    const valorHora = horasMes > 0 ? Math.round(ingresos / horasMes) : 0;
     
     // Delegation Ceilings (Knowledge Work Standards)
     // 80% for Simple/Operational

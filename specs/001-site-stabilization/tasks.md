@@ -14,8 +14,8 @@
 **Purpose**: Extend CTAHandler to support dynamic body
 templates — prerequisite for cotizador CTA migration
 
-- [ ] T001 [US2] Add template interpolation support to js/CTAHandler.js — new buildMailto(ctaId, params) method that replaces {{variable}} placeholders in body text
-- [ ] T002 [US2] Add cotizador CTA entries to js/cta-data.json — "cotizador-propuesta" and "cotizador-empresas-propuesta" with template:true and body containing {{variable}} placeholders
+- [x] T001 [US2] Add template interpolation support to js/CTAHandler.js — new buildMailto(ctaId, params) method that replaces {{variable}} placeholders in body text
+- [x] T002 [US2] Add cotizador CTA entries to js/cta-data.json — "cotizador-propuesta" and "cotizador-empresas-propuesta" with template:true and body containing {{variable}} placeholders
 
 **Checkpoint**: CTAHandler supports dynamic templates.
 Static CTAs unaffected. New entries available.
@@ -30,8 +30,8 @@ No inline nav/footer markup on non-template pages.
 **Independent Test**: Open 10 pages across sections,
 verify identical header/footer.
 
-- [ ] T003 [US1] Replace inline footer in recursos/biblioteca-prompts/biblioteca_para_estudio.html (lines ~4216-4308) with <site-footer base-path="../.."></site-footer>
-- [ ] T004 [P] [US1] Audit all HTML files for inline <nav> or <footer> tags outside of web component definitions — verify no other pages bypass shared components
+- [x] T003 [US1] Replace inline footer in recursos/biblioteca-prompts/biblioteca_para_estudio.html (lines ~4216-4308) with <site-footer base-path="../.."></site-footer>
+- [x] T004 [P] [US1] Audit all HTML files for inline <nav> or <footer> tags outside of web component definitions — verify no other pages bypass shared components
 
 **Checkpoint**: Navigation consistent across all public
 pages. Icebreaker (noindex) intentionally excluded.
@@ -46,11 +46,11 @@ mailto constructions. No orphan entries.
 **Independent Test**: Click every CTA, verify correct
 mailto subject/body.
 
-- [ ] T005 [US2] Migrate cotizador.html mailto (line ~1147) — replace inline JS mailto construction with CTAHandler.buildMailto("cotizador-propuesta", {params}) call
-- [ ] T006 [US2] Migrate cotizador-empresas.html mailto (lines ~1555-1557) — replace inline JS mailto construction with CTAHandler.buildMailto("cotizador-empresas-propuesta", {params}), remove duplicate assignment at line 1557
-- [ ] T007 [US2] Wire cotizador-personas.html CTA — the #mailto-cta anchor has no JS to populate it; implement buildMailto call with simulation results
-- [ ] T008 [P] [US2] Add data-cta="legal-privacidad" attribute to mailto link in legal/privacidad.html (line ~428), remove plain href mailto
-- [ ] T009 [P] [US2] Resolve orphan CTA entries — add data-cta="beta-tester-gemini" to recursos/asistentes-gemini/index.html and data-cta="beta-tester-gpt" to recursos/asistentes-gpt/index.html, OR remove entries from cta-data.json if pages already have different CTAs
+- [x] T005 [US2] Migrate cotizador.html mailto (line ~1147) — replace inline JS mailto construction with CTAHandler.buildMailto("cotizador-propuesta", {params}) call
+- [x] T006 [US2] Migrate cotizador-empresas.html mailto (lines ~1555-1557) — replace inline JS mailto construction with CTAHandler.buildMailto("cotizador-empresas-propuesta", {params}), remove duplicate assignment at line 1557
+- [x] T007 [US2] Wire cotizador-personas.html CTA — the #mailto-cta anchor has no JS to populate it; implement buildMailto call with simulation results
+- [x] T008 [P] [US2] Add data-cta="legal-privacidad" attribute to mailto link in legal/privacidad.html (line ~428), remove plain href mailto
+- [x] T009 [P] [US2] Resolve orphan CTA entries — add data-cta="beta-tester-gemini" to recursos/asistentes-gemini/index.html and data-cta="beta-tester-gpt" to recursos/asistentes-gpt/index.html, OR remove entries from cta-data.json if pages already have different CTAs
 
 **Checkpoint**: All CTAs route through handler. Zero
 orphan entries. Zero inline mailto constructions.
@@ -65,10 +65,10 @@ correct calculations and working CTAs.
 **Independent Test**: Complete each cotizador flow,
 verify calculations and mailto output.
 
-- [ ] T010 [US3] Verify cotizador.html calculation logic — test with known inputs (40h/week, $5000 income, 50/30/20 tasks, 2 programs), confirm ROI output matches expected formula
-- [ ] T011 [P] [US3] Verify cotizador-empresas.html calculation logic — test with known enterprise inputs, confirm business case metrics
-- [ ] T012 [P] [US3] Verify cotizador-personas.html calculation logic — test full flow end-to-end, confirm CTA now works after T007
-- [ ] T013 [US3] Test edge case: all sliders at 0 on each cotizador — verify graceful handling (no NaN, no division by zero, clear messaging)
+- [x] T010 [US3] Verify cotizador.html calculation logic — test with known inputs (40h/week, $5000 income, 50/30/20 tasks, 2 programs), confirm ROI output matches expected formula
+- [x] T011 [P] [US3] Verify cotizador-empresas.html calculation logic — test with known enterprise inputs, confirm business case metrics
+- [x] T012 [P] [US3] Verify cotizador-personas.html calculation logic — test full flow end-to-end, confirm CTA now works after T007
+- [x] T013 [US3] Test edge case: all sliders at 0 on each cotizador — verify graceful handling (no NaN, no division by zero, clear messaging)
 
 **Checkpoint**: All 3 cotizadores produce correct ROI.
 All CTAs functional. Edge cases handled.
@@ -83,10 +83,10 @@ and have working CTAs.
 **Independent Test**: Navigate every category from hub,
 verify layout and CTAs.
 
-- [ ] T014 [P] [US4] Audit all 14 free resource category index pages — verify each uses <site-header> and <site-footer> with correct base-path
-- [ ] T015 [P] [US4] Audit all 13 premium resource category index pages — verify same patterns as free tier
-- [ ] T016 [US4] Verify all beta-tester CTAs on resource pages use data-cta attributes matching cta-data.json entries
-- [ ] T017 [US4] Test navigation from recursos/index.html to every category — verify no 404s or broken links
+- [x] T014 [P] [US4] Audit all 14 free resource category index pages — verify each uses <site-header> and <site-footer> with correct base-path
+- [x] T015 [P] [US4] Audit all 13 premium resource category index pages — verify same patterns as free tier
+- [x] T016 [US4] Verify all beta-tester CTAs on resource pages use data-cta attributes matching cta-data.json entries
+- [x] T017 [US4] Test navigation from recursos/index.html to every category — verify no 404s or broken links
 
 **Checkpoint**: Resource section fully consistent, all
 CTAs working, no broken navigation.
@@ -97,10 +97,10 @@ CTAs working, no broken navigation.
 
 **Purpose**: Final validation across the entire site.
 
-- [ ] T018 Run full CTA audit — grep all HTML files for data-cta attributes, cross-reference with cta-data.json, confirm zero orphans in either direction
-- [ ] T019 Run full navigation audit — verify SiteHeader menu items identical on 10+ sample pages across all sections
-- [ ] T020 Check browser console for JS errors on 5 representative pages (index, cotizador, recursos, legal, contacto)
-- [ ] T021 Validate quickstart.md test scenarios pass
+- [x] T018 Run full CTA audit — grep all HTML files for data-cta attributes, cross-reference with cta-data.json, confirm zero orphans in either direction
+- [x] T019 Run full navigation audit — verify SiteHeader menu items identical on 10+ sample pages across all sections
+- [x] T020 Check browser console for JS errors on 5 representative pages (index, cotizador, recursos, legal, contacto)
+- [x] T021 Validate quickstart.md test scenarios pass
 
 ---
 

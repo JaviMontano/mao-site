@@ -1,0 +1,8 @@
+{
+  "testify": {
+    "assertion_hash": "77953ffa39663d069c5531c0fa2f757dc6622d522f4281ae8526d1640df5652a",
+    "generated_at": "2026-03-22T18:11:28Z",
+    "features_dir": "specs/002-bilingual-i18n/tests/features",
+    "file_count": 7
+  }
+}

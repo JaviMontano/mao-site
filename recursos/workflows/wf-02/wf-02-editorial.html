@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetodologIA — Onboarding de Talento AS-IS → TO-BE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f5f0e8',
+                primaryTextColor: '#1a1a2e',
+                primaryBorderColor: '#c9a84c',
+                lineColor: '#64748b',
+                secondaryColor: '#f8f6f0',
+                tertiaryColor: '#fff',
+                fontFamily: 'Montserrat',
+                fontSize: '11px'
+            }
+        });
+        window.onload = () => setTimeout(() => window.print(), 1200);
+    </script>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 20mm 22mm 20mm;
+        }
+        @page:first {
+            margin-top: 0;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8d5a0;
+            --ink: #1a1a2e;
+            --ink-soft: #374151;
+            --ink-muted: #6b7280;
+            --paper: #ffffff;
+            --paper-warm: #faf8f5;
+            --accent-red: #b91c1c;
+            --accent-green: #047857;
+            --border: #e5e2da;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 10pt;
+            line-height: 1.65;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* COVER PAGE */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(160deg, var(--ink) 0%, #0f172a 60%, #1e293b 100%);
+            color: white;
+            page-break-after: always;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .cover-logo {
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        .cover-badge {
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border: 1px solid rgba(201,168,76,0.4);
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+        .cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            max-width: 600px;
+        }
+        .cover h1 .asis { color: #fca5a5; }
+        .cover h1 .tobe { color: #6ee7b7; }
+        .cover h1 .arrow { color: var(--gold); font-size: 2rem; vertical-align: middle; }
+        .cover-subtitle {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+        .cover-meta {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.35);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .cover-meta strong { color: var(--gold); font-weight: 600; }
+
+        /* PAGE HEADER (running) */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+            font-size: 0.65rem;
+            color: var(--ink-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .page-header .brand { display: flex; align-items: center; gap: 0.5rem; }
+        .page-header .brand strong { color: var(--ink); font-weight: 700; }
+        .page-header .brand .ia { color: var(--gold); }
+
+        /* SECTION TITLES */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+        }
+        .section-subtitle {
+            font-size: 0.85rem;
+            color: var(--ink-muted);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+        .phase-label {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.75rem;
+        }
+        .phase-asis { background: #fef2f2; color: var(--accent-red); border: 1px solid #fecaca; }
+        .phase-tobe { background: #ecfdf5; color: var(--accent-green); border: 1px solid #a7f3d0; }
+        .phase-gap { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+        /* SWIMLANES */
+        .swimlane-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.85rem;
+        }
+        .swimlane-table th {
+            background: var(--paper-warm);
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.6rem 1rem;
+            text-align: left;
+            border-bottom: 2px solid var(--gold);
+            width: 120px;
+        }
+        .swimlane-table td {
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--ink-soft);
+            vertical-align: top;
+        }
+
+        /* METRICS TABLE */
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        .metrics-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-muted);
+            border-bottom: 2px solid var(--border);
+        }
+        .metrics-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #f3f0eb;
+        }
+        .metrics-table td:last-child {
+            text-align: right;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        .val-bad { color: var(--accent-red); }
+        .val-good { color: var(--accent-green); }
+
+        /* QUADRANT GRID */
+        .quadrant {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+        .quadrant-cell {
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+        .quadrant-cell h4 {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+        }
+        .quadrant-cell ul { list-style: none; padding: 0; }
+        .quadrant-cell li { padding: 0.15rem 0; color: var(--ink-soft); }
+        .qc-wins { background: #ecfdf5; border: 1px solid #a7f3d0; }
+        .qc-wins h4 { color: var(--accent-green); }
+        .qc-transform { background: #fffbeb; border: 1px solid #fde68a; }
+        .qc-transform h4 { color: #92400e; }
+        .qc-evaluate { background: #f8fafc; border: 1px solid #e2e8f0; }
+        .qc-evaluate h4 { color: var(--ink-muted); }
+
+        /* MERMAID */
+        .mermaid { margin: 1rem 0; text-align: center; }
+        .mermaid svg { max-width: 100% !important; }
+
+        /* PAGE BREAKS */
+        .page-break { page-break-before: always; }
+
+        /* FOOTER */
+        .page-footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            color: var(--ink-muted);
+        }
+        .page-footer .brand-mark { color: var(--gold); font-weight: 600; }
+
+        /* EXECUTIVE SUMMARY BOX */
+        .exec-summary {
+            background: var(--paper-warm);
+            border-left: 4px solid var(--gold);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .exec-summary h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+        .exec-summary p {
+            color: var(--ink-soft);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        /* IMPACT HIGHLIGHT */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .impact-card {
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--paper-warm);
+        }
+        .impact-card .number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-green);
+            line-height: 1;
+        }
+        .impact-card .label {
+            font-size: 0.65rem;
+            color: var(--ink-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 0.3rem;
+        }
+
+        /* SCREEN-ONLY */
+        @media screen {
+            body { max-width: 800px; margin: 0 auto; padding: 2rem; }
+            .cover { border-radius: 12px; margin-bottom: 2rem; height: auto; min-height: 80vh; }
+        }
+
+        @media print {
+            body { font-size: 9.5pt; }
+            .cover { height: 297mm; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+    <div class="cover-logo">
+        <svg width="56" height="56" viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="white"/>
+            <circle cx="18" cy="8" r="2" fill="#c9a84c"/>
+        </svg>
+    </div>
+    <div class="cover-badge">Workflow Estratégico #02</div>
+    <h1>
+        Onboarding de Talento<br>
+        <span class="asis">AS-IS</span>
+        <span class="arrow"> → </span>
+        <span class="tobe">TO-BE</span>
+    </h1>
+    <p class="cover-subtitle">
+        Diagnóstico visual del proceso de onboarding actual vs el modelo
+        optimizado con Inteligencia Artificial. Análisis de brecha,
+        métricas de impacto y roadmap de transformación.
+    </p>
+    <p class="cover-meta">
+        <strong>MetodologIA</strong> · metodologia.info · Marzo 2026
+    </p>
+</div>
+
+<!-- PAGE 2: EXECUTIVE SUMMARY -->
+<div class="page-break"></div>
+<div class="page-header">
+    <div class="brand"><strong>Metodolog<span class="ia">IA</span></strong></div>
+    <div>Workflow #02 — Onboarding de Talento</div>
+</div>
+
+<div class="exec-summary">
+    <h3>Resumen Ejecutivo</h3>
+    <p>
+        Este workflow documenta la transformación del proceso de onboarding desde un
+        modelo manual (AS-IS) con 30 días de incorporación y 40% de attrition temprana,
+        hacia un modelo de <strong>Onboarding Inteligente con IA</strong> (TO-BE)
+        que proyecta 7 días de incorporación y 12% de attrition. La satisfacción
+        del nuevo talento sube de 5.2 a 9.1/10, con productividad plena en 21 días
+        en lugar de 90.
+    </p>
+</div>
+
+<div class="impact-grid">
+    <div class="impact-card">
+        <div class="number">-77%</div>
+        <div class="label">Tiempo onboarding</div>
+    </div>
+    <div class="impact-card">
+        <div class="number">-70%</div>
+        <div class="label">Attrition temprana</div>
+    </div>
+    <div class="impact-card">
+        <div class="number">+75%</div>
+        <div class="label">Satisfacción</div>
+    </div>
+</div>
+
+<!-- AS-IS SECTION -->
+<h2 class="section-title">Estado Actual</h2>
+<p class="section-subtitle">Proceso de onboarding sin asistencia de IA</p>
+
+<span class="phase-label phase-asis">AS-IS</span>
+
+<table class="swimlane-table">
+    <tr><th>RRHH</th><td>Envío manual de documentos → Coordinación de accesos uno a uno → Seguimiento por email → Checklist en papel → Encuesta al mes 3</td></tr>
+    <tr><th>Nuevo Empleado</th><td>Recibe pack genérico → Busca información dispersa → Espera aprobaciones → Aprende por prueba y error → Sin mentor claro</td></tr>
+    <tr><th>Líder Directo</th><td>Presenta equipo cuando puede → Asigna tareas ad-hoc → Revisa avance informalmente → Sin visibilidad de progreso</td></tr>
+</table>
+
+<div class="mermaid">
+flowchart LR
+    A[Documentación\nManual] -->|5-10 días| B[Accesos y\nHerramientas]
+    B -->|Espera IT| C[Inducción\nGenérica]
+    C -->|1 sesión| D[Aprendizaje\nSin guía]
+    D -->|Trial & error| E[Productividad\n90 días]
+    style A fill:#fef2f2,stroke:#b91c1c,color:#1a1a2e
+    style B fill:#fef2f2,stroke:#b91c1c,color:#1a1a2e
+    style C fill:#fef2f2,stroke:#b91c1c,color:#1a1a2e
+    style D fill:#fef2f2,stroke:#b91c1c,color:#1a1a2e
+    style E fill:#fef2f2,stroke:#b91c1c,color:#1a1a2e
+</div>
+
+<table class="metrics-table">
+    <thead><tr><th>Indicador</th><th>Valor AS-IS</th></tr></thead>
+    <tbody>
+        <tr><td>Tiempo de onboarding</td><td class="val-bad">30 días</td></tr>
+        <tr><td>Attrition temprana</td><td class="val-bad">40%</td></tr>
+        <tr><td>Satisfacción nuevo talento</td><td class="val-bad">5.2/10</td></tr>
+        <tr><td>Tiempo a productividad plena</td><td class="val-bad">90 días</td></tr>
+        <tr><td>Documentación completa</td><td class="val-bad">25%</td></tr>
+    </tbody>
+</table>
+
+<!-- PAGE 3: GAP + TO-BE -->
+<div class="page-break"></div>
+<div class="page-header">
+    <div class="brand"><strong>Metodolog<span class="ia">IA</span></strong></div>
+    <div>Workflow #02 — Análisis de Brecha</div>
+</div>
+
+<span class="phase-label phase-gap">Análisis de Brecha</span>
+<h2 class="section-title">Impacto vs Esfuerzo</h2>
+
+<div class="quadrant">
+    <div class="quadrant-cell qc-wins">
+        <h4>Quick Wins</h4>
+        <ul><li>Rutas personalizadas IA</li><li>Buddy matching automático</li></ul>
+    </div>
+    <div class="quadrant-cell qc-transform">
+        <h4>Transformar</h4>
+        <ul><li>Portal autoservicio</li><li>Onboarding predictivo</li></ul>
+    </div>
+    <div class="quadrant-cell qc-evaluate">
+        <h4>Evaluar</h4>
+        <ul><li>Chatbot de preguntas frecuentes</li></ul>
+    </div>
+    <div class="quadrant-cell qc-evaluate">
+        <h4>Postergar</h4>
+        <ul><li>Gamificación del onboarding</li></ul>
+    </div>
+</div>
+
+<span class="phase-label phase-tobe">TO-BE</span>
+<h2 class="section-title">Estado Objetivo</h2>
+<p class="section-subtitle">Onboarding Inteligente con Inteligencia Artificial</p>
+
+<table class="swimlane-table">
+    <tr><th>RRHH + IA</th><td>Pre-boarding automatizado → Documentos pre-llenados → Accesos provisionados por IA → Dashboard de progreso en tiempo real → Alertas proactivas</td></tr>
+    <tr><th>Nuevo Empleado</th><td>Ruta personalizada desde día 0 → Portal autoservicio → Buddy asignado por IA → Micro-aprendizajes adaptativos → Feedback continuo</td></tr>
+    <tr><th>Líder + IA</th><td>Plan de integración sugerido → Objetivos 30-60-90 auto-generados → Visibilidad total del progreso → Coaching basado en datos</td></tr>
+</table>
+
+<div class="mermaid">
+flowchart LR
+    A[Pre-boarding\nAutomático] -->|Día -7| B[Accesos\nProvisionados]
+    B -->|Día 1| C[Ruta\nPersonalizada]
+    C -->|Adaptativo| D[Buddy +\nMicro-learning]
+    D -->|Guiado| E[Productividad\n21 días]
+    style A fill:#ecfdf5,stroke:#047857,color:#1a1a2e
+    style B fill:#ecfdf5,stroke:#047857,color:#1a1a2e
+    style C fill:#ecfdf5,stroke:#047857,color:#1a1a2e
+    style D fill:#ecfdf5,stroke:#047857,color:#1a1a2e
+    style E fill:#ecfdf5,stroke:#047857,color:#1a1a2e
+</div>
+
+<table class="metrics-table">
+    <thead><tr><th>Indicador</th><th>AS-IS</th><th>TO-BE</th><th>Delta</th></tr></thead>
+    <tbody>
+        <tr><td>Tiempo de onboarding</td><td class="val-bad">30 días</td><td class="val-good">7 días</td><td class="val-good">-77%</td></tr>
+        <tr><td>Attrition temprana</td><td class="val-bad">40%</td><td class="val-good">12%</td><td class="val-good">-70%</td></tr>
+        <tr><td>Satisfacción</td><td class="val-bad">5.2/10</td><td class="val-good">9.1/10</td><td class="val-good">+75%</td></tr>
+        <tr><td>Tiempo a productividad</td><td class="val-bad">90 días</td><td class="val-good">21 días</td><td class="val-good">-77%</td></tr>
+        <tr><td>Docs completos</td><td class="val-bad">25%</td><td class="val-good">98%</td><td class="val-good">+292%</td></tr>
+    </tbody>
+</table>
+
+<!-- PAGE 4: ROADMAP -->
+<div class="page-break"></div>
+<div class="page-header">
+    <div class="brand"><strong>Metodolog<span class="ia">IA</span></strong></div>
+    <div>Workflow #02 — Roadmap</div>
+</div>
+
+<h2 class="section-title">Roadmap de Transformación</h2>
+<p class="section-subtitle">Plan de implementación en 4 fases — Onboarding Inteligente</p>
+
+<div class="mermaid">
+gantt
+    title Plan de Implementación
+    dateFormat YYYY-MM-DD
+    axisFormat %b
+    section Quick Wins
+        Rutas personalizadas IA    :a1, 2026-04-01, 3w
+        Buddy matching auto        :a2, 2026-04-01, 2w
+    section Core
+        Portal autoservicio        :b1, after a1, 6w
+        Pre-boarding automático    :b2, after a2, 4w
+    section Avanzado
+        Onboarding predictivo      :c1, after b1, 4w
+        Micro-learning adaptativo  :c2, after b2, 3w
+    section Sostenimiento
+        Optimización continua      :d1, after c1, 8w
+</div>
+
+<div class="exec-summary" style="margin-top:2rem">
+    <h3>Próximos Pasos</h3>
+    <p>
+        Para iniciar la transformación, se recomienda agendar una <strong>sesión
+        de diagnóstico gratuita</strong> donde se validarán las métricas AS-IS
+        con datos reales de su organización y se priorizarán los Quick Wins
+        para obtener resultados visibles en las primeras 3 semanas.
+    </p>
+</div>
+
+<div class="page-footer">
+    <div>© 2026 <span class="brand-mark">MetodologIA</span> · metodologia.info</div>
+    <div>Documento generado como recurso gratuito · Workflow #02 v1.0</div>
+</div>
+
+</body>
+</html>

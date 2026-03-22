@@ -1,0 +1,62 @@
+/**
+  @license Copyleft
+  @copyright MetodologIA
+  @author Javier Montaño
+  @technology Antigravity | GoogleAI Studio | Gemini 3 Pro | Gemini 3 Flash
+  @poweredBy Pristino Agent
+ */
+
+/* 
+ * Workshop Styles
+ * Extracted from workshop-alineacion-comercial.html
+ */
+
+/* Workshop-scoped variables (no longer overriding :root globals) */
+.workshop-page {
+    --surface-primary: var(--bg-primary);
+    --accent-gold: var(--brand-gold-dark);
+    --accent-gold-dark: #FFA000;
+    overflow-x: hidden;
+}
+
+.btn-pristino-gold {
+    background: var(--gradient-gold);
+    color: #000;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    text-decoration: none;
+}
+
+.btn-pristino-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--brand-gold-glow);
+}
+
+.highlight-ia-yellow {
+    background: linear-gradient(120deg, #fbbf24 0%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+/* Nav & Cards */
+/* Nav styles delegated to components.css */
+
+/* Card styles are imported from colors.css (.card-glass) */
+
+/* .animate-fade-in-up and @keyframes fadeInUp — consolidated in components.css */
+
+/* Footer link overrides removed — delegated to components.css */
+
+/* Animation Delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }

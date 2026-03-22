@@ -1,21 +1,111 @@
 <!-- Sync Impact Report
-Version: 3.1.0 (Code Sustainability + TDD rationale refinement)
+Version: 4.0.0 (Work Philosophy + BDD Full-Spectrum + Quality Gates)
 Modified principles:
-  - IX. Test-Driven Development: rationale expanded — TDD/ATDD
-    prevents unnecessary code, not just regressions
+  - IX. Test-Driven Development: now references XIII (Think First)
+    and XV (BDD Full-Spectrum) as its governing context
+Modified sections:
+  - Development Workflow: restructured around Think First, Act Next
+  - Quality Standards: added quality gate levels
+  - Governance: added quality gates enforcement
 Added sections:
-  - XII. Code Sustainability
-  - Quality Standards: expanded for naming, README, scaffolding
-  - Development Workflow: expanded for naming conventions
-Removed sections: None
+  - Work Philosophy (new top-level section before Core Principles)
+  - XIII. Think First, Act Next
+  - XIV. Simple First, Robust Next
+  - XV. BDD Full-Spectrum Quality
+  - XVI. Parallel-Ready Workflow
+  - Quality Gates (formalized G0-G3 from JM-ADK)
+Removed sections: None (all v3.1.0 principles preserved)
+Adopted from: github.com/JaviMontano/jm-agentic-development-kit
+  - Intent Integrity Chain (already present via IIKit)
+  - Phase Separation (already present in workflow)
+  - Quality Gates G0-G3 (adopted, adapted to site context)
+  - Metacognitive Confidence (adopted into XIII)
+  - Evidence Tagging (already in global CLAUDE.md)
 Follow-up TODOs:
-  - Update plan.md test stack (Playwright for ATDD, Vitest for unit)
-  - Create design-tokens.json or variables.css update with canonical palette
-  - Downstream specs may need testify re-run for TDD compliance
-  - Define naming convention reference (slugging rules, file patterns)
+  - Update plan.md with worktree branching strategy
+  - Define BDD scenario coverage matrix per principle
+  - Downstream specs may need testify re-run for new BDD scope
 -->
 
 # Site MetodologIA Constitution
+
+## Work Philosophy
+
+These meta-principles govern HOW all other principles are
+applied. They are the permanent operating pattern for every
+decision, every line of code, and every artifact produced.
+
+### XIII. Think First, Act Next
+
+No action without understanding. Every task begins with
+analysis, decomposition, and explicit reasoning before any
+code is written or any change is made.
+
+- **Understand before modifying**: read existing code,
+  understand the context, identify the boundaries of change
+  BEFORE writing anything
+- **Decompose before solving**: break complex problems into
+  atomic sub-problems. Address each with explicit reasoning.
+  Combine results with awareness of interactions
+- **Verify before committing**: logic check, fact check,
+  completeness check, bias check. If confidence in the
+  approach is low, seek more information — do not proceed
+  on assumption
+- **Specify before implementing**: requirements (WHAT) must
+  exist before plans (HOW), and plans must exist before
+  code. Phase separation is non-negotiable:
+  Constitution (WHY) > Spec (WHAT) > Plan (HOW) >
+  Tasks (WORK) > Tests (PROOF) > Code (SOLUTION)
+- **Evidence before assertion**: every claim about behavior,
+  performance, or correctness is tagged with its basis:
+  `[CODE]` `[CONFIG]` `[DOC]` `[INFERENCE]` `[ASSUMPTION]`
+- If more than 30% of claims in a deliverable are tagged
+  `[ASSUMPTION]`, the deliverable MUST display a prominent
+  warning and trigger clarification before proceeding
+
+**Rationale**: The most expensive code is code that solves
+the wrong problem. Think First prevents the waste of
+building before understanding. This is the foundational
+discipline that makes TDD (IX), BDD (XV), and Code
+Sustainability (XII) possible. Acting without thinking
+produces code that must be discarded; thinking without
+acting is addressed by the next principle.
+
+### XIV. Simple First, Robust Next
+
+Start with the simplest solution that satisfies the
+requirement. Add robustness only when the simple version
+is proven insufficient through evidence — never
+preemptively.
+
+- **Working beats perfect**: a simple, tested, working
+  solution today is better than an over-engineered solution
+  that takes three times longer to deliver
+- **Progressive refinement**: build the minimum viable
+  implementation first. Observe its behavior in practice.
+  Add complexity only where observed failure or measured
+  inadequacy demands it
+- **No premature abstraction**: three similar lines of code
+  are better than a premature utility function. Abstract
+  only when the pattern has repeated enough to prove the
+  abstraction is warranted
+- **No speculative features**: do not build for hypothetical
+  future requirements. Build for the current requirement
+  and ensure the design is extensible (Principle XII) so
+  future needs can be added when they become real
+- **Complexity requires justification**: any solution that
+  is more complex than the simplest alternative MUST
+  document why the simpler approach was insufficient.
+  The burden of proof is on complexity, not simplicity
+
+**Rationale**: Unnecessary complexity is the primary source
+of maintenance burden, onboarding friction, and bugs in
+long-lived codebases. Simple First is not simplistic — it
+is strategic. Robustness is added through iterative
+refinement guided by evidence (tests, metrics, user
+feedback), not by anticipation. This principle works in
+concert with TDD (IX): tests define the boundary of what
+is needed; Simple First ensures we don't exceed it.
 
 ## Core Principles
 
@@ -195,6 +285,8 @@ replaces.
 
 All production code MUST be preceded by tests. Tests define
 expected behavior; code is written to satisfy those tests.
+This principle operates within the Think First (XIII) and
+BDD Full-Spectrum (XV) governance.
 
 - Tests MUST be written before the production code they
   verify — red-green-refactor is the required workflow
@@ -353,6 +445,114 @@ time and maintenance risk. TDD (Principle IX) prevents
 unnecessary code; this principle ensures the necessary code
 is written for longevity.
 
+### XV. BDD Full-Spectrum Quality
+
+Behavior-Driven Development is the overarching quality
+pattern. BDD scenarios do not only cover functional behavior
+— they address every angle of the system: strategic,
+tactical, operational, technical, UX, UI, backend,
+middleware, data, DevSecOps, CI, and CD.
+
+- **Full-spectrum BDD**: acceptance scenarios MUST be defined
+  for every quality dimension relevant to the feature —
+  not just "happy path" functional behavior
+- **Coverage angles** (applicable per feature):
+  - **Strategic**: does the feature align with business
+    goals and constitutional principles?
+  - **Tactical**: does the migration sequence make sense?
+    Are dependencies managed?
+  - **Operational**: can admins use it? Are error messages
+    actionable? Is the runbook clear?
+  - **Technical**: does the code meet performance, security,
+    and scalability requirements?
+  - **User experience**: is the behavior intuitive? Does
+    offline degradation feel seamless?
+  - **UI**: do components match the design system? Are
+    tokens used correctly?
+  - **Backend**: do security rules enforce correctly? Does
+    the data model validate?
+  - **Middleware**: does the content service mediate all
+    access? Does caching work?
+  - **Data**: is schema validation enforced? Are both
+    languages present? Is audit logging complete?
+  - **DevSecOps**: are secrets absent from client code?
+    Are rules tested before deploy?
+  - **CI/CD**: do automated gates block broken code? Do
+    tests run before merge?
+- **BDD as specification language**: Given/When/Then
+  scenarios are the primary artifact for defining expected
+  behavior at every level. They are written BEFORE code
+  (ATDD, Principle IX) and hash-locked to prevent drift
+- **Traceability**: every BDD scenario traces to at least
+  one requirement (FR-XXX), one success criterion (SC-XXX),
+  and one constitutional principle
+
+**Rationale**: Traditional BDD focuses narrowly on user-
+facing behavior. But a CMS migration has quality dimensions
+that span security, data integrity, performance, offline
+resilience, and brand compliance. Full-spectrum BDD ensures
+nothing falls through the cracks by making every quality
+angle a testable behavior. This is the practical expression
+of Think First (XIII): you cannot test what you have not
+thought about.
+
+### XVI. Parallel-Ready Workflow
+
+Development work MUST be structured for parallel execution
+across independent work streams using isolated branches.
+
+- **Branch-per-task isolation**: each task or feature is
+  developed on its own branch, isolated from other
+  in-progress work
+- **Worktree-based parallelism**: independent tasks may
+  execute simultaneously in separate worktrees, enabling
+  multi-agent or multi-developer parallel work without
+  merge conflicts
+- **Atomic, mergeable units**: each branch produces a
+  self-contained change that can be merged independently.
+  No branch should depend on another in-progress branch
+- **Contract-first integration**: when parallel tasks must
+  eventually integrate, they agree on contracts (API
+  signatures, data shapes, event names) BEFORE parallel
+  implementation begins
+- **No long-lived feature branches**: branches are short-
+  lived and merged frequently. Work that exceeds one
+  sprint is decomposed into smaller mergeable increments
+- **Merge discipline**: all branches pass automated tests
+  (Principle IX) and quality gates before merge. No force-
+  pushing to shared branches
+
+**Rationale**: A multi-agent development workflow (human +
+AI agents working concurrently) requires work to be
+structured for safe parallelism. Worktree isolation prevents
+the "stepping on each other" problem. Contract-first
+integration prevents the "works in isolation, breaks on
+merge" problem. Atomic units prevent the "can't ship
+because branch X isn't ready" problem. This principle makes
+the Think First (XIII) and Simple First (XIV) disciplines
+scalable across multiple concurrent workers.
+
+## Quality Gates
+
+Quality gates formalize the checkpoints adopted from the
+JM Agentic Development Kit. Every feature MUST pass each
+applicable gate before advancing.
+
+| Gate | When | Criteria |
+|------|------|----------|
+| **G0** | Pre-flight | Secrets scan clean, no credentials in client code, branch created, constitution compliance confirmed |
+| **G1** | After specification | Spec complete (FR-XXX, SC-XXX, Given/When/Then), evidence tags present, checklist passed, no unresolved clarifications |
+| **G2** | After plan + design | Data model documented, API contracts defined, security rules designed, BDD scenarios hash-locked, design system tokens referenced |
+| **G3** | Deploy-ready | All automated tests pass, Lighthouse >= 90, security rules pass emulator tests, accessibility audit clean, brand voice red-list scan clean |
+
+- Gates are enforced by the IIKit phase pipeline: G0 at
+  constitution, G1 at specify/checklist, G2 at plan/testify,
+  G3 at implement
+- A feature that fails a gate MUST NOT advance to the next
+  phase — fix the failure, do not bypass the gate
+- Gate results are recorded in `.specify/context.json` for
+  dashboard tracking
+
 ## Quality Standards
 
 - No broken links or missing assets on any public page
@@ -385,37 +585,42 @@ is written for longevity.
   — no cryptic abbreviations or implementation-only naming
 - File and URL naming MUST follow the documented slug
   convention — no ad-hoc patterns
+- Evidence tags MUST be present on all claims in technical
+  deliverables — untagged assertions are not acceptable
 
 ## Development Workflow
 
-- Read existing code before modifying any file
-- Write tests before writing the production code they
-  verify (TDD: red-green-refactor)
-- Define acceptance scenarios (Given/When/Then) before
-  implementation begins (ATDD)
-- Run the full automated test suite before committing —
-  do not commit with failing tests
-- Test changes across representative pages (not just the
-  page being edited)
-- Verify modal behavior, navigation, and theme toggle after
-  structural changes
-- Validate SEO meta tags after adding or renaming pages
-- Update sitemap when pages are added, removed, or renamed
-- Remove dead code rather than commenting it out
-- Test backend security rules before deploying changes to
-  the data layer
-- Verify content renders correctly from both static and
-  cloud sources during the migration period
-- Run accessibility checks on admin interfaces, not just
-  public pages
-- Verify new components against design system tokens
-  before merging
-- Scan published content against the brand voice red list
-  before release
-- Name every new file, function, and variable using
-  business-readable terms — review naming before merging
-- Add a README to any new module or directory that explains
-  what it does and how to extend it
+### Think Phase (before every task)
+
+1. Read existing code and understand context
+2. Decompose the problem into atomic sub-problems
+3. Verify that spec, plan, and tests exist (phase
+   separation)
+4. Identify which quality gate applies
+
+### Act Phase (implementation)
+
+5. Write tests before production code (TDD/ATDD)
+6. Implement the simplest solution that passes the tests
+7. Refactor for clarity and sustainability (red-green-
+   refactor)
+8. Verify against all applicable BDD angles (XV)
+
+### Verify Phase (before commit)
+
+9. Run the full automated test suite — do not commit with
+   failing tests
+10. Check design system token compliance for UI changes
+11. Scan for secrets, red-list terms, naming violations
+12. Verify accessibility on affected pages
+13. Confirm quality gate criteria are met
+
+### Integration Phase (before merge)
+
+14. Ensure branch is atomic and independently mergeable
+15. Resolve conflicts against main — never force-push
+16. Run tests again after rebase/merge
+17. Update sitemap, SEO tags, and README if affected
 
 ## Governance
 
@@ -431,16 +636,25 @@ personal preferences.
 - **Conflicts** between principles are resolved by the
   project owner; accessibility, security, and brand
   separation take precedence over convenience
+- **Work philosophy** (XIII, XIV) governs how all other
+  principles are applied — Think First before acting,
+  Simple First before adding complexity
 - **Migration decisions** (which content migrates to the
   backend and when) are governed by Content Authority
   (Principle VI) — never duplicate, migrate incrementally
 - **Test discipline** is non-negotiable: no feature is
   complete without passing automated tests (Principle IX)
+- **Quality gates** (G0-G3) are mandatory checkpoints;
+  no feature advances past a failed gate
 - **Design tokens** are the canonical source for visual
   decisions; deviations require amendment (Principle X)
 - **Brand voice** compliance is verified for all published
   content; red-list violations block release (Principle XI)
 - **Code sustainability** is verified by naming review,
   README presence, and pattern adherence (Principle XII)
+- **BDD coverage** must span all applicable quality angles
+  (XV) — narrow functional-only scenarios are insufficient
+- **Parallel workflow** discipline ensures branches are
+  atomic, contract-first, and short-lived (Principle XVI)
 
-**Version**: 3.1.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-22
+**Version**: 4.0.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-22

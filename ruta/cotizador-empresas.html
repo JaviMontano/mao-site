@@ -1619,15 +1619,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof icons !== 'undefined') icons.createIcons();
     loadFromSession();
     
-    // Force UI sync with currentStep (0)
-    console.log('[DEBUG] Initializing at Step:', currentStep);
     goToStep(currentStep);
-    
-    // Safety check: ensure Step 0 indicator is active if currentStep is 0
+
     if (currentStep === 0) {
         const step0Node = document.querySelector('.step-node[data-step="0"]');
         if (step0Node && !step0Node.classList.contains('active')) {
-            console.log('[DEBUG] Forcing Step 0 Active state');
             step0Node.classList.add('active');
         }
     }

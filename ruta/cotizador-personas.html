@@ -11,24 +11,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora ROI | Ruta de (R)Evolución | MetodologIA</title>
-    <meta name="description" content="Calcula tu retorno de inversión en tiempo y productividad. Diseña tu ruta de evolución digital personalizada.">
-    <link rel="canonical" href="https://metodologia.info/ruta/cotizador.html">
-    <meta name="keywords" content="calculadora ROI, retorno inversión IA, ruta evolución digital, soberanía digital, productividad IA, MetodologIA">
+    <title>Calculadora ROI Personal | Mentoria IA | MetodologIA</title>
+    <meta name="description" content="Calcula tu retorno de inversión personal. Diseña tu ruta de soberanía digital, profesional y estratégica y aumenta tu productividad con IA Generativa.">
+    <link rel="canonical" href="https://metodologia.info/ruta/cotizador-personas.html">
+    <meta name="keywords" content="calculadora ROI personal, retorno inversión IA, soberanía digital, mentoría IA, productividad personal, MetodologIA">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://metodologia.info/ruta/cotizador.html">
-    <meta property="og:title" content="Calculadora ROI | Ruta de (R)Evolución | MetodologIA">
-    <meta property="og:description" content="Calcula tu retorno de inversión en tiempo y productividad. Diseña tu ruta de evolución digital personalizada.">
+    <meta property="og:url" content="https://metodologia.info/ruta/cotizador-personas.html">
+    <meta property="og:title" content="Calculadora ROI Personal | Mentoria IA | MetodologIA">
+    <meta property="og:description" content="Calcula tu retorno de inversión personal. Diseña tu ruta de soberanía digital, profesional y estratégica y aumenta tu productividad con IA Generativa.">
     <meta property="og:image" content="https://metodologia.info/recursos/og-image.png">
 
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://metodologia.info/ruta/cotizador.html">
-    <meta property="twitter:title" content="Calculadora ROI | Ruta de (R)Evolución | MetodologIA">
-    <meta property="twitter:description" content="Calcula tu retorno de inversión en tiempo y productividad con IA.">
+    <meta property="twitter:url" content="https://metodologia.info/ruta/cotizador-personas.html">
+    <meta property="twitter:title" content="Calculadora ROI Personal | Mentoria IA | MetodologIA">
+    <meta property="twitter:description" content="Calcula tu retorno de inversión personal con IA Generativa.">
     <meta property="twitter:image" content="https://metodologia.info/recursos/og-image.png">
 
     <!-- Fonts -->
@@ -44,41 +44,38 @@
     <!-- Tailwind (Local Build) -->
     <link rel="stylesheet" href="../dist/output.css">
 
-    <!-- JSON-LD (AEO: WebApplication) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Calculadora ROI - Ruta de (R)Evolución",
-        "applicationCategory": "BusinessApplication",
-        "description": "Calcula tu retorno de inversión en tiempo y productividad. Diseña tu ruta de evolución digital personalizada.",
-        "provider": { "@type": "Organization", "name": "MetodologIA", "url": "https://metodologia.info" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "COP", "description": "Herramienta gratuita de simulación ROI" },
-        "operatingSystem": "Web Browser"
-    }
-    </script>
-
     <!-- Nav styles provided by components.css (Skill 119: No Inline Styles) -->
     
     <!-- Icons -->
     <script src="../js/icons.js" defer></script>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <!-- Web Components -->
+    <!-- JSON-LD (AEO: Service) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Mentoria en Soberanía Digital, Profesional y Estratégica",
+        "provider": { "@type": "Organization", "name": "MetodologIA" },
+        "description": "Programa de acompañamiento para profesionales que buscan dominar la IA generativa.",
+        "offers": { "@type": "Offer", "priceCurrency": "COP", "availability": "https://schema.org/OnlineOnly" },
+        "audience": { "@type": "Audience", "audienceType": "Freelancers y Profesionales" }
+    }
+    </script>
     <script src="../components/SiteHeader.js" defer></script>
     <script src="../components/SiteFooter.js" defer></script>
-    <script src="../js/modal-system.js" defer></script>
 
     <style>
-        .cotizador-container { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
-        .step-card { background: var(--bg-elevated); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid var(--border-subtle); }
-        .range-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 4px; background: linear-gradient(to right, var(--brand-gold-dark), var(--bg-surface)); }
-        .range-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--brand-gold-dark); cursor: pointer; box-shadow: 0 0 10px var(--brand-gold-glow); }
-        .range-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--brand-gold-dark); cursor: pointer; border: none; }
+        .glass-modal { background: var(--bg-elevated); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid var(--border-subtle); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--border-subtle); }
+        .cotizador-container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; }
+        .step-card { background: var(--bg-surface); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid var(--border-subtle); }
+        .range-slider { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 4px; background: linear-gradient(to right, var(--brand-gold), var(--bg-primary)); }
+        .range-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--brand-gold); cursor: pointer; box-shadow: 0 0 10px var(--brand-gold-glow); }
+        .range-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--brand-gold); cursor: pointer; border: none; }
         .step-indicator { transition: all 0.3s ease; }
         .step-indicator.active { background: var(--gradient-gold); color: #000; }
         .step-indicator.completed { background: var(--brand-emerald); color: white; }
         .result-card { background: linear-gradient(135deg, var(--brand-gold-glow), rgba(255, 215, 0, 0.02)); border: 1px solid var(--brand-gold-glow); }
-        /* Modal styles consolidated in components.css + modal-system.js */
     </style>
 </head>
 <body class="bg-[var(--bg-body)] text-[var(--text-primary)] font-sans antialiased">
@@ -86,8 +83,9 @@
 <!-- PREMIUM NAVIGATION -->
 <site-header base-path=".."></site-header>
 
+<main id="main-content">
 <!-- HERO -->
-<section class="pt-24 pb-8 bg-[var(--bg-body)]">
+<section class="pt-24 pb-8 bg-gradient-to-b from-slate-900 to-slate-900">
     <div class="cotizador-container">
         <!-- Golden Standard Breadcrumb -->
         <nav aria-label="Breadcrumb" class="container-max mx-auto px-6 mb-8 animate-fade-in-down">
@@ -106,26 +104,28 @@
         </nav>
         
         <!-- Personas / Empresas Toggle -->
+        <!-- Personas / Empresas Toggle (Link-based for Seamless Feel) -->
         <div class="flex justify-center mb-6">
-            <div class="inline-flex items-center p-1 rounded-full bg-slate-800/50 border border-white/10">
-                <button id="toggle-personas" onclick="setRutaMode('personas')" 
-                    class="active px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    <i data-lucide="user" class="w-3 h-3 inline mr-1"></i> Para Personas
-                </button>
-                <button id="toggle-empresas" onclick="setRutaMode('empresas')" 
-                    class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-                    <i data-lucide="building-2" class="w-3 h-3 inline mr-1"></i> Para Empresas
-                </button>
+            <div class="inline-flex items-center p-1 rounded-full bg-slate-800/50 border border-white/10 shadow-lg">
+                <!-- Personas (Active) -->
+                <div class="px-5 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-brand-gold to-yellow-600 text-slate-950 shadow-md cursor-default flex items-center gap-2">
+                    <i data-lucide="user" class="w-3 h-3"></i> Para Personas
+                </div>
+                <!-- Empresas (Inactive Link) -->
+                <a href="cotizador-empresas.html" 
+                   class="px-5 py-2 rounded-full text-xs font-bold text-slate-100 hover:text-white hover:bg-white/5 transition-all flex items-center gap-2">
+                    <i data-lucide="briefcase" class="w-3 h-3"></i> Para Empresas
+                </a>
             </div>
         </div>
         <style>
             #toggle-personas.active, #toggle-empresas.active { background: var(--gradient-gold); color: #000; }
             #toggle-personas:not(.active), #toggle-empresas:not(.active) { color: var(--text-secondary); }
-            #toggle-personas:not(.active):hover, #toggle-empresas:not(.active):hover { color: #fff; background: var(--bg-hover); }
+            #toggle-personas:not(.active):hover, #toggle-empresas:not(.active):hover { color: #fff; background: rgba(255,255,255,0.05); }
         </style>
         
-        <!-- Smart Stepper System -->
-        <div id="smart-stepper" class="w-full max-w-xl mx-auto mb-10 px-4">
+        <!-- Smart Stepper System (Homologated) -->
+        <div id="smart-stepper" class="w-full max-w-4xl mx-auto mb-16 px-4">
             
             <!-- Mobile View: Progress & Context -->
             <div class="md:hidden">
@@ -136,10 +136,10 @@
                             Paso <span id="mobile-step-num" class="text-brand-gold">1</span> <span class="text-slate-100">/</span> 5
                         </span>
                     </div>
-                    <span id="mobile-step-name" class="text-xs text-brand-gold font-bold text-right">Inicio</span>
+                    <span id="mobile-step-name" class="text-xs text-brand-gold font-bold text-right">Contexto</span>
                 </div>
-                <div class="h-1.5 bg-[var(--bg-surface)] rounded-full overflow-hidden shadow-inner border border-white/5">
-                    <div id="mobile-progress-bar" class="h-full bg-brand-gold transition-all duration-700 ease-out relative w-0" title="Barra de progreso móvil">
+                <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden shadow-inner border border-white/5">
+                    <div id="mobile-progress-bar" class="h-full bg-gradient-to-r from-brand-gold to-[#F59E0B] transition-all duration-700 ease-out relative w-0" title="Barra de progreso móvil">
                         <div class="absolute right-0 top-0 h-full w-2 bg-white/50 blur-[2px]"></div>
                     </div>
                 </div>
@@ -148,47 +148,47 @@
             <!-- Desktop View: Node Connector -->
             <div class="hidden md:flex items-center justify-between relative px-2">
                 <!-- Background Line -->
-                <div class="absolute top-1/2 left-2 right-2 h-0.5 bg-[var(--bg-surface)] -z-10 rounded-full"></div>
+                <div class="absolute top-1/2 left-2 right-2 h-0.5 bg-slate-800 -z-10 rounded-full"></div>
                 <!-- Active Line -->
                 <div id="desktop-progress-line" class="absolute top-1/2 left-2 h-0.5 bg-brand-gold -z-10 transition-all duration-700 ease-out w-0" title="Línea de progreso"></div>
                 
                 <!-- Nodes -->
-                <button onclick="goToStep(0)" class="step-node group relative" data-step="0">
+                <button onclick="goToStep(0)" class="step-node group relative" data-step="0" aria-label="Ir al paso 0: Contexto" title="Paso 0: Contexto">
                     <div class="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center transition-all duration-300 group-hover:border-brand-gold z-10 shadow-lg shadow-black/50">
                         <i data-lucide="info" class="w-4 h-4 text-slate-200 transition-colors group-hover:text-brand-gold"></i>
                     </div>
-                    <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-200 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Intro</span>
+                    <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-200 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Contexto</span>
                 </button>
 
-                <button onclick="goToStep(1)" class="step-node group relative" data-step="1">
+                <button onclick="goToStep(1)" class="step-node group relative" data-step="1" aria-label="Ir al paso 1: Línea Base" title="Paso 1: Línea Base">
                     <div class="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center transition-all duration-300 group-hover:border-brand-gold z-10 shadow-lg shadow-black/50">
                         <span class="text-xs font-bold text-slate-200 group-hover:text-brand-gold">1</span>
                     </div>
                     <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-200 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Línea Base</span>
                 </button>
 
-                <button onclick="goToStep(2)" class="step-node group relative" data-step="2">
+                <button onclick="goToStep(2)" class="step-node group relative" data-step="2" aria-label="Ir al paso 2: Diagnóstico" title="Paso 2: Diagnóstico">
                     <div class="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center transition-all duration-300 group-hover:border-brand-gold z-10 shadow-lg shadow-black/50">
                         <span class="text-xs font-bold text-slate-200 group-hover:text-brand-gold">2</span>
                     </div>
                     <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-200 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Diagnóstico</span>
                 </button>
 
-                <button onclick="goToStep(3)" class="step-node group relative" data-step="3">
+                <button onclick="goToStep(3)" class="step-node group relative" data-step="3" aria-label="Ir al paso 3: Niveles" title="Paso 3: Niveles">
                     <div class="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center transition-all duration-300 group-hover:border-brand-gold z-10 shadow-lg shadow-black/50">
                         <span class="text-xs font-bold text-slate-200 group-hover:text-brand-gold">3</span>
                     </div>
                     <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-200 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Niveles</span>
                 </button>
 
-                <button onclick="goToStep(4)" class="step-node group relative" data-step="4">
+                <button onclick="goToStep(4)" class="step-node group relative" data-step="4" aria-label="Ir al paso 4: ROI" title="Paso 4: ROI">
                     <div class="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center transition-all duration-300 group-hover:border-brand-gold z-10 shadow-lg shadow-black/50">
                         <span class="text-xs font-bold text-slate-200 group-hover:text-brand-gold">4</span>
                     </div>
                     <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-200 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">ROI</span>
                 </button>
 
-                <button onclick="goToStep(5)" class="step-node group relative" data-step="5">
+                <button onclick="goToStep(5)" class="step-node group relative" data-step="5" aria-label="Ir al paso 5: Final" title="Paso 5: Final">
                     <div class="w-8 h-8 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center transition-all duration-300 group-hover:border-brand-gold z-10 shadow-lg shadow-black/50">
                         <span class="text-xs font-bold text-slate-200 group-hover:text-brand-gold">5</span>
                     </div>
@@ -213,34 +213,36 @@
                 border-color: var(--brand-gold);
             }
             .step-node.completed span {
-                color: var(--brand-gold-dark);
+                color: var(--brand-gold);
             }
         </style>
 
-        <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-4xl font-black text-white mb-2" data-ruta-content="heroTitle">
+        <div class="text-center mb-12 relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-xs font-bold uppercase tracking-widest mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                    Mentoría Personal
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight" data-ruta-content="heroTitle">
                     Tu Ruta Personal hacia la Soberanía Digital, Profesional y Estratégica
                 </h1>
-                <p id="step-subtitle" class="text-slate-100 text-sm md:text-base" data-ruta-content="heroSubtitle">
+                <p id="step-subtitle" class="text-slate-100 text-lg max-w-2xl mx-auto leading-relaxed" data-ruta-content="heroSubtitle">
                     Descubre el <strong>High Performance Consultive Workshop</strong>. Toma el control de tu productividad con IA.
                 </p>
-                <div class="w-16 h-1 bg-brand-gold mt-4 mx-auto rounded-full"></div>
             </div>
 
             <!-- Paso 0: Contexto (Disclaimer) -->
-            <div id="step-0" class="step-card max-w-xl mx-auto rounded-3xl p-8 relative overflow-hidden mb-12 animate-fade-in shadow-2xl shadow-black/50">
-                <!-- Premium Glass Effect for Modal -->
-                <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-xl z-0"></div>
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate-600 to-transparent z-10"></div>
+            <div id="step-0" class="step-card max-w-2xl mx-auto rounded-[2rem] p-10 relative overflow-hidden mb-12 animate-fade-in shadow-2xl shadow-black/80 border border-white/5 backdrop-blur-xl">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent z-10 opacity-70"></div>
                 
                 <div class="relative z-10">
-                    <div class="mb-8 text-center">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-[10px] tracking-widest uppercase font-bold text-slate-100 mb-4">
-                            <i data-lucide="info" class="w-3 h-3"></i> Contexto Previo
-                        </div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Antes de comenzar</h2>
-                        <p class="text-sm text-slate-100">Transparencia y propósito de esta herramienta</p>
+                <div class="mb-10 text-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-700 text-[10px] tracking-widest uppercase font-bold text-slate-100 mb-6 shadow-inner">
+                        <i data-lucide="info" class="w-3 h-3 text-brand-gold"></i> 
+                        <span class="text-brand-gold/80">Contexto Previo</span>
                     </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-white mb-3 tracking-tight font-heading">Antes de comenzar</h2>
+                    <p class="text-slate-100 font-medium">Transparencia y propósito de esta herramienta</p>
+                </div>
                 
                     <div class="space-y-4 text-slate-100 text-sm leading-relaxed bg-slate-950/50 p-6 rounded-2xl border border-white/5">
                         <p>
@@ -272,8 +274,8 @@
             </div>
 
             <!-- Paso 1: Tu Línea Base -->
-            <div id="step-1" class="step-card max-w-xl mx-auto rounded-3xl p-6 md:p-8 relative overflow-hidden hidden shadow-2xl shadow-black/50">
-                <div class="absolute top-0 left-0 w-full h-1 bg-brand-gold"></div>
+            <div id="step-1" class="step-card max-w-2xl mx-auto rounded-[2rem] p-10 relative overflow-hidden hidden shadow-2xl shadow-black/80 border border-white/5 backdrop-blur-xl">
+                <div class="absolute top-0 left-0 w-full h-1 bg-brand-gold opacity-70"></div>
                 
                 <div class="mb-8 flex items-center justify-between">
                     <div>
@@ -309,47 +311,59 @@
                     <!-- Company Inputs (Hidden by default) -->
                     <div id="company-inputs" class="hidden">
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="col-span-2 md:col-span-1">
-                                <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2" data-ruta-content="headCountLabel">Head Count</label>
-                                <input type="number" id="headcount" value="50" min="1" 
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2" data-ruta-content="headCountLabel">Head Count</label>
+                                <input type="number" id="num_emp" value="5" min="1" max="5000" 
                                     class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all shadow-inner"
-                                    placeholder="Ej: 50" onchange="checkSMERule()">
+                                    placeholder="Ej: 5" title="Número de empleados" onchange="checkSMERule()">
+                        </div>
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2">Antigüedad (Años)</label>
+                            <input type="number" id="years-business" value="5" min="0" 
+                                class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all shadow-inner"
+                                placeholder="Ej: 5" onchange="checkSMERule()">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2" data-ruta-content="payrollLabel">Costo Nómina Mensual</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-3.5 text-slate-200">$</span>
+                                <input type="number" id="payroll" value="250000000" min="1000000" step="1000000"
+                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-8 pr-4 py-3 text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all shadow-inner"
+                                    placeholder="Ej: 250.000.000" title="Nómina mensual">
                             </div>
-                            <div class="col-span-2 md:col-span-1">
-                                <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2">Antigüedad (Años)</label>
-                                <input type="number" id="years-business" value="5" min="0" 
-                                    class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all shadow-inner"
-                                    placeholder="Ej: 5" onchange="checkSMERule()">
-                            </div>
-                            <div class="col-span-2">
-                                <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2" data-ruta-content="payrollLabel">Costo Nómina Mensual</label>
-                                <div class="relative">
-                                    <span class="absolute left-4 top-3.5 text-slate-200">$</span>
-                                    <input type="number" id="payroll" value="250000000" min="1000000" step="1000000"
-                                        class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-8 pr-4 py-3 text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all shadow-inner font-mono"
-                                        placeholder="Ej: 250.000.000" title="Nómina mensual">
-                                </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
 
                     <!-- Ingresos -->
                     <div>
-                        <label class="block text-xs font-bold text-slate-100 uppercase tracking-wide mb-2" data-ruta-content="ingresosLabel">Ingresos mensuales aproximados (COP)</label>
+                        <label class="flex items-center text-xs font-bold text-slate-100 uppercase tracking-wide mb-2" data-ruta-content="ingresosLabel">
+                            Ingresos mensuales (COP)
+                            <span class="tooltip-trigger">
+                                <i data-lucide="help-circle" class="w-3 h-3"></i>
+                                <span class="tooltip-content">Usamos esto para proyectar el valor monetario de tu tiempo recuperado.</span>
+                            </span>
+                        </label>
                         <div class="relative">
                             <span class="absolute left-4 top-3.5 text-slate-200">$</span>
-                            <input type="number" id="ingresos" value="5000000" min="1000000" step="500000" 
+                             <input type="number" id="ingresos" value="5000000" min="1000000" step="500000" 
                                 class="w-full pl-8 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all font-mono text-lg shadow-inner" title="Ingresos mensuales" placeholder="5000000">
                         </div>
-                        <p class="text-xs text-slate-100 mt-2 flex items-center gap-1">
+                        <button class="text-xs text-slate-200 hover:text-white flex items-center gap-1 transition-colors" onclick="openMethodologyModal()" title="Ver más sobre la metodología">
                             <i data-lucide="lock" class="w-3 h-3"></i> Private Data
-                        </p>
+                        </button>
                     </div>
 
                     <!-- Horas/semana -->
                     <div class="p-5 rounded-2xl bg-slate-900/50 border border-white/5">
-                        <label class="flex justify-between text-sm font-medium text-white mb-4">
-                            <span data-ruta-content="horasLabel">Horas generación de ingresos</span>
+                        <label class="text-sm font-medium text-white mb-4 flex justify-between">
+                            <span data-ruta-content="horasLabel" class="flex items-center">
+                                Horas generación de ingresos
+                                <span class="tooltip-trigger">
+                                    <i data-lucide="help-circle" class="w-3 h-3"></i>
+                                    <span class="tooltip-content">Tiempo dedicado a trabajo productivo/facturable (excluye descanso).</span>
+                                </span>
+                            </span>
                             <span id="horas-display" class="text-brand-gold font-bold bg-brand-gold/10 px-2 py-0.5 rounded text-xs">45h</span>
                         </label>
                         <input type="range" id="horas-semana" min="10" max="60" value="45" 
@@ -362,8 +376,14 @@
 
                     <!-- Disposición estudio -->
                     <div class="p-5 rounded-2xl bg-slate-900/50 border border-white/5">
-                        <label class="flex justify-between text-sm font-medium text-white mb-4">
-                            <span data-ruta-content="estudioLabel">Horas dedicadas a estudio</span>
+                        <label class="text-sm font-medium text-white mb-4 flex justify-between">
+                            <span data-ruta-content="estudioLabel" class="flex items-center">
+                                Horas dedicadas a estudio
+                                <span class="tooltip-trigger">
+                                    <i data-lucide="help-circle" class="w-3 h-3"></i>
+                                    <span class="tooltip-content">El factor #1 de éxito. Necesitas tiempo para "afilar el hacha". Recomendamos 8h+.</span>
+                                </span>
+                            </span>
                             <span id="estudio-display" class="text-brand-gold font-bold bg-brand-gold/10 px-2 py-0.5 rounded text-xs">8h</span>
                         </label>
                         <input type="range" id="horas-estudio" min="2" max="15" value="8" 
@@ -393,13 +413,14 @@
 
         <!-- STEP 2: Autodiagnóstico -->
         <div id="step-2" class="step-content hidden">
-            <div class="step-card rounded-2xl p-8 max-w-2xl mx-auto">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                        <i data-lucide="scan" class="w-5 h-5 text-blue-400"></i>
+            <div class="step-card max-w-2xl mx-auto rounded-[2rem] p-10 relative overflow-hidden shadow-2xl shadow-black/80 border border-white/5 backdrop-blur-xl">
+                <div class="absolute top-0 left-0 w-full h-1 bg-blue-500 opacity-70"></div>
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
+                        <i data-lucide="scan" class="w-6 h-6 text-blue-400"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-white">Autodiagnóstico de Tareas</h2>
+                        <h2 class="text-2xl md:text-3xl font-black text-white">Autodiagnóstico</h2>
                         <p class="text-sm text-slate-100">¿Cómo se distribuye tu trabajo?</p>
                     </div>
                 </div>
@@ -418,8 +439,7 @@
                             <label class="text-sm font-medium text-white">Operativas (rutinarias)</label>
                             <span id="simples-display" class="text-emerald-400 font-bold">40%</span>
                         </div>
-                        <input type="range" id="tareas-simples" min="0" max="100" value="40" 
-                            class="w-full range-slider" oninput="updateTareasDistribucion()" title="Distribución Tareas Simples">
+                        <input type="range" id="tareas-simples" min="0" max="100" step="5" value="60" class="w-full accent-brand-gold" oninput="updateTareasDistribucion()" title="Distribución Tareas Simples">
                         <p class="text-xs text-slate-200 mt-1">Emails, reportes, agendas, búsquedas, transcripciones</p>
                     </div>
 
@@ -429,8 +449,7 @@
                             <label class="text-sm font-medium text-white">Analíticas (coordinación)</label>
                             <span id="medias-display" class="text-yellow-400 font-bold">35%</span>
                         </div>
-                        <input type="range" id="tareas-medias" min="0" max="100" value="35" 
-                            class="w-full range-slider" oninput="updateTareasDistribucion()" title="Distribución Tareas Medias">
+                        <input type="range" id="tareas-medias" min="0" max="100" step="5" value="30" class="w-full accent-brand-gold" oninput="updateTareasDistribucion()" title="Distribución Tareas Medias">
                         <p class="text-xs text-slate-200 mt-1">Análisis, propuestas, presentaciones, coordinación</p>
                     </div>
 
@@ -440,8 +459,7 @@
                             <label class="text-sm font-medium text-white">Estratégicas (alto valor)</label>
                             <span id="altas-display" class="text-red-400 font-bold">25%</span>
                         </div>
-                        <input type="range" id="tareas-altas" min="0" max="100" value="25" 
-                            class="w-full range-slider" oninput="updateTareasDistribucion()" title="Distribución Tareas Altas">
+                        <input type="range" id="tareas-altas" min="0" max="100" step="5" value="10" class="w-full accent-brand-gold" oninput="updateTareasDistribucion()" title="Distribución Tareas Altas">
                         <p class="text-xs text-slate-200 mt-1">Estrategia, negociación, creatividad, decisiones críticas</p>
                     </div>
 
@@ -465,13 +483,14 @@
 
         <!-- STEP 3: Elegir Niveles -->
         <div id="step-3" class="step-content hidden">
-            <div class="step-card rounded-2xl p-8 max-w-3xl mx-auto">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
-                        <i data-lucide="layers" class="w-5 h-5 text-purple-400"></i>
+            <div class="step-card max-w-3xl mx-auto rounded-[2rem] p-10 relative overflow-hidden shadow-2xl shadow-black/80 border border-white/5 backdrop-blur-xl">
+                <div class="absolute top-0 left-0 w-full h-1 bg-purple-500 opacity-70"></div>
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                        <i data-lucide="layers" class="w-6 h-6 text-purple-400"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-white">Elige tu Ruta</h2>
+                        <h2 class="text-2xl md:text-3xl font-black text-white">Elige tu Ruta</h2>
                         <p class="text-sm text-slate-100">Selecciona los niveles que te interesan</p>
                     </div>
                 </div>
@@ -481,14 +500,14 @@
                     <h3 class="text-sm font-bold text-purple-400 uppercase tracking-wider mb-3">Programas Élite (30-50% mejora)</h3>
                     <div class="grid sm:grid-cols-2 gap-3">
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="program" data-mejora="40" data-price="2400000" data-name="N7: Empoderamiento">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="program" data-mejora="40" data-price="2400000" data-study-cost="40" data-name="N7: Empoderamiento">
                             <div>
                                 <div class="font-bold text-white">N7: Empoderamiento</div>
                                 <div class="text-xs text-slate-100">Soberanía personal y mentalidad</div>
                             </div>
                         </label>
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="program" data-mejora="50" data-price="2400000" data-name="N9: Digital Champions">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="program" data-mejora="50" data-price="2400000" data-study-cost="40" data-name="N9: Digital Champions">
                             <div>
                                 <div class="font-bold text-white">N9: Digital Champions</div>
                                 <div class="text-xs text-slate-100">Liderazgo de transformación</div>
@@ -501,7 +520,7 @@
                 <div class="mb-6">
                     <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider mb-3">Coaching Ejecutivo (20% mejora)</h3>
                     <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-blue-500/30 cursor-pointer transition-all flex items-start gap-3">
-                        <input type="checkbox" class="mt-1 level-checkbox" data-type="coaching" data-mejora="20" data-price="3400000" data-name="N1: Estrategia Personal">
+                        <input type="checkbox" class="mt-1 level-checkbox" data-type="coaching" data-mejora="20" data-price="3400000" data-study-cost="18" data-name="N1: Estrategia Personal">
                         <div>
                             <div class="font-bold text-white">N1: Estrategia Personal</div>
                             <div class="text-xs text-slate-100">18h de coaching 1:1 para diseñar tu ruta</div>
@@ -514,42 +533,42 @@
                     <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-3">Bootcamps Tácticos (10-15% mejora c/u)</h3>
                     <div class="grid sm:grid-cols-2 gap-3">
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-amber-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="12" data-price="800000" data-name="N2: Ofimática IA">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="12" data-price="800000" data-study-cost="12" data-name="N2: Ofimática IA">
                             <div>
                                 <div class="font-bold text-white">N2: Ofimática IA</div>
                                 <div class="text-xs text-slate-100">Productividad 10x en office</div>
                             </div>
                         </label>
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-amber-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="15" data-price="800000" data-name="N3: Ventas IA">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="15" data-price="800000" data-study-cost="12" data-name="N3: Ventas IA">
                             <div>
                                 <div class="font-bold text-white">N3: Ventas IA</div>
                                 <div class="text-xs text-slate-100">Pipeline inteligente</div>
                             </div>
                         </label>
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-amber-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="10" data-price="800000" data-name="N4: Orden Digital">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="10" data-price="800000" data-study-cost="10" data-name="N4: Orden Digital">
                             <div>
                                 <div class="font-bold text-white">N4: Orden Digital</div>
                                 <div class="text-xs text-slate-100">Flujos y gestión conocimiento</div>
                             </div>
                         </label>
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-amber-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="18" data-price="800000" data-name="N5: Trabajo Amplificado">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="18" data-price="800000" data-study-cost="15" data-name="N5: Trabajo Amplificado">
                             <div>
                                 <div class="font-bold text-white">N5: Trabajo Amplificado</div>
                                 <div class="text-xs text-slate-100">IA generativa, n8n, agentes</div>
                             </div>
                         </label>
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-amber-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="12" data-price="800000" data-name="N6: Gerencia IA">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="12" data-price="800000" data-study-cost="12" data-name="N6: Gerencia IA">
                             <div>
                                 <div class="font-bold text-white">N6: Gerencia IA</div>
                                 <div class="text-xs text-slate-100">Command center digital</div>
                             </div>
                         </label>
                         <label class="p-4 rounded-xl bg-white/5 border border-white/10 hover:border-amber-500/30 cursor-pointer transition-all flex items-start gap-3">
-                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="20" data-price="800000" data-name="N8: Vibe Coding">
+                            <input type="checkbox" class="mt-1 level-checkbox" data-type="bootcamp" data-mejora="20" data-price="800000" data-study-cost="20" data-name="N8: Vibe Coding">
                             <div>
                                 <div class="font-bold text-white">N8: Vibe Coding</div>
                                 <div class="text-xs text-slate-100">Desarrollo con IA</div>
@@ -609,8 +628,8 @@
                 </div>
 
                 <!-- Desglose -->
-                <div class="step-card rounded-2xl p-6 mb-8">
-                    <h3 class="text-lg font-bold text-white mb-4">Desglose de tu ROI</h3>
+                <div class="step-card rounded-[2rem] p-10 mb-8 shadow-2xl shadow-black/80 border border-white/5 backdrop-blur-xl">
+                    <h3 class="text-2xl font-black text-white mb-6">Desglose de tu ROI</h3>
                     
                 <div class="space-y-4">
                         <!-- Methodology link -->
@@ -635,6 +654,9 @@
                             <div class="text-xs text-slate-100 mt-2" id="result-payback">
                                 <!-- Payback calc -->
                             </div>
+                            <div class="text-[10px] text-slate-200 mt-2 italic">
+                                * los meses, son contados a partir del cierre del ultimo entrenamiento.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -653,7 +675,8 @@
 
         <!-- STEP 5: Cotizar -->
         <div id="step-5" class="step-content hidden">
-            <div class="step-card rounded-2xl p-8 max-w-2xl mx-auto text-center">
+            <div class="step-card max-w-2xl mx-auto rounded-[2rem] p-10 relative overflow-hidden shadow-2xl shadow-black/80 border border-white/5 backdrop-blur-xl">
+                <div class="absolute top-0 left-0 w-full h-1 bg-brand-gold opacity-70"></div>
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-brand-gold/10 rounded-full mb-6">
                     <i data-lucide="sparkles" class="w-8 h-8 text-brand-gold"></i>
                 </div>
@@ -694,7 +717,7 @@
 <!-- METHODOLOGY MODAL -->
 <div id="methodology-modal" class="modal-overlay opacity-0 pointer-events-none" role="dialog" aria-modal="true" aria-labelledby="methodology-modal-heading">
     <div class="step-card modal-content max-w-xl rounded-2xl p-8 mx-4 relative">
-        <button onclick="closeMethodologyModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 text-slate-100 hover:text-white" aria-label="Cerrar" title="Cerrar modal">
+        <button onclick="closeMethodologyModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 text-slate-100 hover:text-white" title="Cerrar modal de metodología" aria-label="Cerrar">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
         <div class="text-center mb-6">
@@ -728,11 +751,17 @@
             <div class="p-4 rounded-xl bg-white/5">
                 <h3 class="font-bold text-white mb-2">Mejora de Productividad</h3>
                 <p class="text-slate-100 mb-2">Incremento acumulable por programa:</p>
-                <ul class="space-y-1 text-slate-100">
+                <ul class="space-y-1 text-slate-100 mb-3">
                     <li>• <span class="text-amber-400">Bootcamp:</span> 10-20% mejora</li>
                     <li>• <span class="text-blue-400">Coaching:</span> 20% mejora</li>
                     <li>• <span class="text-purple-400">Programa Élite:</span> 30-50% mejora</li>
                 </ul>
+                <div class="mt-4 p-3 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+                    <h4 class="text-xs font-bold text-indigo-300 uppercase mb-1">Inversión de Tiempo</h4>
+                    <p class="text-[10px] text-slate-200 leading-relaxed">
+                        Adoptar estas habilidades requiere tiempo. Calculamos el ROI restando el "costo de oportunidad" de tus horas de estudio durante la fase de implementación.
+                    </p>
+                </div>
             </div>
             
             <div class="p-4 rounded-xl bg-white/5">
@@ -750,7 +779,7 @@
 <!-- JOURNEY MODAL (Learning Philosophy) -->
 <div id="journey-modal" class="modal-overlay opacity-0 pointer-events-none" role="dialog" aria-modal="true" aria-labelledby="journey-modal-heading">
     <div class="step-card modal-content max-w-xl rounded-2xl p-8 mx-4 relative max-h-[90vh] overflow-y-auto">
-        <button onclick="closeJourneyModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 text-slate-100 hover:text-white" aria-label="Cerrar" title="Cerrar modal">
+        <button onclick="closeJourneyModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 text-slate-100 hover:text-white" title="Cerrar modal de viaje" aria-label="Cerrar">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
         <div class="text-center mb-6">
@@ -812,412 +841,18 @@
     </div>
 </div>
 
+</main>
+
 <!-- FOOTER -->
 <site-footer base-path=".."></site-footer>
 
-<script>
-// State
-let currentStep = 1;
-const totalSteps = 5;
-
-// Navigation
-// Navigation
-function goToStep(step) {
-    // Validate bounds if not 0 (which is optional entry)
-    // Actually we support step 0 to 5
-    
-    // Hide all steps by ID (Robust against structure changes)
-    [0, 1, 2, 3, 4, 5].forEach(i => {
-        const el = document.getElementById(`step-${i}`);
-        if(el) el.classList.add('hidden');
-    });
-    
-    // Show target step
-    const target = document.getElementById(`step-${step}`);
-    if (target) {
-        target.classList.remove('hidden');
-        target.classList.add('animate-fade-in');
-    }
-    
-    // --- SMART STEPPER LOGIC ---
-    
-    // 1. Update Mobile Texts
-    const stepNames = {
-        0: 'Contexto',
-        1: 'Línea Base',
-        2: 'Diagnóstico',
-        3: 'Niveles',
-        4: 'Retorno (ROI)',
-        5: 'Confirmación'
-    };
-    
-    const mobileNum = document.getElementById('mobile-step-num');
-    const mobileName = document.getElementById('mobile-step-name');
-    if (mobileNum) mobileNum.textContent = step === 0 ? 'i' : step;
-    if (mobileName) mobileName.textContent = stepNames[step] || 'Paso ' + step;
-    
-    // 2. Update Progress Bars
-    // Total steps = 5 (excluding 0 for calc usually, but let's map 0-5 to 0-100%)
-    // Let's treat step 0 as 0%, step 1 as 20% ... step 5 as 100%
-    const percent = (step / 5) * 100;
-    
-    const mobileBar = document.getElementById('mobile-progress-bar');
-    const desktopLine = document.getElementById('desktop-progress-line');
-    
-    if (mobileBar) mobileBar.style.width = `${Math.max(5, percent)}%`; // Min 5% visibility
-    if (desktopLine) desktopLine.style.width = `${percent}%`;
-
-    // 3. Update Desktop Nodes
-    document.querySelectorAll('.step-node').forEach((el) => {
-        const nodeStep = parseInt(el.dataset.step);
-        const circle = el.querySelector('div');
-        const icon = el.querySelector('i');
-        const text = el.querySelector('span:not(.absolute)'); // The number inside
-        
-        // Reset
-        el.classList.remove('active', 'completed');
-        
-        if (nodeStep === step) {
-            el.classList.add('active');
-        } else if (nodeStep < step) {
-            el.classList.add('completed');
-        }
-    });
-    
-    // Update main subtitle
-    const subtitles = {
-        0: 'Contexto y Disclaimer',
-        1: 'Empecemos por entender tu situación actual',
-        2: '¿Cómo se distribuye tu trabajo?',
-        3: 'Selecciona los niveles que te interesan',
-        4: 'Tu retorno de inversión proyectado',
-        5: 'Confirma tu interés'
-    };
-    const subEl = document.getElementById('step-subtitle');
-    if (subEl) subEl.textContent = subtitles[step];
-    
-    currentStep = step;
-    
-    // Trigger calculations if needed
-    if (step === 4) calculateROI();
-    if (step === 5) prepareFinalSummary();
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function nextStep() { goToStep(currentStep + 1); }
-function prevStep() { goToStep(currentStep - 1); }
-
-// UI Updates
-function updateHorasDisplay() {
-    const val = document.getElementById('horas-semana').value;
-    document.getElementById('horas-display').textContent = val + 'h';
-}
-
-function updateEstudioDisplay() {
-    const val = parseInt(document.getElementById('horas-estudio').value);
-    document.getElementById('estudio-display').textContent = val + 'h';
-    
-    // Show/hide warning for less than 8h
-    const warning = document.getElementById('estudio-warning');
-    if (val < 8) {
-        warning.classList.remove('hidden');
-    } else {
-        warning.classList.add('hidden');
-    }
-    saveToSession();
-}
-
-function updateTareasDistribucion() {
-    const simples = parseInt(document.getElementById('tareas-simples').value);
-    const medias = parseInt(document.getElementById('tareas-medias').value);
-    const altas = parseInt(document.getElementById('tareas-altas').value);
-
-    document.getElementById('simples-display').textContent = simples + '%';
-    document.getElementById('medias-display').textContent = medias + '%';
-    document.getElementById('altas-display').textContent = altas + '%';
-
-    const total = simples + medias + altas;
-    const diff = total - 100;
-    const msg = document.getElementById('validation-msg');
-    const nextBtn = document.querySelector('#step-2 button[onclick*="nextStep"]');
-
-    // Progress bar percentage (capped at 100 visually)
-    const barPct = Math.min(total, 100);
-
-    if (total === 100) {
-        msg.className = 'p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center transition-all';
-        msg.innerHTML = `
-            <div class="flex items-center justify-center gap-3">
-                <div class="w-full max-w-[200px] h-2 rounded-full bg-slate-700 overflow-hidden">
-                    <div class="h-full bg-emerald-400 rounded-full transition-all duration-300" style="width:100%"></div>
-                </div>
-                <span class="text-sm font-bold text-emerald-400 whitespace-nowrap">✓ 100%</span>
-            </div>
-            <p class="text-xs text-emerald-300 mt-2">Distribución equilibrada — listo para continuar</p>
-        `;
-        if (nextBtn) { nextBtn.disabled = false; nextBtn.classList.remove('opacity-50', 'cursor-not-allowed'); }
-    } else if (diff > 0) {
-        msg.className = 'p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-center transition-all';
-        msg.innerHTML = `
-            <div class="flex items-center justify-center gap-3">
-                <div class="w-full max-w-[200px] h-2 rounded-full bg-slate-700 overflow-hidden">
-                    <div class="h-full bg-red-400 rounded-full transition-all duration-300" style="width:100%"></div>
-                </div>
-                <span class="text-sm font-bold text-red-400 whitespace-nowrap">${total}%</span>
-            </div>
-            <p class="text-xs text-red-300 mt-2">Sobran <strong>${diff}%</strong> — reduce algún slider</p>
-        `;
-        if (nextBtn) { nextBtn.disabled = true; nextBtn.classList.add('opacity-50', 'cursor-not-allowed'); }
-    } else {
-        msg.className = 'p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-center transition-all';
-        msg.innerHTML = `
-            <div class="flex items-center justify-center gap-3">
-                <div class="w-full max-w-[200px] h-2 rounded-full bg-slate-700 overflow-hidden">
-                    <div class="h-full bg-amber-400 rounded-full transition-all duration-300" style="width:${barPct}%"></div>
-                </div>
-                <span class="text-sm font-bold text-amber-400 whitespace-nowrap">${total}%</span>
-            </div>
-            <p class="text-xs text-amber-300 mt-2">Faltan <strong>${Math.abs(diff)}%</strong> — aumenta algún slider</p>
-        `;
-        if (nextBtn) { nextBtn.disabled = true; nextBtn.classList.add('opacity-50', 'cursor-not-allowed'); }
-    }
-}
-
-// ROI Calculation
-function calculateROI() {
-    // Get inputs
-    const ingresos = parseInt(document.getElementById('ingresos').value) || 5000000;
-    const horasSemana = parseInt(document.getElementById('horas-semana').value);
-    const simples = parseInt(document.getElementById('tareas-simples').value) / 100;
-    const medias = parseInt(document.getElementById('tareas-medias').value) / 100;
-    const altas = parseInt(document.getElementById('tareas-altas').value) / 100;
-    
-    // Check mode
-    const isEnterprise = (typeof rutaMode !== 'undefined' && rutaMode === 'empresas');
-    
-    // Calculate value per hour (guard against zero hours)
-    const horasMes = horasSemana * 4;
-    const valorHora = horasMes > 0 ? Math.round(ingresos / horasMes) : 0;
-    
-    // Delegation Ceilings (Knowledge Work Standards)
-    // 80% for Simple/Operational
-    // 33% for Medium/Tactical
-    // 20% for High/Strategic
-    const horasSimples = horasSemana * simples * 0.80;
-    const horasMedias = horasSemana * medias * 0.33;
-    const horasAltas = horasSemana * altas * 0.20;
-    const totalHorasLiberables = Math.round((horasSimples + horasMedias + horasAltas) * 10) / 10;
-    
-    // Selected programs
-    const checkboxes = document.querySelectorAll('.level-checkbox:checked');
-    let totalMejora = 0;
-    let totalInversion = 0;
-    let selectedItems = [];
-    
-    checkboxes.forEach(cb => {
-        totalMejora += parseInt(cb.dataset.mejora);
-        totalInversion += parseInt(cb.dataset.price);
-        selectedItems.push(cb.dataset.name);
-    });
-    
-    // Update results
-    document.getElementById('result-horas').textContent = totalHorasLiberables + 'h';
-    document.getElementById('result-mejora').textContent = totalMejora + '%';
-    document.getElementById('result-inversion').textContent = formatCurrency(totalInversion);
-    
-    // Breakdown (Bilingual Labels)
-    const breakdown = document.getElementById('roi-breakdown');
-    let valorLiberado = totalHorasLiberables * valorHora * 4; // mensual eficiencia
-    let revenueUplift = 0;
-    
-    // Revenue Uplift for Consumption
-    if (isEnterprise) {
-         revenueUplift = ingresos * 0.10; // +10% Revenue Promise
-    }
-    
-    const totalImpactoMensual = valorLiberado + revenueUplift;
-    const paybackMeses = totalInversion > 0 ? Math.ceil(totalInversion / totalImpactoMensual) : 0;
-    
-    let breakdownHTML = `
-        <div class="space-y-2">
-            <div class="flex justify-between">
-                <span>Valor de hora <span class="text-xs text-slate-200">(Hourly Value)</span>:</span>
-                <span class="text-white">${formatCurrency(valorHora)}/h</span>
-            </div>
-            <div class="flex justify-between">
-                <span>Delegable Simple <span class="text-xs text-slate-200">(80% cap)</span>:</span>
-                <span class="text-emerald-400">${horasSimples.toFixed(1)}h/sem</span>
-            </div>
-            <div class="flex justify-between">
-                <span>Delegable Medio <span class="text-xs text-slate-200">(33% cap)</span>:</span>
-                <span class="text-yellow-400">${horasMedias.toFixed(1)}h/sem</span>
-            </div>
-            <div class="flex justify-between">
-                <span>Delegable Alto <span class="text-xs text-slate-200">(20% cap)</span>:</span>
-                <span class="text-red-400">${horasAltas.toFixed(1)}h/sem</span>
-            </div>
-            <div class="border-t border-white/10 pt-2 flex justify-between">
-                <span class="font-bold">Eficiencia Mensual <span class="text-xs text-slate-200 font-normal">(Monthly Efficiency)</span>:</span>
-                <span class="text-slate-100 font-bold">${formatCurrency(valorLiberado)}/mes</span>
-            </div>
-    `;
-    
-    if (isEnterprise) {
-        breakdownHTML += `
-            <div class="flex justify-between pt-1"><span class="font-bold text-brand-gold">Revenue Uplift (+10%):</span><span class="text-brand-gold font-bold">+${formatCurrency(revenueUplift)}/mes</span></div>
-            <div class="border-t border-white/20 pt-2 flex justify-between"><span class="font-black text-white">IMPACTO TOTAL:</span><span class="text-emerald-400 font-black text-lg">${formatCurrency(totalImpactoMensual)}/mes</span></div>
-        `;
-    } else {
-        breakdownHTML += `
-             <div class="border-t border-white/10 pt-2 flex justify-between"><span class="font-bold text-brand-gold">Valor mensual liberado:</span><span class="text-brand-gold font-bold">${formatCurrency(valorLiberado)}/mes</span></div>
-        `;
-    }
-    
-    breakdownHTML += `</div>`;
-    breakdown.innerHTML = breakdownHTML;
-    
-    const payback = document.getElementById('result-payback');
-    if (totalInversion > 0 && totalImpactoMensual > 0) {
-        payback.innerHTML = `<span class="text-emerald-400">⚡ Recuperas tu inversión en ~${paybackMeses} ${paybackMeses === 1 ? 'mes' : 'meses'}</span>`;
-    } else {
-        payback.textContent = 'Selecciona programas para calcular el payback';
-    }
-}
-
-function prepareFinalSummary() {
-    const checkboxes = document.querySelectorAll('.level-checkbox:checked');
-    const container = document.getElementById('final-summary');
-    let totalInversion = 0;
-    let html = '';
-    
-    checkboxes.forEach(cb => {
-        totalInversion += parseInt(cb.dataset.price);
-        html += `<div class="flex justify-between text-slate-100">
-            <span>${cb.dataset.name}</span>
-            <span>${formatCurrency(parseInt(cb.dataset.price))}</span>
-        </div>`;
-    });
-    
-    if (html === '') {
-        html = '<div class="text-slate-200 italic">No has seleccionado ningún nivel</div>';
-    }
-    
-    container.innerHTML = html;
-    document.getElementById('final-price').textContent = formatCurrency(totalInversion);
-    
-    // Update mailto with complete data
-    const mejora = document.getElementById('result-mejora').textContent;
-    const horas = document.getElementById('result-horas').textContent;
-    const ingresos = formatCurrency(parseInt(document.getElementById('ingresos').value));
-    const horasTrabajo = document.getElementById('horas-semana').value;
-    const horasEstudio = document.getElementById('horas-estudio').value;
-    const simples = document.getElementById('tareas-simples').value;
-    const medias = document.getElementById('tareas-medias').value;
-    const altas = document.getElementById('tareas-altas').value;
-    
-    // CTA via centralized CTAHandler template system
-    if (window.ctaHandler && window.ctaHandler.isLoaded) {
-        const mailtoLink = window.ctaHandler.buildMailto('cotizador-propuesta', {
-            ingresos: ingresos,
-            horasTrabajo: horasTrabajo,
-            horasEstudio: horasEstudio,
-            simples: simples,
-            medias: medias,
-            altas: altas,
-            seleccion: Array.from(checkboxes).map(cb => '- ' + cb.dataset.name).join('\n'),
-            inversion: formatCurrency(totalInversion),
-            horas: horas,
-            mejora: mejora
-        });
-        if (mailtoLink) {
-            document.getElementById('mailto-cta').href = mailtoLink;
-        }
-    }
-}
-
-function formatCurrency(value) {
-    return '$' + value.toLocaleString('es-CO');
-}
-
-// Session Storage
-function saveToSession() {
-    const data = {
-        ingresos: document.getElementById('ingresos').value,
-        horasSemana: document.getElementById('horas-semana').value,
-        horasEstudio: document.getElementById('horas-estudio').value,
-        tareasSimples: document.getElementById('tareas-simples').value,
-        tareasMedias: document.getElementById('tareas-medias').value,
-        tareasAltas: document.getElementById('tareas-altas').value,
-        selectedLevels: Array.from(document.querySelectorAll('.level-checkbox:checked')).map(cb => cb.dataset.name)
-    };
-    sessionStorage.setItem('metodologia_roi_data', JSON.stringify(data));
-}
-
-function loadFromSession() {
-    const saved = sessionStorage.getItem('metodologia_roi_data');
-    if (!saved) return;
-    
-    try {
-        const data = JSON.parse(saved);
-        if (data.ingresos) document.getElementById('ingresos').value = data.ingresos;
-        if (data.horasSemana) {
-            document.getElementById('horas-semana').value = data.horasSemana;
-            updateHorasDisplay();
-        }
-        if (data.horasEstudio) {
-            document.getElementById('horas-estudio').value = data.horasEstudio;
-            updateEstudioDisplay();
-        }
-        if (data.tareasSimples) document.getElementById('tareas-simples').value = data.tareasSimples;
-        if (data.tareasMedias) document.getElementById('tareas-medias').value = data.tareasMedias;
-        if (data.tareasAltas) document.getElementById('tareas-altas').value = data.tareasAltas;
-        updateTareasDistribucion();
-        
-        // Restore checkboxes
-        if (data.selectedLevels && data.selectedLevels.length > 0) {
-            document.querySelectorAll('.level-checkbox').forEach(cb => {
-                if (data.selectedLevels.includes(cb.dataset.name)) {
-                    cb.checked = true;
-                }
-            });
-        }
-    } catch(e) { console.warn('Session restore error:', e); }
-}
-
-// Methodology Modal — delegated to ModalSystem
-function openMethodologyModal() {
-    ModalSystem.open('methodology-modal');
-    if (typeof icons !== 'undefined') icons.createIcons();
-}
-function closeMethodologyModal() {
-    ModalSystem.close('methodology-modal');
-}
-
-// Journey Modal — delegated to ModalSystem
-function openJourneyModal() {
-    ModalSystem.open('journey-modal');
-    if (typeof icons !== 'undefined') icons.createIcons();
-}
-function closeJourneyModal() {
-    ModalSystem.close('journey-modal');
-}
-
-// Init
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof icons !== 'undefined') icons.createIcons();
-    loadFromSession();
-    
-    // Save on any input change
-    document.querySelectorAll('input').forEach(input => {
-        input.addEventListener('change', saveToSession);
-    });
-});
-</script>
-
-<!-- Ruta Mode Toggle Script -->
-<script src="js/ruta-mode.js"></script>
+<!-- Logic Script (extracted for caching - Skill 120) -->
+<script src="../js/modal-system.js" defer></script>
+<script src="../js/cotizador-personas.js" defer></script>
 
 </body>
 </html>
+
+const totalSteps = 5;
+
+// Navigation

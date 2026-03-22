@@ -2997,6 +2997,7 @@
 </head>
 
 <body>
+<site-header base-path="../.."></site-header>
     <!-- Header Navigation -->
     <header>
         <nav class="fixed-nav" role="navigation" aria-label="Navegación principal">
@@ -4913,8 +4914,6 @@
                         }
                     });
                 });
-
-                console.log('✅ FAQ Accordion initialized');
             }
 
             // ===== GLOSSARY ACCORDION FUNCTIONALITY =====
@@ -4942,8 +4941,6 @@
                         }
                     });
                 });
-
-                console.log('✅ Glossary Accordion initialized');
             }
 
             // Make openModal available globally
@@ -5009,18 +5006,15 @@
 
             // Initialize 3D Hero with Three.js
             function init3DHero() {
-                console.log('🎯 Iniciando init3DHero...');
                 const container = document.getElementById('hero-canvas-container');
 
                 // Wait for Three.js to load
                 if (typeof THREE === 'undefined') {
-                    console.log('⏳ THREE no disponible, esperando...');
                     setTimeout(init3DHero, 100);
                     return;
                 }
 
                 if (!container) {
-                    console.log('❌ Container no disponible');
                     const heroFallback = document.getElementById('hero-fallback');
                     if (heroFallback) heroFallback.style.display = 'block';
                     return;
@@ -5063,8 +5057,6 @@
                         camera.updateProjectionMatrix();
                         renderer.setSize(container.offsetWidth, container.offsetHeight);
                     }, { passive: true });
-
-                    console.log('✅ 3D Icosaedro inicializado exitosamente');
                 } catch (error) {
                     console.error("Three.js failed to initialize:", error);
                     const heroFallback = document.getElementById('hero-fallback');
@@ -5085,6 +5077,7 @@
             // Los 169 prompts están hardcodeados aquí para que el HTML sea completamente auto-contenido
             // sin dependencias externas (JSON files)
         </script>
+    <script src="../../components/SiteHeader.js" defer></script>
     <script src="../../components/SiteFooter.js" defer></script>
 </body>
 

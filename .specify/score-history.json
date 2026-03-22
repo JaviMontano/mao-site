@@ -1,0 +1,14 @@
+{
+  "002-bilingual-i18n": [
+    {
+      "timestamp": "2026-03-22T18:22:00Z",
+      "score": 88,
+      "coverage_pct": 95,
+      "critical": 0,
+      "high": 1,
+      "medium": 3,
+      "low": 2,
+      "total_findings": 7
+    }
+  ]
+}

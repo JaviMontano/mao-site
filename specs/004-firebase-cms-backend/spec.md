@@ -3,7 +3,8 @@
 **Feature Branch**: `004-firebase-cms-backend`
 **Created**: 2026-03-22
 **Status**: Draft
-**Input**: Migrate editable site content (program catalogs, pricing, translations, premium resources) from hardcoded HTML/JS to a Firebase Firestore backend with an admin interface, per Constitution v2.0.0 principles I, VI, VII, VIII.
+**Constitution**: v4.0.0 (16 principles)
+**Input**: Migrate editable site content (program catalogs, pricing, translations, premium resources) from hardcoded HTML/JS to a Firebase Firestore backend with an admin interface, per Constitution principles I, VI, VII, VIII, IX, XII, XIII, XIV, XV, XVI. [DOC]
 
 ## User Stories
 
@@ -11,7 +12,7 @@
 
 An administrator updates a program's description, benefits, or transformation text via an admin interface, and the change appears on the live site within seconds — no code deployment required. Visitors on empresas/ and personas/ pages see content fetched from Firestore instead of hardcoded JS objects.
 
-**Why this priority**: Program catalogs are the highest-churn content (6 programs × 2 audiences × 2 languages). Currently hardcoded in `empresas/index.html:360-445` and `personas/index.html:412-458` as inline JS objects, requiring a developer for every text change.
+**Why this priority**: Program catalogs are the highest-churn content (6 programs × 2 audiences × 2 languages). [INFERENCE] Currently hardcoded in `empresas/index.html:360-445` and `personas/index.html:412-458` as inline JS objects, requiring a developer for every text change. [CODE]
 
 **Independent Test**: Update a program description in the admin interface, refresh the public page without deploying, confirm the new text appears.
 
@@ -29,7 +30,7 @@ An administrator updates a program's description, benefits, or transformation te
 
 All pricing data (B2C base prices, B2B multipliers, premium SKU prices, cotizador program details) is stored in Firestore and fetched at runtime. Price changes made by an admin take effect immediately across cotizadores and the premium catalog.
 
-**Why this priority**: Prices change frequently (last update: 50% increase on premium, March 2026). Currently scattered across `data-price` attributes, JS constants in `cotizador.js`, and HTML table rows — 3+ files for one price change.
+**Why this priority**: Prices change frequently (last update: 50% increase on premium, March 2026). [CODE] Currently scattered across `data-price` attributes, JS constants in `cotizador.js`, and HTML table rows — 3+ files for one price change. [CODE]
 
 **Independent Test**: Change a price in the admin interface, reload the cotizador, confirm the new price appears in calculations.
 
@@ -47,7 +48,7 @@ All pricing data (B2C base prices, B2B multipliers, premium SKU prices, cotizado
 
 The i18n translation dictionaries (currently `es.json` and `en.json` at ~15K tokens each) are stored in Firestore and fetched at runtime. Translation updates made by an admin take effect without deployment. The existing `data-i18n` attribute contract remains unchanged.
 
-**Why this priority**: Translations are stable but growing (every new page adds keys). Moving to Firestore enables admin editing and eliminates the need to deploy for copy corrections.
+**Why this priority**: Translations are stable but growing (every new page adds keys). [INFERENCE] Moving to Firestore enables admin editing and eliminates the need to deploy for copy corrections. [INFERENCE]
 
 **Independent Test**: Update a translation key in the admin interface, reload the page, confirm the new text appears.
 
@@ -65,7 +66,7 @@ The i18n translation dictionaries (currently `es.json` and `en.json` at ~15K tok
 
 An authenticated administrator accesses a content editor at a protected route (e.g., `/admin/`) to view, edit, and publish content (programs, prices, translations). The admin interface enforces validation, requires both ES and EN variants before publishing, and logs all changes.
 
-**Why this priority**: Without an admin interface, the CMS has no user-facing value — content would still require a developer to edit Firestore directly.
+**Why this priority**: Without an admin interface, the CMS has no user-facing value — content would still require a developer to edit Firestore directly. [INFERENCE]
 
 **Independent Test**: Log in as admin, edit a program description, save, verify the change appears on the public page.
 
@@ -84,7 +85,7 @@ An authenticated administrator accesses a content editor at a protected route (e
 
 The site caches all Firestore content (programs, prices, translations) client-side after the first successful fetch. When Firestore is unreachable, the site serves cached content transparently. Cache staleness is bounded by a configurable TTL.
 
-**Why this priority**: Constitution VIII mandates offline resilience. The site serves users across Latin America with variable connectivity — a backend dependency must not reduce reliability.
+**Why this priority**: Constitution VIII mandates offline resilience. [DOC] The site serves users across Latin America with variable connectivity — a backend dependency must not reduce reliability. [INFERENCE]
 
 **Independent Test**: Load the site once (populates cache), disconnect from internet, reload — site still works with cached content.
 
@@ -102,7 +103,7 @@ The site caches all Firestore content (programs, prices, translations) client-si
 
 Firestore security rules enforce that public visitors can only read published content, and only authenticated users with the "admin" role can write. Rules are version-controlled, tested before deployment, and follow least-privilege principles.
 
-**Why this priority**: Constitution VII mandates data-layer security. A CMS is write-capable — without enforceable rules, any client-side restriction can be bypassed.
+**Why this priority**: Constitution VII mandates data-layer security. [DOC] A CMS is write-capable — without enforceable rules, any client-side restriction can be bypassed. [INFERENCE]
 
 **Independent Test**: Attempt to write to Firestore from an unauthenticated browser session — confirm the write is denied.
 
@@ -119,13 +120,13 @@ Firestore security rules enforce that public visitors can only read published co
 
 ### Edge Cases
 
-- What happens during the migration period when some content is in Firestore and some is still in HTML? The content service module checks Firestore first; if the document doesn't exist or the collection isn't migrated yet, it falls back to the static HTML/JS source. Both modes coexist per Constitution VI.
-- What happens if an admin publishes content with broken formatting (e.g., unclosed HTML tags in a description)? The admin interface sanitizes input — no raw HTML is stored. Content is stored as plain text or structured markdown.
-- What happens if two admins edit the same program simultaneously? Last-write-wins with a warning: the admin interface shows a "content was modified by another user" alert if the document version has changed since loading.
-- What happens if the Firestore free tier quota is exceeded? The site continues to function on cached content. An alert is sent to the admin. Content reads are prioritized over analytics/logging writes.
-- What happens when a new program is added? The admin creates it in Firestore with all required fields (both languages); the public page dynamically renders the new program card from the collection — no HTML changes needed.
-- How are admin accounts created? Admin custom claims are provisioned via a CLI script using Firebase Admin SDK (`setCustomUserClaims`). No admin management UI in v1 — the team is 1-3 people and Firebase Console cannot set custom claims directly. A runbook documents the process for adding future admins.
-- What happens if an admin publishes incorrect content and wants to undo? The audit log (FR-011) stores the previous value for every edit. In v1, recovery is manual — a developer restores the previous value using the audit log. No automated rollback UI. For text content with 1-3 admins, re-editing is faster than building rollback infrastructure.
+- What happens during the migration period when some content is in Firestore and some is still in HTML? The content service module checks Firestore first; if the document doesn't exist or the collection isn't migrated yet, it falls back to the static HTML/JS source. Both modes coexist per Constitution VI. [DOC]
+- What happens if an admin publishes content with broken formatting (e.g., unclosed HTML tags in a description)? The admin interface sanitizes input — no raw HTML is stored. Content is stored as plain text or structured markdown. [INFERENCE]
+- What happens if two admins edit the same program simultaneously? Last-write-wins with a warning: the admin interface shows a "content was modified by another user" alert if the document version has changed since loading. [INFERENCE]
+- What happens if the Firestore free tier quota is exceeded? The site continues to function on cached content. An alert is sent to the admin. Content reads are prioritized over analytics/logging writes. [ASSUMPTION]
+- What happens when a new program is added? The admin creates it in Firestore with all required fields (both languages); the public page dynamically renders the new program card from the collection — no HTML changes needed. [INFERENCE]
+- How are admin accounts created? Admin custom claims are provisioned via a CLI script using Firebase Admin SDK (`setCustomUserClaims`). No admin management UI in v1 — the team is 1-3 people and Firebase Console cannot set custom claims directly. A runbook documents the process for adding future admins. [DOC]
+- What happens if an admin publishes incorrect content and wants to undo? The audit log (FR-011) stores the previous value for every edit. In v1, recovery is manual — a developer restores the previous value using the audit log. No automated rollback UI. For text content with 1-3 admins, re-editing is faster than building rollback infrastructure. [INFERENCE]
 
 ## Requirements
 
@@ -182,3 +183,9 @@ Firestore security rules enforce that public visitors can only read published co
 - Q: What is the audit log retention policy? -> A: 90-day retention, implementable via Firestore TTL fields. Prevents unbounded growth. [FR-011, SC-012]
 - Q: Should migration sequence be defined in the spec? -> A: No — migration order is a plan-level decision. Spec mechanism (FR-017, FR-018, dual-source) is sufficient. [FR-017, FR-018]
 - Q: Should TTL configuration location be defined in the spec? -> A: No — the "where" is implementation detail for plan. Spec defines "what" (configurable, default 1h). [FR-007]
+
+### Session 2026-03-22 (clarify phase — post-constitution v4.0.0)
+
+- Q: Are migration waves parallelizable or sequential? -> A: Sequential. XIV (Simple First) governs — shared content service requires validation before next wave. [FR-017, FR-018, Plan Migration Strategy]
+- Q: Should BDD scenarios expand to full-spectrum (XV) before tasks? -> A: Yes — expand via testify re-run covering design system, CI/CD, operational, strategic angles. [XV, All US, All SC]
+- Q: Should evidence tags be applied retroactively? -> A: Yes — full tagging on spec and plan for XIII compliance. Applied in this session. [XIII, All FR, All SC]

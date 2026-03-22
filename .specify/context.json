@@ -2,13 +2,13 @@
   "tdd_determination": "optional",
   "planview": {
     "nodeClassifications": {
-      "Browser": "client",
-      "SiteHeader.js": "client",
-      "SiteFooter.js": "client",
-      "CTAHandler.js": "client",
-      "HTML Pages": "client",
-      "cta-data.json": "storage",
-      "sessionStorage": "storage"
+      "Browser SPA": "client",
+      "SiteHeader (Web Component)": "client",
+      "i18n Module": "client",
+      "Modal System": "client",
+      "Static HTML Pages": "client",
+      "CSS Layers": "client",
+      "Static Assets (JSON/PDF/HTML)": "storage"
     }
   },
   "checklist_reviewed_at": "2026-03-22T18:06:08Z"

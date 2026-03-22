@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow #03: Gestión del Conocimiento AS-IS → TO-BE | MetodologIA</title>
+    <meta name="description" content="Diagnóstico visual de la gestión del conocimiento actual vs el modelo optimizado con IA. De 45min buscando a 30s con búsqueda semántica.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="gestión conocimiento, knowledge management, búsqueda semántica IA, documentación inteligente, base conocimiento">
+    <link rel="canonical" href="https://metodologia.info/recursos/workflows/wf-03/">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://metodologia.info/recursos/workflows/wf-03/">
+    <meta property="og:title" content="Workflow: Gestión del Conocimiento AS-IS → TO-BE">
+    <meta property="og:description" content="Diagnóstico visual de la gestión del conocimiento actual vs el modelo optimizado con IA.">
+    <meta property="og:image" content="https://metodologia.info/recursos/og-image.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metodologia.info/recursos/workflows/wf-03/">
+    <meta property="twitter:title" content="Workflow: Gestión del Conocimiento AS-IS → TO-BE">
+    <meta property="twitter:description" content="Diagnóstico visual de la gestión del conocimiento actual vs el modelo optimizado con IA.">
+    <meta property="twitter:image" content="https://metodologia.info/recursos/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Montserrat:wght@400;500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../estilos/variables.css">
+    <link rel="stylesheet" href="../../../estilos/base.css">
+    <link rel="stylesheet" href="../../../estilos/components.css">
+    <link rel="stylesheet" href="../../../dist/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({theme:'dark',themeVariables:{primaryColor:'#FFD700',primaryTextColor:'#fff',primaryBorderColor:'#FFD700',lineColor:'#94a3b8',secondaryColor:'hsl(220,30%,23%)',tertiaryColor:'hsl(222,29%,12%)',fontFamily:'Montserrat',fontSize:'13px'}});</script>
+    <style>
+        .workflow-card{background:hsla(220,30%,23%,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;margin-bottom:1.5rem}
+        .phase-badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.7rem;border-radius:999px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em}
+        .badge-asis{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+        .badge-tobe{background:rgba(52,211,153,0.15);color:#34d399;border:1px solid rgba(52,211,153,0.3)}
+        .badge-gap{background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3)}
+        .swimlane{display:grid;grid-template-columns:140px 1fr;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;overflow:hidden;margin:1.5rem 0}
+        .swimlane-label{background:hsla(220,34%,18%,0.9);padding:1rem;display:flex;align-items:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:0.8rem;color:var(--brand-gold);border-right:1px solid rgba(255,255,255,0.08)}
+        .swimlane-content{padding:1.25rem;background:hsla(222,29%,12%,0.5)}
+        .swimlane+.swimlane{border-top:none}
+        .metric{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .metric:last-child{border-bottom:none}
+        .metric-label{color:var(--text-muted);font-size:0.8rem}
+        .metric-val{font-family:'Poppins',sans-serif;font-weight:700}
+        .metric-bad{color:#f87171}
+        .metric-good{color:#34d399}
+        .download-bar{position:sticky;bottom:0;background:hsla(222,29%,12%,0.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(255,215,0,0.15);padding:1rem 1.5rem;display:flex;justify-content:center;gap:1rem;z-index:40}
+        .btn-download{padding:0.6rem 1.5rem;border-radius:999px;font-size:0.8rem;font-weight:700;text-decoration:none;transition:all 0.2s}
+        .btn-gold-dl{background:var(--gradient-gold);color:#020617}
+        .btn-gold-dl:hover{transform:translateY(-1px);box-shadow:0 0 20px rgba(255,215,0,0.3)}
+        .btn-outline-dl{background:transparent;color:var(--text-secondary);border:1px solid rgba(255,255,255,0.15)}
+        .btn-outline-dl:hover{border-color:var(--brand-gold);color:var(--brand-gold)}
+        @media print{site-header,site-footer,.download-bar,.no-print{display:none!important}body{background:#fff!important;color:#000!important}.workflow-card{border:1px solid #ddd;background:#f9f9f9}.swimlane-label{background:#eee;color:#333}.mermaid svg{max-width:100%}}
+        @media(max-width:767px){.swimlane{grid-template-columns:1fr}.swimlane-label{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}}
+    </style>
+</head>
+<body class="min-h-screen">
+<site-header base-path="../../.."></site-header>
+
+<main id="main-content" class="relative">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-6 py-16">
+        <nav aria-label="Breadcrumb" class="mb-8">
+            <ol class="flex items-center space-x-2 text-xs text-slate-200 font-mono">
+                <li><a href="../../../index.html" class="hover:text-brand-gold transition-colors">Inicio</a></li>
+                <li><span class="text-slate-700">/</span></li>
+                <li><a href="../../index.html" class="hover:text-brand-gold transition-colors">Recursos</a></li>
+                <li><span class="text-slate-700">/</span></li>
+                <li><a href="../index.html" class="hover:text-brand-gold transition-colors">Workflows</a></li>
+                <li><span class="text-slate-700">/</span></li>
+                <li class="text-brand-gold" aria-current="page">#03</li>
+            </ol>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 mb-6">
+            <span class="text-brand-gold text-xs font-bold tracking-widest uppercase">Workflow #03</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-4" style="font-family:var(--font-primary)">
+            Gestión del Conocimiento<br>
+            <span class="bg-gradient-to-r from-red-400 to-amber-400 bg-clip-text text-transparent">AS-IS</span>
+            →
+            <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">TO-BE</span>
+        </h1>
+        <p class="text-lg max-w-2xl mb-12" style="color:var(--text-secondary)">
+            Diagnóstico visual de la gestión del conocimiento actual vs el modelo optimizado con IA. De documentos dispersos y conocimiento tribal a un hub semántico con documentación viva.
+        </p>
+
+        <!-- AS-IS SECTION -->
+        <div class="workflow-card">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="phase-badge badge-asis">AS-IS</span>
+                <h2 class="text-xl font-bold text-white" style="font-family:var(--font-primary)">Estado Actual: Conocimiento Disperso y Tribal</h2>
+            </div>
+
+            <div class="swimlane">
+                <div class="swimlane-label">Colaborador</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Buscar en 5+ drives → Preguntar a colegas por Slack → Recrear documentos existentes → Guardar en carpeta personal → Conocimiento se pierde al rotar</p>
+                </div>
+            </div>
+            <div class="swimlane">
+                <div class="swimlane-label">Equipo</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Documentación desactualizada → Wikis abandonadas → Reuniones para transferir contexto → Duplicación de esfuerzos → Silos de información</p>
+                </div>
+            </div>
+            <div class="swimlane">
+                <div class="swimlane-label">Organización</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Sin taxonomía estándar → Pérdida de conocimiento crítico → Onboarding lento por falta de docs → Decisiones sin datos históricos → Compliance en riesgo</p>
+                </div>
+            </div>
+
+            <div class="mermaid mt-6">
+flowchart LR
+    A[Necesidad de\nInformación] -->|45 min avg| B[Búsqueda\nManual]
+    B -->|Fragmentada| C[Preguntar a\nColegas]
+    C -->|Si existe| D[Documento\nDesactualizado]
+    D -->|30% casos| E[Recrear\nDesde Cero]
+    style A fill:#7f1d1d,stroke:#f87171
+    style B fill:#7f1d1d,stroke:#f87171
+    style C fill:#7f1d1d,stroke:#f87171
+    style D fill:#7f1d1d,stroke:#f87171
+    style E fill:#7f1d1d,stroke:#f87171
+            </div>
+
+            <h3 class="text-sm font-bold text-white mt-8 mb-3 uppercase tracking-wider" style="font-family:var(--font-primary)">Indicadores AS-IS</h3>
+            <div class="metric"><span class="metric-label">Tiempo promedio de búsqueda</span><span class="metric-val metric-bad">45 min</span></div>
+            <div class="metric"><span class="metric-label">Tasa de reutilización de conocimiento</span><span class="metric-val metric-bad">18%</span></div>
+            <div class="metric"><span class="metric-label">Cobertura de documentación</span><span class="metric-val metric-bad">25%</span></div>
+            <div class="metric"><span class="metric-label">Trabajo duplicado</span><span class="metric-val metric-bad">30%</span></div>
+            <div class="metric"><span class="metric-label">Velocidad de onboarding (conocimiento)</span><span class="metric-val metric-bad">4 semanas</span></div>
+        </div>
+
+        <!-- GAP ANALYSIS -->
+        <div class="workflow-card" style="border-color:rgba(251,191,36,0.2)">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="phase-badge badge-gap">Brecha</span>
+                <h2 class="text-xl font-bold text-white" style="font-family:var(--font-primary)">Análisis de Brecha</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                    <h4 class="text-xs font-bold text-emerald-400 uppercase mb-3">Quick Wins</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>Búsqueda semántica IA</li><li>Auto-categorización</li></ul>
+                </div>
+                <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase mb-3">Transformar</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>Knowledge graph</li><li>Doc viva auto-update</li><li>Chatbot interno</li></ul>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-500/10 border border-slate-500/20">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Evaluar</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>Tags automáticos</li></ul>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-500/10 border border-slate-500/20">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Postergar</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>—</li></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TO-BE SECTION -->
+        <div class="workflow-card" style="border-color:rgba(52,211,153,0.15)">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="phase-badge badge-tobe">TO-BE</span>
+                <h2 class="text-xl font-bold text-white" style="font-family:var(--font-primary)">Estado Objetivo: Hub de Conocimiento Inteligente</h2>
+            </div>
+
+            <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+                <div class="swimlane-label" style="color:#34d399">Colaborador + IA</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Búsqueda semántica en 30s → Respuestas contextuales con fuentes → Captura automática de conocimiento → Sugerencias proactivas de docs relevantes</p>
+                </div>
+            </div>
+            <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+                <div class="swimlane-label" style="color:#34d399">Equipo + IA</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Documentación viva auto-actualizada → Detección de duplicados → Knowledge graph navegable → Insights de gaps de conocimiento</p>
+                </div>
+            </div>
+            <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+                <div class="swimlane-label" style="color:#34d399">Organización + IA</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Taxonomía automática → Preservación de conocimiento crítico → Onboarding acelerado con rutas de lectura IA → Compliance automatizado</p>
+                </div>
+            </div>
+
+            <div class="mermaid mt-6">
+flowchart LR
+    A[Pregunta en\nLenguaje Natural] -->|30 seg| B[Búsqueda\nSemántica]
+    B -->|Contextual| C[Respuesta con\nFuentes]
+    C -->|Auto-captura| D[Conocimiento\nVivo]
+    D -->|Proactivo| E[Sugerencias\nInteligentes]
+    style A fill:#064e3b,stroke:#34d399
+    style B fill:#064e3b,stroke:#34d399
+    style C fill:#064e3b,stroke:#34d399
+    style D fill:#064e3b,stroke:#34d399
+    style E fill:#064e3b,stroke:#34d399
+            </div>
+
+            <h3 class="text-sm font-bold text-white mt-8 mb-3 uppercase tracking-wider" style="font-family:var(--font-primary)">Indicadores TO-BE</h3>
+            <div class="metric"><span class="metric-label">Tiempo promedio de búsqueda</span><span class="metric-val metric-good">30 seg (-99%)</span></div>
+            <div class="metric"><span class="metric-label">Tasa de reutilización de conocimiento</span><span class="metric-val metric-good">78% (+333%)</span></div>
+            <div class="metric"><span class="metric-label">Cobertura de documentación</span><span class="metric-val metric-good">92% (+268%)</span></div>
+            <div class="metric"><span class="metric-label">Trabajo duplicado</span><span class="metric-val metric-good">5% (-83%)</span></div>
+            <div class="metric"><span class="metric-label">Velocidad de onboarding (conocimiento)</span><span class="metric-val metric-good">5 días (-82%)</span></div>
+        </div>
+
+        <!-- ROADMAP -->
+        <div class="workflow-card">
+            <h2 class="text-xl font-bold text-white mb-6" style="font-family:var(--font-primary)">Roadmap de Transformación</h2>
+            <div class="mermaid">
+gantt
+    title Plan de Implementación — Knowledge Hub IA
+    dateFormat YYYY-MM-DD
+    axisFormat %b
+    section Quick Wins
+        Tags automáticos              :a1, 2026-04-01, 2w
+        Búsqueda semántica básica     :a2, 2026-04-01, 3w
+    section Core
+        Auto-categorización IA        :b1, after a1, 5w
+        Chatbot interno conocimiento  :b2, after a2, 6w
+    section Avanzado
+        Knowledge graph               :c1, after b1, 6w
+        Documentación viva            :c2, after b2, 5w
+    section Sostenimiento
+        Optimización y métricas       :d1, after c1, 8w
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="download-bar no-print">
+    <a href="javascript:window.print()" class="btn-download btn-gold-dl">Descargar PDF</a>
+    <a href="wf-03-standalone.html" download class="btn-download btn-outline-dl">Descargar HTML</a>
+</div>
+
+<site-footer base-path="../../.."></site-footer>
+<script src="../../../js/icons.js" defer></script>
+<script src="../../../components/SiteHeader.js" defer></script>
+<script src="../../../components/SiteFooter.js" defer></script>
+</body>
+</html>

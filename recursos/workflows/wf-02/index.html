@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow #02: Onboarding de Talento AS-IS → TO-BE | MetodologIA</title>
+    <meta name="description" content="Diagnóstico visual del proceso de onboarding actual vs el modelo optimizado con IA. De 30 días manuales a 7 días con rutas personalizadas.">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="onboarding talento, recursos humanos IA, transformación HR, retención empleados, onboarding automatizado">
+    <link rel="canonical" href="https://metodologia.info/recursos/workflows/wf-02/">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://metodologia.info/recursos/workflows/wf-02/">
+    <meta property="og:title" content="Workflow: Onboarding de Talento AS-IS → TO-BE">
+    <meta property="og:description" content="Diagnóstico visual del proceso de onboarding actual vs el modelo optimizado con IA.">
+    <meta property="og:image" content="https://metodologia.info/recursos/og-image.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metodologia.info/recursos/workflows/wf-02/">
+    <meta property="twitter:title" content="Workflow: Onboarding de Talento AS-IS → TO-BE">
+    <meta property="twitter:description" content="Diagnóstico visual del proceso de onboarding actual vs el modelo optimizado con IA.">
+    <meta property="twitter:image" content="https://metodologia.info/recursos/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Montserrat:wght@400;500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../estilos/variables.css">
+    <link rel="stylesheet" href="../../../estilos/base.css">
+    <link rel="stylesheet" href="../../../estilos/components.css">
+    <link rel="stylesheet" href="../../../dist/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({theme:'dark',themeVariables:{primaryColor:'#FFD700',primaryTextColor:'#fff',primaryBorderColor:'#FFD700',lineColor:'#94a3b8',secondaryColor:'hsl(220,30%,23%)',tertiaryColor:'hsl(222,29%,12%)',fontFamily:'Montserrat',fontSize:'13px'}});</script>
+    <style>
+        .workflow-card{background:hsla(220,30%,23%,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;margin-bottom:1.5rem}
+        .phase-badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.7rem;border-radius:999px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em}
+        .badge-asis{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+        .badge-tobe{background:rgba(52,211,153,0.15);color:#34d399;border:1px solid rgba(52,211,153,0.3)}
+        .badge-gap{background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3)}
+        .swimlane{display:grid;grid-template-columns:140px 1fr;gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;overflow:hidden;margin:1.5rem 0}
+        .swimlane-label{background:hsla(220,34%,18%,0.9);padding:1rem;display:flex;align-items:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:0.8rem;color:var(--brand-gold);border-right:1px solid rgba(255,255,255,0.08)}
+        .swimlane-content{padding:1.25rem;background:hsla(222,29%,12%,0.5)}
+        .swimlane+.swimlane{border-top:none}
+        .metric{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .metric:last-child{border-bottom:none}
+        .metric-label{color:var(--text-muted);font-size:0.8rem}
+        .metric-val{font-family:'Poppins',sans-serif;font-weight:700}
+        .metric-bad{color:#f87171}
+        .metric-good{color:#34d399}
+        .download-bar{position:sticky;bottom:0;background:hsla(222,29%,12%,0.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(255,215,0,0.15);padding:1rem 1.5rem;display:flex;justify-content:center;gap:1rem;z-index:40}
+        .btn-download{padding:0.6rem 1.5rem;border-radius:999px;font-size:0.8rem;font-weight:700;text-decoration:none;transition:all 0.2s}
+        .btn-gold-dl{background:var(--gradient-gold);color:#020617}
+        .btn-gold-dl:hover{transform:translateY(-1px);box-shadow:0 0 20px rgba(255,215,0,0.3)}
+        .btn-outline-dl{background:transparent;color:var(--text-secondary);border:1px solid rgba(255,255,255,0.15)}
+        .btn-outline-dl:hover{border-color:var(--brand-gold);color:var(--brand-gold)}
+        @media print{site-header,site-footer,.download-bar,.no-print{display:none!important}body{background:#fff!important;color:#000!important}.workflow-card{border:1px solid #ddd;background:#f9f9f9}.swimlane-label{background:#eee;color:#333}.mermaid svg{max-width:100%}}
+        @media(max-width:767px){.swimlane{grid-template-columns:1fr}.swimlane-label{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}}
+    </style>
+</head>
+<body class="min-h-screen">
+<site-header base-path="../../.."></site-header>
+
+<main id="main-content" class="relative">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-6 py-16">
+        <nav aria-label="Breadcrumb" class="mb-8">
+            <ol class="flex items-center space-x-2 text-xs text-slate-200 font-mono">
+                <li><a href="../../../index.html" class="hover:text-brand-gold transition-colors">Inicio</a></li>
+                <li><span class="text-slate-700">/</span></li>
+                <li><a href="../../index.html" class="hover:text-brand-gold transition-colors">Recursos</a></li>
+                <li><span class="text-slate-700">/</span></li>
+                <li><a href="../index.html" class="hover:text-brand-gold transition-colors">Workflows</a></li>
+                <li><span class="text-slate-700">/</span></li>
+                <li class="text-brand-gold" aria-current="page">#02</li>
+            </ol>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 mb-6">
+            <span class="text-brand-gold text-xs font-bold tracking-widest uppercase">Workflow #02</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-4" style="font-family:var(--font-primary)">
+            Onboarding de Talento<br>
+            <span class="bg-gradient-to-r from-red-400 to-amber-400 bg-clip-text text-transparent">AS-IS</span>
+            →
+            <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">TO-BE</span>
+        </h1>
+        <p class="text-lg max-w-2xl mb-12" style="color:var(--text-secondary)">
+            Diagnóstico visual de tu proceso de onboarding actual vs el modelo optimizado con IA. De 30 días manuales con 40% de deserción a 7 días con rutas personalizadas y 12% de attrition.
+        </p>
+
+        <!-- AS-IS SECTION -->
+        <div class="workflow-card">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="phase-badge badge-asis">AS-IS</span>
+                <h2 class="text-xl font-bold text-white" style="font-family:var(--font-primary)">Estado Actual: Onboarding Manual y Fragmentado</h2>
+            </div>
+
+            <div class="swimlane">
+                <div class="swimlane-label">RRHH</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Crear carpeta física → Enviar emails de bienvenida genéricos → Coordinar accesos manualmente → Checklist en papel → Seguimiento ad-hoc a 30 días</p>
+                </div>
+            </div>
+            <div class="swimlane">
+                <div class="swimlane-label">Nuevo Empleado</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Llenar formularios duplicados → Buscar información dispersa → Esperar accesos 3-5 días → Capacitación genérica → Sin mentor asignado</p>
+                </div>
+            </div>
+            <div class="swimlane">
+                <div class="swimlane-label">Líder Directo</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Enterarse tarde de la llegada → Improvisar plan de trabajo → Sin visibilidad del progreso → Reunión de feedback al mes (si ocurre)</p>
+                </div>
+            </div>
+
+            <div class="mermaid mt-6">
+flowchart LR
+    A[Contratación\nFirmada] -->|3-5 días| B[Papeleo\nManual]
+    B -->|5-7 días| C[Accesos\ny Equipos]
+    C -->|Genérica| D[Capacitación\nPresencial]
+    D -->|Sin guía| E[Productivo\n~30 días]
+    style A fill:#7f1d1d,stroke:#f87171
+    style B fill:#7f1d1d,stroke:#f87171
+    style C fill:#7f1d1d,stroke:#f87171
+    style D fill:#7f1d1d,stroke:#f87171
+    style E fill:#7f1d1d,stroke:#f87171
+            </div>
+
+            <h3 class="text-sm font-bold text-white mt-8 mb-3 uppercase tracking-wider" style="font-family:var(--font-primary)">Indicadores AS-IS</h3>
+            <div class="metric"><span class="metric-label">Tiempo hasta productividad</span><span class="metric-val metric-bad">30 días</span></div>
+            <div class="metric"><span class="metric-label">Satisfacción del nuevo empleado</span><span class="metric-val metric-bad">5.2 / 10</span></div>
+            <div class="metric"><span class="metric-label">Documentación completada día 1</span><span class="metric-val metric-bad">35%</span></div>
+            <div class="metric"><span class="metric-label">Retención a 90 días</span><span class="metric-val metric-bad">60%</span></div>
+            <div class="metric"><span class="metric-label">Deserción temprana (< 6 meses)</span><span class="metric-val metric-bad">40%</span></div>
+        </div>
+
+        <!-- GAP ANALYSIS -->
+        <div class="workflow-card" style="border-color:rgba(251,191,36,0.2)">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="phase-badge badge-gap">Brecha</span>
+                <h2 class="text-xl font-bold text-white" style="font-family:var(--font-primary)">Análisis de Brecha</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                    <h4 class="text-xs font-bold text-emerald-400 uppercase mb-3">Quick Wins</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>Rutas personalizadas IA</li><li>Buddy matching auto</li><li>Dashboard progreso</li></ul>
+                </div>
+                <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase mb-3">Transformar</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>Portal autoservicio</li><li>Onboarding predictivo</li></ul>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-500/10 border border-slate-500/20">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Evaluar</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>Email bienvenida auto</li></ul>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-500/10 border border-slate-500/20">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Postergar</h4>
+                    <ul class="space-y-1 text-sm" style="color:#e2e8f0"><li>—</li></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TO-BE SECTION -->
+        <div class="workflow-card" style="border-color:rgba(52,211,153,0.15)">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="phase-badge badge-tobe">TO-BE</span>
+                <h2 class="text-xl font-bold text-white" style="font-family:var(--font-primary)">Estado Objetivo: Onboarding Inteligente con IA</h2>
+            </div>
+
+            <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+                <div class="swimlane-label" style="color:#34d399">RRHH + IA</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Pre-boarding automático → Documentación digital pre-llenada → Accesos provisionados por IA → Dashboard de progreso en tiempo real → Alertas de riesgo de deserción</p>
+                </div>
+            </div>
+            <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+                <div class="swimlane-label" style="color:#34d399">Nuevo Empleado</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Portal personalizado día 0 → Ruta de aprendizaje adaptativa → Buddy asignado por afinidad IA → Micro-evaluaciones gamificadas → Feedback continuo</p>
+                </div>
+            </div>
+            <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+                <div class="swimlane-label" style="color:#34d399">Líder Directo</div>
+                <div class="swimlane-content">
+                    <p style="color:var(--text-secondary);font-size:0.85rem">Notificación anticipada con perfil IA → Plan de 30-60-90 auto-generado → Visibilidad del progreso en tiempo real → Sugerencias de coaching personalizadas</p>
+                </div>
+            </div>
+
+            <div class="mermaid mt-6">
+flowchart LR
+    A[Pre-boarding\nAutomático] -->|Día -7| B[Portal\nPersonalizado]
+    B -->|Día 1| C[Ruta IA\nAdaptativa]
+    C -->|Buddy Match| D[Integración\nGuiada]
+    D -->|Día 7| E[Productivo\n88% retención]
+    style A fill:#064e3b,stroke:#34d399
+    style B fill:#064e3b,stroke:#34d399
+    style C fill:#064e3b,stroke:#34d399
+    style D fill:#064e3b,stroke:#34d399
+    style E fill:#064e3b,stroke:#34d399
+            </div>
+
+            <h3 class="text-sm font-bold text-white mt-8 mb-3 uppercase tracking-wider" style="font-family:var(--font-primary)">Indicadores TO-BE</h3>
+            <div class="metric"><span class="metric-label">Tiempo hasta productividad</span><span class="metric-val metric-good">7 días (-77%)</span></div>
+            <div class="metric"><span class="metric-label">Satisfacción del nuevo empleado</span><span class="metric-val metric-good">9.1 / 10 (+75%)</span></div>
+            <div class="metric"><span class="metric-label">Documentación completada día 1</span><span class="metric-val metric-good">98% (+180%)</span></div>
+            <div class="metric"><span class="metric-label">Retención a 90 días</span><span class="metric-val metric-good">88% (+47%)</span></div>
+            <div class="metric"><span class="metric-label">Deserción temprana (< 6 meses)</span><span class="metric-val metric-good">12% (-70%)</span></div>
+        </div>
+
+        <!-- ROADMAP -->
+        <div class="workflow-card">
+            <h2 class="text-xl font-bold text-white mb-6" style="font-family:var(--font-primary)">Roadmap de Transformación</h2>
+            <div class="mermaid">
+gantt
+    title Plan de Implementación — Onboarding Inteligente
+    dateFormat YYYY-MM-DD
+    axisFormat %b
+    section Quick Wins
+        Email bienvenida automático  :a1, 2026-04-01, 2w
+        Checklist digital             :a2, 2026-04-01, 2w
+    section Core
+        Portal autoservicio           :b1, after a1, 5w
+        Rutas aprendizaje IA          :b2, after a2, 6w
+    section Avanzado
+        Buddy matching IA             :c1, after b1, 4w
+        Dashboard progreso RT         :c2, after b2, 3w
+    section Sostenimiento
+        Onboarding predictivo         :d1, after c1, 8w
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="download-bar no-print">
+    <a href="javascript:window.print()" class="btn-download btn-gold-dl">Descargar PDF</a>
+    <a href="wf-02-standalone.html" download class="btn-download btn-outline-dl">Descargar HTML</a>
+</div>
+
+<site-footer base-path="../../.."></site-footer>
+<script src="../../../js/icons.js" defer></script>
+<script src="../../../components/SiteHeader.js" defer></script>
+<script src="../../../components/SiteFooter.js" defer></script>
+</body>
+</html>

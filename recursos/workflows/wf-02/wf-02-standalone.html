@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow #02: Onboarding de Talento AS-IS → TO-BE | MetodologIA</title>
+    <meta name="description" content="Diagnóstico visual del proceso de onboarding actual vs el modelo optimizado con IA. De 30 días manuales a 7 días con rutas personalizadas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({theme:'dark',themeVariables:{primaryColor:'#FFD700',primaryTextColor:'#fff',primaryBorderColor:'#FFD700',lineColor:'#94a3b8',secondaryColor:'hsl(220,30%,23%)',tertiaryColor:'hsl(222,29%,12%)',fontFamily:'Montserrat',fontSize:'13px'}});</script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #161c2d;
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .site-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+        }
+        .site-header h1 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .site-header .subtitle { font-size: 0.7rem; color: #94a3b8; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+        .ambient-glow {
+            position: fixed; top: -100px; right: -100px; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255,215,0,0.06) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 0;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 6rem; position: relative; z-index: 1; }
+        .wf-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 1rem;
+            border-radius: 999px; background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3);
+            font-size: 0.7rem; font-weight: 700; color: #FFD700; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 1.5rem;
+        }
+        .page-title { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.15; margin-bottom: 1rem; }
+        .gradient-red { background: linear-gradient(90deg, #f87171, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .gradient-green { background: linear-gradient(90deg, #34d399, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-desc { font-size: 1.05rem; color: #94a3b8; max-width: 640px; margin-bottom: 3rem; line-height: 1.7; }
+        .workflow-card {
+            background: rgba(42, 51, 71, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem; padding: 2rem; margin-bottom: 1.75rem;
+            backdrop-filter: blur(8px); transition: border-color 0.3s;
+        }
+        .workflow-card:hover { border-color: rgba(255, 255, 255, 0.15); }
+        .card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .card-title { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; }
+        .phase-badge {
+            display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; border-radius: 999px;
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .badge-asis { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+        .badge-tobe { background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+        .badge-gap  { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+        .swimlane {
+            display: grid; grid-template-columns: 140px 1fr;
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.75rem; overflow: hidden; margin: 1rem 0;
+        }
+        .swimlane + .swimlane { margin-top: -1px; border-top-left-radius: 0; border-top-right-radius: 0; }
+        .swimlane:has(+ .swimlane) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+        .swimlane-label {
+            background: rgba(30, 41, 59, 0.9); padding: 1rem; display: flex; align-items: center;
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.8rem; color: #FFD700;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .swimlane-content { padding: 1.25rem; background: rgba(15, 23, 42, 0.5); font-size: 0.85rem; color: #94a3b8; }
+        .metrics-title {
+            font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; color: #fff;
+            text-transform: uppercase; letter-spacing: 0.1em; margin: 2rem 0 0.75rem;
+        }
+        .metric { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+        .metric:last-child { border-bottom: none; }
+        .metric-label { color: #94a3b8; font-size: 0.8rem; }
+        .metric-val { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        .metric-bad { color: #f87171; }
+        .metric-good { color: #34d399; }
+        .mermaid-wrap { margin: 1.5rem 0; overflow-x: auto; }
+        .mermaid { display: flex; justify-content: center; }
+        .mermaid svg { max-width: 100%; height: auto; }
+        .site-footer {
+            border-top: 1px solid rgba(255, 215, 0, 0.15); padding: 2rem; text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .footer-brand {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600; color: #FFD700; margin-bottom: 0.5rem;
+        }
+        .footer-text { font-size: 0.7rem; color: #64748b; }
+        .footer-text a { color: #FFD700; text-decoration: none; }
+        .footer-text a:hover { text-decoration: underline; }
+        .download-bar {
+            position: sticky; bottom: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 215, 0, 0.15); padding: 1rem 1.5rem;
+            display: flex; justify-content: center; gap: 1rem; z-index: 40;
+        }
+        .btn-download {
+            padding: 0.6rem 1.5rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700;
+            text-decoration: none; cursor: pointer; border: none; transition: all 0.2s;
+        }
+        .btn-gold-dl { background: linear-gradient(135deg, #FFD700, #F59E0B); color: #020617; }
+        .btn-gold-dl:hover { transform: translateY(-1px); box-shadow: 0 0 24px rgba(255,215,0,0.3); }
+        @media print {
+            body { background: #fff !important; color: #000 !important; }
+            .site-header, .site-footer, .download-bar, .ambient-glow { display: none !important; }
+            .workflow-card { border: 1px solid #ddd; background: #f9f9f9; box-shadow: none; }
+            .swimlane-label { background: #eee; color: #333; }
+            .metric-label { color: #555; } .metric-bad { color: #dc2626; } .metric-good { color: #16a34a; }
+            .page-title, .card-title, .metrics-title { color: #000; }
+            .gradient-red, .gradient-green { -webkit-text-fill-color: #000; }
+            .page-desc { color: #555; } .mermaid svg { max-width: 100%; }
+        }
+        @media (max-width: 767px) {
+            .swimlane { grid-template-columns: 1fr; }
+            .swimlane-label { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+            .container { padding: 2rem 1rem 5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <svg width="34" height="34" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#1e293b"/><path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="white"/><circle cx="18" cy="8" r="2" fill="#FFD700"/></svg>
+    <div>
+        <h1>MetodologIA</h1>
+        <div class="subtitle">Workflow #02 — Standalone</div>
+    </div>
+</header>
+
+<div class="ambient-glow"></div>
+
+<div class="container">
+    <div class="wf-badge">Workflow #02</div>
+
+    <h2 class="page-title">
+        Onboarding de Talento<br>
+        <span class="gradient-red">AS-IS</span>
+        →
+        <span class="gradient-green">TO-BE</span>
+    </h2>
+    <p class="page-desc">
+        Diagnóstico visual de tu proceso de onboarding actual vs el modelo optimizado con IA. De 30 días manuales con 40% de deserción a 7 días con rutas personalizadas y 12% de attrition.
+    </p>
+
+    <!-- AS-IS -->
+    <div class="workflow-card">
+        <div class="card-header">
+            <span class="phase-badge badge-asis">AS-IS</span>
+            <span class="card-title">Estado Actual: Onboarding Manual y Fragmentado</span>
+        </div>
+
+        <div class="swimlane">
+            <div class="swimlane-label">RRHH</div>
+            <div class="swimlane-content">Crear carpeta física → Enviar emails de bienvenida genéricos → Coordinar accesos manualmente → Checklist en papel → Seguimiento ad-hoc a 30 días</div>
+        </div>
+        <div class="swimlane">
+            <div class="swimlane-label">Nuevo Empleado</div>
+            <div class="swimlane-content">Llenar formularios duplicados → Buscar información dispersa → Esperar accesos 3-5 días → Capacitación genérica → Sin mentor asignado</div>
+        </div>
+        <div class="swimlane">
+            <div class="swimlane-label">Líder Directo</div>
+            <div class="swimlane-content">Enterarse tarde de la llegada → Improvisar plan de trabajo → Sin visibilidad del progreso → Reunión de feedback al mes (si ocurre)</div>
+        </div>
+
+        <div class="mermaid-wrap">
+            <div class="mermaid">
+flowchart LR
+    A[Contratación\nFirmada] -->|3-5 días| B[Papeleo\nManual]
+    B -->|5-7 días| C[Accesos\ny Equipos]
+    C -->|Genérica| D[Capacitación\nPresencial]
+    D -->|Sin guía| E[Productivo\n~30 días]
+    style A fill:#7f1d1d,stroke:#f87171
+    style B fill:#7f1d1d,stroke:#f87171
+    style C fill:#7f1d1d,stroke:#f87171
+    style D fill:#7f1d1d,stroke:#f87171
+    style E fill:#7f1d1d,stroke:#f87171
+            </div>
+        </div>
+
+        <div class="metrics-title">Indicadores AS-IS</div>
+        <div class="metric"><span class="metric-label">Tiempo hasta productividad</span><span class="metric-val metric-bad">30 días</span></div>
+        <div class="metric"><span class="metric-label">Satisfacción del nuevo empleado</span><span class="metric-val metric-bad">5.2 / 10</span></div>
+        <div class="metric"><span class="metric-label">Documentación completada día 1</span><span class="metric-val metric-bad">35%</span></div>
+        <div class="metric"><span class="metric-label">Retención a 90 días</span><span class="metric-val metric-bad">60%</span></div>
+        <div class="metric"><span class="metric-label">Deserción temprana (&lt; 6 meses)</span><span class="metric-val metric-bad">40%</span></div>
+    </div>
+
+    <!-- GAP ANALYSIS -->
+    <div class="workflow-card" style="border-color:rgba(251,191,36,0.2)">
+        <div class="card-header">
+            <span class="phase-badge badge-gap">Brecha</span>
+            <span class="card-title">Análisis de Brecha</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
+            <div style="padding:1rem;border-radius:0.75rem;border:1px solid rgba(52,211,153,0.2);background:rgba(52,211,153,0.1)">
+                <h4 style="font-size:0.75rem;font-weight:700;color:#34d399;text-transform:uppercase;margin-bottom:0.75rem">Quick Wins</h4>
+                <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem;color:#e2e8f0"><li>Rutas personalizadas IA</li><li>Buddy matching auto</li><li>Dashboard progreso</li></ul>
+            </div>
+            <div style="padding:1rem;border-radius:0.75rem;border:1px solid rgba(251,191,36,0.2);background:rgba(251,191,36,0.1)">
+                <h4 style="font-size:0.75rem;font-weight:700;color:#fbbf24;text-transform:uppercase;margin-bottom:0.75rem">Transformar</h4>
+                <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem;color:#e2e8f0"><li>Portal autoservicio</li><li>Onboarding predictivo</li></ul>
+            </div>
+            <div style="padding:1rem;border-radius:0.75rem;border:1px solid rgba(148,163,184,0.2);background:rgba(148,163,184,0.1)">
+                <h4 style="font-size:0.75rem;font-weight:700;color:#94a3b8;text-transform:uppercase;margin-bottom:0.75rem">Evaluar</h4>
+                <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem;color:#e2e8f0"><li>Email bienvenida auto</li></ul>
+            </div>
+            <div style="padding:1rem;border-radius:0.75rem;border:1px solid rgba(148,163,184,0.2);background:rgba(148,163,184,0.1)">
+                <h4 style="font-size:0.75rem;font-weight:700;color:#94a3b8;text-transform:uppercase;margin-bottom:0.75rem">Postergar</h4>
+                <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem;color:#e2e8f0"><li>—</li></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- TO-BE -->
+    <div class="workflow-card" style="border-color:rgba(52,211,153,0.15)">
+        <div class="card-header">
+            <span class="phase-badge badge-tobe">TO-BE</span>
+            <span class="card-title">Estado Objetivo: Onboarding Inteligente con IA</span>
+        </div>
+
+        <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+            <div class="swimlane-label" style="color:#34d399">RRHH + IA</div>
+            <div class="swimlane-content">Pre-boarding automático → Documentación digital pre-llenada → Accesos provisionados por IA → Dashboard de progreso en tiempo real → Alertas de riesgo de deserción</div>
+        </div>
+        <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+            <div class="swimlane-label" style="color:#34d399">Nuevo Empleado</div>
+            <div class="swimlane-content">Portal personalizado día 0 → Ruta de aprendizaje adaptativa → Buddy asignado por afinidad IA → Micro-evaluaciones gamificadas → Feedback continuo</div>
+        </div>
+        <div class="swimlane" style="border-color:rgba(52,211,153,0.15)">
+            <div class="swimlane-label" style="color:#34d399">Líder Directo</div>
+            <div class="swimlane-content">Notificación anticipada con perfil IA → Plan de 30-60-90 auto-generado → Visibilidad del progreso en tiempo real → Sugerencias de coaching personalizadas</div>
+        </div>
+
+        <div class="mermaid-wrap">
+            <div class="mermaid">
+flowchart LR
+    A[Pre-boarding\nAutomático] -->|Día -7| B[Portal\nPersonalizado]
+    B -->|Día 1| C[Ruta IA\nAdaptativa]
+    C -->|Buddy Match| D[Integración\nGuiada]
+    D -->|Día 7| E[Productivo\n88% retención]
+    style A fill:#064e3b,stroke:#34d399
+    style B fill:#064e3b,stroke:#34d399
+    style C fill:#064e3b,stroke:#34d399
+    style D fill:#064e3b,stroke:#34d399
+    style E fill:#064e3b,stroke:#34d399
+            </div>
+        </div>
+
+        <div class="metrics-title">Indicadores TO-BE</div>
+        <div class="metric"><span class="metric-label">Tiempo hasta productividad</span><span class="metric-val metric-good">7 días (-77%)</span></div>
+        <div class="metric"><span class="metric-label">Satisfacción del nuevo empleado</span><span class="metric-val metric-good">9.1 / 10 (+75%)</span></div>
+        <div class="metric"><span class="metric-label">Documentación completada día 1</span><span class="metric-val metric-good">98% (+180%)</span></div>
+        <div class="metric"><span class="metric-label">Retención a 90 días</span><span class="metric-val metric-good">88% (+47%)</span></div>
+        <div class="metric"><span class="metric-label">Deserción temprana (&lt; 6 meses)</span><span class="metric-val metric-good">12% (-70%)</span></div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="workflow-card">
+        <div class="card-header">
+            <span class="card-title">Roadmap de Transformación</span>
+        </div>
+        <div class="mermaid-wrap">
+            <div class="mermaid">
+gantt
+    title Plan de Implementación — Onboarding Inteligente
+    dateFormat YYYY-MM-DD
+    axisFormat %b
+    section Quick Wins
+        Email bienvenida automático  :a1, 2026-04-01, 2w
+        Checklist digital             :a2, 2026-04-01, 2w
+    section Core
+        Portal autoservicio           :b1, after a1, 5w
+        Rutas aprendizaje IA          :b2, after a2, 6w
+    section Avanzado
+        Buddy matching IA             :c1, after b1, 4w
+        Dashboard progreso RT         :c2, after b2, 3w
+    section Sostenimiento
+        Onboarding predictivo         :d1, after c1, 8w
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="download-bar">
+    <button class="btn-download btn-gold-dl" onclick="window.print()">Descargar PDF</button>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-brand">
+        <svg width="24" height="24" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="#1e293b"/><path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="white"/><circle cx="18" cy="8" r="2" fill="#FFD700"/></svg>
+        Powered by MetodologIA
+    </div>
+    <p class="footer-text">
+        <a href="https://metodologia.info" target="_blank">metodologia.info</a> — Transformación con Inteligencia Artificial
+    </p>
+</footer>
+
+</body>
+</html>

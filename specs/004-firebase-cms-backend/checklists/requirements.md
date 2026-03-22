@@ -2,7 +2,7 @@
 
 **Purpose**: Validate requirements quality — completeness, clarity, consistency, measurability, and coverage
 **Created**: 2026-03-22
-**Reviewed**: 2026-03-22 (post-plan extension)
+**Reviewed**: 2026-03-22 (post-plan extension, v4.0.0 constitution alignment)
 **Feature**: [spec.md](../spec.md) | [plan.md](../plan.md)
 
 ## Content Quality
@@ -15,7 +15,7 @@
 
 ## Requirement Completeness
 
-- [x] CHK006 All Constitution v2.0.0 principles addressed (I: client-rendered, VI: content authority, VII: security, VIII: offline resilience)
+- [x] CHK006 All Constitution v4.0.0 principles addressed (I-XII + XIII-XVI) [Completeness, Constitution] — Plan constitution check table verifies PASS on all 16 principles. Spec input references I, VI, VII, VIII, IX, XII, XIII, XIV, XV, XVI.
 - [x] CHK007 All content types identified for migration (programs, prices, translations, premium SKUs)
 - [x] CHK008 Migration coexistence addressed (dual-source resolution in FR-017)
 - [x] CHK009 Edge cases documented (migration period, broken input, concurrent edits, quota exceeded, new programs)
@@ -108,4 +108,14 @@
 - CHK047 gap resolved: IndexedDB unavailability handled by "or localStorage" in FR-005 and graceful degradation in FR-006.
 - CHK050 noted: WCAG level not specified; Constitution II is the governing standard. Acceptable for v1.
 
-## Score: 54/54 — Ready for next phase
+## Constitution v4.0.0 Alignment (added post-checklist review)
+
+- [x] CHK055 Are evidence tags ([CODE], [DOC], [INFERENCE], [ASSUMPTION]) present on all claims in the spec? [Completeness, XIII] — Yes: all user story rationale, edge cases, and clarifications are tagged. Retroactive tagging confirmed in clarification session 2026-03-22.
+- [x] CHK056 Does the spec avoid implementation details that belong in plan.md? [Phase Separation, XIII] — Yes: spec defines WHAT (FR-001 through FR-023, acceptance scenarios) without specifying HOW (no framework choices, no file paths, no schema details). Technology mention limited to Firebase (constitutionally mandated BaaS).
+- [x] CHK057 Are requirements scoped to the simplest viable solution without speculative features? [Clarity, XIV] — Yes: no rollback UI (v1 scope, manual recovery via audit log), no admin management UI (CLI script sufficient for 1-3 admins), no real-time collaborative editing. Each deferral is justified by team size.
+- [x] CHK058 Are BDD full-spectrum quality angles addressed in acceptance scenarios beyond functional happy paths? [Coverage, XV] — Covered: security (US-6), offline/resilience (US-5, US-1/2/3 failure scenarios), performance (US-1 scenario 5, SC-010/011), accessibility (FR-022), data integrity (FR-010/013/019). Clarification confirms expansion via testify re-run for remaining angles (design system, CI/CD, operational, strategic).
+- [x] CHK059 Are parallel workflow requirements (branch isolation, atomic units, contract-first) addressed? [Completeness, XVI] — Yes: plan defines sequential migration waves (XIV governs), each wave independently deployable. Spec FR-017/018 define the integration contract (dual-source resolution) that enables independent wave work.
+- [x] CHK060 Are all [ASSUMPTION] tagged claims bounded to < 30% of total claims per XIII? [Clarity, XIII] — Yes: only 1 ASSUMPTION tag in spec (Firestore free tier quota edge case). Remaining claims are [CODE], [DOC], or [INFERENCE]. Well under 30%.
+- [x] CHK061 Does the spec define quality gate criteria sufficient for G1 passage? [Completeness, Quality Gates] — Yes: spec has FR-XXX requirements, SC-XXX success criteria, Given/When/Then scenarios, evidence tags present, clarifications resolved, no unresolved markers. G1 criteria met.
+
+## Score: 61/61 — Ready for next phase

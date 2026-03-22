@@ -42,9 +42,15 @@ h1, h2, h3, h4, h5, h6, .nav-link, .premium-nav, .nav-logo-link h1 {
     }
 }
 
-/* Scroll Smoothing */
+/* Scroll Smoothing (disabled when user prefers reduced motion — see below) */
 html {
     scroll-behavior: smooth;
+}
+
+/* Selection styling */
+::selection {
+    background: hsla(51, 100%, 50%, 0.25);
+    color: var(--text-primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════

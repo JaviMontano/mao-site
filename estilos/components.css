@@ -577,6 +577,19 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINT
+   ═══════════════════════════════════════════════════════════════ */
+@media print {
+    .premium-nav,
+    .floating-nav,
+    .mobile-menu-btn,
+    .nav-glow-line { display: none !important; }
+
+    body { background: white; color: black; }
+    a { color: black; text-decoration: underline; }
+}
 /* Alias for legacy camelCase references in HTML */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }

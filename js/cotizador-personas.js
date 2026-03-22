@@ -1,52 +1,47 @@
-// State
 let currentStep = 1;
-const totalSteps = 5;
 
-// Navigation
-// Navigation
+const STEP_NAMES = {
+    0: 'Contexto',
+    1: 'Línea Base',
+    2: 'Diagnóstico',
+    3: 'Niveles',
+    4: 'Retorno (ROI)',
+    5: 'Confirmación'
+};
+
+const STEP_SUBTITLES = {
+    0: 'Contexto y Disclaimer',
+    1: 'Empecemos por entender tu situación actual',
+    2: '¿Cómo se distribuye tu trabajo?',
+    3: 'Selecciona los niveles que te interesan',
+    4: 'Tu retorno de inversión proyectado',
+    5: 'Confirma tu interés'
+};
+
+const DELEGATION_CEILINGS = { simple: 0.80, medium: 0.33, strategic: 0.20 };
+
 function goToStep(step) {
-    // Validate bounds if not 0 (which is optional entry)
-    // Actually we support step 0 to 5
-    
-    // Hide all steps by ID (Robust against structure changes)
     [0, 1, 2, 3, 4, 5].forEach(i => {
         const el = document.getElementById(`step-${i}`);
-        if(el) el.classList.add('hidden');
+        if (el) el.classList.add('hidden');
     });
-    
-    // Show target step
+
     const target = document.getElementById(`step-${step}`);
     if (target) {
         target.classList.remove('hidden');
         target.classList.add('animate-fade-in');
     }
-    
-    // --- SMART STEPPER LOGIC ---
-    
-    // 1. Update Mobile Texts
-    const stepNames = {
-        0: 'Contexto',
-        1: 'Línea Base',
-        2: 'Diagnóstico',
-        3: 'Niveles',
-        4: 'Retorno (ROI)',
-        5: 'Confirmación'
-    };
-    
+
     const mobileNum = document.getElementById('mobile-step-num');
     const mobileName = document.getElementById('mobile-step-name');
     if (mobileNum) mobileNum.textContent = step === 0 ? 'i' : step;
-    if (mobileName) mobileName.textContent = stepNames[step] || 'Paso ' + step;
-    
-    // 2. Update Progress Bars
-    // Total steps = 5 (excluding 0 for calc usually, but let's map 0-5 to 0-100%)
-    // Let's treat step 0 as 0%, step 1 as 20% ... step 5 as 100%
+    if (mobileName) mobileName.textContent = STEP_NAMES[step] || 'Paso ' + step;
+
     const percent = (step / 5) * 100;
-    
     const mobileBar = document.getElementById('mobile-progress-bar');
     const desktopLine = document.getElementById('desktop-progress-line');
-    
-    if (mobileBar) mobileBar.style.width = `${Math.max(5, percent)}%`; // Min 5% visibility
+
+    if (mobileBar) mobileBar.style.width = `${Math.max(5, percent)}%`;
     if (desktopLine) desktopLine.style.width = `${percent}%`;
 
     // 3. Update Desktop Nodes
@@ -66,17 +61,8 @@ function goToStep(step) {
         }
     });
     
-    // Update main subtitle
-    const subtitles = {
-        0: 'Contexto y Disclaimer',
-        1: 'Empecemos por entender tu situación actual',
-        2: '¿Cómo se distribuye tu trabajo?',
-        3: 'Selecciona los niveles que te interesan',
-        4: 'Tu retorno de inversión proyectado',
-        5: 'Confirma tu interés'
-    };
     const subEl = document.getElementById('step-subtitle');
-    if (subEl) subEl.textContent = subtitles[step];
+    if (subEl) subEl.textContent = STEP_SUBTITLES[step];
     
     currentStep = step;
     
@@ -182,10 +168,9 @@ function calculateROI() {
     const horasMes = horasSemana * 4.33;
     const valorHora = horasMes > 0 ? Math.round(ingresos / horasMes) : 0;
     
-    // 1. Calculate Weighted Delegable Potential (The Ceiling)
-    const horasSimples = horasSemana * simples * 0.80; 
-    const horasMedias = horasSemana * medias * 0.33;   
-    const horasAltas = horasSemana * altas * 0.20;     
+    const horasSimples = horasSemana * simples * DELEGATION_CEILINGS.simple;
+    const horasMedias = horasSemana * medias * DELEGATION_CEILINGS.medium;
+    const horasAltas = horasSemana * altas * DELEGATION_CEILINGS.strategic;
     const potencialDelegableSemanal = horasSimples + horasMedias + horasAltas;
     
     // 2. Calculate Selection Data

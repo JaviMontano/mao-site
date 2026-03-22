@@ -24,6 +24,11 @@ class SiteHeader extends HTMLElement {
     disconnectedCallback() {
         if (this._scrollHandler) {
             window.removeEventListener('scroll', this._scrollHandler);
+            this._scrollHandler = null;
+        }
+        if (this._floatingNav && this._floatingNav.parentNode) {
+            this._floatingNav.parentNode.removeChild(this._floatingNav);
+            this._floatingNav = null;
         }
     }
 

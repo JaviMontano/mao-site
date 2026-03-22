@@ -7,15 +7,16 @@ class CTAHandler {
     constructor() {
         this.ctaData = null;
         this.isLoaded = false;
+        this._boundClick = null;
+        this._boundHover = null;
         this.init();
     }
 
     async init() {
         try {
-            // Obtener la ruta base para encontrar el JSON
             const scripts = document.getElementsByTagName('script');
             let basePath = '.';
-            for (let script of scripts) {
+            for (const script of scripts) {
                 if (script.src.includes('CTAHandler.js')) {
                     basePath = script.src.substring(0, script.src.lastIndexOf('/'));
                     break;
@@ -26,44 +27,39 @@ class CTAHandler {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             this.ctaData = await response.json();
             this.isLoaded = true;
-            this.bindEvents();
         } catch (error) {
-            console.error('❌ CTAHandler: Error al cargar el inventario de CTAs:', error);
-            // Fallback: enlazar eventos sin datos (solo delegará a href original)
-            if (!this.isLoaded) this.bindEvents();
+            console.warn('CTAHandler: cta-data.json no disponible, usando fallback href.');
+        } finally {
+            this.bindEvents();
         }
     }
 
     bindEvents() {
-        // Usar delegación de eventos para mayor eficiencia
-        document.addEventListener('click', (e) => {
-            const ctaElement = e.target.closest('[data-cta]');
-            if (ctaElement) {
-                e.preventDefault();
-                const ctaId = ctaElement.getAttribute('data-cta');
-                this.executeCTA(ctaId, ctaElement);
-            }
-        });
+        this._boundClick = (e) => {
+            const el = e.target.closest('[data-cta]');
+            if (!el) return;
+            e.preventDefault();
+            this.executeCTA(el.getAttribute('data-cta'), el);
+        };
 
-        // Efecto WOW: Tooltip informativo al pasar el mouse (opcional y discreto)
-        document.addEventListener('mouseover', (e) => {
-            const ctaElement = e.target.closest('[data-cta]');
-            if (ctaElement && !ctaElement.hasAttribute('title')) {
-                const ctaId = ctaElement.getAttribute('data-cta');
-                if (this.ctaData && this.ctaData[ctaId]) {
-                    ctaElement.setAttribute('title', `Abrirá tu correo para: ${this.ctaData[ctaId].subject}`);
-                }
+        this._boundHover = (e) => {
+            const el = e.target.closest('[data-cta]');
+            if (!el || el.hasAttribute('title')) return;
+            const id = el.getAttribute('data-cta');
+            if (this.ctaData && this.ctaData[id]) {
+                el.setAttribute('title', `Abrirá tu correo para: ${this.ctaData[id].subject}`);
             }
-        });
+        };
+
+        document.addEventListener('click', this._boundClick);
+        document.addEventListener('mouseover', this._boundHover);
     }
 
     executeCTA(id, element, params) {
         if (!this.isLoaded || !this.ctaData || !this.ctaData[id]) {
-            console.warn(`⚠️ CTAHandler: No se encontró configuración para el CTA "${id}".`);
-            // Intentar usar el href original si existe como respaldo
-            const originalHref = element.getAttribute('href');
-            if (originalHref && originalHref.startsWith('mailto:')) {
-                window.location.href = originalHref;
+            const fallback = element.getAttribute('href');
+            if (fallback && fallback.startsWith('mailto:')) {
+                window.location.href = fallback;
             }
             return;
         }
@@ -71,57 +67,43 @@ class CTAHandler {
         const mailtoLink = this.buildMailto(id, params);
         if (!mailtoLink) return;
 
-        // Efecto WOW: Animación de feedback visual antes de abrir el correo
         this.animateFeedback(element);
-
-        // Pequeño delay para dejar que la animación brille
-        setTimeout(() => {
-            window.location.href = mailtoLink;
-        }, 300);
+        setTimeout(() => { window.location.href = mailtoLink; }, 300);
     }
 
     buildMailto(id, params) {
         if (!this.ctaData || !this.ctaData[id]) return null;
 
         const config = this.ctaData[id];
-        let body = config.body || '';
         let subject = config.subject || '';
+        let body = config.body || '';
 
-        // Template interpolation: replace {{variable}} with params
         if (params && typeof params === 'object') {
-            Object.keys(params).forEach(key => {
+            for (const [key, value] of Object.entries(params)) {
                 const token = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
-                body = body.replace(token, params[key]);
-                subject = subject.replace(token, params[key]);
-            });
+                subject = subject.replace(token, String(value));
+                body = body.replace(token, String(value));
+            }
         }
 
         return `mailto:${config.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
     animateFeedback(element) {
-        const originalContent = element.innerHTML;
-        const feedbackColor = 'var(--brand-gold-dark)'; // Brand Gold
-
+        element.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
         element.style.transform = 'scale(0.95)';
-        element.style.transition = 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
-        
-        // Si el elemento tiene un icono de Lucide, podemos hacerlo brillar
+
         const icon = element.querySelector('i[data-lucide], svg');
         if (icon) {
-            icon.style.filter = `drop-shadow(0 0 8px ${feedbackColor})`;
-            icon.style.color = feedbackColor;
+            icon.style.filter = 'drop-shadow(0 0 8px var(--brand-gold-dark))';
         }
 
-        setTimeout(() => {
-            element.style.transform = 'scale(1.05)';
-        }, 100);
-
+        setTimeout(() => { element.style.transform = 'scale(1.05)'; }, 100);
         setTimeout(() => {
             element.style.transform = '';
+            if (icon) icon.style.filter = '';
         }, 400);
     }
 }
 
-// Auto-instanciar globalmente
 window.ctaHandler = new CTAHandler();

@@ -154,7 +154,7 @@ test.describe('empresas/index.html — Bilingual (Wave 2)', () => {
     await page.waitForTimeout(1000);
 
     const h1Before = await page.locator('main h1').boundingBox();
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
     const h1After = await page.locator('main h1').boundingBox();
 
@@ -171,7 +171,7 @@ test.describe('empresas/index.html — Bilingual (Wave 2)', () => {
     await page.waitForTimeout(1000);
 
     await expect(page.locator('main h1')).toBeVisible();
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
@@ -311,7 +311,7 @@ test.describe('personas/index.html — Bilingual (Wave 2)', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const h1 = page.locator('main h1');
@@ -329,7 +329,7 @@ test.describe('personas/index.html — Bilingual (Wave 2)', () => {
     await page.waitForTimeout(1000);
 
     await expect(page.locator('main h1')).toBeVisible();
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 

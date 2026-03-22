@@ -159,7 +159,7 @@ test.describe('index.html — Bilingual (Wave 1)', () => {
     await page.waitForTimeout(1000);
 
     const h1Before = await page.locator('main h1').boundingBox();
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
     const h1After = await page.locator('main h1').boundingBox();
 
@@ -281,7 +281,7 @@ test.describe('ruta/index.html — Bilingual (Wave 1)', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const h1 = page.locator('main h1');
@@ -394,7 +394,7 @@ test.describe('contacto/index.html — Bilingual (Wave 1)', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const h1 = page.locator('main h1');

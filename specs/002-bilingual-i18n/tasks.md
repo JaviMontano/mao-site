@@ -137,12 +137,12 @@
 - [x] T039 [P] [US7] Create `tests/22-bilingual-bibliotecas.spec.js` — library UI chrome [TS-021]
 - [x] T063 [P] [US7] Create `tests/24-bilingual-product-pages.spec.js` — Wave 2 empresas/personas verification [TS-021, TS-022]
 - [x] T064 [P] [US7] Create `tests/25-bilingual-remaining.spec.js` — Waves 3, 5, 6, 7 comprehensive verification [TS-021, TS-022]
-- [ ] T040 [US7] Run full test suite, verify 100% pass rate [TS-021, TS-022]
+- [x] T040 [US7] Run full test suite, verify 100% pass rate [TS-021, TS-022]
 
 ## Phase 7: Polish & Cross-Cutting
 
-- [ ] T041 Verify zero JS errors on all pages with both languages (spot-check 10 pages)
-- [ ] T042 Performance audit: measure i18n load impact with Lighthouse on 3 pages
+- [x] T041 Verify zero JS errors on all pages with both languages (spot-check 10 pages)
+- [x] T042 Performance audit: measure i18n load impact with Lighthouse on 3 pages
 
 ## Dependency Graph
 

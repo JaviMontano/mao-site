@@ -95,19 +95,19 @@ test.describe('Bilingual SiteHeader — English Mode', () => {
   });
 
   test('language toggle itself is visible in EN mode', async ({ page }) => {
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
   test('EN button shows active/pressed state', async ({ page }) => {
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     await expect(enBtn).toBeVisible();
     const pressed = await enBtn.getAttribute('aria-pressed');
     expect(pressed).toBe('true');
   });
 
   test('ES button shows inactive state in EN mode', async ({ page }) => {
-    const esBtn = page.locator('button[data-lang="es"]');
+    const esBtn = page.locator('button[data-lang="es"]').first();
     await expect(esBtn).toBeVisible();
     const pressed = await esBtn.getAttribute('aria-pressed');
     expect(pressed).toBe('false');
@@ -116,7 +116,7 @@ test.describe('Bilingual SiteHeader — English Mode', () => {
   // ── SWITCHING BACK TO SPANISH ─────────────────────────────────
 
   test('clicking ES in EN mode switches back to Spanish nav', async ({ page }) => {
-    const esBtn = page.locator('button[data-lang="es"]');
+    const esBtn = page.locator('button[data-lang="es"]').first();
     await esBtn.click();
     await page.waitForTimeout(500);
 
@@ -218,7 +218,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
@@ -228,7 +228,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     await expect(enBtn).toBeVisible();
     await enBtn.click();
     await page.waitForTimeout(500);
@@ -243,7 +243,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
@@ -253,7 +253,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
@@ -263,7 +263,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
@@ -273,7 +273,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     const box = await enBtn.boundingBox();
     expect(box).toBeTruthy();
     // Minimum tap target: 32px (relaxed from 44px for compact toggle)
@@ -287,7 +287,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1200);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const lang = await page.evaluate(() => window.i18n && window.i18n.lang);
@@ -300,7 +300,7 @@ test.describe('Bilingual Toggle — Mobile Viewport', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
     const realErrors = errors.filter(e =>
       !e.includes('fonts.googleapis') && !e.includes('favicon')

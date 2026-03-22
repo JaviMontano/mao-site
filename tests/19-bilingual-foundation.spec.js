@@ -31,26 +31,27 @@ test.describe('Bilingual Foundation — i18n Module', () => {
     // Toggle should be rendered by SiteHeader — wait for web component
     await page.waitForTimeout(1000);
     const toggle = page.locator('.lang-toggle, [role="radiogroup"][aria-label*="idioma" i], [role="radiogroup"][aria-label*="language" i]');
-    await expect(toggle).toHaveCount(1);
+    const count = await toggle.count();
+    expect(count).toBeGreaterThanOrEqual(1); // desktop + mobile toggles
   });
 
   test('toggle has ES and EN buttons', async ({ page }) => {
     await page.waitForTimeout(1000);
     const esBtn = page.locator('button[data-lang="es"], .lang-toggle__btn[data-lang="es"]');
     const enBtn = page.locator('button[data-lang="en"], .lang-toggle__btn[data-lang="en"]');
-    await expect(esBtn).toHaveCount(1);
-    await expect(enBtn).toHaveCount(1);
+    expect(await esBtn.count()).toBeGreaterThanOrEqual(1); // desktop + mobile
+    expect(await enBtn.count()).toBeGreaterThanOrEqual(1);
   });
 
   test('toggle is visible on page', async ({ page }) => {
     await page.waitForTimeout(1000);
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
   test('EN button has accessible label or text', async ({ page }) => {
     await page.waitForTimeout(1000);
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     const text = (await enBtn.textContent()).trim();
     const ariaLabel = await enBtn.getAttribute('aria-label');
     expect(text.length > 0 || (ariaLabel && ariaLabel.length > 0)).toBeTruthy();
@@ -67,7 +68,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
 
   test('clicking EN button updates localStorage lang to "en"', async ({ page }) => {
     await page.waitForTimeout(1000);
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     await enBtn.click();
     await page.waitForTimeout(500);
     const lang = await page.evaluate(() => localStorage.getItem('lang'));
@@ -77,10 +78,10 @@ test.describe('Bilingual Foundation — i18n Module', () => {
   test('clicking ES after EN updates localStorage lang back to "es"', async ({ page }) => {
     await page.waitForTimeout(1000);
     // Switch to EN first
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(300);
     // Switch back to ES
-    await page.locator('button[data-lang="es"]').click();
+    await page.locator('button[data-lang="es"]').first().click();
     await page.waitForTimeout(500);
     const lang = await page.evaluate(() => localStorage.getItem('lang'));
     expect(lang).toBe('es');
@@ -91,7 +92,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
     let reloaded = false;
     page.on('framenavigated', () => { reloaded = true; });
 
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     await enBtn.click();
     await page.waitForTimeout(500);
     expect(reloaded).toBe(false);
@@ -99,7 +100,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
 
   test('language switch completes in under 1000ms', async ({ page }) => {
     await page.waitForTimeout(1000);
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     const start = Date.now();
     await enBtn.click();
     await page.waitForTimeout(300);
@@ -110,7 +111,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
 
   test('EN button shows aria-pressed="true" after clicking EN', async ({ page }) => {
     await page.waitForTimeout(1000);
-    const enBtn = page.locator('button[data-lang="en"]');
+    const enBtn = page.locator('button[data-lang="en"]').first();
     await enBtn.click();
     await page.waitForTimeout(400);
     const pressed = await enBtn.getAttribute('aria-pressed');
@@ -119,9 +120,9 @@ test.describe('Bilingual Foundation — i18n Module', () => {
 
   test('ES button shows aria-pressed="false" after switching to EN', async ({ page }) => {
     await page.waitForTimeout(1000);
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(400);
-    const esBtn = page.locator('button[data-lang="es"]');
+    const esBtn = page.locator('button[data-lang="es"]').first();
     const pressed = await esBtn.getAttribute('aria-pressed');
     expect(pressed).toBe('false');
   });
@@ -157,7 +158,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
   test('language persists across page navigation: EN stays EN on ruta/', async ({ page }) => {
     await page.waitForTimeout(1000);
     // Switch to EN on home
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     // Navigate to another page
@@ -171,7 +172,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
 
   test('language persists across page navigation: EN auto-applied on new page', async ({ page }) => {
     await page.waitForTimeout(1000);
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     await page.goto('/contacto/index.html');
@@ -222,7 +223,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
     const realErrors = errors.filter(e =>
       !e.includes('fonts.googleapis') && !e.includes('favicon')
@@ -247,9 +248,9 @@ test.describe('Bilingual Foundation — i18n Module', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(300);
-    await page.locator('button[data-lang="es"]').click();
+    await page.locator('button[data-lang="es"]').first().click();
     await page.waitForTimeout(500);
     const realErrors = errors.filter(e =>
       !e.includes('fonts.googleapis') && !e.includes('favicon')
@@ -283,7 +284,7 @@ test.describe('Bilingual Foundation — i18n Module', () => {
     const el = page.locator('[data-i18n]').first();
     const textBefore = (await el.textContent()).trim();
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const textAfter = (await el.textContent()).trim();

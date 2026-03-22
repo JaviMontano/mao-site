@@ -163,12 +163,12 @@ test.describe('Bilingual Biblioteca Chrome — biblioteca-prompts', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const lang = await page.evaluate(() => localStorage.getItem('lang'));
     expect(lang).toBe('en');
-    const enBtnPressed = await page.locator('button[data-lang="en"]').getAttribute('aria-pressed');
+    const enBtnPressed = await page.locator('button[data-lang="en"]').first().getAttribute('aria-pressed');
     expect(enBtnPressed).toBe('true');
   });
 
@@ -179,9 +179,9 @@ test.describe('Bilingual Biblioteca Chrome — biblioteca-prompts', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
-    await page.locator('button[data-lang="es"]').click();
+    await page.locator('button[data-lang="es"]').first().click();
     await page.waitForTimeout(500);
 
     const realErrors = errors.filter(e =>
@@ -200,7 +200,7 @@ test.describe('Bilingual Biblioteca Chrome — biblioteca-prompts', () => {
     await page.waitForTimeout(1000);
 
     await expect(page.locator('main h1')).toBeVisible();
-    const toggle = page.locator('.lang-toggle');
+    const toggle = page.locator('.lang-toggle').first();
     await expect(toggle).toBeVisible();
   });
 
@@ -222,7 +222,7 @@ test.describe('Bilingual Biblioteca Chrome — Language Toggle Interaction', () 
     }
 
     // Switch language
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     // Page should still be intact

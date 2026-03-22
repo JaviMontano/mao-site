@@ -143,7 +143,7 @@ test.describe('servicios/index.html — Bilingual', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const h1 = page.locator('main h1');
@@ -279,7 +279,7 @@ test.describe('vision.html — Bilingual', () => {
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
 
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(500);
 
     const h1 = page.locator('main h1');
@@ -432,8 +432,8 @@ test.describe('Comprehensive — No JS Errors in EN Mode', () => {
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(1000);
 
-      const enBtn = page.locator('button[data-lang="en"]');
-      const esBtn = page.locator('button[data-lang="es"]');
+      const enBtn = page.locator('button[data-lang="en"]').first();
+      const esBtn = page.locator('button[data-lang="es"]').first();
 
       // Both buttons should be focusable (tabIndex >= 0)
       const enTabIndex = await enBtn.evaluate(el => el.tabIndex);
@@ -449,22 +449,22 @@ test.describe('Comprehensive — No JS Errors in EN Mode', () => {
     await page.waitForTimeout(1000);
 
     // Initial state: ES active
-    let esPressedInitial = await page.locator('button[data-lang="es"]').getAttribute('aria-pressed');
+    let esPressedInitial = await page.locator('button[data-lang="es"]').first().getAttribute('aria-pressed');
     expect(esPressedInitial).toBe('true');
 
     // Switch to EN
-    await page.locator('button[data-lang="en"]').click();
+    await page.locator('button[data-lang="en"]').first().click();
     await page.waitForTimeout(400);
-    let enPressed = await page.locator('button[data-lang="en"]').getAttribute('aria-pressed');
-    let esPressed = await page.locator('button[data-lang="es"]').getAttribute('aria-pressed');
+    let enPressed = await page.locator('button[data-lang="en"]').first().getAttribute('aria-pressed');
+    let esPressed = await page.locator('button[data-lang="es"]').first().getAttribute('aria-pressed');
     expect(enPressed).toBe('true');
     expect(esPressed).toBe('false');
 
     // Switch back to ES
-    await page.locator('button[data-lang="es"]').click();
+    await page.locator('button[data-lang="es"]').first().click();
     await page.waitForTimeout(400);
-    let enPressedFinal = await page.locator('button[data-lang="en"]').getAttribute('aria-pressed');
-    let esPressedFinal = await page.locator('button[data-lang="es"]').getAttribute('aria-pressed');
+    let enPressedFinal = await page.locator('button[data-lang="en"]').first().getAttribute('aria-pressed');
+    let esPressedFinal = await page.locator('button[data-lang="es"]').first().getAttribute('aria-pressed');
     expect(enPressedFinal).toBe('false');
     expect(esPressedFinal).toBe('true');
   });

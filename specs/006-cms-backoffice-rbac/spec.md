@@ -3,7 +3,7 @@
 **Feature Branch**: `006-cms-backoffice-rbac`
 **Created**: 2026-03-23
 **Status**: Draft
-**Constitution**: v6.0.0
+**Constitution**: v6.2.0
 
 ## Problem Statement
 
@@ -125,9 +125,9 @@ verify only `@metodologia.info` emails and invited externals access.
 
 | Email | Role | Source |
 |-------|------|--------|
-| javier.montano.guz@gmail.com | super_admin | Hardcoded |
-| contacto@metodologia.info | super_admin | Hardcoded |
-| german@metodologia.info | admin | Hardcoded |
+| javier.montano.guz@gmail.com | super_admin | Environment config |
+| contacto@metodologia.info | super_admin | Environment config |
+| german@metodologia.info | admin | Environment config |
 | *@metodologia.info | viewer (default) | Domain rule |
 
 ---
@@ -303,8 +303,9 @@ versions, restore a previous version.
   domains unless explicitly invited [US3]
 - **FR-012**: Super admin MUST be able to invite external users
   by email with a specific role [US3]
-- **FR-013**: System MUST hardcode initial super_admin accounts
-  that cannot be removed via UI [US3]
+- **FR-013**: System MUST configure initial super_admin accounts
+  as deploy-time invariants (environment config) that cannot be
+  removed via UI [US3]
 
 ### User Management
 

@@ -1,0 +1,74 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: check if user has admin custom claim
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Helper: validate required string field
+    function hasString(field) {
+      return field is string && field.size() > 0;
+    }
+
+    // Helper: validate required array of strings with min 1 item
+    function hasStringArray(field) {
+      return field is list && field.size() > 0;
+    }
+
+    // Programs collection — public read, admin write with schema validation
+    match /programs/{programId} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && hasString(request.resource.data.audience)
+        && request.resource.data.audience in ['empresas', 'personas']
+        && hasString(request.resource.data.slug)
+        && request.resource.data.sort_order is int
+        && request.resource.data.sort_order >= 0
+        && hasString(request.resource.data.title_es)
+        && hasString(request.resource.data.title_en)
+        && hasString(request.resource.data.description_es)
+        && hasString(request.resource.data.description_en)
+        && hasStringArray(request.resource.data.benefits_es)
+        && hasStringArray(request.resource.data.benefits_en)
+        && hasString(request.resource.data.transformation_es)
+        && hasString(request.resource.data.transformation_en)
+        && request.resource.data.is_published is bool
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+      allow delete: if isAdmin();
+    }
+
+    // Pricing collection — public read, admin write
+    match /pricing/{category} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+    }
+
+    // Translations collection — public read, admin write
+    match /translations/{lang} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.data.keys().hasAny(['_meta'])
+        && request.resource.data._meta.updated_at is timestamp
+        && hasString(request.resource.data._meta.updated_by);
+    }
+
+    // Audit log — admin create only, no update/delete for anyone
+    match /audit_log/{entryId} {
+      allow read: if isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // Config — admin read/write only
+    match /config/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

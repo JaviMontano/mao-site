@@ -133,6 +133,50 @@
 
 ---
 
+## migrateMyRole
+
+**Type**: `onCall` (HTTPS callable)
+**Caller**: any authenticated user with legacy `admin: true` claim
+
+### Request
+```json
+{
+  "data": {}
+}
+```
+
+### Response (success)
+```json
+{
+  "success": true,
+  "migratedRole": "admin",
+  "uid": "abc123"
+}
+```
+
+### Errors
+| Code | Condition |
+|------|-----------|
+| `unauthenticated` | No auth token |
+| `failed-precondition` | Caller already has `role` claim (no migration needed) |
+| `failed-precondition` | Caller does not have legacy `admin: true` claim |
+
+### Logic
+1. Verify `context.auth.token.admin === true && !context.auth.token.role`
+2. Check bootstrap_accounts: if email matches → assign bootstrap role
+3. Otherwise → assign `admin` role (preserving existing privilege level)
+4. Create `users/{uid}` doc if not exists
+5. Set custom claim `{ role: assignedRole }` + remove legacy `{ admin: true }`
+6. Write audit_log entry (action: role_change, previous_value: "legacy_admin")
+7. Return migrated role
+
+### Notes
+- Self-healing: called automatically by client when legacy claim detected
+- Idempotent: if user doc already exists with role, returns success without changes
+- Temporary: remove after all users have migrated (1 week post-deploy)
+
+---
+
 ## onUserFirstLogin
 
 **Type**: `auth.user().onCreate` (Auth trigger)
@@ -156,7 +200,8 @@
 5. None matched → create user doc with `role: null` (blocked), no custom claim
 6. Write audit_log entry (action: login, first login)
 
-### User Doc Created
+### User Doc Created (by onUserFirstLogin)
+
 ```json
 {
   "uid": "<uid>",
@@ -174,3 +219,28 @@
   "role_history": [{"role": "<role>", "changed_by": "system", "changed_at": "serverTimestamp", "previous_role": null}]
 }
 ```
+
+---
+
+## cleanupExpiredAudit
+
+**Type**: `onSchedule` (Scheduled Function)
+**Caller**: system (runs daily at 03:00 UTC)
+
+### Schedule
+```
+every day 03:00
+```
+
+### Logic
+1. Query `audit_log` where `ttl < Timestamp.now()`, limit 500
+2. Batch delete all matched documents
+3. If 500 deleted (batch full), re-run query (loop until < 500 returned)
+4. Log total deleted count
+
+### Notes
+- No auth check — system-triggered, runs with admin privileges
+- Batch limit of 500 matches Firestore batch write limit
+- Runs at 03:00 UTC (low-traffic window for LatAm)
+- If zero expired entries, exits silently
+- Cost: ~1 read per expired doc + 1 delete per doc. At 1-10 users, negligible

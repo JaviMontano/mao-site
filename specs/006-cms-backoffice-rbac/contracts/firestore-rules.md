@@ -46,8 +46,8 @@ function hasAnyRole()        → getUserRole() != null
 | update role | `false` | Only Cloud Function changes roles |
 | delete | `false` | Never delete user docs from client |
 
-**Allowed self-update fields**: `display_name`, `preferred_language`, `updated_at`
-**Blocked self-update fields**: `role`, `is_bootstrap`, `source`, `email`, `uid`, `role_history`
+**Allowed self-update fields**: `display_name`, `preferred_language`, `updated_at`, `last_login`, `total_sessions`
+**Blocked self-update fields**: `role`, `is_bootstrap`, `source`, `email`, `uid`, `role_history`, `created_at`
 
 ### `config/access`
 | Operation | Rule | Rationale |
@@ -61,6 +61,14 @@ function hasAnyRole()        → getUserRole() != null
 | read | `isSuperAdmin()` | View pending invites |
 | create | `false` | Only Cloud Function creates |
 | delete | `isSuperAdmin()` | Cancel invitations |
+
+### `page_overrides/{pathHash}`
+| Operation | Rule | Rationale |
+|-----------|------|-----------|
+| read | `isEditorOrAbove()` | Editors see merged page data |
+| create | `isEditorOrAbove()` | Editors create overrides |
+| update | `isEditorOrAbove()` | Editors edit overrides |
+| delete | `isAdminOrAbove()` | Destructive — admin+ only |
 
 ### `config/settings`
 | Operation | Rule | Rationale |

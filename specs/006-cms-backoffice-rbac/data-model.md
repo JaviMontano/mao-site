@@ -48,7 +48,7 @@ Singleton document controlling CMS access rules.
 |-------|------|----------|------------|-------|
 | `allowed_domains` | array<string> | yes | valid domain strings | e.g., ["metodologia.info"] |
 | `default_role` | string | yes | enum: viewer | role for domain auto-provision |
-| `bootstrap_accounts` | array<object> | yes | — | [{email, role}] — hardcoded, read-only |
+| `bootstrap_accounts` | array<object> | yes | — | [{email, role}] — READ-ONLY MIRROR of hardcoded array in Cloud Function. Lazy-synced by `onUserFirstLogin`. Not writable from client (INS-RBAC-004) |
 | `updated_at` | timestamp | yes | server timestamp | — |
 | `updated_by` | string | yes | valid email | — |
 
@@ -65,9 +65,9 @@ Singleton document controlling CMS access rules.
 ]
 ```
 
-### `config/invites/{email_hash}`
+### `config/invites/{sanitized_email}`
 
-Pending invitations for external users.
+Pending invitations for external users. Doc ID is the lowercased email with `.` and `@` replaced by `_` (e.g., `partner@aliado.com` → `partner_aliado_com`). No hashing — directly reversible, Firestore-safe.
 
 | Field | Type | Required | Validation | Notes |
 |-------|------|----------|------------|-------|
@@ -114,6 +114,29 @@ pending → expired (30-day TTL, cleaned by scheduled function or manual)
 - Read: super_admin, admin
 - Update: NEVER (immutable)
 - Delete: NEVER (immutable)
+
+### `page_overrides/{path_hash}`
+
+Admin-edited metadata overrides for site pages. Base page data comes from build-time scan (`admin/data/page-registry.json`); this collection stores CMS customizations only (INS-DATA-001).
+
+| Field | Type | Required | Validation | Notes |
+|-------|------|----------|------------|-------|
+| `path` | string | yes | valid relative path | e.g., "empresas/index.html" |
+| `title_es` | string | no | 1-200 chars | override for `<title>` in Spanish |
+| `title_en` | string | no | 1-200 chars | override for `<title>` in English |
+| `description_es` | string | no | 1-300 chars | meta description override ES |
+| `description_en` | string | no | 1-300 chars | meta description override EN |
+| `og_title_es` | string | no | 1-200 chars | Open Graph title override ES |
+| `og_title_en` | string | no | 1-200 chars | Open Graph title override EN |
+| `updated_at` | timestamp | yes | server timestamp | — |
+| `updated_by` | string | yes | valid email | — |
+
+**Security rules**:
+- Read: editor+ (needed to display merged view)
+- Create/Update: editor+
+- Delete: admin+
+
+**Key generation**: Same sanitization pattern as invites — page path with `/` and `.` replaced by `_` (e.g., `empresas/index.html` → `empresas_index_html`). Directly reversible, stored alongside `path` field for clarity.
 
 ### `config/settings` (existing)
 

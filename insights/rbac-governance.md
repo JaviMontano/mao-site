@@ -22,3 +22,10 @@ Decision patterns for role-based access control governance in CMS systems.
 - **Rationale**: If all super_admins could demote themselves, a single UI mistake could lock everyone out of user management permanently. The bootstrap accounts are the "break glass" mechanism.
 - **Applies when**: Designing admin account management — always ask "what happens if all admins demote themselves?"
 - **Constitutional anchor**: VII (Secure by Default — irrevocable bootstrap)
+
+### INS-RBAC-004: Security invariants live in deployed code, not configurable stores
+- **Origin**: Socratic debate — Q7 bootstrap account source of truth for feature 006
+- **Pattern**: When a system has a security invariant that MUST NOT be modifiable via any UI (including cloud consoles), the invariant must be hardcoded in deployed code. Configurable stores (Firestore, environment variables, admin panels) can be modified by anyone with project access — they are not a trust boundary. Deployed code requires a code review + deploy cycle to change, making it the appropriate perimeter for irrevocable invariants. The configurable store can hold a MIRROR for UI display, lazy-synced by the authoritative code.
+- **Rationale**: Firestore security rules only apply to client SDK requests. The Firebase console and Admin SDK bypass rules completely. Therefore, Firestore cannot be the authority for a "cannot be removed" invariant. The hardcoded array in a Cloud Function is the only mechanism outside the reach of the console. Lazy sync on login keeps the UI mirror fresh without adding overhead to every function call.
+- **Applies when**: Any invariant described as "irrevocable", "cannot be removed", or "break glass". Ask: "Can someone with Firebase console access violate this invariant?" If yes → hardcode in deployed function.
+- **Constitutional anchor**: VII (Secure by Default — irrevocable bootstrap), VI (Content Authority — one source + mirror), XIV (Simple First)

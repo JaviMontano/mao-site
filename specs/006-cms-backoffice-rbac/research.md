@@ -97,8 +97,9 @@ functions/
 
 **Problem**: How to auto-provision users from `@metodologia.info` while blocking others?
 
-**Decision**: **Auth onCreate trigger + Firestore config**
-- `config/access` Firestore doc stores:
+**Decision**: **Auth onCreate trigger + env config + Firestore config**
+- Bootstrap accounts defined in environment config (`functions.config().bootstrap.accounts`) per Constitution XXI — never hardcoded in source.
+- `config/access` Firestore doc stores domain rules:
   ```json
   {
     "allowed_domains": ["metodologia.info"],
@@ -106,9 +107,11 @@ functions/
   }
   ```
 - `onUserFirstLogin` (Auth onCreate trigger) checks:
-  1. Is email in `config/access.allowed_domains`? → Auto-create user doc with `default_role`.
+  1. Is email in bootstrap accounts (env config)? → Create user doc with bootstrap role + `is_bootstrap: true`.
   2. Is email in `config/invites`? → Create user doc with invited role, delete invite.
-  3. Neither? → Create user doc with `role: null` (blocked). Client checks role; null = access denied.
+  3. Is email in `config/access.allowed_domains`? → Auto-create user doc with `default_role`.
+  4. Neither? → Create user doc with `role: null` (blocked). Client checks role; null = access denied.
+- `onUserFirstLogin` lazy-syncs `config/access.bootstrap_accounts` from env config for UI display.
 - **Blocking is NOT at Firebase Auth level** — any Google user can authenticate. The CMS checks the role claim; `null` or absent role = denied.
 
 [INFERENCE] Firebase Auth cannot restrict sign-in by domain without custom Identity Platform (Enterprise). Blocking at the application layer (role check) is the standard approach.

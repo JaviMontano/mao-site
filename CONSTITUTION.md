@@ -1,19 +1,24 @@
 <!-- Sync Impact Report
-Version: 6.1.0 (TO-BE RBAC Governance)
+Version: 6.2.0 (Zero Hardcoding Principle)
 Added:
-  - VII: access governance sub-principles (least privilege,
-    separation of duties, irrevocable bootstrap)
-  - VI: reversibility sub-principle (destructive writes)
-  - VIII: explicit admin connectivity exception
-  - G2 gate: RBAC security rules testing
+  - XXI: Zero Hardcoding — all values managed via
+    configuration mechanisms (env vars, config stores, CMS),
+    never literal values in source code
 Modified:
-  - Assumptions: 1-10 CMS users, 4 role levels, UI-managed
-Origin: Socratic debate — constitution must govern TO-BE
-  (RBAC CMS) not just AS-IS (binary admin). Debate found
-  3 tensions: access governance gap, missing reversibility,
-  stale assumptions.
-Previous version: 6.0.0 (10x Excellence Pass)
+  - Assumptions: removed bootstrap "only exception" —
+    bootstrap accounts now managed via environment variables
+  - Development Workflow: Act phase references XXI
+Origin: Owner directive — as a CMS, editability and
+  manageability of all values is a core identity trait.
+  Hardcoded values defeat the purpose of a content
+  management system. Security invariants use env vars
+  and deploy-time config, not source code literals.
+Previous version: 6.1.0 (TO-BE RBAC Governance)
 Follow-up TODOs:
+  - Update INS-RBAC-004: mechanism from hardcoded array
+    to environment variables
+  - Update feature 006 plan.md: bootstrap accounts in
+    functions config, not hardcoded in index.js
   - Set up GitHub branch protection rules on main + staging
   - Add GitHub Actions CI for staging PR gate
 -->
@@ -790,6 +795,61 @@ before production. Deploy checklist exists because
 > **Edge case**: Hotfixes bypass staging by design — but
 > must backport to staging immediately after deploy.
 
+### XXI. Zero Hardcoding
+
+No value that could change — content, configuration,
+thresholds, accounts, feature flags, credentials — is
+hardcoded in source code. Every value is managed through
+an appropriate configuration mechanism.
+
+- **Content values** (text, prices, program names): managed
+  via CMS (Firestore) and editable by authorized roles
+- **System configuration** (TTLs, thresholds, feature
+  flags): stored in config documents or environment
+  variables, never as literals in code
+- **Security configuration** (bootstrap accounts, allowed
+  domains, role definitions): managed via environment
+  variables (`functions.config()`, `.env` files) or
+  secured config stores. Deploy-time config is acceptable;
+  source code literals are not
+- **API keys, endpoints, project IDs**: environment
+  variables or config files, never inline strings
+- **Magic numbers**: extracted to named constants in config.
+  If the value could ever need changing without a code
+  deploy, it belongs in a config store
+- **The test**: if changing a value requires modifying
+  source code and redeploying, the value is hardcoded.
+  The correct design makes it changeable via config,
+  CMS, or environment without touching code
+
+**Rationale**: This is a CMS — editability and
+manageability are core identity traits, not conveniences.
+Hardcoded values create hidden dependencies that defeat
+the purpose of a content management system. Even security
+invariants can be managed securely through environment
+variables and deploy-time configuration — hardcoding is
+not the only path to immutability. Environment variables
+require deploy access to change, providing the same trust
+boundary as source code without the rigidity.
+
+> **Acceptance criteria**:
+> - `grep -r` for literal strings that match content in
+>   CMS = 0 results
+> - No function contains a literal email, domain name,
+>   or role assignment
+> - Every configurable value has a documented config
+>   source (env var, Firestore doc, or config file)
+>
+> **Anti-pattern**: `const BOOTSTRAP = ['admin@x.com']`
+> in a Cloud Function instead of reading from
+> `functions.config().bootstrap.accounts` or `.env`.
+>
+> **Edge case**: Development defaults (fallback values
+> when config is missing) are acceptable as constants
+> IF they are clearly marked as defaults and overridable.
+> Test fixtures and mock data are exempt — they are not
+> production configuration.
+
 ## Principle Precedence
 
 When principles conflict, resolution order:
@@ -814,7 +874,7 @@ an insight (XVII).
 - **Site scale**: 63+ pages, 1-10 CMS users across 4 role
   levels, <10K daily visitors
 - **Role management**: via CMS UI for super admins, not
-  CLI scripts. Bootstrap accounts are the only exception
+  CLI scripts. Bootstrap accounts via environment config
 - **Team**: 1 human + AI agents — no peer review
   available, gates compensate
 - **Hosting**: shared hosting with CDN — no custom
@@ -892,8 +952,8 @@ principles:
 
 1. **Think** (XIII): read context, decompose, verify
    spec/plan/tests exist, identify quality gate
-2. **Act** (IX, XIV): TDD red-green-refactor, simplest
-   passing solution, BDD angles (XV)
+2. **Act** (IX, XIV, XXI): TDD red-green-refactor, simplest
+   passing solution, BDD angles (XV), zero hardcoding
 3. **Verify** (II, VII, X, XI): full test suite, token
    compliance, secrets scan, a11y, quality gate
 4. **Integrate** (XVI, XX): atomic branch, resolve
@@ -918,4 +978,4 @@ development. It supersedes ad-hoc decisions.
 - **Indexability** (XVIII) enforced on every commit that
   creates a directory
 
-**Version**: 6.1.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23
+**Version**: 6.2.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23

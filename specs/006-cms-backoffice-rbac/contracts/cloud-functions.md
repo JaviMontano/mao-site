@@ -40,7 +40,7 @@
 ### Logic
 1. Verify `context.auth.token.role === 'super_admin'`
 2. Read `users/{targetUid}` — verify exists
-3. If target `is_bootstrap === true` AND `newRole` < current role → reject
+3. Read bootstrap accounts from env config (`functions.config().bootstrap.accounts`). If target email is in bootstrap list AND `newRole` < current role → reject
 4. If target is last super_admin AND `newRole` !== 'super_admin' → reject (count super_admins)
 5. Write `users/{targetUid}.role = newRole`, update `role_history`, `updated_at`
 6. Set custom claim `{ role: newRole }` via Admin SDK
@@ -193,12 +193,14 @@
 ```
 
 ### Logic
-1. Read `config/access` — get allowed_domains, bootstrap_accounts
-2. Check bootstrap_accounts: if email matches → create user doc with bootstrap role + `is_bootstrap: true`, set custom claim
+1. Read bootstrap accounts from environment config (`functions.config().bootstrap.accounts`) — per Constitution XXI, never hardcoded
+2. Check bootstrap accounts: if email matches → create user doc with bootstrap role + `is_bootstrap: true`, set custom claim
 3. Check `config/invites` for pending invite: if found → create user doc with invited role, mark invite accepted, set custom claim
-4. Check allowed_domains: if email domain matches → create user doc with default_role (viewer), set custom claim
-5. None matched → create user doc with `role: null` (blocked), no custom claim
-6. Write audit_log entry (action: login, first login)
+4. Read `config/access` — get allowed_domains
+5. Check allowed_domains: if email domain matches → create user doc with default_role (viewer), set custom claim
+6. None matched → create user doc with `role: null` (blocked), no custom claim
+7. Lazy-sync: write bootstrap accounts to `config/access.bootstrap_accounts` for UI display (if missing or divergent)
+8. Write audit_log entry (action: login, first login)
 
 ### User Doc Created (by onUserFirstLogin)
 

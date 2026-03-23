@@ -256,6 +256,28 @@ class SiteHeader extends HTMLElement {
         document.body.appendChild(nav);
         this._floatingNav = nav;
 
+        // Re-read heading text into floating nav links on language change
+        document.addEventListener('langchange', () => {
+            const links = nav.querySelectorAll('.floating-nav__link');
+            links.forEach((link, i) => {
+                if (i < sections.length) {
+                    const el = sections[i].el || document.getElementById(sections[i].id);
+                    if (el) {
+                        const heading = el.tagName.match(/^H[2-6]$/i)
+                            ? el
+                            : el.querySelector('h2, h3');
+                        if (heading) {
+                            link.textContent = heading.textContent.trim().substring(0, 24);
+                        }
+                    }
+                }
+            });
+            // Re-translate floating nav's own data-i18n-* attributes
+            if (window.i18n && window.i18n.translate) {
+                window.i18n.translate(nav);
+            }
+        });
+
         // Scroll logic: show floating nav when header is out of view
         const headerEl = this.querySelector('.premium-nav');
         let ticking = false;

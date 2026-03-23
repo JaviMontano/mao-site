@@ -1,22 +1,29 @@
 <!-- Sync Impact Report
-Version: 5.4.0 (Branch-to-Environment Parity)
-Added principles: XX (Branch-to-Environment Parity)
-Added sections: XX with flow rules, prohibitions, deploy
-  checklist
-Modified sections: None
-Previous version: 5.3.0 (User-Reported Bug Protocol)
-Origin: BUG-001 investigation revealed Cloudflare CDN was
-  serving stale SiteHeader.js for weeks. Root cause: no
-  staging gate between development and production. Code
-  merged to main but CDN was never purged. User requested
-  formal branching model: feature → staging → main →
-  Hostinger. Deploy checklist made mandatory to prevent
-  CDN-level deployment gaps.
+Version: 5.4.1 (Phase Separation Cleanup)
+Added principles: None
+Added sections: None
+Modified sections:
+  - XV: replaced Playwright/Vitest/Firebase names with
+    generic "E2E runners/unit runners/emulators"
+  - XIX: replaced "Playwright" with "browser automation",
+    "Playwright E2E or Vitest unit" with "E2E or unit"
+  - XX: replaced Hostinger/Cloudflare/SSH specifics with
+    generic "production hosting/CDN/server". Deploy
+    checklist now references runbook instead of inline
+    SSH commands
+Previous version: 5.4.0 (Branch-to-Environment Parity)
+Origin: Constitution audit per KISS/YAGNI — phase
+  separation rules require no tool-specific content in
+  the constitution (those belong in plan.md or runbooks).
+  Full history review confirmed no missing governance
+  principles. 20 principles cover: architecture (I),
+  quality (II-III, IX, XV), brand (V, X, XI), data (VI-VIII),
+  security (VII), sustainability (XII), philosophy (XIII-XIV),
+  workflow (XVI), knowledge (XVII-XVIII), operations (XIX-XX).
 Removed sections: None
 Follow-up TODOs:
   - Set up GitHub branch protection rules on main + staging
   - Add GitHub Actions CI for staging PR gate
-  - Reconnect Hostinger Git panel (currently SSH-only)
 -->
 
 # Site MetodologIA Constitution
@@ -518,15 +525,14 @@ middleware, data, DevSecOps, CI, and CD.
 - **Runner-agnostic step definitions**: Gherkin scenarios
   document WHAT behavior is expected. Step definitions
   implement HOW it is verified. The runner MUST match the
-  nature of the test — browser-dependent tests use
-  Playwright, code structure invariants use unit test
-  runners (Vitest), security rules use the Firebase
-  Emulator. A scenario that verifies a static code property
-  (e.g., "no scattered queries") is valid BDD — the step
-  definition executes a grep, not a browser interaction.
-  Traceability is preserved via `@TS-xxx` tags linking
-  scenario to requirement to implementation regardless of
-  runner
+  nature of the test — browser-dependent tests use E2E
+  runners, code structure invariants use unit test runners,
+  security rules use emulators. A scenario that verifies a
+  static code property (e.g., "no scattered queries") is
+  valid BDD — the step definition executes a grep, not a
+  browser interaction. Traceability is preserved via
+  `@TS-xxx` tags linking scenario to requirement to
+  implementation regardless of runner
 - **Socratic debate for ambiguity resolution**: when a BDD
   scenario contains ambiguous terms, untestable assertions,
   or implementation options with divergent consequences, the
@@ -735,12 +741,12 @@ real-world failures that automated tests missed.
   The user's perspective is the source of truth for severity
   — what they observed IS the bug, not what the code
   "should" do
-- **Playwright verification first**: before writing any fix,
-  reproduce the bug with Playwright (browser automation) on
-  the live URL. Capture the exact failure state — what the
-  user sees, not what the developer assumes. If the bug
-  cannot be reproduced in automation, investigate the
-  deployment gap (local vs production divergence)
+- **Browser automation verification first**: before writing
+  any fix, reproduce the bug with browser automation on the
+  live URL. Capture the exact failure state — what the user
+  sees, not what the developer assumes. If the bug cannot
+  be reproduced in automation, investigate the deployment
+  gap (local vs production divergence)
 - **Root cause before fix**: never apply a surface patch.
   Trace the symptom to its root cause using the 5 Whys
   pattern. Document the causal chain. A fix that addresses
@@ -751,9 +757,9 @@ real-world failures that automated tests missed.
   a promise. Verify the deployed artifacts match the repo
   HEAD before declaring victory
 - **Regression test mandatory**: every user-reported bug
-  generates at least one regression test (Playwright E2E or
-  Vitest unit) that fails before the fix and passes after.
-  This test is permanent — it guards against recurrence
+  generates at least one regression test (E2E or unit) that
+  fails before the fix and passes after. This test is
+  permanent — it guards against recurrence
 - **No workarounds**: do not instruct the user to "clear
   cache", "hard refresh", or "try another browser". Fix the
   code. The user's environment is the production environment
@@ -768,8 +774,8 @@ product. The cost of a user-reported bug is not just the fix,
 it is the trust erosion. This protocol ensures that user
 reports trigger a thorough response: reproduce, understand,
 fix at the root, prevent recurrence, and verify the fix
-reaches production. The Playwright-first approach catches the
-class of bugs that live tests miss: deployment gaps, CDN
+reaches production. The automation-first approach catches the
+class of bugs that offline tests miss: deployment gaps, CDN
 caching, build artifacts that diverge from source.
 
 ### XX. Branch-to-Environment Parity
@@ -780,7 +786,7 @@ a stage. What reaches users is what passed through every
 gate.
 
 ```
-feature/* ──→ staging ──→ main ──→ Hostinger (production)
+feature/* ──→ staging ──→ main ──→ production hosting
    (dev)      (pre-prod)  (prod)    (CDN + origin)
 ```
 
@@ -789,17 +795,17 @@ feature/* ──→ staging ──→ main ──→ Hostinger (production)
   from `staging`. Tests run locally. No direct commits to
   `staging` or `main`
 - **`staging`** (pre-production): integration branch where
-  features are merged via PR. Playwright E2E tests run
-  against a staging URL or local server before promoting.
-  This is the "last look" before production — the project
-  owner reviews here
+  features are merged via PR. E2E tests run against a
+  staging URL or local server before promoting. This is
+  the "last look" before production — the project owner
+  reviews here
 - **`main`** (production): the **only** branch that deploys
-  to Hostinger. Receives merges exclusively from `staging`
+  to production. Receives merges exclusively from `staging`
   via PR. Every commit on `main` is deployed code. No
   direct commits, no force pushes, no exceptions
-- **Hostinger**: pulls from `main` only. Deploy = SSH
-  `git pull origin main` + Cloudflare CDN purge + Hostinger
-  cache clear. Deploy checklist is non-negotiable
+- **Production hosting**: pulls from `main` only. Deploy =
+  git pull + server cache purge + CDN cache purge. Deploy
+  checklist is non-negotiable (specifics in deploy runbook)
 
 #### Flow rules
 
@@ -809,9 +815,10 @@ feature/* ──→ staging ──→ main ──→ Hostinger (production)
 2. **staging → main**: project owner opens PR from
    `staging` to `main`. E2E tests must pass. This PR is
    the production gate — it is never auto-merged
-3. **main → Hostinger**: after merge to `main`, deploy
-   via SSH (`git pull`) + purge Cloudflare CDN + clear
-   Hostinger cache. Verify live site with Playwright
+3. **main → production**: after merge to `main`, execute
+   the deploy runbook: git pull on server, purge server
+   cache, purge CDN cache, verify live site with browser
+   automation
 4. **Hotfix path**: for P0 bugs (XIX), create
    `hotfix/slug` from `main`, fix, PR to `main` directly,
    then backport to `staging`. This is the only case where
@@ -828,27 +835,28 @@ feature/* ──→ staging ──→ main ──→ Hostinger (production)
 
 #### Deploy checklist (mandatory per deploy)
 
-1. `git push origin main`
-2. SSH: `ssh -p 65002 u363367449@156.67.75.195
-   "cd domains/metodologia.info/public_html &&
-   git pull origin main"`
-3. Hostinger dashboard → "Limpiar caché"
-4. Hostinger CDN → "Vaciar caché" (Cloudflare)
-5. Wait 60s, verify via Playwright against live URL
-6. If CDN stale: activate "Modo de desarrollo" temporarily
+1. Push `main` to remote
+2. Pull `main` on production server
+3. Purge server-side cache
+4. Purge CDN cache
+5. Wait for propagation, verify live site with browser
+   automation
+6. If CDN stale: activate development mode temporarily
+
+Host-specific commands live in the deploy runbook (see
+`memory/reference_hostinger_deploy.md`), not here.
 
 **Rationale**: The BUG-001 incident (2026-03-23) proved that
 deployment-parity failures are invisible until a user reports
-them. The root cause was Cloudflare CDN serving a stale
-`SiteHeader.js` for weeks while the repo had the correct
-version. A three-branch model (feature → staging → main)
-ensures that code is tested in integration before reaching
-production, and that `main` always equals what Hostinger
-serves. The deploy checklist exists because "git push" is
-not a deploy — CDN purge and verification are part of the
-deploy, not afterthoughts. This principle makes XVI
-(Sequential-First) and XIX (Bug Protocol) enforceable at
-the infrastructure level.
+them. The root cause was a CDN serving a stale JS file for
+weeks while the repo had the correct version. A three-branch
+model (feature → staging → main) ensures that code is tested
+in integration before reaching production, and that `main`
+always equals what production serves. The deploy checklist
+exists because "git push" is not a deploy — CDN purge and
+verification are part of the deploy, not afterthoughts. This
+principle makes XVI (Sequential-First) and XIX (Bug Protocol)
+enforceable at the infrastructure level.
 
 ## Workspace
 
@@ -1189,4 +1197,4 @@ personal preferences.
   clean; the workspace stays flexible. Task bridge
   (`workspace/tasks/`) connects tasklog.md to working files
 
-**Version**: 5.2.1 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23
+**Version**: 5.4.1 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23

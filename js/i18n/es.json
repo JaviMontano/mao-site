@@ -38,6 +38,10 @@
     "powered": "Success as a Service"
   },
   "home": {
+    "nav": {
+      "sections_label": "Navegación de secciones del inicio",
+      "home": "Inicio"
+    },
     "breadcrumb": "Inicio",
     "quote": {
       "text": "\"El éxito depende más de cómo te apalancas que de cuánto te esfuerzas\""
@@ -88,6 +92,10 @@
     }
   },
   "ruta": {
+    "nav": {
+      "sections_label": "Navegación de secciones de la Ruta",
+      "home": "Inicio"
+    },
     "quote": {
       "text": "\"El método es la diferencia entre un resultado mediocre y una obra de arte estratégica\""
     },
@@ -498,6 +506,10 @@
     }
   },
   "empresas": {
+    "nav": {
+      "sections_label": "Navegación de secciones de Empresas",
+      "home": "Inicio"
+    },
     "quote": {
       "text": "\"La IA no reemplazará a las empresas, pero las empresas con IA sí\""
     },
@@ -607,6 +619,10 @@
     }
   },
   "personas": {
+    "nav": {
+      "sections_label": "Navegación de secciones de Personas",
+      "home": "Inicio"
+    },
     "quote": {
       "text": "\"La IA no es el destino, es el vehículo de tu propia (r)evolución\""
     },

@@ -38,6 +38,10 @@
     "powered": "Success as a Service"
   },
   "home": {
+    "nav": {
+      "sections_label": "Homepage section navigation",
+      "home": "Home"
+    },
     "breadcrumb": "Home",
     "quote": {
       "text": "\"Success depends more on how you leverage than how hard you work\""
@@ -88,6 +92,10 @@
     }
   },
   "ruta": {
+    "nav": {
+      "sections_label": "Route page section navigation",
+      "home": "Home"
+    },
     "quote": {
       "text": "\"The method is the difference between a mediocre result and a strategic work of art\""
     },
@@ -498,6 +506,10 @@
     }
   },
   "empresas": {
+    "nav": {
+      "sections_label": "Companies page section navigation",
+      "home": "Home"
+    },
     "quote": {
       "text": "\"AI will not replace companies, but companies with AI will\""
     },
@@ -607,6 +619,10 @@
     }
   },
   "personas": {
+    "nav": {
+      "sections_label": "Individuals page section navigation",
+      "home": "Home"
+    },
     "quote": {
       "text": "\"AI is not the destination, it is the vehicle for your own (r)evolution\""
     },

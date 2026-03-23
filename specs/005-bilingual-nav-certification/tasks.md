@@ -30,9 +30,9 @@
 
 ## Phase 3: US1 — Floating Nav Bilingual (P1)
 
-- [ ] T006 [US1] Add ruta.nav.* keys to js/i18n/en.json and js/i18n/es.json for floating nav aria-labels and title attributes [TS-006]
-- [ ] T007 [US1] Update components/SiteHeader.js floating nav to apply data-i18n-aria-label and data-i18n-title using per-page nav.* keys [TS-006, TS-007]
-- [ ] T008 [US1] Add nav.* keys for all other pages with floating nav to en.json and es.json [TS-007]
+- [x] T006 [US1] Add ruta.nav.* keys to js/i18n/en.json and js/i18n/es.json for floating nav aria-labels and title attributes [TS-006]
+- [x] T007 [US1] Update components/SiteHeader.js floating nav to apply data-i18n-aria-label and data-i18n-title using per-page nav.* keys [TS-006, TS-007]
+- [x] T008 [US1] Add nav.* keys for all other pages with floating nav to en.json and es.json [TS-007]
 
 > **Parallel batch 2**: T006, T008 (both add JSON keys, different namespaces)
 > **Dependency**: T007 depends on T006 (needs keys to exist)

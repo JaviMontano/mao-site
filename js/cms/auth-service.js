@@ -4,8 +4,7 @@
  */
 import {
   getAuth,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   GoogleAuthProvider,
   signOut as firebaseSignOut,
   onAuthStateChanged as firebaseOnAuthStateChanged,
@@ -25,26 +24,13 @@ export const AuthService = {
   },
 
   /**
-   * Sign in with Google redirect.
-   * Navigates to Google, returns to /admin/ after auth.
+   * Sign in with Google popup.
+   * @returns {Promise<User>}
    */
   async signIn() {
     const provider = new GoogleAuthProvider();
-    await signInWithRedirect(auth, provider);
-  },
-
-  /**
-   * Handle redirect result after returning from Google.
-   * Call once on page load.
-   * @returns {Promise<User|null>}
-   */
-  async handleRedirectResult() {
-    try {
-      const result = await getRedirectResult(auth);
-      return result?.user || null;
-    } catch {
-      return null;
-    }
+    const result = await signInWithPopup(auth, provider);
+    return result.user;
   },
 
   /**

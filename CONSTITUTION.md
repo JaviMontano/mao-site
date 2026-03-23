@@ -1,29 +1,21 @@
 <!-- Sync Impact Report
-Version: 5.2.1 (Sequential-First + Task Atomicity)
-Added principles: None (amendments to existing XIV, XVI)
-Added sections: None
-Modified sections:
-  - XVI: renamed from "Parallel-Ready Workflow" to
-    "Sequential-First, Parallel-Ready Workflow". Added
-    sequential-by-default rule, WIP limit (3 agents max),
-    forward-only progression, parallel eligibility criteria
-  - XIV: added "Task atomicity" rule — one concern per task,
-    one TDD red-green cycle per task, split if 3+ concerns
-  - Governance: updated XVI reference to reflect sequential-
-    first discipline
-Previous version: 5.1.0 (Workspace + Indexability + Auto-Organization)
-Origin: Clarify session on tasks.md — user confirmed wave
-  sequentiality is intentional risk control (not technical
-  dependency). Requested constitutional anchoring of
-  sequential-first discipline with WIP limits. T055 split
-  exposed need for task atomicity rule in XIV.
+Version: 5.3.0 (User-Reported Bug Protocol)
+Added principles: XIX (User-Reported Bug Protocol)
+Added sections: XIX
+Modified sections: None
+Previous version: 5.2.1 (Sequential-First + Task Atomicity)
+Origin: User manually reviewed ruta page in English, found
+  all content in Spanish. Root cause: deployed SiteHeader.js
+  was out of sync with repo (missing loadI18n method and
+  lang-toggle). This exposed the need for a constitutional
+  principle governing user-reported bug handling: immediate
+  triage, Playwright verification, root cause analysis,
+  deployment-parity check, mandatory regression test.
 Removed sections: None
 Follow-up TODOs:
-  - Update plan.md with worktree branching strategy
-  - Define BDD scenario coverage matrix per principle
-  - Downstream specs may need testify re-run for new BDD scope
-  - Add README.md to all existing directories lacking one
-  - Scan remaining tasks for atomicity violations (3+ concerns)
+  - Deploy synced SiteHeader.js to Hostinger
+  - Add Playwright regression test for ruta i18n
+  - Verify all pages have i18n working post-deploy
 -->
 
 # Site MetodologIA Constitution
@@ -729,6 +721,55 @@ the same commit. The workspace separation prevents the repo
 from becoming a dumping ground for transient files. This
 principle makes XII (Code Sustainability) concrete at the
 directory level.
+
+### XIX. User-Reported Bug Protocol
+
+Bugs reported by users or discovered during manual review
+follow a mandatory triage-diagnose-fix-verify pipeline.
+User-reported bugs are high-signal events — they represent
+real-world failures that automated tests missed.
+
+- **Immediate triage**: user-reported bugs are P0 by default.
+  Stop feature work and triage within the current session.
+  The user's perspective is the source of truth for severity
+  — what they observed IS the bug, not what the code
+  "should" do
+- **Playwright verification first**: before writing any fix,
+  reproduce the bug with Playwright (browser automation) on
+  the live URL. Capture the exact failure state — what the
+  user sees, not what the developer assumes. If the bug
+  cannot be reproduced in automation, investigate the
+  deployment gap (local vs production divergence)
+- **Root cause before fix**: never apply a surface patch.
+  Trace the symptom to its root cause using the 5 Whys
+  pattern. Document the causal chain. A fix that addresses
+  a symptom without understanding the cause will recur
+- **Deployment-parity check**: if the live site differs from
+  the local repo, the first fix is synchronization. A code
+  fix in a repo that is not deployed is not a fix — it is
+  a promise. Verify the deployed artifacts match the repo
+  HEAD before declaring victory
+- **Regression test mandatory**: every user-reported bug
+  generates at least one regression test (Playwright E2E or
+  Vitest unit) that fails before the fix and passes after.
+  This test is permanent — it guards against recurrence
+- **No workarounds**: do not instruct the user to "clear
+  cache", "hard refresh", or "try another browser". Fix the
+  code. The user's environment is the production environment
+- **Audit trail**: every user-reported bug is logged with:
+  (1) user's description, (2) reproduced symptoms,
+  (3) root cause chain, (4) fix applied, (5) regression
+  test added, (6) deployment verified
+
+**Rationale**: User-reported bugs are the most expensive kind
+of bug — they mean a real person experienced a broken
+product. The cost of a user-reported bug is not just the fix,
+it is the trust erosion. This protocol ensures that user
+reports trigger a thorough response: reproduce, understand,
+fix at the root, prevent recurrence, and verify the fix
+reaches production. The Playwright-first approach catches the
+class of bugs that live tests miss: deployment gaps, CDN
+caching, build artifacts that diverge from source.
 
 ## Workspace
 

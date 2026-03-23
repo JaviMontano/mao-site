@@ -57,9 +57,8 @@
     return current;
   }
 
-  function fetchJSON(lang) {
+  function fetchJSONFromXHR(lang) {
     return new Promise(function (resolve, reject) {
-      if (cache[lang]) { resolve(cache[lang]); return; }
       var url = basePath + '/js/i18n/' + lang + '.json';
       var xhr = new XMLHttpRequest();
       xhr.open('GET', url, true);
@@ -67,7 +66,6 @@
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
           var data = xhr.response || JSON.parse(xhr.responseText);
-          cache[lang] = data;
           resolve(data);
         } else {
           reject(new Error('i18n: failed to load ' + url + ' (' + xhr.status + ')'));
@@ -76,6 +74,28 @@
       xhr.onerror = function () { reject(new Error('i18n: network error loading ' + url)); };
       xhr.send();
     });
+  }
+
+  function fetchJSON(lang) {
+    if (cache[lang]) return Promise.resolve(cache[lang]);
+
+    // Adapter pattern: use ContentService when available (CMS backend)
+    if (window.ContentService && window.ContentService.isReady()) {
+      return window.ContentService.getTranslations(lang).then(function (data) {
+        if (data) {
+          cache[lang] = data;
+          return data;
+        }
+        // ContentService returned null — fall back to static JSON
+        return fetchJSONFromXHR(lang).then(function (d) { cache[lang] = d; return d; });
+      }).catch(function () {
+        // Firestore unavailable — fall back to static JSON
+        return fetchJSONFromXHR(lang).then(function (d) { cache[lang] = d; return d; });
+      });
+    }
+
+    // No content service — use static JSON files
+    return fetchJSONFromXHR(lang).then(function (d) { cache[lang] = d; return d; });
   }
 
   function translateElement(el, translations) {

@@ -7,9 +7,9 @@
 
 ## Summary
 
-- **Total tasks**: 29
-- **By story**: US1=7, US2=9, US3=4, US4=4, US5=5
-- **By priority**: P1=20 (US1+US2+US3), P2=4 (US4), P3=5 (US5)
+- **Total tasks**: 42
+- **By story**: Setup=3, US1=6, US2=15, US3=4, US4=9, US5=5
+- **By priority**: P1=28 (Setup+US1+US2+US3), P2=9 (US4), P3=5 (US5)
 - **Parallel batches**: 6 identified
 
 ## Phase 1: Setup
@@ -55,14 +55,18 @@
 ## Phase 5: US2 — Certification Suite Rendered (P1)
 
 - [ ] T019 [US2] Create tests/e2e/bilingual-certification.spec.js scaffold with Playwright test blocks [TS-016, TS-017]
-- [ ] T020 [US2] Implement Layer 1: verify data-i18n elements render en.json values on L1 pages in EN mode [TS-017, TS-018, TS-019, TS-020, TS-021]
+- [ ] T020a [US2] Implement Layer 1 for index.html: verify data-i18n elements render en.json values in EN mode [TS-017]
+- [ ] T020b [P] [US2] Implement Layer 1 for ruta/index.html: verify data-i18n elements render en.json values in EN mode [TS-018]
+- [ ] T020c [P] [US2] Implement Layer 1 for empresas/index.html: verify data-i18n elements render en.json values in EN mode [TS-019]
+- [ ] T020d [P] [US2] Implement Layer 1 for personas/index.html: verify data-i18n elements render en.json values in EN mode [TS-020]
 - [ ] T021 [US2] Implement Layer 2: regex scan visible text outside data-i18n elements for Spanish patterns from data/i18n-spanish-patterns.json [TS-021]
 
-> **Dependency**: T021 depends on T020 (Layer 2 runs after Layer 1 passes); T019 depends on T003 (needs patterns file)
+> **Parallel batch**: T020a, T020b, T020c, T020d (same logic per page, independent assertions)
+> **Dependency**: T021 depends on T020a-T020d (Layer 2 runs after Layer 1 passes); T021 depends on T003 (needs patterns file for regex scan)
 
 ## Phase 6: US3 — Level 1 Bilingual Coverage (P1)
 
-- [ ] T022 [US3] Audit index.html for missing data-i18n keys and add translations to en.json/es.json [TS-017]
+- [ ] T022 [P] [US3] Audit index.html for missing data-i18n keys and add translations to en.json/es.json [TS-017]
 - [ ] T023 [P] [US3] Audit ruta/index.html for missing data-i18n keys and add translations to en.json/es.json [TS-018]
 - [ ] T024 [P] [US3] Audit empresas/index.html for missing data-i18n keys and add translations to en.json/es.json [TS-019]
 - [ ] T025 [P] [US3] Audit personas/index.html for missing data-i18n keys and add translations to en.json/es.json [TS-020]
@@ -72,12 +76,17 @@
 
 ## Phase 7: US4 — Level 2-5 Coverage Expansion (P2)
 
-- [ ] T026 [US4] Add data-i18n keys and translations for L2 pages (empresas/*, personas/*, servicios/*) to reach 100% coverage [TS-022]
+- [ ] T026a [US4] Add data-i18n keys and translations for empresas/diagnostico-gratuito.html to reach 100% coverage [TS-022]
+- [ ] T026b [P] [US4] Add data-i18n keys and translations for empresas/bootcamp-ventas-ia.html to reach 100% coverage [TS-022]
+- [ ] T026c [P] [US4] Add data-i18n keys and translations for empresas/workshop-venta-amplificada.html to reach 100% coverage [TS-022]
+- [ ] T026d [P] [US4] Add data-i18n keys and translations for personas/autodiagnostico.html to reach 100% coverage [TS-022]
+- [ ] T026e [P] [US4] Add data-i18n keys and translations for personas/bootcamp-amplificacion-profesional.html to reach 100% coverage [TS-022]
+- [ ] T026f [P] [US4] Add data-i18n keys and translations for personas/consultive-workshops-estrategia-personal.html to reach 100% coverage [TS-022]
 - [ ] T027 [P] [US4] Add data-i18n keys and translations for L3 pages (recursos index pages) to reach >=90% coverage [TS-023]
 - [ ] T028 [P] [US4] Add data-i18n keys and translations for L4 pages (resource detail) — headings, CTAs, nav elements [TS-024]
 - [ ] T029 [P] [US4] Add data-i18n keys and translations for L5 pages (contacto, nosotros, legal) to reach 100% coverage [TS-025]
 
-> **Parallel batch 5**: T026, T027, T028, T029 (independent page levels)
+> **Parallel batch 5**: T026a-T026f, T027, T028, T029 (independent pages/levels)
 > **Dependency**: Phase 7 depends on Phase 4 (needs certification suite to validate)
 
 ## Phase 8: US5 — i18n Efficiency Cleanup (P3)
@@ -96,15 +105,18 @@
 ```
 T001 ──→ T015
 T002 ──→ T014
-T003 ──→ T019
+T003 ──→ T021
 T004 ──→ T005
 T006 ──→ T007
 T010 ──→ T011 ──→ T012 ──→ T014 ──→ T016
                                  T015 ──→ T016
 T017 (independent after T011)
-T019 ──→ T020 ──→ T021
+T019 ──→ T020a ──→ T021
+              T020b ──→ T021
+              T020c ──→ T021
+              T020d ──→ T021
 T022-T025 depend on Phase 4 (T010-T018)
-T026-T029 depend on Phase 4
+T026a-T026f, T027-T029 depend on Phase 4
 T030 depends on Phase 4 (needs orphan list)
 T031 ──→ T032 ──→ T033
 T031 ──→ T034
@@ -114,12 +126,14 @@ T031 ──→ T034
 
 **Longest chain**: T010 → T011 → T012 → T014 → T016 → T022 → run certification (7 steps)
 
+**Note**: T020 was split into T020a-T020d (one per L1 page) for granularity parity with Phase 6
+
 ## Implementation Strategy
 
-### MVP Scope (P1 — 20 tasks)
+### MVP Scope (P1 — 28 tasks)
 Phases 1-6: Event contract, certification suite, L1 coverage. Delivers the regression guard and fixes the most visible bilingual gaps.
 
-### Extended Scope (P2 — 4 tasks)
+### Extended Scope (P2 — 9 tasks)
 Phase 7: Full site coverage expansion. Can be done incrementally per level.
 
 ### Cleanup Scope (P3 — 5 tasks)
@@ -127,3 +141,13 @@ Phase 8: Performance optimization and progressive enforcement. Only after P1+P2 
 
 ### Test-First Order
 Within each phase, the .feature files define expected behavior. Implementation order follows: test infrastructure → production code → validation run.
+
+## Clarifications
+
+### Session 2026-03-23
+
+- Q: Task count mismatch — summary says 29 tasks (US1=7, US2=9) but body has 34 (T001-T034). Which is correct? -> A: Update summary to match body: 34 tasks (Setup=3, US1=6, US2=12, US3=4, US4=4, US5=5) [T001-T034]
+- Q: T019 lists T003 as dependency but T019 is just a scaffold — should dependency be on T021 instead? -> A: Yes, move T003 dependency to T021 which actually consumes the spanish patterns file [T003, T019, T021]
+- Q: T020 covers 5 test specs across 4 L1 pages — split into per-page tasks like Phase 6? -> A: Yes, split into T020a-T020d (one per L1 page) for consistent granularity [T020a, T020b, T020c, T020d, T021]
+- Q: T026 covers ~10 L2 pages in one task — split per page like Phase 6? -> A: Yes, split into T026a-T026f (6 actual L2 pages: 3 empresas, 3 personas, 0 servicios non-index) [T026a, T026b, T026c, T026d, T026e, T026f]
+- Q: T022 missing [P] marker despite being in parallel batch 4 with T023-T025 — add it? -> A: Yes, add [P] for consistency since all 4 are independent page audits [T022]

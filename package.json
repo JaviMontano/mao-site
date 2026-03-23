@@ -11,7 +11,9 @@
     "test:integration": "vitest run tests/integration",
     "test:e2e": "playwright test",
     "build:admin": "esbuild admin/js/admin-app.js --bundle --outfile=admin/js/admin-bundle.js --format=esm --minify",
-    "watch:admin": "esbuild admin/js/admin-app.js --bundle --outfile=admin/js/admin-bundle.js --format=esm --watch"
+    "watch:admin": "esbuild admin/js/admin-app.js --bundle --outfile=admin/js/admin-bundle.js --format=esm --watch",
+    "build:pages": "node scripts/build-page-registry.js",
+    "deploy:functions": "cd functions && npm run deploy"
   },
   "dependencies": {
     "firebase": "^10.14.0",

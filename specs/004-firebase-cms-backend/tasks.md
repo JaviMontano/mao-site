@@ -94,7 +94,7 @@
 - [ ] T030 [US1] Integrate content service into `empresas/index.html` — replace inline JS program objects with `ContentService.getPrograms('empresas')` call, render program cards from Firestore data
 - [ ] T031 [US1] Integrate content service into `personas/index.html` — replace inline JS program objects with `ContentService.getPrograms('personas')` call
 - [ ] T032 [US1] Implement static fallback in MigrationBridge for programs — when Firestore unavailable and no cache, preserve existing inline HTML rendering
-- [ ] T033 [US1] Extend `scripts/seed-firestore.js` with program extractor — parse from `empresas/index.html:360-445` and `personas/index.html:412-458`, verify seeded data in emulator
+- [ ] T033 [US1] Extend `scripts/seed-firestore.js` with program extractor — parse program data using semantic selectors (DOM structure, data attributes, or regex patterns on JS objects), verify seeded data in emulator
 - [ ] T034 [US1] Run E2E tests T024-T028, verify all pass [TS-001, TS-002, TS-004, TS-005, TS-006]
 
 **Checkpoint**: Wave 1 complete. Programs load from Firestore on both audience pages. Offline fallback works. Existing bilingual behavior preserved.
@@ -120,7 +120,7 @@
 - [ ] T041 [US2] Integrate content service into `ruta/js/cotizador.js` — replace `B2B_MULTIPLIERS` constant with Firestore data
 - [ ] T042 [US2] Integrate content service into `ruta/cotizador-empresas.html` — B2B multipliers from Firestore
 - [ ] T043 [US2] Integrate content service into `recursos/premium/index.html` — replace hardcoded premium pricing table with Firestore data
-- [ ] T044 [US2] Extend `scripts/seed-firestore.js` with pricing extractor — parse B2C from `data-price` attrs, B2B from `cotizador.js:81`, premium from `recursos/premium/index.html`, verify seeded data in emulator
+- [ ] T044 [US2] Extend `scripts/seed-firestore.js` with pricing extractor — parse B2C from `[data-price]` attributes, B2B from `B2B_MULTIPLIERS` object pattern in `cotizador.js`, premium from pricing table structure in `recursos/premium/index.html`, verify seeded data in emulator
 - [ ] T045 [US2] Run E2E tests T035-T038, verify all pass [TS-007, TS-008, TS-009, TS-011]
 
 **Checkpoint**: Wave 2 complete. All pricing flows use Firestore. Cotizador calculations verified with dynamic data.
@@ -307,3 +307,4 @@ T001 → T006 → T010 → T011 → T012 → T029 → T030 → T039 → T040 →
 - Q: Can T061 complete if Phase 6 runs parallel with Phase 4? -> A: Split T061 into T061a (admin-only tests, completes with Phase 6a) and T061b (integration tests, completes after Phase 4). [T061, T060, Phase 6]
 - Q: Are migration waves (Phase 4→5→7) sequential by technical dependency or by choice? -> A: Intentional risk control (Constitution XIV + XVI). Sequential execution reduces debugging surface — one content type fully validated before starting next. Not a technical dependency; the methods are independent. Sequential-first is the default (XVI v5.2.0). [Phase 4, Phase 5, Phase 7, Dependency Table, Critical Path]
 - Q: Is T055 (admin shell) too large for a single task? -> A: Yes. Split into T055a (shell + auth gate) and T055b (tab nav + ARIA + keyboard). One concern per task, one TDD cycle per task. Task atomicity rule added to Constitution XIV. [T055, T055a, T055b, Phase 6]
+- Q: Are hardcoded line numbers in T033/T044 fragile? -> A: Yes. Replace with semantic selectors (DOM structure, data attributes, regex on named patterns like `B2B_MULTIPLIERS`). Line numbers break when upstream tasks modify the same files. [T033, T044]

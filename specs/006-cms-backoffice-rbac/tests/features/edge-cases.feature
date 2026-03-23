@@ -11,19 +11,21 @@ Feature: Edge Cases
   Rule: Concurrent editing conflict
 
     @TS-038 @FR-018 @P2 @acceptance
-    Scenario: Concurrent edits on same document
+    Scenario: Concurrent edit detected before save
       Given two editors are editing the same program document
-      When both save changes
-      Then last-write wins
-      And the second editor sees a conflict notification
+      And editor A saves their changes
+      When editor B attempts to save
+      Then editor B sees a warning "Document was modified by another user"
+      And editor B can choose to reload the latest version or overwrite
 
   Rule: Orphaned user cleanup
 
     @TS-039 @FR-014 @P3 @acceptance
-    Scenario: Firebase Auth user deleted externally
-      Given a Firebase Auth user is deleted externally
-      When an admin reviews the user list
-      Then the orphaned CMS user record is flagged for cleanup
+    Scenario: Orphaned user removed manually by super admin
+      Given a Firebase Auth user was deleted externally
+      And their CMS user record still exists in Firestore
+      When a super admin reviews the user list and identifies the orphan
+      Then they can click "Remove" to delete the orphaned user record
 
   Rule: Legacy migration
 

@@ -30,10 +30,12 @@ Feature: Domain and Invite Allowlisting
     Then they receive the "editor" role
 
   @TS-015 @FR-009 @SC-003 @P1 @acceptance
-  Scenario: Removed domain blocks users on next token refresh
+  Scenario: Removed domain blocks users on next auth state change
     Given a domain is removed from the allowlist
-    When users from that domain try to access CMS
-    Then they are blocked on next token refresh
+    And a user from that domain has an active session
+    When onAuthStateChanged fires (page reload or token refresh)
+    Then admin-app.js re-checks config/access.allowed_domains
+    And the user is signed out with "Domain no longer authorized" message
 
   Rule: Pre-configured bootstrap accounts
 

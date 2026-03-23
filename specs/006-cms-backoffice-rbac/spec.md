@@ -410,6 +410,10 @@ versions, restore a previous version.
 - Q: Should FR-001 prescribe "CDN-based" imports? -> A: No — "CDN-based" is an implementation detail that belongs in plan.md (phase-separation). FR-001 updated to "Admin page MUST load without console errors" without prescribing delivery mechanism. [FR-001, US1, SC-001]
 - Q: Does FR-021 cover both in-app navigation and browser close? -> A: Yes — in-app navigation uses confirm dialog before tab switch; browser close uses `beforeunload` event. Both paths must warn if dirty state exists. [FR-021, US5, SC-004]
 - Q: Does XXI (Zero Hardcoding) apply to all FR constants (timeout, default role, TTL)? -> A: XXI scope: security invariants and business values (bootstrap accounts, domain allowlist, pricing) MUST be configurable. Domain constants (8h timeout, "viewer" default role, 90-day TTL) are acceptable as code constants at 1-10 CMS users — internal parameters, not admin-managed values. [FR-004, FR-010, FR-013, Constitution XXI]
+- Q: How does "removed domain blocks users on next token refresh" work? -> A: Client-side — `admin-app.js` re-checks `config/access.allowed_domains` on each `onAuthStateChanged`. Signs out if domain removed. No server-side revocation at 1-10 users (XIV Simple First). [FR-009, FR-011, US3, SC-003]
+- Q: When an invited user also matches an allowlisted domain, which provisioning path wins? -> A: Invite takes precedence. `onUserFirstLogin` checks: (1) bootstrap, (2) invite, (3) domain. First match wins. Explicit invite role overrides generic domain default. [FR-010, FR-012, US3]
+- Q: How are concurrent edits handled — pre-save or post-save notification? -> A: Pre-save warning via Firestore `onSnapshot`. Editors get a real-time listener; if document changes while editing, warning shown before save with options to reload or overwrite. [FR-018, US5]
+- Q: How are orphaned CMS users detected when Firebase Auth user is deleted externally? -> A: Passive — no active Auth cross-reference at 1-10 users. Super admin manually identifies orphans and clicks "Remove". [FR-014, FR-016, US2]
 
 ## Out of Scope
 

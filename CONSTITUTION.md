@@ -1,26 +1,20 @@
 <!-- Sync Impact Report
-Version: 4.0.0 (Work Philosophy + BDD Full-Spectrum + Quality Gates)
+Version: 4.1.0 (Socratic Hardening — sanitization, runner-agnostic BDD, dual-layer verification)
 Modified principles:
-  - IX. Test-Driven Development: now references XIII (Think First)
-    and XV (BDD Full-Spectrum) as its governing context
+  - VII. Secure by Default: added input sanitization default (strip,
+    not escape/allowlist) and dual-layer security verification
+  - XV. BDD Full-Spectrum Quality: added runner-agnostic step
+    definitions and Socratic debate protocol for ambiguity resolution
 Modified sections:
-  - Development Workflow: restructured around Think First, Act Next
-  - Quality Standards: added quality gate levels
-  - Governance: added quality gates enforcement
-Added sections:
-  - Work Philosophy (new top-level section before Core Principles)
-  - XIII. Think First, Act Next
-  - XIV. Simple First, Robust Next
-  - XV. BDD Full-Spectrum Quality
-  - XVI. Parallel-Ready Workflow
-  - Quality Gates (formalized G0-G3 from JM-ADK)
-Removed sections: None (all v3.1.0 principles preserved)
-Adopted from: github.com/JaviMontano/jm-agentic-development-kit
-  - Intent Integrity Chain (already present via IIKit)
-  - Phase Separation (already present in workflow)
-  - Quality Gates G0-G3 (adopted, adapted to site context)
-  - Metacognitive Confidence (adopted into XIII)
-  - Evidence Tagging (already in global CLAUDE.md)
+  - Quality Standards: added input sanitization and dual-layer
+    verification standards
+  - Governance: added Socratic debate as constitutional mechanism
+Previous version: 4.0.0 (Work Philosophy + BDD Full-Spectrum + Quality Gates)
+Origin: Socratic debates on TS-022, TS-024, TS-040 during clarify phase
+  - Debate 1: sanitization strategy (strip vs escape vs allowlist)
+  - Debate 2: static vs runtime verification (runner selection for
+    code invariants)
+Removed sections: None
 Follow-up TODOs:
   - Update plan.md with worktree branching strategy
   - Define BDD scenario coverage matrix per principle
@@ -242,7 +236,8 @@ big-bang risk.
 ### VII. Secure by Default
 
 Access control is enforced at the data layer, not the
-application layer.
+application layer. User input is sanitized at the boundary.
+Security claims are verified both statically and at runtime.
 
 - Backend security rules enforce least-privilege access —
   public visitors read content, only authenticated
@@ -255,11 +250,33 @@ application layer.
   just authentication
 - Security rules are version-controlled and tested before
   deployment
+- **Input sanitization default**: user-provided text MUST
+  be stripped of HTML tags before storage — not escaped, not
+  allowlisted. Strip removes tags and keeps text content;
+  `<script>` and `<style>` tags are removed with their
+  content. No external sanitization libraries unless the
+  field explicitly requires rich text (which must be
+  justified per XIV). Native browser APIs (DOMParser) are
+  preferred over dependencies
+- **Dual-layer security verification**: security invariants
+  (no secrets in client code, no unauthorized access
+  patterns) MUST be verified at two layers — (1) static
+  analysis of source files (grep/scan) and (2) runtime
+  inspection of deployed artifacts (browser evaluation).
+  The marginal cost of the second layer is near-zero when
+  E2E tests already exist; the marginal benefit is closing
+  vectors that static analysis cannot detect
 
 **Rationale**: A CMS is a write-capable system. Without
 server-side enforcement, any client-side restriction can be
 bypassed. Data-layer security is the last line of defense
-and must be treated as such.
+and must be treated as such. Input sanitization at the
+boundary prevents contamination from copy-paste (the
+primary real-world vector — not malicious injection by
+authenticated admins). Dual-layer verification follows the
+defense-in-depth principle: static analysis catches known
+patterns in source; runtime analysis catches what reaches
+the browser through any path.
 
 ### VIII. Offline Resilience
 
@@ -486,6 +503,29 @@ middleware, data, DevSecOps, CI, and CD.
 - **Traceability**: every BDD scenario traces to at least
   one requirement (FR-XXX), one success criterion (SC-XXX),
   and one constitutional principle
+- **Runner-agnostic step definitions**: Gherkin scenarios
+  document WHAT behavior is expected. Step definitions
+  implement HOW it is verified. The runner MUST match the
+  nature of the test — browser-dependent tests use
+  Playwright, code structure invariants use unit test
+  runners (Vitest), security rules use the Firebase
+  Emulator. A scenario that verifies a static code property
+  (e.g., "no scattered queries") is valid BDD — the step
+  definition executes a grep, not a browser interaction.
+  Traceability is preserved via `@TS-xxx` tags linking
+  scenario to requirement to implementation regardless of
+  runner
+- **Socratic debate for ambiguity resolution**: when a BDD
+  scenario contains ambiguous terms, untestable assertions,
+  or implementation options with divergent consequences, the
+  ambiguity MUST be resolved through structured Socratic
+  debate before implementation. The debate examines each
+  option against constitutional principles (especially VII,
+  XIV, XV), eliminates options by contradiction, and
+  produces a single answer with rationale. The answer is
+  recorded in `tests/clarifications.md` and integrated into
+  the artifact. This replaces ad-hoc decision-making with
+  principled, auditable reasoning
 
 **Rationale**: Traditional BDD focuses narrowly on user-
 facing behavior. But a CMS migration has quality dimensions
@@ -494,7 +534,13 @@ resilience, and brand compliance. Full-spectrum BDD ensures
 nothing falls through the cracks by making every quality
 angle a testable behavior. This is the practical expression
 of Think First (XIII): you cannot test what you have not
-thought about.
+thought about. Runner-agnostic step definitions prevent the
+anti-pattern of forcing all tests through a browser when
+many quality angles (code structure, security rules, static
+analysis) are naturally verified by other tools. Socratic
+debate ensures that ambiguity is resolved by principled
+reasoning rather than arbitrary choice — every decision has
+a traceable rationale anchored in the constitution.
 
 ### XVI. Parallel-Ready Workflow
 
@@ -568,6 +614,13 @@ applicable gate before advancing.
 - Admin interface must validate content before saving —
   no empty required fields, no broken references, no
   orphaned translations
+- Admin input must be HTML-stripped before storage — plain
+  text only unless the field schema explicitly declares a
+  rich-text format. `<script>` and `<style>` content must
+  be removed entirely, not just tag-stripped
+- Security invariants (no secrets, no unauthorized access
+  patterns, centralized data access) must pass both static
+  scan and runtime verification in CI
 - Both language variants (ES/EN) must be present before
   content is published — no partial translations visible
   to users
@@ -656,5 +709,12 @@ personal preferences.
   (XV) — narrow functional-only scenarios are insufficient
 - **Parallel workflow** discipline ensures branches are
   atomic, contract-first, and short-lived (Principle XVI)
+- **Socratic debate** is the required mechanism for
+  resolving ambiguities that have divergent implementation
+  consequences. Each option is examined against
+  constitutional principles until eliminated by
+  contradiction. The surviving option is integrated with
+  full rationale. Debates are recorded in clarification
+  artifacts for auditability
 
-**Version**: 4.0.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-22
+**Version**: 4.1.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23

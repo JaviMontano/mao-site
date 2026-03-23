@@ -102,7 +102,7 @@
     var key = el.getAttribute('data-i18n');
     if (key) {
       var val = getNestedValue(translations, key);
-      if (val !== undefined) {
+      if (val !== undefined && typeof val === 'string') {
         el.textContent = val;
       }
       // Graceful fallback: if key missing, original HTML text is retained

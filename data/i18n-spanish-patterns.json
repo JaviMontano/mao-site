@@ -1,0 +1,21 @@
+{
+  "description": "Regex patterns for detecting Spanish text in EN mode",
+  "patterns": [
+    "Conoce más",
+    "Contáctanos",
+    "Nuestros?\\b",
+    "Ver más",
+    "Siguiente",
+    "Anterior",
+    "Enviar",
+    "Cerrar",
+    "Descubre",
+    "Comienza",
+    "Explorar",
+    "Descargar",
+    "^El\\s",
+    "^La\\s",
+    "^Los\\s",
+    "^Las\\s"
+  ]
+}

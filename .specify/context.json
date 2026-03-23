@@ -2,16 +2,14 @@
   "tdd_determination": "mandatory",
   "planview": {
     "nodeClassifications": {
-      "Browser": "client",
-      "i18n.js": "client",
-      "SiteHeader": "client",
-      "en.json": "storage",
-      "es.json": "storage",
-      "Vitest": "client",
-      "Playwright": "client",
-      "i18n-levels.json": "storage",
-      "i18n-allowlist.json": "storage"
+      "Browser (admin SPA)": "client",
+      "admin-bundle.js": "client",
+      "Firebase Auth": "server",
+      "Cloud Functions v2": "server",
+      "Firestore": "storage",
+      "IndexedDB Cache": "storage",
+      "Google OAuth": "external"
     }
   },
-  "checklist_reviewed_at": "2026-03-23T04:54:40Z"
+  "checklist_reviewed_at": "2026-03-23T17:33:22Z"
 }

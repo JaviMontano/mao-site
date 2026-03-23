@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — MetodologIA CMS</title>
   <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../estilos/variables.css">
   <link rel="stylesheet" href="../dist/output.css">
 </head>
 <body class="bg-slate-900 min-h-screen text-white">
@@ -28,36 +29,32 @@
   <div id="denied-screen" class="hidden flex items-center justify-center min-h-[80vh]">
     <div class="text-center">
       <h2 class="text-2xl font-bold text-red-400 mb-4">Access Denied</h2>
-      <p class="text-slate-400 mb-6">Your account does not have admin privileges.</p>
+      <p class="text-slate-400 mb-6">Your account does not have CMS access. Contact a super admin to request access.</p>
       <button id="logout-btn-denied" class="px-4 py-2 bg-slate-700 text-white rounded">Sign Out</button>
     </div>
   </div>
 
   <!-- Admin Editor -->
   <div id="admin-editor" class="hidden" data-admin-editor>
-    <!-- Tab Navigation (T055b) -->
+    <!-- Tab Navigation -->
     <nav class="bg-slate-800 border-b border-slate-700 px-6">
-      <div role="tablist" aria-label="Content editors" class="flex gap-1">
-        <button role="tab" id="tab-programs" aria-controls="panel-programs" aria-selected="true"
-          class="px-4 py-3 text-sm font-semibold border-b-2 border-brand-gold text-brand-gold"
-          data-tab="programs">Programs</button>
-        <button role="tab" id="tab-prices" aria-controls="panel-prices" aria-selected="false"
-          class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white"
-          data-tab="prices">Prices</button>
-        <button role="tab" id="tab-translations" aria-controls="panel-translations" aria-selected="false"
-          class="px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white"
-          data-tab="translations">Translations</button>
+      <div role="tablist" aria-label="Content editors" id="tab-bar" class="flex gap-1 overflow-x-auto">
+        <!-- Tabs are rendered dynamically by admin-app.js based on user role -->
       </div>
     </nav>
 
     <!-- Tab Panels -->
     <main class="p-6 max-w-5xl mx-auto">
-      <div role="tabpanel" id="panel-programs" aria-labelledby="tab-programs"></div>
+      <div role="tabpanel" id="panel-programs" aria-labelledby="tab-programs" class="hidden"></div>
       <div role="tabpanel" id="panel-prices" aria-labelledby="tab-prices" class="hidden"></div>
       <div role="tabpanel" id="panel-translations" aria-labelledby="tab-translations" class="hidden"></div>
+      <div role="tabpanel" id="panel-pages" aria-labelledby="tab-pages" class="hidden"></div>
+      <div role="tabpanel" id="panel-users" aria-labelledby="tab-users" class="hidden"></div>
+      <div role="tabpanel" id="panel-audit" aria-labelledby="tab-audit" class="hidden"></div>
+      <div role="tabpanel" id="panel-profile" aria-labelledby="tab-profile" class="hidden"></div>
     </main>
   </div>
 
-  <script type="module" src="js/admin-app.js"></script>
+  <script type="module" src="js/admin-bundle.js"></script>
 </body>
 </html>

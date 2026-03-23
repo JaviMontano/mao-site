@@ -1,15 +1,12 @@
 /**
- * Program catalog editor component.
+ * Program catalog editor — bilingual side-by-side layout with stale indicators.
  * @module admin/js/program-editor
  */
 import { AdminAPI } from '../../js/cms/admin-api.js';
 
+const BILINGUAL_FIELDS = ['title', 'tagline', 'description', 'transformation'];
+
 export const ProgramEditor = {
-  /**
-   * Create list items for program display.
-   * @param {Object[]} programs
-   * @returns {Object[]} list item data
-   */
   renderProgramList(programs) {
     return programs.map((p) => ({
       id: p.id,
@@ -18,69 +15,85 @@ export const ProgramEditor = {
     }));
   },
 
-  /**
-   * Validate that both language variants are present.
-   * @param {Object} data
-   * @param {string} fieldBase - e.g., 'title'
-   * @returns {boolean}
-   */
   validateBilingual(data, fieldBase) {
     const es = data[`${fieldBase}_es`];
     const en = data[`${fieldBase}_en`];
     return !!(es && en);
   },
 
-  /**
-   * Save program data via AdminAPI.
-   * @param {string} programId
-   * @param {Object} fields
-   */
   async saveProgram(programId, fields) {
     await AdminAPI.updateProgram(programId, fields);
   },
 
-  /**
-   * Render the editor UI into a container.
-   * @param {HTMLElement} container
-   * @param {Object[]} programs
-   */
   render(container, programs) {
     container.innerHTML = '';
+    const dirtyFields = new Map();
 
     for (const program of programs) {
       const card = document.createElement('div');
       card.className = 'bg-slate-800 rounded-xl p-6 mb-4';
-      card.innerHTML = `
-        <h3 class="text-lg font-bold text-white mb-4">${program.title_es} / ${program.title_en}</h3>
-        <div class="grid grid-cols-2 gap-4">
+
+      const fieldsHTML = BILINGUAL_FIELDS.map((field) => `
+        <div class="grid grid-cols-2 gap-4 mb-3">
           <div>
-            <label class="block text-sm text-slate-400 mb-1">Título (ES)</label>
-            <input type="text" data-field="title_es" data-lang="es" value="${program.title_es || ''}"
-              class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm" />
+            <label class="block text-sm text-slate-400 mb-1">${field} (ES)</label>
+            ${field === 'description' || field === 'transformation'
+    ? `<textarea data-field="${field}_es" data-lang="es" data-base="${field}" rows="3"
+                class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm">${program[`${field}_es`] || ''}</textarea>`
+    : `<input type="text" data-field="${field}_es" data-lang="es" data-base="${field}" value="${program[`${field}_es`] || ''}"
+                class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm" />`}
           </div>
-          <div>
-            <label class="block text-sm text-slate-400 mb-1">Title (EN)</label>
-            <input type="text" data-field="title_en" data-lang="en" value="${program.title_en || ''}"
-              class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm" />
-          </div>
-          <div>
-            <label class="block text-sm text-slate-400 mb-1">Descripción (ES)</label>
-            <textarea data-field="description_es" data-lang="es" rows="3"
-              class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm">${program.description_es || ''}</textarea>
-          </div>
-          <div>
-            <label class="block text-sm text-slate-400 mb-1">Description (EN)</label>
-            <textarea data-field="description_en" data-lang="en" rows="3"
-              class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm">${program.description_en || ''}</textarea>
+          <div class="relative">
+            <label class="block text-sm text-slate-400 mb-1">
+              ${field} (EN)
+              <span class="stale-indicator text-amber-400 text-xs ml-1 hidden" data-stale="${field}">⚠ translation needed</span>
+            </label>
+            ${field === 'description' || field === 'transformation'
+    ? `<textarea data-field="${field}_en" data-lang="en" data-base="${field}" rows="3"
+                class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm">${program[`${field}_en`] || ''}</textarea>`
+    : `<input type="text" data-field="${field}_en" data-lang="en" data-base="${field}" value="${program[`${field}_en`] || ''}"
+                class="w-full bg-slate-700 text-white rounded px-3 py-2 text-sm" />`}
           </div>
         </div>
-        <button data-save="${program.id}"
-          class="mt-4 px-4 py-2 bg-brand-gold text-slate-900 rounded font-semibold text-sm hover:bg-brand-gold/90">
-          Guardar / Save
-        </button>
-        <span data-status="${program.id}" class="ml-2 text-sm text-slate-500"></span>
+      `).join('');
+
+      card.innerHTML = `
+        <h3 class="text-lg font-bold text-white mb-4">${program.title_es} / ${program.title_en}</h3>
+        ${fieldsHTML}
+        <div class="flex items-center gap-2 mt-4">
+          <button data-save="${program.id}"
+            class="px-4 py-2 bg-brand-gold text-slate-900 rounded font-semibold text-sm hover:bg-brand-gold/90">
+            Guardar / Save
+          </button>
+          <span data-status="${program.id}" class="text-sm text-slate-500"></span>
+          <span data-dirty="${program.id}" class="text-sm text-amber-400 hidden">● Unsaved changes</span>
+        </div>
       `;
       container.appendChild(card);
+
+      // Track dirty state and stale indicators
+      card.querySelectorAll('[data-field]').forEach((input) => {
+        const origValue = input.value || input.textContent;
+        input.addEventListener('input', () => {
+          const key = `${program.id}_${input.dataset.field}`;
+          dirtyFields.set(key, input.value !== origValue);
+          card.querySelector(`[data-dirty="${program.id}"]`).classList.toggle(
+            'hidden',
+            ![...dirtyFields.entries()].some(([k, v]) => k.startsWith(program.id) && v),
+          );
+
+          // Mark EN as stale when ES is edited
+          if (input.dataset.lang === 'es') {
+            const staleEl = card.querySelector(`[data-stale="${input.dataset.base}"]`);
+            if (staleEl) staleEl.classList.remove('hidden');
+          }
+          // Clear stale when EN is edited
+          if (input.dataset.lang === 'en') {
+            const staleEl = card.querySelector(`[data-stale="${input.dataset.base}"]`);
+            if (staleEl) staleEl.classList.add('hidden');
+          }
+        });
+      });
 
       // Save handler
       card.querySelector(`[data-save="${program.id}"]`).addEventListener('click', async () => {
@@ -93,12 +106,25 @@ export const ProgramEditor = {
         try {
           await this.saveProgram(program.id, fields);
           statusEl.textContent = '✓ Guardado';
-          statusEl.className = 'ml-2 text-sm text-green-400';
+          statusEl.className = 'text-sm text-green-400';
+          card.querySelector(`[data-dirty="${program.id}"]`).classList.add('hidden');
+          // Clear all dirty flags for this program
+          [...dirtyFields.keys()]
+            .filter((k) => k.startsWith(program.id))
+            .forEach((k) => dirtyFields.delete(k));
         } catch (err) {
           statusEl.textContent = `✗ ${err.message}`;
-          statusEl.className = 'ml-2 text-sm text-red-400';
+          statusEl.className = 'text-sm text-red-400';
         }
       });
     }
+
+    // Navigation guard for unsaved changes
+    window.addEventListener('beforeunload', (e) => {
+      if ([...dirtyFields.values()].some((v) => v)) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
   },
 };

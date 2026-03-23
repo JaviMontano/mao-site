@@ -46,6 +46,21 @@ export const AdminAPI = {
   sanitizeInput,
 
   /**
+   * Write an audit log entry with extended action types.
+   * @param {Object} entry
+   */
+  async writeAuditEntry(entry) {
+    const user = AuthService.getCurrentUser();
+    await addDoc(collection(db, 'audit_log'), {
+      timestamp: serverTimestamp(),
+      admin_id: user?.uid || 'unknown',
+      admin_email: user?.email || 'unknown',
+      ...entry,
+      ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+    });
+  },
+
+  /**
    * Update a program document with bilingual validation and audit log.
    * @param {string} programId
    * @param {Object} fields

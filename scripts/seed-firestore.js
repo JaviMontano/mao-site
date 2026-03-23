@@ -183,12 +183,42 @@ async function seedConfig() {
   console.log('  ✓ config/settings written');
 }
 
+// --- T024: Seed config/access with RBAC data ---
+registerExtractor('config_access', async () => {
+  return [{
+    id: '__config_access__',
+    data: {
+      allowed_domains: ['metodologia.info'],
+      default_role: 'viewer',
+      bootstrap_accounts: [
+        { email: 'javier.montano.guz@gmail.com', role: 'super_admin' },
+        { email: 'contacto@metodologia.info', role: 'super_admin' },
+        { email: 'german@metodologia.info', role: 'admin' },
+      ],
+      updated_at: new Date(),
+      updated_by: 'seed-script',
+    },
+  }];
+});
+
+/**
+ * Seed config/access separately (not a standard collection).
+ */
+async function seedConfigAccess() {
+  const items = await extractors.config_access();
+  const data = items[0].data;
+  await db.collection('config').doc('access').set(data);
+  console.log('  ✓ config/access seeded');
+}
+
 // Main
 async function main() {
   const toSeed = collections.length > 0 ? collections : Object.keys(extractors);
 
   await seedConfig();
+  await seedConfigAccess();
   for (const name of toSeed) {
+    if (name === 'config_access') continue;
     await seedCollection(name);
   }
 

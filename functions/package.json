@@ -1,0 +1,22 @@
+{
+  "name": "metodologia-functions",
+  "description": "Cloud Functions for MetodologIA CMS RBAC",
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "private": true
+}

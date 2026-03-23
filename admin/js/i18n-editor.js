@@ -99,4 +99,58 @@ export const I18nEditor = {
       renderList(e.target.value);
     });
   },
+
+  /**
+   * Bulk save all changed translation keys in one operation per language.
+   * @param {HTMLElement} container
+   * @param {Object} originalEs - original ES flat keys
+   * @param {Object} originalEn - original EN flat keys
+   */
+  async bulkSave(container, originalEs, originalEn) {
+    const esChanges = {};
+    const enChanges = {};
+
+    container.querySelectorAll('input[data-key]').forEach((input) => {
+      const key = input.dataset.key;
+      const lang = input.dataset.lang;
+      const originals = lang === 'es' ? originalEs : originalEn;
+      if (input.value !== originals[key]) {
+        if (lang === 'es') esChanges[key] = input.value;
+        else enChanges[key] = input.value;
+      }
+    });
+
+    const results = [];
+    if (Object.keys(esChanges).length > 0) {
+      const esUpdate = this._unflattenKeys(esChanges);
+      await AdminAPI.updateTranslations('es', esUpdate);
+      results.push(`ES: ${Object.keys(esChanges).length} keys`);
+    }
+    if (Object.keys(enChanges).length > 0) {
+      const enUpdate = this._unflattenKeys(enChanges);
+      await AdminAPI.updateTranslations('en', enUpdate);
+      results.push(`EN: ${Object.keys(enChanges).length} keys`);
+    }
+
+    return results.length > 0 ? results.join(', ') : 'No changes';
+  },
+
+  /**
+   * Convert flat dot-notation keys back to nested object.
+   * @param {Object} flat
+   * @returns {Object}
+   */
+  _unflattenKeys(flat) {
+    const result = {};
+    for (const [dotKey, value] of Object.entries(flat)) {
+      const parts = dotKey.split('.');
+      let current = result;
+      for (let i = 0; i < parts.length - 1; i++) {
+        if (!current[parts[i]]) current[parts[i]] = {};
+        current = current[parts[i]];
+      }
+      current[parts[parts.length - 1]] = value;
+    }
+    return result;
+  },
 };

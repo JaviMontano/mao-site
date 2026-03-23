@@ -1,0 +1,8 @@
+{
+  "testify": {
+    "assertion_hash": "539b581fe96b1f442260d97f7709417e75380df34f2dff531d359f7984ad215f",
+    "generated_at": "2026-03-23T17:58:04Z",
+    "features_dir": "specs/006-cms-backoffice-rbac/tests/features",
+    "file_count": 12
+  }
+}

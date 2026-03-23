@@ -18,6 +18,9 @@ Structured knowledge extracted from Socratic debates, clarification sessions, an
 | [bdd-testing.md](bdd-testing.md) | BDD, test strategy, runners, verification | 4 | 2026-03-23 |
 | [data-integrity.md](data-integrity.md) | Data layer, audit, schemas, storage | 2 | 2026-03-23 |
 | [ux-operational.md](ux-operational.md) | UX feedback, admin experience, operational | 1 | 2026-03-23 |
+| [rbac-governance.md](rbac-governance.md) | RBAC governance, role management, access control | 4 | 2026-03-23 |
+| [operational-tracking.md](operational-tracking.md) | Login tracking, session management, informational fields | 1 | 2026-03-23 |
+| [data-architecture.md](data-architecture.md) | Data sourcing, discovery vs persistence boundaries | 1 | 2026-03-23 |
 
 ## Adding New Domain Files
 

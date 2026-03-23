@@ -144,6 +144,139 @@ describe('Firestore Security Rules', () => {
     });
   });
 
+  // === RBAC Security Rules Tests (T011–T014) ===
+
+  // T011: users/{uid} collection RBAC rules [TS-057 through TS-061]
+  describe('RBAC: users/{uid} collection', () => {
+    it('should allow user to read own doc [TS-057]', async () => {
+      const db = testEnv.authenticatedContext('user1', { role: 'viewer' }).firestore();
+      await assertSucceeds(db.collection('users').doc('user1').get());
+    });
+
+    it('should deny user from reading other user doc [TS-058]', async () => {
+      const db = testEnv.authenticatedContext('user1', { role: 'viewer' }).firestore();
+      await assertFails(db.collection('users').doc('user2').get());
+    });
+
+    it('should allow super_admin to list all users [TS-059]', async () => {
+      const db = testEnv.authenticatedContext('sa1', { role: 'super_admin' }).firestore();
+      await assertSucceeds(db.collection('users').get());
+    });
+
+    it('should deny client-side user creation [TS-060]', async () => {
+      const db = testEnv.authenticatedContext('user1', { role: 'super_admin' }).firestore();
+      await assertFails(db.collection('users').doc('new-user').set({
+        uid: 'new-user', email: 'new@test.com', role: 'viewer',
+      }));
+    });
+
+    it('should allow user to update own profile fields [TS-061]', async () => {
+      // First create the doc via admin context to allow self-update test
+      const db = testEnv.authenticatedContext('user1', { role: 'viewer' }).firestore();
+      await assertSucceeds(db.collection('users').doc('user1').update({
+        display_name: 'New Name',
+        preferred_language: 'en',
+        updated_at: new Date(),
+      }));
+    });
+  });
+
+  // T012: config/access and config/invites RBAC rules [TS-062 through TS-065]
+  describe('RBAC: config/access and config/invites', () => {
+    it('should allow any role to read config/access [TS-062]', async () => {
+      const db = testEnv.authenticatedContext('viewer1', { role: 'viewer' }).firestore();
+      await assertSucceeds(db.collection('config').doc('access').get());
+    });
+
+    it('should deny non-super_admin write to config/access [TS-063]', async () => {
+      const db = testEnv.authenticatedContext('admin1', { role: 'admin' }).firestore();
+      await assertFails(db.collection('config').doc('access').update({
+        allowed_domains: ['evil.com'],
+      }));
+    });
+
+    it('should allow super_admin to read invites [TS-064]', async () => {
+      const db = testEnv.authenticatedContext('sa1', { role: 'super_admin' }).firestore();
+      await assertSucceeds(db.doc('config/invites/partner_aliado_com').get());
+    });
+
+    it('should deny client-side invite creation [TS-065]', async () => {
+      const db = testEnv.authenticatedContext('sa1', { role: 'super_admin' }).firestore();
+      await assertFails(db.doc('config/invites/test_invite').set({
+        email: 'test@invite.com', role: 'editor',
+      }));
+    });
+  });
+
+  // T013: audit_log and page_overrides RBAC rules [TS-066 through TS-070]
+  describe('RBAC: audit_log and page_overrides', () => {
+    it('should allow admin+ to read audit_log [TS-066]', async () => {
+      const db = testEnv.authenticatedContext('admin1', { role: 'admin' }).firestore();
+      await assertSucceeds(db.collection('audit_log').doc('entry1').get());
+    });
+
+    it('should deny viewer from reading audit_log [TS-067]', async () => {
+      const db = testEnv.authenticatedContext('viewer1', { role: 'viewer' }).firestore();
+      await assertFails(db.collection('audit_log').doc('entry1').get());
+    });
+
+    it('should allow editor+ to create audit_log entry [TS-068]', async () => {
+      const db = testEnv.authenticatedContext('editor1', { role: 'editor' }).firestore();
+      await assertSucceeds(db.collection('audit_log').add({
+        timestamp: new Date(),
+        admin_id: 'editor1',
+        admin_email: 'editor@test.com',
+        collection: 'programs',
+        document_id: 'test',
+        field: 'title_es',
+        previous_value: 'old',
+        new_value: 'new',
+        ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      }));
+    });
+
+    it('should allow editor+ to read page_overrides [TS-069]', async () => {
+      const db = testEnv.authenticatedContext('editor1', { role: 'editor' }).firestore();
+      await assertSucceeds(db.collection('page_overrides').doc('index_html').get());
+    });
+
+    it('should deny viewer from writing page_overrides [TS-070]', async () => {
+      const db = testEnv.authenticatedContext('viewer1', { role: 'viewer' }).firestore();
+      await assertFails(db.collection('page_overrides').doc('index_html').set({
+        path: 'index.html', title_es: 'Home',
+      }));
+    });
+  });
+
+  // T014: Content collections with legacy fallback [TS-071 through TS-074]
+  describe('RBAC: content collections with legacy fallback', () => {
+    it('should allow editor+ to write programs [TS-071]', async () => {
+      const db = testEnv.authenticatedContext('editor1', { role: 'editor' }).firestore();
+      await assertSucceeds(
+        db.collection('programs').doc('test_prog').set(validProgram),
+      );
+    });
+
+    it('should deny viewer from writing programs [TS-072]', async () => {
+      const db = testEnv.authenticatedContext('viewer1', { role: 'viewer' }).firestore();
+      await assertFails(
+        db.collection('programs').doc('test_prog').set(validProgram),
+      );
+    });
+
+    it('should allow legacy admin:true to write programs [TS-073]', async () => {
+      const db = testEnv.authenticatedContext('legacy1', { admin: true }).firestore();
+      await assertSucceeds(
+        db.collection('programs').doc('test_legacy').set(validProgram),
+      );
+    });
+
+    it('should deny editor from deleting programs (admin+ only) [TS-074]', async () => {
+      const db = testEnv.authenticatedContext('editor1', { role: 'editor' }).firestore();
+      await assertFails(db.collection('programs').doc('test_prog').delete());
+    });
+  });
+
   // TS-038: Security rules test suite passes in emulator
   describe('TS-038: Emulator test suite', () => {
     it('should have test environment initialized', () => {

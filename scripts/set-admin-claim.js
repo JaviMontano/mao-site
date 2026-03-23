@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Set admin custom claim on a Firebase Auth user.
+ * @deprecated Use scripts/set-user-role.js instead.
+ * This script sets the legacy admin:true claim. The new RBAC system uses
+ * role-based claims (super_admin, admin, editor, viewer).
  *
  * Usage:
  *   node scripts/set-admin-claim.js --emulator --email admin@example.com
  *   node scripts/set-admin-claim.js --email admin@example.com
  */
+console.warn('⚠ DEPRECATED: Use scripts/set-user-role.js instead. This script sets legacy admin:true claims.');
 
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';

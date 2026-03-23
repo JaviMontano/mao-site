@@ -3,25 +3,66 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Helper: check if user has admin custom claim
-    function isAdmin() {
-      return request.auth != null && request.auth.token.admin == true;
+    // === RBAC Helper Functions (v2) ===
+
+    function isAuthenticated() {
+      return request.auth != null;
     }
 
-    // Helper: validate required string field
+    function getUserRole() {
+      return request.auth.token.role;
+    }
+
+    function isSuperAdmin() {
+      return getUserRole() == 'super_admin';
+    }
+
+    function isAdminOrAbove() {
+      return getUserRole() in ['super_admin', 'admin'];
+    }
+
+    function isEditorOrAbove() {
+      return getUserRole() in ['super_admin', 'admin', 'editor'];
+    }
+
+    function hasAnyRole() {
+      return getUserRole() != null;
+    }
+
+    // Legacy backward compatibility (remove after migration)
+    function isLegacyAdmin() {
+      return request.auth.token.admin == true;
+    }
+
+    function hasWriteAccess() {
+      return isEditorOrAbove() || isLegacyAdmin();
+    }
+
+    function hasAdminAccess() {
+      return isAdminOrAbove() || isLegacyAdmin();
+    }
+
+    // Schema validation helpers
     function hasString(field) {
       return field is string && field.size() > 0;
     }
 
-    // Helper: validate required array of strings with min 1 item
     function hasStringArray(field) {
       return field is list && field.size() > 0;
     }
 
-    // Programs collection — public read, admin write with schema validation
+    // Allowed self-update fields for users
+    function isAllowedSelfUpdate() {
+      return request.resource.data.diff(resource.data).affectedKeys()
+        .hasOnly(['display_name', 'preferred_language', 'updated_at', 'last_login', 'total_sessions']);
+    }
+
+    // === Collection Rules ===
+
+    // Programs — public read, editor+ write with schema validation
     match /programs/{programId} {
       allow read: if true;
-      allow create, update: if isAdmin()
+      allow create, update: if hasWriteAccess()
         && hasString(request.resource.data.audience)
         && request.resource.data.audience in ['empresas', 'personas']
         && hasString(request.resource.data.slug)
@@ -38,37 +79,68 @@ service cloud.firestore {
         && request.resource.data.is_published is bool
         && request.resource.data.updated_at is timestamp
         && hasString(request.resource.data.updated_by);
-      allow delete: if isAdmin();
+      allow delete: if hasAdminAccess();
     }
 
-    // Pricing collection — public read, admin write
+    // Pricing — public read, editor+ write
     match /pricing/{category} {
       allow read: if true;
-      allow write: if isAdmin()
+      allow write: if hasWriteAccess()
         && request.resource.data.updated_at is timestamp
         && hasString(request.resource.data.updated_by);
     }
 
-    // Translations collection — public read, admin write
+    // Translations — public read, editor+ write
     match /translations/{lang} {
       allow read: if true;
-      allow write: if isAdmin()
+      allow write: if hasWriteAccess()
         && request.resource.data.keys().hasAny(['_meta'])
         && request.resource.data._meta.updated_at is timestamp
         && hasString(request.resource.data._meta.updated_by);
     }
 
-    // Audit log — admin create only, no update/delete for anyone
+    // Users — role-gated access
+    match /users/{uid} {
+      // Read own doc: any authenticated user
+      allow read: if isAuthenticated() && request.auth.uid == uid;
+      // Read all users: super_admin only
+      allow list: if isSuperAdmin();
+      // Create: NEVER via client (only Cloud Function)
+      allow create: if false;
+      // Update own profile fields only
+      allow update: if isAuthenticated()
+        && request.auth.uid == uid
+        && isAllowedSelfUpdate();
+      // Delete: NEVER
+      allow delete: if false;
+    }
+
+    // Config — access control and settings
+    match /config/{docId} {
+      allow read: if docId == 'settings' || (isAuthenticated() && hasAnyRole());
+      allow write: if isSuperAdmin();
+    }
+
+    // Config invites — super_admin only
+    match /config/invites/{hash} {
+      allow read: if isSuperAdmin();
+      allow create: if false; // Only Cloud Function creates
+      allow delete: if isSuperAdmin();
+      allow update: if false;
+    }
+
+    // Audit log — admin+ read, editor+ create, immutable
     match /audit_log/{entryId} {
-      allow read: if isAdmin();
-      allow create: if isAdmin();
+      allow read: if hasAdminAccess();
+      allow create: if hasWriteAccess();
       allow update, delete: if false;
     }
 
-    // Config — admin read/write only
-    match /config/{docId} {
-      allow read: if true;
-      allow write: if isAdmin();
+    // Page overrides — editor+ read/write, admin+ delete
+    match /page_overrides/{pathHash} {
+      allow read: if hasWriteAccess();
+      allow create, update: if hasWriteAccess();
+      allow delete: if hasAdminAccess();
     }
   }
 }

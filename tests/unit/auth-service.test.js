@@ -80,4 +80,107 @@ describe('AuthService', () => {
       expect(signOut).toHaveBeenCalled();
     });
   });
+
+  // === T027: RBAC auth-service tests [TS-003, TS-004, TS-005] ===
+
+  describe('getRole [TS-003]', () => {
+    it('should return role from custom claims', async () => {
+      const auth = getAuth();
+      auth.currentUser = {
+        ...mockUser,
+        getIdTokenResult: vi.fn().mockResolvedValue({
+          claims: { role: 'editor' },
+        }),
+      };
+      AuthService._setAuth(auth);
+
+      const role = await AuthService.getRole();
+      expect(role).toBe('editor');
+    });
+
+    it('should return null when no role claim exists', async () => {
+      const auth = getAuth();
+      auth.currentUser = {
+        ...mockUser,
+        getIdTokenResult: vi.fn().mockResolvedValue({
+          claims: {},
+        }),
+      };
+      AuthService._setAuth(auth);
+
+      const role = await AuthService.getRole();
+      expect(role).toBeNull();
+    });
+
+    it('should return null when no user is signed in', async () => {
+      const auth = getAuth();
+      auth.currentUser = null;
+      AuthService._setAuth(auth);
+
+      const role = await AuthService.getRole();
+      expect(role).toBeNull();
+    });
+  });
+
+  describe('hasPermission [TS-004]', () => {
+    const ROLE_LEVELS = { super_admin: 4, admin: 3, editor: 2, viewer: 1 };
+
+    it('should return true when user role meets required level', async () => {
+      const auth = getAuth();
+      auth.currentUser = {
+        ...mockUser,
+        getIdTokenResult: vi.fn().mockResolvedValue({
+          claims: { role: 'admin' },
+        }),
+      };
+      AuthService._setAuth(auth);
+
+      const result = await AuthService.hasPermission('editor');
+      expect(result).toBe(true);
+    });
+
+    it('should return false when user role is below required level', async () => {
+      const auth = getAuth();
+      auth.currentUser = {
+        ...mockUser,
+        getIdTokenResult: vi.fn().mockResolvedValue({
+          claims: { role: 'viewer' },
+        }),
+      };
+      AuthService._setAuth(auth);
+
+      const result = await AuthService.hasPermission('editor');
+      expect(result).toBe(false);
+    });
+  });
+
+  describe('legacy claim detection [TS-005]', () => {
+    it('should detect legacy admin:true claim without role', async () => {
+      const auth = getAuth();
+      auth.currentUser = {
+        ...mockUser,
+        getIdTokenResult: vi.fn().mockResolvedValue({
+          claims: { admin: true },
+        }),
+      };
+      AuthService._setAuth(auth);
+
+      const isLegacy = await AuthService.isLegacyAdmin();
+      expect(isLegacy).toBe(true);
+    });
+
+    it('should not flag as legacy when role claim exists', async () => {
+      const auth = getAuth();
+      auth.currentUser = {
+        ...mockUser,
+        getIdTokenResult: vi.fn().mockResolvedValue({
+          claims: { admin: true, role: 'admin' },
+        }),
+      };
+      AuthService._setAuth(auth);
+
+      const isLegacy = await AuthService.isLegacyAdmin();
+      expect(isLegacy).toBe(false);
+    });
+  });
 });

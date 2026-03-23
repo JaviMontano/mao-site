@@ -64,5 +64,27 @@
       "low": 0,
       "total_findings": 0
     }
+  ],
+  "006-cms-backoffice-rbac": [
+    {
+      "timestamp": "2026-03-23T18:26:00Z",
+      "score": 88,
+      "coverage_pct": 97.2,
+      "critical": 0,
+      "high": 1,
+      "medium": 3,
+      "low": 2,
+      "total_findings": 6
+    },
+    {
+      "timestamp": "2026-03-23T19:02:00Z",
+      "score": 89,
+      "coverage_pct": 100,
+      "critical": 0,
+      "high": 1,
+      "medium": 3,
+      "low": 1,
+      "total_findings": 5
+    }
   ]
 }

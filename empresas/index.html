@@ -357,7 +357,8 @@
 <site-footer base-path=".."></site-footer>
 
 <script>
-const programsData = {
+/* eslint-disable no-var -- exposed to CMS module for Firestore override */
+var programsData = {
     diagnostico: {
         icon: 'search',
         iconColor: 'text-cyan-400 bg-cyan-500/15',
@@ -461,6 +462,39 @@ function closeProgramModal() {
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof icons !== 'undefined') icons.createIcons();
 });
+</script>
+
+<script type="module">
+import { getFirebaseApp } from '../js/cms/firebase-config.js';
+import { ContentService } from '../js/cms/content-service.js';
+
+async function loadCmsPrograms() {
+    try {
+        const app = getFirebaseApp();
+        await ContentService.init({ app });
+        const programs = await ContentService.getPrograms('empresas');
+        if (!programs) return; // T032: null = keep static HTML intact
+
+        // Build lookup by slug for programsData override
+        const lookup = {};
+        for (const p of programs) {
+            lookup[p.slug] = {
+                icon: p.icon,
+                iconColor: p.icon_color,
+                title: p.title_es,
+                tagline: p.tagline_es,
+                description: p.description_es,
+                benefits: p.benefits_es,
+                transformation: p.transformation_es,
+            };
+        }
+        // Override global programsData with Firestore content
+        Object.assign(programsData, lookup);
+    } catch {
+        // Firestore unavailable — static HTML preserved
+    }
+}
+loadCmsPrograms();
 </script>
 
 </body>

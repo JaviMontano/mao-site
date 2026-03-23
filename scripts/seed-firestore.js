@@ -105,6 +105,25 @@ function extractB2CPricing() {
   };
 }
 
+// --- T068: Translation importer ---
+
+registerExtractor('translations', async () => {
+  const esPath = resolve(process.cwd(), 'js/i18n/es.json');
+  const enPath = resolve(process.cwd(), 'js/i18n/en.json');
+  const now = new Date();
+
+  const es = JSON.parse(readFileSync(esPath, 'utf-8'));
+  const en = JSON.parse(readFileSync(enPath, 'utf-8'));
+
+  es._meta = { key_count: Object.keys(es).length, updated_at: now, updated_by: 'seed-script' };
+  en._meta = { key_count: Object.keys(en).length, updated_at: now, updated_by: 'seed-script' };
+
+  return [
+    { id: 'es', data: es },
+    { id: 'en', data: en },
+  ];
+});
+
 registerExtractor('pricing', async () => {
   const { b2c, b2b } = extractB2CPricing();
   const now = new Date();

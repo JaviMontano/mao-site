@@ -19,11 +19,11 @@
 
 **Validates**: FR-001, SC-001, BUG-003
 
-- [ ] T001 Add esbuild as dev dependency and create `build:admin` + `watch:admin` npm scripts in package.json [TS-001]
-- [ ] T002 Create esbuild entry point configuration: bundle `admin/js/admin-app.js` → `admin/js/admin-bundle.js` (format=esm, minify) [TS-001]
-- [ ] T003 Update `admin/index.html` script src from `js/admin-app.js` to `js/admin-bundle.js` [TS-001]
-- [ ] T004 Add `admin/js/admin-bundle.js` to `.gitignore` with comment explaining why [TS-001]
-- [ ] T005 Verify admin page loads with zero console errors after build [TS-001, TS-002]
+- [x] T001 Add esbuild as dev dependency and create `build:admin` + `watch:admin` npm scripts in package.json [TS-001]
+- [x] T002 Create esbuild entry point configuration: bundle `admin/js/admin-app.js` → `admin/js/admin-bundle.js` (format=esm, minify) [TS-001]
+- [x] T003 Update `admin/index.html` script src from `js/admin-app.js` to `js/admin-bundle.js` [TS-001]
+- [x] T004 Add `admin/js/admin-bundle.js` to `.gitignore` with comment explaining why [TS-001]
+- [x] T005 Verify admin page loads with zero console errors after build [TS-001, TS-002]
 
 **Checkpoint**: Admin page loads — all subsequent phases unblocked
 

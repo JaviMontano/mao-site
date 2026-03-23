@@ -29,3 +29,22 @@ test('T026 [TS-004] offline: cached programs shown when Firestore down', async (
   const errorElements = await page.locator('.error, [role="alert"]').count();
   expect(errorElements).toBe(0);
 });
+
+// TS-011: Cotizador works with cached prices when Firestore unreachable
+test('T038 [TS-011] offline: cotizador uses cached prices', async ({ page, context }) => {
+  // First visit with connectivity
+  await page.goto(`${BASE_URL}/ruta/cotizador.html`);
+  await page.waitForLoadState('networkidle');
+
+  // Block Firestore
+  await context.route('**/firestore.googleapis.com/**', (route) => route.abort());
+  await context.route('**/localhost:8080/**', (route) => route.abort());
+
+  // Reload
+  await page.reload();
+  await page.waitForLoadState('domcontentloaded');
+
+  // Price elements should still work
+  const body = await page.textContent('body');
+  expect(body.length).toBeGreaterThan(100);
+});

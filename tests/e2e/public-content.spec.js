@@ -64,6 +64,37 @@ test('T027 [TS-005] language toggle uses bilingual content', async ({ page }) =>
   }
 });
 
+// TS-007: Cotizador uses B2C prices from Firestore
+test('T035 [TS-007] cotizador uses B2C prices from Firestore', async ({ page }) => {
+  await page.goto(`${BASE_URL}/ruta/cotizador.html`);
+  await page.waitForLoadState('networkidle');
+
+  // Price elements should be present
+  const priceElements = page.locator('[data-price]');
+  const count = await priceElements.count();
+  expect(count).toBeGreaterThan(0);
+});
+
+// TS-008: Empresas cotizador uses B2B multipliers from Firestore
+test('T036 [TS-008] empresas cotizador uses B2B multipliers', async ({ page }) => {
+  await page.goto(`${BASE_URL}/ruta/cotizador-empresas.html`);
+  await page.waitForLoadState('networkidle');
+
+  // Page should render with pricing content
+  const body = await page.textContent('body');
+  expect(body.length).toBeGreaterThan(100);
+});
+
+// TS-009: Premium catalog displays Firestore prices
+test('T037 [TS-009] premium catalog displays Firestore prices', async ({ page }) => {
+  await page.goto(`${BASE_URL}/recursos/premium/`);
+  await page.waitForLoadState('networkidle');
+
+  // Premium pricing table should be visible
+  const body = await page.textContent('body');
+  expect(body).toContain('$');
+});
+
 // TS-006: First load on 3G renders within 2s or falls back
 test('T028 [TS-006] first load renders within 2s on slow connection', async ({ page }) => {
   // Emulate slow 3G

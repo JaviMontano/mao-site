@@ -47,10 +47,7 @@ function goToStep(step) {
     // 3. Update Desktop Nodes
     document.querySelectorAll('.step-node').forEach((el) => {
         const nodeStep = parseInt(el.dataset.step);
-        const circle = el.querySelector('div');
-        const icon = el.querySelector('i');
-        const text = el.querySelector('span:not(.absolute)'); // The number inside
-        
+
         // Reset
         el.classList.remove('active', 'completed');
         

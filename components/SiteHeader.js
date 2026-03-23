@@ -62,6 +62,7 @@ class SiteHeader extends HTMLElement {
     }
 
     loadI18n(basePath) {
+        if (this.hasAttribute('data-skip-i18n')) return;
         if (!window.i18nLoaded) {
             const script = document.createElement('script');
             script.src = `${basePath}/js/i18n/i18n.js`;
@@ -221,16 +222,19 @@ class SiteHeader extends HTMLElement {
         const sections = this.detectSections();
         if (sections.length === 0) return;
 
+        // Derive per-page nav key prefix from URL path
+        const pagePrefix = this.getNavKeyPrefix();
+
         // Build floating nav element
         const nav = document.createElement('div');
         nav.className = 'floating-nav';
         nav.setAttribute('role', 'navigation');
         nav.setAttribute('aria-label', 'Navegación de secciones');
-        nav.setAttribute('data-i18n-aria-label', 'nav.sections_label');
+        nav.setAttribute('data-i18n-aria-label', pagePrefix + '.nav.sections_label');
 
         // Home/logo pill
         nav.innerHTML = `
-            <a href="${basePath}/index.html" class="floating-nav__home" aria-label="Inicio" title="Inicio" data-i18n-aria-label="nav.home" data-i18n-title="nav.home">
+            <a href="${basePath}/index.html" class="floating-nav__home" aria-label="Inicio" title="Inicio" data-i18n-aria-label="${pagePrefix}.nav.home" data-i18n-title="${pagePrefix}.nav.home">
                 <svg width="14" height="14" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="currentColor" opacity="0.15"/><path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="currentColor"/></svg>
             </a>
             <div class="floating-nav__divider"></div>
@@ -255,6 +259,28 @@ class SiteHeader extends HTMLElement {
 
         document.body.appendChild(nav);
         this._floatingNav = nav;
+
+        // Re-read heading text into floating nav links on language change
+        document.addEventListener('langchange', () => {
+            const links = nav.querySelectorAll('.floating-nav__link');
+            links.forEach((link, i) => {
+                if (i < sections.length) {
+                    const el = sections[i].el || document.getElementById(sections[i].id);
+                    if (el) {
+                        const heading = el.tagName.match(/^H[2-6]$/i)
+                            ? el
+                            : el.querySelector('h2, h3');
+                        if (heading) {
+                            link.textContent = heading.textContent.trim().substring(0, 24);
+                        }
+                    }
+                }
+            });
+            // Re-translate floating nav's own data-i18n-* attributes
+            if (window.i18n && window.i18n.translate) {
+                window.i18n.translate(nav);
+            }
+        });
 
         // Scroll logic: show floating nav when header is out of view
         const headerEl = this.querySelector('.premium-nav');
@@ -334,6 +360,18 @@ class SiteHeader extends HTMLElement {
             .replace(/[-_]/g, ' ')
             .replace(/\b\w/g, c => c.toUpperCase())
             .substring(0, 24);
+    }
+
+    getNavKeyPrefix() {
+        const path = window.location.pathname;
+        if (path.endsWith('/index.html') || path.endsWith('/')) {
+            const segments = path.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').filter(Boolean);
+            if (segments.length === 0) return 'home';
+            return segments[0];
+        }
+        const segments = path.split('/').filter(Boolean);
+        if (segments.length === 0) return 'home';
+        return segments[0];
     }
 
     updateActiveSection(nav, sections) {

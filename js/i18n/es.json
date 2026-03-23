@@ -38,6 +38,10 @@
     "powered": "Success as a Service"
   },
   "home": {
+    "nav": {
+      "sections_label": "Navegación de secciones del inicio",
+      "home": "Inicio"
+    },
     "breadcrumb": "Inicio",
     "quote": {
       "text": "\"El éxito depende más de cómo te apalancas que de cuánto te esfuerzas\""
@@ -88,6 +92,10 @@
     }
   },
   "ruta": {
+    "nav": {
+      "sections_label": "Navegación de secciones de la Ruta",
+      "home": "Inicio"
+    },
     "quote": {
       "text": "\"El método es la diferencia entre un resultado mediocre y una obra de arte estratégica\""
     },
@@ -493,11 +501,17 @@
         "description": "Una organización antifrágil que aprende continuamente."
       },
       "cta_primary": "Ver Roadmap Completo",
-      "cta_secondary": "Explorar Servicios",
-      "modal_close": "Cerrar modal"
+      "cta_secondary": "Explorar Servicios"
+    },
+    "modal": {
+      "close": "Cerrar modal"
     }
   },
   "empresas": {
+    "nav": {
+      "sections_label": "Navegación de secciones de Empresas",
+      "home": "Inicio"
+    },
     "quote": {
       "text": "\"La IA no reemplazará a las empresas, pero las empresas con IA sí\""
     },
@@ -506,10 +520,15 @@
     },
     "hero": {
       "badge": "Formación Corporativa",
-      "title": "Acelere su Cash Flow con Inteligencia Artificial",
+      "title": {
+        "highlight": "Flujo de Caja",
+        "sub": "con Inteligencia Artificial"
+      },
       "description": "Un sistema comercial asistido por IA que genera la liquidez necesaria para financiar su (R)Evolución Organizacional.",
-      "cta_primary": "Diagnóstico + Workshop",
-      "cta_secondary": "Ver Bootcamp"
+      "cta": {
+        "primary": "Diagnóstico + Taller",
+        "secondary": "Ver Bootcamp"
+      }
     },
     "kpi": {
       "pipeline": "Pipeline Velocity",
@@ -519,7 +538,9 @@
     },
     "route": {
       "badge": "Ruta Empresas",
-      "title": "Ruta de Aceleración",
+      "title": {
+        "highlight": "Aceleración"
+      },
       "description": "Un camino de 3 pasos diseñado para mitigar riesgo y maximizar retorno."
     },
     "step1": {
@@ -547,7 +568,9 @@
     },
     "cotizador": {
       "badge": "Cotizador B2B",
-      "title": "Calcule su Inversión",
+      "title": {
+        "highlight": "Inversión"
+      },
       "description": "Explore opciones de pago y descuentos por compromiso.",
       "cta": "Simular Inversión"
     },
@@ -569,44 +592,132 @@
     "diagnostico": {
       "breadcrumb": "Diagnóstico Gratuito",
       "badge": "Paso 1: Diagnóstico Sin Costo",
-      "title": "Descubra su Brecha IA",
+      "title": {
+        "highlight": "Brecha de IA"
+      },
       "description": "Antes de invertir, diagnostique. Una sesión de 1 hora para auditar su madurez comercial.",
       "feature1": "Auditoría profunda de cuellos de botella (1 Hora).",
       "feature2": "Identificación de casos de uso inmediatos.",
       "feature3": "Sin costo ($0), sin compromiso, 100% accionable.",
-      "cta_primary": "Agendar Diagnóstico Gratuito",
-      "cta_secondary": "Ya sé lo que necesito. Ir al Paso 2"
+      "cta": {
+        "primary": "Agendar Diagnóstico Gratis",
+        "secondary": "Ya sé lo que necesito."
+      },
+      "card": {
+        "title": "Auditoría Flash",
+        "subtitle": "Llamada Exploratoria"
+      },
+      "step1": {
+        "title": "Procesos Actuales",
+        "text": "Revisión de su flujo de ventas actual."
+      },
+      "step2": {
+        "title": "Fricciones",
+        "text": "Dónde se pierden los deals hoy."
+      },
+      "step3": {
+        "title": "Potencial IA",
+        "text": "Estimación de impacto."
+      }
     },
     "workshop": {
       "breadcrumb": "Venta Amplificada",
       "badge": "Paso 2: Workshop (Try/Buy)",
-      "title": "Venta Amplificada Asistida por IA",
+      "title": {
+        "highlight": "Asistida por IA"
+      },
       "description": "Diseñado exclusivamente para líderes y ejecutivos. Una sesión de 3 horas para diagnosticar la madurez comercial.",
-      "cta_primary": "Agendar Workshop - Garantizado",
-      "cta_secondary": "Estoy listo. Ir al Paso 3 (Buy)",
-      "agenda_title": "3 Horas de Inmersión Ejecutiva",
-      "module1_title": "Prospección & Lead Gen",
-      "module2_title": "Deep Research Sectorial",
-      "module3_title": "Plan Go-to-Market Personalizado",
-      "module4_title": "Propuesta Comercial de Alto Nivel",
-      "guarantee_title": "Prueba el modelo sin compromiso de pago inicial",
-      "guarantee_cta": "Agendar Sesión Sin Riesgo"
+      "cta": {
+        "primary": "Agendar Taller ($3.45M - Garantizado)",
+        "secondary": "Ya estoy listo. Ir al Paso 3 (Buy)"
+      },
+      "vp1": {
+        "title": "Diagnóstico 360°",
+        "description": "Evaluamos sus procesos actuales de prospección, cierre y post-venta para identificar cuellos de botella automatizables."
+      },
+      "vp2": {
+        "title": "Roadmap Estratégico",
+        "description": "Salga de la sesión con un plan paso a paso para integrar IA en el día a día de su equipo comercial."
+      },
+      "vp3": {
+        "title": "Gobernanza & Ética",
+        "description": "Definimos los parámetros de seguridad y ética para que la adopción tecnológica sea segura y profesional."
+      },
+      "agenda": {
+        "title": {
+          "highlight": "Inmersión Directiva"
+        },
+        "subtitle": "Un recorrido intensivo desde el problema hasta la solución ejecutable."
+      },
+      "module1": {
+        "title": "Prospección & Lead Gen",
+        "description": "Identificación y segmentación de clientes potenciales de alto valor utilizando señales de compra."
+      },
+      "module2": {
+        "title": "Deep Research de Industria",
+        "description": "Análisis profundo del sector y la cuenta para descifrar dolores reales y tendencias clave."
+      },
+      "module3": {
+        "title": "Plan de Entrada a Medida",
+        "description": "Creación de una estrategia de abordaje (Go-to-Market) derivada estrictamente de la investigación previa."
+      },
+      "module4": {
+        "title": "Propuesta Comercial de Alto Nivel",
+        "description": "Conexión estratégica de los hallazgos con su portafolio para generar una oferta irresistible."
+      },
+      "guarantee": {
+        "title": "Pruebe el modelo sin compromiso de pago inicial",
+        "description": "Si el taller genera la claridad esperada, puede formalizar la inversión ($3.45M COP) o escalar de inmediato al Bootcamp completo, en cuyo caso",
+        "cta": "Agendar Sesión Risk-Free"
+      }
     },
     "bootcamp": {
       "breadcrumb": "Bootcamp Ventas IA",
       "badge": "Paso 3: Bootcamp (Buy)",
-      "title": "Gestión Comercial con IA",
+      "title": {
+        "highlight": "con IA"
+      },
       "description": "Proponemos empezar acelerando el cash flow. Usa IA para impulsar resultados tangibles desde el día uno.",
-      "cta_primary": "Iniciar Bootcamp (Paso 3)",
-      "agenda_badge": "Agenda Bootcamp",
-      "pricing_title": "Paquete Corporativo",
-      "pricing_subtitle": "Formación intensiva para equipos de hasta 20 personas.",
-      "postcamp_title": "Después del Bootcamp: Asegurar los Resultados",
-      "consult1_title": "Consultoría de Tracción",
-      "consult2_title": "Consultoría de Estructura"
+      "cta": {
+        "primary": "Iniciar Bootcamp (Paso 3)",
+        "secondary": "Volver al Paso 2"
+      },
+      "agenda": {
+        "badge": "Agenda del Bootcamp",
+        "title": {
+          "highlight": "Bootcamp"
+        },
+        "description": "9 módulos (más nivelación opcional) para (r)evolucionar su proceso comercial con IA."
+      },
+      "pricing": {
+        "title": "Paquete Empresarial",
+        "subtitle": "Capacitación intensiva para equipos de hasta 20 personas.",
+        "feature1": "18h formación sincrónica",
+        "feature2": "Batería de Prompts (50+)",
+        "feature3": "Certificación MetodologIA",
+        "cta": "Solicitar Propuesta"
+      },
+      "postcamp": {
+        "title": {
+          "highlight": "Asegure los Resultados"
+        },
+        "description": "Una vez su equipo domine las herramientas, el siguiente paso es asegurar que la caja suene. Ofrecemos acompañamiento continuo para garantizar el impacto."
+      },
+      "consult1": {
+        "title": "Consultoría de Tracción",
+        "description": "Acompañamiento táctico para asegurar que el aprendizaje se convierta en facturación. Sesiones quincenales para desbloquear ventas y optimizar cierres."
+      },
+      "consult2": {
+        "title": "Consultoría de Estructura",
+        "description": "Intervención profunda en el sistema comercial. Rediseño de procesos y acompañamiento estratégico para multiplicar el valor de vida del cliente (LTV)."
+      }
     }
   },
   "personas": {
+    "nav": {
+      "sections_label": "Navegación de secciones de Personas",
+      "home": "Inicio"
+    },
     "quote": {
       "text": "\"La IA no es el destino, es el vehículo de tu propia (r)evolución\""
     },
@@ -615,10 +726,14 @@
     },
     "hero": {
       "badge": "Ruta de (R)Evolución 2026",
-      "title": "Construye tu Soberanía Digital, Profesional y Estratégica",
+      "title": {
+        "highlight": "Soberanía Digital, Profesional y Estratégica"
+      },
       "description": "La IA no es el destino, es el vehículo. Define tu estrategia y toma el control.",
-      "cta_primary": "Diseñar mi Inversión",
-      "cta_secondary": "Ver la Ruta Completa"
+      "cta": {
+        "primary": "Diseñar mi Inversión",
+        "secondary": "Ver la Ruta Completa"
+      }
     },
     "kpi": {
       "bootcamps": "Bootcamps Tácticos",
@@ -628,7 +743,9 @@
     },
     "catalog": {
       "badge": "Catálogo B2C",
-      "title": "Elige tu Camino",
+      "title": {
+        "highlight": "Camino"
+      },
       "description": "Cada programa te acerca a la soberanía digital, profesional y estratégica."
     },
     "card": {
@@ -665,7 +782,9 @@
     },
     "cotizador": {
       "badge": "Inversión Personalizada",
-      "title": "Diseña tu Ruta",
+      "title": {
+        "highlight": "Ruta"
+      },
       "description": "Entre más te comprometas con tu evolución, mayor será el respaldo que te damos.",
       "cta": "Abrir el Cotizador Interactivo"
     },
@@ -687,38 +806,130 @@
     "autodiagnostico": {
       "breadcrumb": "Autodiagnóstico",
       "badge": "Paso 0: Autodiagnóstico Gratuito",
-      "title": "¿Cuál es tu Nivel IA?",
+      "title": {
+        "highlight": "Nivel de IA?"
+      },
       "description": "Antes de invertir en formación, diagnostica tu situación.",
-      "cta_primary": "Iniciar Autodiagnóstico",
-      "cta_secondary": "Ya sé lo que necesito. Ir al Paso 1"
+      "feature1": "Evaluación de 5 dimensiones de productividad (10 min).",
+      "feature2": "Reporte personalizado con tu nivel actual.",
+      "feature3": "100% gratuito, sin compromiso, accionable de inmediato.",
+      "cta": {
+        "primary": "Iniciar Autodiagnóstico",
+        "secondary": "Ya sé lo que necesito."
+      },
+      "card": {
+        "title": "Test de Madurez IA",
+        "subtitle": "Autodiagnóstico Personal"
+      },
+      "step1": {
+        "title": "Hábitos Actuales",
+        "text": "Cómo gestionas tu tiempo y productividad hoy."
+      },
+      "step2": {
+        "title": "Herramientas IA",
+        "text": "Qué herramientas conoces y usas regularmente."
+      },
+      "step3": {
+        "title": "Potencial Personal",
+        "text": "Áreas donde más puedes acelerar con IA."
+      }
     },
     "workshop": {
       "breadcrumb": "Workshop Estrategia",
       "badge": "Paso 1: Exploración",
-      "title": "Workshop de Estrategia Personal",
+      "title": {
+        "highlight": "Estrategia Personal"
+      },
       "description": "3 horas. 4 hitos. 1 roadmap.",
-      "cta_primary": "Reservar mi Sesión",
-      "agenda_title": "3 Horas de Inmersión Estratégica",
-      "hito1_title": "Diagnóstico Personal & Ikigai Digital",
-      "hito2_title": "Mapeo de Herramientas IA",
-      "hito3_title": "Roadmap de Adopción Personalizado",
-      "hito4_title": "Plan de Acción & Siguiente Paso",
-      "nextstep_title": "¿Listo para el Bootcamp?"
+      "cta": {
+        "primary": "Reservar mi Sesión"
+      },
+      "vp1": {
+        "title": "Diagnóstico Ikigai",
+        "description": "Evaluamos tu perfil profesional, fortalezas y áreas donde la IA puede multiplicar tu impacto personal."
+      },
+      "vp2": {
+        "title": "Roadmap Personal",
+        "description": "Saldrás con un plan de 90 días para integrar IA en tu día a día profesional y potenciar tu carrera."
+      },
+      "vp3": {
+        "title": "Soberanía Digital, Profesional y Estratégica",
+        "description": "Aprenderás a usar IA sin depender de ella, manteniendo el control de tu productividad y decisiones."
+      },
+      "agenda": {
+        "title": {
+          "highlight": "Inmersión Estratégica"
+        },
+        "subtitle": "4 hitos diseñados para diagnosticar tu situación actual y definir tu roadmap de adopción de IA."
+      },
+      "hito1": {
+        "title": "Diagnóstico Personal & Ikigai Digital",
+        "description": "Evaluamos tu perfil profesional, fortalezas y áreas de oportunidad para identificar dónde la IA puede multiplicar tu impacto."
+      },
+      "hito2": {
+        "title": "Mapeo de Herramientas IA",
+        "description": "Panorama completo de herramientas disponibles. Identificamos cuáles son las más relevantes para tu perfil y objetivos."
+      },
+      "hito3": {
+        "title": "Roadmap de Adopción Personalizado",
+        "description": "Diseñamos tu ruta de aprendizaje y adopción de IA con hitos específicos y tiempos realistas."
+      },
+      "hito4": {
+        "title": "Plan de Acción & Siguiente Paso",
+        "description": "Definimos las primeras acciones concretas y evaluamos si el Bootcamp de Amplificación es el siguiente paso ideal para ti."
+      },
+      "nextstep": {
+        "title": {
+          "highlight": "Bootcamp"
+        },
+        "description": "Si el Taller te da la claridad que necesitas, el siguiente paso es el Bootcamp de Amplificación Profesional: 18 horas de inmersión total para convertirte en Digital Champion."
+      }
     },
     "bootcamp": {
       "breadcrumb": "Bootcamp",
       "badge": "Paso 2: Compromiso",
-      "title": "Bootcamp Amplificación Profesional",
+      "title": {
+        "highlight": "Amplificación Profesional"
+      },
       "description": "18 horas de co-creación estratégica para ser Champion Digital.",
-      "cta_primary": "Aplicar al Bootcamp",
-      "program_title": "Programa de Co-creación",
       "phase1": "Fase 1: Fundamentos",
       "phase2": "Fase 2: Estrategia",
       "phase3": "Fase 3: Ejecución",
-      "pricing_title": "Programa Completo",
-      "faq_title": "Preguntas Frecuentes",
-      "finalcta_title": "¿Listo para tu (R)Evolución?",
-      "finalcta_cta_primary": "Agendar Conversación"
+      "kpi": {
+        "immersion": "Inmersión",
+        "milestones": "Hitos de Valor",
+        "cocreation": "Co-creación"
+      },
+      "cta": {
+        "primary": "Aplicar al Bootcamp",
+        "secondary": "Ver Programa"
+      },
+      "program": {
+        "title": {
+          "highlight": "Co-creación"
+        },
+        "subtitle": "9 hitos de (R)Evolución personal + 2 horas de nivelación opcional."
+      },
+      "value": {
+        "title": "Ecosistema de Valor Incluido"
+      },
+      "pricing": {
+        "title": "Programa Completo",
+        "subtitle": "18 Horas + Entregables + Bonus"
+      },
+      "faq": {
+        "title": "Preguntas Frecuentes"
+      },
+      "finalcta": {
+        "title": {
+          "highlight": "(R)Evolución"
+        },
+        "description": "La primera conversación es de diagnóstico. Sin costo, sin compromiso.",
+        "cta": {
+          "primary": "Agendar Conversación",
+          "secondary": "Solicitar Información"
+        }
+      }
     }
   },
   "recursos": {
@@ -737,7 +948,8 @@
       "premium_title": "Versiones Avanzadas",
       "premium_desc": "Soporte prioritario, actualizaciones garantizadas y contexto B2B/Enterprise.",
       "premium_cta": "Ver Premium",
-      "custom_cta": "Solicitar Discovery"
+      "custom_cta": "Solicitar Discovery",
+      "custom_desc": "¿Necesitas algo"
     },
     "breadcrumb": {
       "home": "Inicio",
@@ -800,13 +1012,26 @@
       "status": {
         "available": "Disponible",
         "coming_soon": "Próximamente"
-      }
+      },
+      "github_link": "Ver repositorio en GitHub"
     },
     "cta": {
       "title": "¿Quieres ser de los primeros?",
       "desc": "Agenda una conversación y te notificaremos.",
       "schedule_cta": "Agendar Conversación",
       "email_cta": "Contactar por Email"
+    },
+    "beta": {
+      "badge": "Acceso Anticipado",
+      "cta": "Escríbenos para ser Beta Tester"
+    },
+    "podcast": {
+      "section_title": "Podcast & Media",
+      "title": "MetodologIA Podcast",
+      "desc": "Explora la intersección entre el alto rendimiento, la agilidad y la Inteligencia Artificial.",
+      "listen_cta": "Escuchar en Spotify",
+      "roadmap_title": "Media Roadmap",
+      "roadmap_desc": "Extendiendo nuestro conocimiento a nuevas plataformas para democratizar la excelencia."
     }
   },
   "biblioteca": {
@@ -886,7 +1111,9 @@
       "desc": "La colección más completa y versátil.",
       "stat_prompts": "prompts",
       "stat_categories": "categorías",
-      "cta": "Explorar Biblioteca"
+      "cta": "Explorar Biblioteca",
+      "stat_params": "Incluye",
+      "stat_archetypes": "Arquetipos expertos"
     },
     "ruta": {
       "section_title": "Ruta de Evolución Digital",
@@ -899,7 +1126,8 @@
       "n5": "Amplificado",
       "n6": "GestiónIA",
       "n7": "Vibe Coding",
-      "status_coming_soon": "Próximamente"
+      "status_coming_soon": "Próximamente",
+      "status_in_progress": "En proceso"
     },
     "verticals": {
       "section_title": "Verticales Profesionales",
@@ -940,29 +1168,42 @@
     },
     "commitment": {
       "title": "Nuestro Compromiso 2026",
-      "cta": "Ver Catálogo Completo"
+      "cta": "Ver Catálogo Completo",
+      "desc": "Bibliotecas premium vinculadas a nuestros programas élite de formación."
     },
     "programs": {
       "section_title": "Programas de Transformación",
       "elite_badge": "Programa Élite",
       "champion": {
-        "title": "Champion Digital"
+        "title": "Champion Digital",
+        "desc": "El programa definitivo para convertirte en líder de transformación digital. Prompts para coaching, mentoría y evangelización de IA."
       },
       "empoderamiento": {
-        "title": "Empoderamiento"
+        "title": "Empoderamiento",
+        "desc": "Programa de inmersión total en IA. Prompts para dominar los 9 ejes de competencia con profundidad."
       },
       "productivo": {
-        "title": "De Ocupado a Productivo"
+        "title": "De Ocupado a Productivo",
+        "desc": "Transforma tu gestión del tiempo con IA. Prompts para automatización, delegación y enfoque."
       },
-      "status_coming_soon": "Próximamente"
+      "status_coming_soon": "Próximamente",
+      "subtitle": "Bibliotecas premium vinculadas a nuestros programas élite de formación.",
+      "intensive_badge": "Intensivo"
     },
     "info": {
       "how_to_title": "Cómo usar",
       "suggest_title": "Sugerir prompts",
-      "monthly_title": "Entrega Mensual"
+      "monthly_title": "Entrega Mensual",
+      "how_to_desc": "Cada prompt incluye parámetros personalizables, un arquetipo experto y un checklist de calidad. Simplemente copia, ajusta los parámetros y pega en tu IA favorita.",
+      "suggest_desc": "¿Tienes un prompt que te funciona genial? Contáctanos para incluirlo en nuestras bibliotecas y ayudar a la comunidad.",
+      "monthly_desc": "Añadimos profundidad a tu evolución con una biblioteca nueva cada mes. Consulta el roadmap para ver los próximos lanzamientos."
     },
     "nav": {
       "back": "Volver a Recursos"
+    },
+    "gpt": {
+      "section_title": "¿Necesitas ayuda con tus prompts?",
+      "subtitle": "Prueba nuestros asistentes GPT especializados"
     }
   },
   "catalogo": {
@@ -1028,52 +1269,87 @@
     "beta": {
       "badge": "Acceso Anticipado",
       "title": "¿Quieres ser Beta Tester?",
-      "cta": "Ser Beta Tester"
+      "cta": "Ser Beta Tester",
+      "desc": "Recibe acceso anticipado a nuevos recursos antes de su lanzamiento público."
     }
   },
   "modal": {
     "close": "Cerrar",
     "close_title": "Cerrar modal",
-    "section_includes": "¿Qué Incluye?",
-    "section_benefits": "Beneficios",
     "section_benefits_transform": "Beneficios y Transformaciones"
   },
-  "cta": {
-    "email_tooltip_prefix": "Abrirá tu correo para:",
-    "primera_conversacion": "Primera Conversación",
-    "simular_inversion": "Simular Inversión",
-    "agendar_diagnostico": "Agendar Diagnóstico",
-    "ver_detalles": "Ver Detalles",
-    "cotizar": "Cotizar"
-  },
+  "cta": {},
   "premium": {
     "breadcrumb": {
       "current": "Catálogo Premium"
     },
     "hero": {
       "badge": "Nivel Enterprise",
-      "title_line1": "Recursos",
-      "title_line2": "Premium",
       "description": "Versiones avanzadas diseñadas para entornos B2B. Incluyen soporte prioritario, actualizaciones garantizadas y documentación técnica extendida.",
-      "cta_catalog": "Ver Catálogo",
-      "cta_free": "Recursos Gratuitos"
+      "title": {
+        "line1": "Recursos",
+        "line2": "Premium"
+      },
+      "cta": {
+        "catalog": "Ver Catálogo",
+        "free": "Recursos Gratuitos"
+      }
     },
     "value": {
-      "support_title": "Soporte Prioritario",
-      "support_desc": "Respuesta garantizada 24h, canal dedicado WhatsApp Business",
-      "updates_title": "Actualizaciones Garantizadas",
-      "updates_desc": "12 meses de mejoras incluidas"
+      "support": {
+        "title": "Soporte Prioritario",
+        "desc": "Respuesta garantizada en 24h, canal dedicado vía WhatsApp Business"
+      },
+      "updates": {
+        "title": "Actualizaciones Garantizadas",
+        "desc": "12 meses de mejoras incluidas, sin costo adicional"
+      },
+      "b2b": "Contexto B2B",
+      "docs": "Documentación",
+      "license": "Licencia Comercial",
+      "optimized": "Optimizado"
     },
     "pricing": {
-      "heading": "Tabla de",
-      "heading_highlight": "Inversión",
-      "col_resource": "Recurso",
-      "footer": "Precios en COP + IVA"
+      "heading": {
+        "highlight": "Inversión"
+      },
+      "footer": "Precios en COP + IVA",
+      "col": {
+        "resource": "Recurso"
+      },
+      "row": {
+        "gpt": "Asistentes GPT / Gems",
+        "ebooks": "E-books Estratégicos",
+        "miniapps": "Mini Apps (Claude, AI Studio)",
+        "prototipos": "Prototipos (v0, Stitch)",
+        "flujos": "Flujos (Manus, GenSpark)",
+        "automatizaciones": "Automatizaciones n8n",
+        "playbooks": "Playbooks Operativos",
+        "agentes": "Agentes a Medida"
+      },
+      "agentes": {
+        "note": "Cotización tras Discovery"
+      }
     },
     "cta": {
-      "title": "¿Buscas algo más específico?",
+      "title": {
+        "highlight": "específico"
+      },
       "description": "Diseñamos soluciones arquitectónicamente sólidas para tus procesos únicos.",
       "button": "Explorar Servicios a Medida"
+    },
+    "sidebar": {
+      "why": {
+        "title": "¿Por qué Premium?",
+        "item1": "Recursos validados en",
+        "item2": "Documentación técnica",
+        "item3": "Soporte prioritario vía",
+        "item4": "Actualizaciones"
+      },
+      "cta": {
+        "question": "¿Necesitas algo",
+        "link": "Explorar Servicios a Medida"
+      }
     }
   },
   "legal": {
@@ -1082,25 +1358,58 @@
     },
     "terminos": {
       "breadcrumb": "Términos",
-      "title": "Términos y Condiciones",
-      "intro": "Por favor lea estos términos con atención antes de usar nuestros servicios."
+      "title": {
+        "highlight": "Condiciones"
+      },
+      "intro": "Por favor lea estos términos con atención antes de usar nuestros servicios.",
+      "version": "Versión 2026.1",
+      "section": {
+        "copyleft": "MANIFIESTO COPYLEFT",
+        "rights": "TUS DERECHOS (LICENCIA MIT)",
+        "attribution": "ÚNICA CONDICIÓN: ATRIBUCIÓN",
+        "privacy": "PRIVACIDAD SOBERANA",
+        "training": "SERVICIOS DE FORMACIÓN",
+        "consulting": "SERVICIOS DE CONSULTORÍA (B2B)",
+        "payments": "PAGOS Y REEMBOLSOS",
+        "liability": "LIMITACIÓN DE RESPONSABILIDAD",
+        "jurisdiction": "LEY APLICABLE Y JURISDICCIÓN"
+      }
     },
     "privacidad": {
       "breadcrumb": "Privacidad",
       "badge": "Privacidad Soberana",
-      "title": "Política de Privacidad",
-      "subtitle": "Arquitectura Local-First, soberanía de datos, transparencia total."
+      "title": {
+        "highlight": "Privacidad"
+      },
+      "subtitle": "Arquitectura Local-First, soberanía de datos, transparencia total.",
+      "philosophy": {
+        "title": "Arquitectura Local-First"
+      },
+      "section": {
+        "what_we_dont": "Lo que NO Hacemos",
+        "ai_interaction": "Interacción con IA",
+        "what_we_collect": "Transparencia Total: Qué Recopilamos y Por Qué",
+        "your_rights": "Tus Derechos (Ley 1581 - Habeas Data)",
+        "changes": "Cambios a esta Política"
+      },
+      "contact": {
+        "question": "¿Tienes dudas sobre tu privacidad?"
+      }
     }
   },
   "nosotros": {
     "breadcrumb": "Nosotros",
     "hero": {
       "badge": "Identidad y Propósito",
-      "title_line1": "Quiénes",
-      "title_line2": "Somos",
       "description": "Estrategas para co-crear ambientes de abundancia.",
-      "cta_primary": "Primera Conversación",
-      "cta_team": "Conocer al Equipo"
+      "title": {
+        "line1": "Quiénes",
+        "line2": "Somos"
+      },
+      "cta": {
+        "primary": "Primera Conversación",
+        "team": "Conocer al Equipo"
+      }
     },
     "purpose": {
       "heading": "Nuestro Propósito",
@@ -1112,22 +1421,116 @@
       "description": "Un equipo de estrategas dedicados a co-crear ambientes donde la excelencia y la innovación se encuentran."
     },
     "model": {
-      "heading": "Modelo de Servicio & Embajadores"
+      "heading": "Modelo de Servicio & Embajadores",
+      "description": "Actuamos como Customer Success para nuestros aliados. Nuestra metodología es abierta (Copyleft), porque nuestro negocio no es el secreto, es la excelencia en la ejecución.",
+      "transparency": {
+        "title": "Transparencia Radical"
+      },
+      "service_model": {
+        "title": "Service Model"
+      },
+      "bootcamp": {
+        "title": "Bootcamp de Certificación",
+        "badge": "SOLO EGRESADOS",
+        "cta": "Aplicar a Certificación"
+      }
     },
     "mision": {
       "breadcrumb": "Misión",
-      "hero_badge": "Propósito Central",
-      "hero_cta_primary": "Únete al Propósito"
+      "hero": {
+        "badge": "Propósito Central",
+        "title": {
+          "line1": "Convertir",
+          "retos": "Retos",
+          "en": "en",
+          "oportunidades": "Oportunidades"
+        },
+        "description": "Dignificamos el trabajo humano mediante la sinergia inteligente de",
+        "cta": {
+          "primary": "Unirse al Propósito",
+          "secondary": "Ver Filosofía"
+        }
+      },
+      "ikigai": {
+        "heading": {
+          "suffix": "de MetodologIA"
+        },
+        "description": "La intersección entre lo que amamos, lo que hacemos bien, lo que el mundo necesita y por lo que nos pagan.",
+        "love": "Lo que AMAMOS",
+        "good_at": "Lo que HACEMOS BIEN",
+        "world_needs": "Lo que el MUNDO NECESITA",
+        "paid_for": "Por lo que nos PAGAN"
+      },
+      "statement": {
+        "heading": {
+          "highlight": "Misión"
+        }
+      },
+      "boundaries": {
+        "do": "Lo que SÍ Hacemos",
+        "dont": "Lo que NO Hacemos"
+      },
+      "cta": {
+        "heading": {
+          "highlight": "Misión"
+        },
+        "description": "Si buscas trabajo digno, competitividad real y sistemas que escalen sin sacrificar tu bienestar, conversemos.",
+        "button": "Primera Conversación"
+      }
     },
     "ecosistema": {
       "breadcrumb": "Ecosistema",
-      "hero_badge": "Red de Valor Conectada",
-      "hero_cta_partners": "Ver Partners",
-      "hero_cta_community": "Comunidad",
-      "partners_heading": "Partners Autorizados",
-      "community_heading": "La Comunidad",
-      "cta_heading": "¿Dónde encajas en la red?",
-      "cta_primary": "Primera Conversación"
+      "hero": {
+        "badge": "Red de Valor Conectada",
+        "title": {
+          "prefix": "El Ecosistema"
+        },
+        "description": "Una red descentralizada de consultores, aliados tecnológicos y estrategas.",
+        "cta": {
+          "partners": "Ver Partners",
+          "community": "Comunidad"
+        }
+      },
+      "partners": {
+        "label": "Canal Comercial",
+        "heading": "Partners Autorizados",
+        "description": "Empresas certificadas para comercializar, implementar y dar soporte a las soluciones de MetodologIA.\n                            Garantía de calidad y respaldo oficial.",
+        "consultoras": {
+          "title": "Consultoras Estratégicas",
+          "desc": "Firmas que integran nuestros frameworks en sus procesos de transformación digital.",
+          "cta": "Aplicar como Consultora"
+        },
+        "resellers": {
+          "title": "Technology Resellers",
+          "desc": "Proveedores de software y hardware que añaden nuestra capa de inteligencia a su oferta.",
+          "cta": "Aplicar como Reseller"
+        }
+      },
+      "community": {
+        "heading": "La Comunidad",
+        "description": "El activo más valioso. Una red distribuida de profesionales que comparten un lenguaje común:",
+        "ambassadors": {
+          "title": "Embajadores"
+        },
+        "alumni": {
+          "title": "Alumni & Egresados"
+        },
+        "tech_allies": {
+          "title": "Aliados Tecnológicos"
+        }
+      },
+      "cta": {
+        "heading": "¿Dónde encajas en la red?",
+        "description": "No seas un nodo aislado. Conecta tu valor al ecosistema.",
+        "primary": "Primera Conversación",
+        "secondary": "Iniciar como Alumno"
+      }
+    }
+  },
+  "common": {
+    "breadcrumb": {
+      "home": "Inicio",
+      "resources": "Recursos"
     }
   }
 }

@@ -26,7 +26,7 @@ if (useEmulator) {
 }
 
 const app = initializeApp({
-  projectId: 'site-metodologia',
+  projectId: 'metodologia-pristino-10x',
 });
 
 const auth = getAuth(app);

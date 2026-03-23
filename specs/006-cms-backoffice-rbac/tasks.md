@@ -38,7 +38,7 @@
 ### Cloud Functions Setup
 
 - [ ] T006 Initialize `functions/` directory with `package.json` (firebase-functions v2, firebase-admin v12) and `.eslintrc.js` [TS-041]
-- [ ] T007 [P] Create environment config structure for bootstrap accounts per Constitution XXI (`functions.config().bootstrap.accounts`) [TS-049, TS-050]
+- [ ] T007 Create environment config structure for bootstrap accounts per Constitution XXI (`functions.config().bootstrap.accounts`) (depends on T006) [TS-049, TS-050]
 
 ### Tests — Cloud Functions (TDD: write first, verify they fail)
 
@@ -187,7 +187,7 @@
 ### Implementation — Activity Logging
 
 - [ ] T059 [US8] Update `js/cms/admin-api.js` — role-based audit entries with extended action types (role_change, login, logout, restore) [TS-037]
-- [ ] T060 [US8] Add login/logout event logging in `admin/js/admin-app.js` — write audit_log on `onAuthStateChanged` + `signOut` + `navigator.sendBeacon` on `beforeunload` [TS-037]
+- [ ] T060 [US8] Add login/logout event logging in `admin/js/admin-app.js` — write audit_log on `onAuthStateChanged` + `signOut` + `navigator.sendBeacon` on `beforeunload` (depends on T059) [TS-037]
 
 ### Implementation — Audit TTL
 
@@ -315,3 +315,6 @@ T001 → T005 → T006 → T017 → T020 → T023 → T034 → T039 → T066 →
 - Q: T033 (cleanupExpiredAudit) is in Phase 2 but plan.md clarification says Phase 4 — which phase? -> A: Move T033 to Phase 4 alongside audit viewer, matching plan.md. Keeps audit concerns co-located. [T033, T057, T058]
 - Q: T020 references 18 test specs — should it be split into smaller tasks? -> A: No, keep as-is. firestore.rules is a single declarative file with shared helper functions that deploys atomically. Splitting is artificial. [T020]
 - Q: T071 duplicates build:admin + watch:admin (T001) and build:pages (T061) — narrow scope? -> A: Yes, narrow T071 to only deploy:functions. The other scripts are already owned by T001 and T061. [T071, T001, T061]
+- Q: T007 is marked [P] but depends on T006 (functions/ dir init) — remove parallel marker? -> A: Yes, remove [P] — T007 depends on T006. Sequential is the honest dependency. [T007, T006]
+- Q: T060 uses action types defined by T059 but has no explicit dependency — add one? -> A: Yes, add (depends on T059) to T060. Prevents integration bugs. [T060, T059]
+- Q: T023 covers 6 test specs across 3 concerns (tabs, auth listener, role gating) — split? -> A: No, keep as-is. admin-app.js is a single orchestrator where concerns are tightly coupled through auth state. Splitting is artificial. [T023]

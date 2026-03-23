@@ -8,7 +8,7 @@
 ## Summary
 
 - **Total tasks**: 42
-- **By story**: Setup=3, US1=6, US2=15, US3=4, US4=9, US5=5
+- **By story**: Setup=3, US1=5, US2=16, US3=4, US4=9, US5=5
 - **By priority**: P1=28 (Setup+US1+US2+US3), P2=9 (US4), P3=5 (US5)
 - **Parallel batches**: 6 identified
 
@@ -32,13 +32,13 @@
 - [ ] T006 [US1] Add ruta.nav.* keys to js/i18n/en.json and js/i18n/es.json for floating nav aria-labels and title attributes [TS-006]
 - [ ] T007 [US1] Update components/SiteHeader.js floating nav to apply data-i18n-aria-label and data-i18n-title using per-page nav.* keys [TS-006, TS-007]
 - [ ] T008 [US1] Add nav.* keys for all other pages with floating nav to en.json and es.json [TS-007]
-- [ ] T009 [US1] Handle Strategy 3 auto-label pages: report as warnings, not failures in certification [TS-003]
 
 > **Parallel batch 2**: T006, T008 (both add JSON keys, different namespaces)
 > **Dependency**: T007 depends on T006 (needs keys to exist)
 
 ## Phase 4: US2 — Certification Suite Static (P1)
 
+- [ ] T009 [US2] Configure Strategy 3 auto-label pages: report as warnings, not failures in certification suite [TS-003]
 - [ ] T010 [US2] Create tests/unit/i18n-certification.test.js scaffold with Vitest describe blocks per certification-output.md contract [TS-008]
 - [ ] T011 [US2] Implement HTML parser: scan all public HTML files for data-i18n attribute values using regex extraction [TS-008]
 - [ ] T012 [US2] Implement missing key detection: cross-reference HTML data-i18n keys against en.json entries, fail on missing [TS-008]
@@ -49,8 +49,8 @@
 - [ ] T017 [US2] Implement zero-key page warning: report pages with SiteHeader but no data-i18n keys as warnings [TS-009, TS-015]
 - [ ] T018 [P] [US2] Implement floating nav label verification in rendered certification check [TS-016]
 
-> **Parallel batch 3**: T013, T018 (orphan detection and floating nav check are independent test blocks)
-> **Dependencies**: T012 depends on T011 (needs parser); T014 depends on T012 (builds on key detection); T015 depends on T001 (needs levels manifest); T016 depends on T014, T015 (needs classification + validation)
+> **Parallel batch 3**: T009, T013, T018 (warning config, orphan detection, and floating nav check are independent test blocks)
+> **Dependencies**: T009 depends on T010 (needs certification scaffold); T012 depends on T011 (needs parser); T014 depends on T012 (builds on key detection); T015 depends on T001 (needs levels manifest); T016 depends on T014, T015 (needs classification + validation)
 
 ## Phase 5: US2 — Certification Suite Rendered (P1)
 
@@ -108,6 +108,7 @@ T002 ──→ T014
 T003 ──→ T021
 T004 ──→ T005
 T006 ──→ T007
+T010 ──→ T009 (warning config)
 T010 ──→ T011 ──→ T012 ──→ T014 ──→ T016
                                  T015 ──→ T016
 T017 (independent after T011)
@@ -151,3 +152,6 @@ Within each phase, the .feature files define expected behavior. Implementation o
 - Q: T020 covers 5 test specs across 4 L1 pages — split into per-page tasks like Phase 6? -> A: Yes, split into T020a-T020d (one per L1 page) for consistent granularity [T020a, T020b, T020c, T020d, T021]
 - Q: T026 covers ~10 L2 pages in one task — split per page like Phase 6? -> A: Yes, split into T026a-T026f (6 actual L2 pages: 3 empresas, 3 personas, 0 servicios non-index) [T026a, T026b, T026c, T026d, T026e, T026f]
 - Q: T022 missing [P] marker despite being in parallel batch 4 with T023-T025 — add it? -> A: Yes, add [P] for consistency since all 4 are independent page audits [T022]
+- Q: T009 is in Phase 3 (US1 runtime) but defines certification reporting behavior — should it move to Phase 4 (certification suite)? -> A: Yes, move T009 to Phase 4 with T010 dependency; relabel as US2; Phase 3 stays focused on runtime [T009, T010]
+- Q: T021 (Layer 2 Spanish regex scan) covers all L1 pages in one task — split per page like T020a-d? -> A: Keep as single task — Layer 2 is one test block that iterates all pages with identical logic [T021]
+- Q: T017 (zero-key page warning) depends on T011 — should it also depend on T015 (page level classification) for severity context? -> A: No, T017 is a binary check (SiteHeader present + zero data-i18n keys), level context is not blocking [T017, T011, T015]

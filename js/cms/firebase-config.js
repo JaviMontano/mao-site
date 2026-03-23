@@ -5,12 +5,13 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBplaceholder-public-api-key',
-  authDomain: 'site-metodologia.firebaseapp.com',
-  projectId: 'site-metodologia',
-  storageBucket: 'site-metodologia.appspot.com',
-  messagingSenderId: '000000000000',
-  appId: '1:000000000000:web:placeholder',
+  apiKey: 'AIzaSyD_FBEKV3eBnQgMS3Hbz9k9POcy8bl3yws',
+  authDomain: 'metodologia-pristino-10x.firebaseapp.com',
+  projectId: 'metodologia-pristino-10x',
+  storageBucket: 'metodologia-pristino-10x.firebasestorage.app',
+  messagingSenderId: '73613281871',
+  appId: '1:73613281871:web:ec87a5fc9cd67bb87a783a',
+  measurementId: 'G-M70XT7Q963',
 };
 
 let app = null;

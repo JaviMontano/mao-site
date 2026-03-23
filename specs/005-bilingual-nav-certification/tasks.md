@@ -7,8 +7,8 @@
 
 ## Summary
 
-- **Total tasks**: 42
-- **By story**: Setup=3, US1=5, US2=16, US3=4, US4=9, US5=5
+- **Total tasks**: 43
+- **By story**: Setup=4, US1=5, US2=16, US3=4, US4=9, US5=5
 - **By priority**: P1=28 (Setup+US1+US2+US3), P2=9 (US4), P3=5 (US5)
 - **Parallel batches**: 6 identified
 
@@ -17,8 +17,9 @@
 - [ ] T001 Create data/ directory and add data/i18n-levels.json with page→level classification rules and overrides per data-model.md schema
 - [ ] T002 [P] Create data/i18n-allowlist.json with legitimately identical terms per data-model.md schema
 - [ ] T003 [P] Create data/i18n-spanish-patterns.json with Spanish remnant regex patterns per data-model.md schema
+- [ ] T003b [P] Create data/README.md explaining i18n config files per XVIII (Indexable)
 
-> **Parallel batch 1**: T002, T003 (independent config files, no shared state)
+> **Parallel batch 1**: T002, T003, T003b (independent config files, no shared state)
 
 ## Phase 2: Foundational — Event Contract
 

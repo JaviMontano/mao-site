@@ -158,6 +158,10 @@ load i18n.js and shows no console errors.
 - Floating nav Strategy 3 (auto-IDs) has no predefined
   i18n keys — accept untranslated auto-labels or map
   heading text to keys
+- Floating nav offline: when en.json is unavailable
+  (cache miss, offline), floating nav labels fall back
+  to heading textContent (which remains in the page's
+  original language) — graceful degradation per VIII
 
 ## Functional Requirements
 
@@ -191,8 +195,8 @@ load i18n.js and shows no console errors.
   remnants [US3]
 - **FR-012**: L2 (product): 100% translated [US4]
 - **FR-013**: L3 (resource index): >=90% translated [US4]
-- **FR-014**: L4 (resource detail): headings + CTAs + nav
-  translated [US4]
+- **FR-014**: L4 (resource detail): 100% of heading, CTA,
+  and nav element keys translated [US4]
 - **FR-015**: L5 (support): 100% translated [US4]
 
 ### Cleanup
@@ -208,8 +212,8 @@ load i18n.js and shows no console errors.
 - **SC-002**: Certification suite passes — zero missing
   keys, zero orphaned keys [FR-005, FR-008]
 - **SC-003**: L1 pages: zero Spanish remnants in EN [FR-006]
-- **SC-004**: L1=100%, L2=100%, L3>=90%, L4=headings+CTAs,
-  L5=100% [FR-011 through FR-015]
+- **SC-004**: L1=100%, L2=100%, L3>=90%, L4=100% of
+  heading/CTA/nav keys, L5=100% [FR-011, FR-012, FR-013, FR-014, FR-015]
 - **SC-005**: New pages without i18n trigger test warning
   (regression guard) [FR-009]
 - **SC-006**: en.json zero orphaned keys [FR-016]
@@ -233,7 +237,7 @@ load i18n.js and shows no console errors.
 | **L1** | index, ruta/index, empresas/index, personas/index | 4 | 100%, zero remnants |
 | **L2** | empresas/*, personas/*, servicios/* | ~10 | 100% |
 | **L3** | recursos/index, recursos/*/index | ~8 | >=90% |
-| **L4** | recursos detail/item, biblioteca-* detail | ~20 | Headings + CTAs |
+| **L4** | recursos detail/item, biblioteca-* detail | ~20 | 100% heading/CTA/nav keys |
 | **L5** | contacto/, nosotros/*, legal/* | ~7 | 100% |
 
 ## Assumptions

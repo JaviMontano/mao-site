@@ -119,7 +119,18 @@ directory (new, aligns with existing `data/` pattern for `business-logic.json`).
 
 ## Implementation Phases
 
-### Phase 1: Event Contract (FR-001, FR-002) — P1
+> **Phase mapping**: Plan uses 6 coarse phases; tasks.md uses 8 granular phases.
+>
+> | Plan Phase | Tasks Phase(s) | Scope |
+> |------------|---------------|-------|
+> | 1 (Event Contract) | 1 (Setup) + 2 (Event Contract) + 3 (Floating Nav) | Config files + runtime i18n |
+> | 2 (Cert Static) | 4 (Cert Static) | Vitest certification |
+> | 3 (Cert Rendered) | 5 (Cert Rendered) | Playwright certification |
+> | 4 (L1 Coverage) | 6 (L1 Coverage) | L1 page translation |
+> | 5 (L2-L5 Coverage) | 7 (L2-L5 Coverage) | Extended translation |
+> | 6 (Cleanup) | 8 (Cleanup) | Orphan removal + skip-i18n |
+
+### Phase 1: Event Contract (FR-001, FR-002, FR-003, FR-004) — P1
 
 1. Add `langchange` custom event dispatch to `i18n.setLang()` after
    `applyTranslations()` resolves
@@ -166,7 +177,7 @@ directory (new, aligns with existing `data/` pattern for `business-logic.json`).
 **Files**: `index.html`, `ruta/index.html`, `empresas/index.html`,
 `personas/index.html`, `js/i18n/en.json`, `js/i18n/es.json`
 
-### Phase 5: L2-L5 Coverage Expansion (FR-012–FR-015) — P2
+### Phase 5: L2-L5 Coverage Expansion (FR-012, FR-013, FR-014, FR-015) — P2
 
 1. Add translation keys per level targets
 2. Run certification suite per level

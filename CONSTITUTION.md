@@ -1,21 +1,22 @@
 <!-- Sync Impact Report
-Version: 5.3.0 (User-Reported Bug Protocol)
-Added principles: XIX (User-Reported Bug Protocol)
-Added sections: XIX
+Version: 5.4.0 (Branch-to-Environment Parity)
+Added principles: XX (Branch-to-Environment Parity)
+Added sections: XX with flow rules, prohibitions, deploy
+  checklist
 Modified sections: None
-Previous version: 5.2.1 (Sequential-First + Task Atomicity)
-Origin: User manually reviewed ruta page in English, found
-  all content in Spanish. Root cause: deployed SiteHeader.js
-  was out of sync with repo (missing loadI18n method and
-  lang-toggle). This exposed the need for a constitutional
-  principle governing user-reported bug handling: immediate
-  triage, Playwright verification, root cause analysis,
-  deployment-parity check, mandatory regression test.
+Previous version: 5.3.0 (User-Reported Bug Protocol)
+Origin: BUG-001 investigation revealed Cloudflare CDN was
+  serving stale SiteHeader.js for weeks. Root cause: no
+  staging gate between development and production. Code
+  merged to main but CDN was never purged. User requested
+  formal branching model: feature → staging → main →
+  Hostinger. Deploy checklist made mandatory to prevent
+  CDN-level deployment gaps.
 Removed sections: None
 Follow-up TODOs:
-  - Deploy synced SiteHeader.js to Hostinger
-  - Add Playwright regression test for ruta i18n
-  - Verify all pages have i18n working post-deploy
+  - Set up GitHub branch protection rules on main + staging
+  - Add GitHub Actions CI for staging PR gate
+  - Reconnect Hostinger Git panel (currently SSH-only)
 -->
 
 # Site MetodologIA Constitution
@@ -770,6 +771,84 @@ fix at the root, prevent recurrence, and verify the fix
 reaches production. The Playwright-first approach catches the
 class of bugs that live tests miss: deployment gaps, CDN
 caching, build artifacts that diverge from source.
+
+### XX. Branch-to-Environment Parity
+
+Every environment has exactly one source branch. Code flows
+forward through branches — never backward, never skipping
+a stage. What reaches users is what passed through every
+gate.
+
+```
+feature/* ──→ staging ──→ main ──→ Hostinger (production)
+   (dev)      (pre-prod)  (prod)    (CDN + origin)
+```
+
+- **Feature branches** (`NNN-slug` or `feature/*`): all
+  development happens here. One feature per branch, branched
+  from `staging`. Tests run locally. No direct commits to
+  `staging` or `main`
+- **`staging`** (pre-production): integration branch where
+  features are merged via PR. Playwright E2E tests run
+  against a staging URL or local server before promoting.
+  This is the "last look" before production — the project
+  owner reviews here
+- **`main`** (production): the **only** branch that deploys
+  to Hostinger. Receives merges exclusively from `staging`
+  via PR. Every commit on `main` is deployed code. No
+  direct commits, no force pushes, no exceptions
+- **Hostinger**: pulls from `main` only. Deploy = SSH
+  `git pull origin main` + Cloudflare CDN purge + Hostinger
+  cache clear. Deploy checklist is non-negotiable
+
+#### Flow rules
+
+1. **Feature → staging**: developer opens PR from feature
+   branch to `staging`. CI runs unit tests. Merge when
+   green + approved
+2. **staging → main**: project owner opens PR from
+   `staging` to `main`. E2E tests must pass. This PR is
+   the production gate — it is never auto-merged
+3. **main → Hostinger**: after merge to `main`, deploy
+   via SSH (`git pull`) + purge Cloudflare CDN + clear
+   Hostinger cache. Verify live site with Playwright
+4. **Hotfix path**: for P0 bugs (XIX), create
+   `hotfix/slug` from `main`, fix, PR to `main` directly,
+   then backport to `staging`. This is the only case where
+   `main` receives a non-staging PR
+
+#### Prohibitions
+
+- No direct commits to `main` or `staging`
+- No force push to `main` (ever) or `staging` (except
+  rebase cleanup before merge)
+- No deploying from any branch other than `main`
+- No skipping the staging → main PR gate
+- No merging `main` back into `staging` (forward-only)
+
+#### Deploy checklist (mandatory per deploy)
+
+1. `git push origin main`
+2. SSH: `ssh -p 65002 u363367449@156.67.75.195
+   "cd domains/metodologia.info/public_html &&
+   git pull origin main"`
+3. Hostinger dashboard → "Limpiar caché"
+4. Hostinger CDN → "Vaciar caché" (Cloudflare)
+5. Wait 60s, verify via Playwright against live URL
+6. If CDN stale: activate "Modo de desarrollo" temporarily
+
+**Rationale**: The BUG-001 incident (2026-03-23) proved that
+deployment-parity failures are invisible until a user reports
+them. The root cause was Cloudflare CDN serving a stale
+`SiteHeader.js` for weeks while the repo had the correct
+version. A three-branch model (feature → staging → main)
+ensures that code is tested in integration before reaching
+production, and that `main` always equals what Hostinger
+serves. The deploy checklist exists because "git push" is
+not a deploy — CDN purge and verification are part of the
+deploy, not afterthoughts. This principle makes XVI
+(Sequential-First) and XIX (Bug Protocol) enforceable at
+the infrastructure level.
 
 ## Workspace
 

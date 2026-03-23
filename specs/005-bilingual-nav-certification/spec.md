@@ -252,3 +252,14 @@ load i18n.js and shows no console errors.
 - Third language support
 - Translating images or PDFs
 - CMS-driven translation management (feature 004)
+
+## Clarifications
+
+### Session 2026-03-23
+
+- Q: How should the floating nav learn about language changes? -> A: Emit a custom `langchange` event from `i18n.setLang()`, floating nav listens and re-reads already-translated heading textContent [FR-001, FR-002, US1]
+- Q: What happens with Strategy 3 auto-labels when language is EN? -> A: Strategy 3 pages are exempt from floating nav i18n certification; reported as warnings, not failures [FR-007, US1, SC-001]
+- Q: What test runner should the certification suite use? -> A: Hybrid — Vitest for static key coverage (FR-005, FR-008, FR-009, FR-010), Playwright for rendered Spanish remnant detection (FR-006, FR-007) on L1 pages only [FR-005, FR-006, FR-007, FR-008, FR-009, FR-010, US2, SC-002]
+- Q: What counts as "translated" for certification coverage scoring? -> A: en.json entry exists, is non-empty, AND differs from es.json value; legitimately identical terms (brand names, technical terms) maintained in an allowlist to avoid false positives [FR-010, SC-004, US2]
+- Q: How should certification handle 48 pages with SiteHeader but zero data-i18n keys? -> A: Report as warnings in P1; promote to failures after data-skip-i18n (FR-017) is implemented in P3 — progressive enforcement [FR-009, FR-017, US2, US5, SC-005]
+- Q: What is the en.json key namespace for floating nav element attributes? -> A: Nested per page under `<page>.nav.*` (e.g., `ruta.nav.sections_label`); allows page-specific aria-labels [FR-003, FR-004, US1]

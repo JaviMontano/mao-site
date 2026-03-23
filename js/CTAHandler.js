@@ -48,7 +48,7 @@ class CTAHandler {
             const id = el.getAttribute('data-cta');
             if (this.ctaData && this.ctaData[id]) {
                 const prefix = (window.i18n && window.i18n.t('cta.email_tooltip_prefix')) || 'Abrirá tu correo para';
-            el.setAttribute('title', `${prefix}: ${this.ctaData[id].subject}`);
+                el.setAttribute('title', `${prefix}: ${this.ctaData[id].subject}`);
             }
         };
 

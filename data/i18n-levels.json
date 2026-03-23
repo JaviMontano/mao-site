@@ -1,0 +1,23 @@
+{
+  "rules": [
+    { "pattern": "index.html", "level": "L1", "exact": true },
+    { "pattern": "ruta/index.html", "level": "L1", "exact": true },
+    { "pattern": "empresas/index.html", "level": "L1", "exact": true },
+    { "pattern": "personas/index.html", "level": "L1", "exact": true },
+    { "pattern": "empresas/*.html", "level": "L2" },
+    { "pattern": "personas/*.html", "level": "L2" },
+    { "pattern": "servicios/*.html", "level": "L2" },
+    { "pattern": "recursos/index.html", "level": "L3", "exact": true },
+    { "pattern": "recursos/*/index.html", "level": "L3" },
+    { "pattern": "recursos/**/*.html", "level": "L4" },
+    { "pattern": "contacto/**/*.html", "level": "L5" },
+    { "pattern": "nosotros/**/*.html", "level": "L5" },
+    { "pattern": "legal/**/*.html", "level": "L5" }
+  ],
+  "overrides": {},
+  "exclude": [
+    "TEMPLATE.html",
+    "admin/**",
+    "archivado/**"
+  ]
+}

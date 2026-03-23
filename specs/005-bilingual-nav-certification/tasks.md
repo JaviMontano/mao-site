@@ -14,10 +14,10 @@
 
 ## Phase 1: Setup
 
-- [ ] T001 Create data/ directory and add data/i18n-levels.json with page→level classification rules and overrides per data-model.md schema
-- [ ] T002 [P] Create data/i18n-allowlist.json with legitimately identical terms per data-model.md schema
-- [ ] T003 [P] Create data/i18n-spanish-patterns.json with Spanish remnant regex patterns per data-model.md schema
-- [ ] T003b [P] Create data/README.md explaining i18n config files per XVIII (Indexable)
+- [x] T001 Create data/ directory and add data/i18n-levels.json with page→level classification rules and overrides per data-model.md schema
+- [x] T002 [P] Create data/i18n-allowlist.json with legitimately identical terms per data-model.md schema
+- [x] T003 [P] Create data/i18n-spanish-patterns.json with Spanish remnant regex patterns per data-model.md schema
+- [x] T003b [P] Create data/README.md explaining i18n config files per XVIII (Indexable)
 
 > **Parallel batch 1**: T002, T003, T003b (independent config files, no shared state)
 

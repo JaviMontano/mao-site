@@ -146,7 +146,8 @@
 ### Implementation
 
 - [ ] T054 [US4] Implement AdminAPI module (updateProgram, updatePricing, updateTranslations, audit log creation, input sanitization) in `js/cms/admin-api.js` [TS-020, TS-024]
-- [ ] T055 [US4] Build admin shell page `admin/index.html` — login screen, auth gate, tab navigation (Programs/Prices/Translations), ARIA roles and keyboard nav [TS-017, TS-021, TS-023]
+- [ ] T055a [US4] Build admin shell page `admin/index.html` — login screen, auth gate (show login when unauthenticated, deny non-admin), basic page structure [TS-017, TS-021]
+- [ ] T055b [US4] Add tab navigation (Programs/Prices/Translations), ARIA roles (tablist, tab, tabpanel), and keyboard navigation (arrow keys, Home/End) to `admin/index.html` [TS-023]
 - [ ] T056 [US4] Implement admin-app.js — auth state handling, tab routing, admin claim check, non-admin denial in `admin/js/admin-app.js`
 - [ ] T057 [US4] Implement program-editor.js — 6-program list, side-by-side ES/EN editing, bilingual validation, save with audit log in `admin/js/program-editor.js` [TS-018, TS-019]
 - [ ] T058 [US4] Implement price-editor.js — B2C/B2B/premium editing, numeric validation in `admin/js/price-editor.js`
@@ -305,3 +306,4 @@ T001 → T006 → T010 → T011 → T012 → T029 → T030 → T039 → T040 →
 - Q: Where is config/settings.migrated_collections stored? -> A: Firestore document `config/settings`, updated via seed script or Firebase Console. [T085, T012, T019]
 - Q: Can T061 complete if Phase 6 runs parallel with Phase 4? -> A: Split T061 into T061a (admin-only tests, completes with Phase 6a) and T061b (integration tests, completes after Phase 4). [T061, T060, Phase 6]
 - Q: Are migration waves (Phase 4→5→7) sequential by technical dependency or by choice? -> A: Intentional risk control (Constitution XIV + XVI). Sequential execution reduces debugging surface — one content type fully validated before starting next. Not a technical dependency; the methods are independent. Sequential-first is the default (XVI v5.2.0). [Phase 4, Phase 5, Phase 7, Dependency Table, Critical Path]
+- Q: Is T055 (admin shell) too large for a single task? -> A: Yes. Split into T055a (shell + auth gate) and T055b (tab nav + ARIA + keyboard). One concern per task, one TDD cycle per task. Task atomicity rule added to Constitution XIV. [T055, T055a, T055b, Phase 6]

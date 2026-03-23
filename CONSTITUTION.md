@@ -1,26 +1,29 @@
 <!-- Sync Impact Report
-Version: 5.2.0 (Sequential-First Workflow Discipline)
-Added principles: None (amendment to existing XVI)
+Version: 5.2.1 (Sequential-First + Task Atomicity)
+Added principles: None (amendments to existing XIV, XVI)
 Added sections: None
 Modified sections:
   - XVI: renamed from "Parallel-Ready Workflow" to
     "Sequential-First, Parallel-Ready Workflow". Added
     sequential-by-default rule, WIP limit (3 agents max),
     forward-only progression, parallel eligibility criteria
+  - XIV: added "Task atomicity" rule — one concern per task,
+    one TDD red-green cycle per task, split if 3+ concerns
   - Governance: updated XVI reference to reflect sequential-
     first discipline
 Previous version: 5.1.0 (Workspace + Indexability + Auto-Organization)
 Origin: Clarify session on tasks.md — user confirmed wave
   sequentiality is intentional risk control (not technical
   dependency). Requested constitutional anchoring of
-  sequential-first discipline with WIP limits
+  sequential-first discipline with WIP limits. T055 split
+  exposed need for task atomicity rule in XIV.
 Removed sections: None
 Follow-up TODOs:
   - Update plan.md with worktree branching strategy
   - Define BDD scenario coverage matrix per principle
   - Downstream specs may need testify re-run for new BDD scope
   - Add README.md to all existing directories lacking one
-  - Update tasks.md dependency rationale to cite XVI explicitly
+  - Scan remaining tasks for atomicity violations (3+ concerns)
 -->
 
 # Site MetodologIA Constitution
@@ -93,6 +96,13 @@ preemptively.
   is more complex than the simplest alternative MUST
   document why the simpler approach was insufficient.
   The burden of proof is on complexity, not simplicity
+- **Task atomicity**: a single task MUST address a single
+  concern that can be completed, tested, and verified
+  independently. If a task description contains "and" or
+  a comma-separated list of 3+ distinct concerns, it MUST
+  be split. The heuristic: one task = one TDD red-green
+  cycle. A task that requires multiple independent test
+  suites to verify is too large
 
 **Rationale**: Unnecessary complexity is the primary source
 of maintenance burden, onboarding friction, and bugs in
@@ -1059,4 +1069,4 @@ personal preferences.
   clean; the workspace stays flexible. Task bridge
   (`workspace/tasks/`) connects tasklog.md to working files
 
-**Version**: 5.2.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23
+**Version**: 5.2.1 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23

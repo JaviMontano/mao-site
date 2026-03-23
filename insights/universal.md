@@ -22,3 +22,10 @@ Cross-cutting decision patterns that apply regardless of domain.
 - **Rationale**: In TS-024, allowlist seemed "richer" and escape seemed "safer" — but both violated principles. Strip was simplest AND the only option that passed all checks.
 - **Applies when**: Invoking XIV to justify a choice — always verify against other principles first
 - **Constitutional anchor**: XIV (Simple First), XIII (Think First)
+
+### INS-004: Separate platform defaults from feature requests
+- **Origin**: Q4 debate (concurrent admin edits)
+- **Pattern**: When an edge case combines "the platform already does X by default" with "we should add Y on top", separate them. The platform default needs no code, no test, no scenario — it's a fact. The improvement on top is evaluated independently against XIV (Simple First). Mixing them creates the illusion that the whole thing is a feature to build, when half of it is free.
+- **Rationale**: Firestore's last-write-wins is not a feature we implement — it's what happens if we do nothing. The warning UI on top is the actual feature, and it failed the XIV test (speculative, 1-3 admins). Separation prevented building unnecessary code.
+- **Applies when**: Any edge case that describes how the platform/framework already behaves + a proposed enhancement
+- **Constitutional anchor**: XIV (Simple First), XVII (Continuous Learning Loop)

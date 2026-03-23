@@ -6,7 +6,7 @@ Open work items across sessions. Reviewed at every session start per Session Pro
 
 | ID | Task | Status | Owner | Opened | Notes |
 |----|------|--------|-------|--------|-------|
-| TL-001 | Complete clarify phase (Q4, Q5 remaining) | in-progress | session | 2026-03-23 | 3/5 ambiguities resolved; 2 remaining |
+| TL-001 | Complete clarify phase (Q4, Q5 remaining) | completed | session | 2026-03-23 | 5/5 resolved; 8 total clarifications |
 | TL-002 | Re-run testify with all clarifications | open | — | 2026-03-23 | 7 clarifications pending integration into .feature files |
 | TL-003 | Add missing UX confirmation scenario (positive save) | open | — | 2026-03-23 | Gap detected in TS-020 debate; XV operational angle |
 | TL-004 | Generate tasks.md via /iikit-05-tasks | open | — | 2026-03-22 | Blocked by TL-002 (testify must be current) |

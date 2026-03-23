@@ -15,8 +15,6 @@ const app = getFirebaseApp();
 AuthService.init(app);
 AdminAPI.init(app);
 
-// Handle redirect result from Google sign-in
-AuthService.handleRedirectResult();
 
 const loginScreen = document.getElementById('login-screen');
 const deniedScreen = document.getElementById('denied-screen');

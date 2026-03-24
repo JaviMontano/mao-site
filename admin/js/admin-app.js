@@ -10,6 +10,7 @@ import { ProgramEditor } from './program-editor.js';
 import { PriceEditor } from './price-editor.js';
 import { I18nEditor } from './i18n-editor.js';
 import { getFunctions, httpsCallable } from 'firebase/functions';
+import { ROLE_LEVELS } from '../../js/cms/constants.js';
 
 const app = getFirebaseApp();
 AuthService.init(app);
@@ -20,8 +21,6 @@ const deniedScreen = document.getElementById('denied-screen');
 const adminEditor = document.getElementById('admin-editor');
 const userInfo = document.getElementById('user-info');
 const tabBar = document.getElementById('tab-bar');
-
-const ROLE_LEVELS = { super_admin: 4, admin: 3, editor: 2, viewer: 1 };
 
 /**
  * Tab definitions with role requirements.

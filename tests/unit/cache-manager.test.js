@@ -2,6 +2,9 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 // Mock idb since we're in Node environment
 const mockStore = new Map();
+const mockClearFn = vi.fn();
+const VALID_STORES = ['programs', 'pricing', 'translations'];
+
 const mockDb = {
   get(storeName, key) {
     const storeKey = `${storeName}:${key}`;
@@ -10,6 +13,15 @@ const mockDb = {
   put(storeName, value, key) {
     const storeKey = `${storeName}:${key}`;
     mockStore.set(storeKey, value);
+  },
+  objectStoreNames: {
+    contains: (name) => VALID_STORES.includes(name),
+  },
+  transaction(storeName, mode) {
+    return {
+      objectStore: () => ({ clear: mockClearFn }),
+      done: Promise.resolve(),
+    };
   },
 };
 
@@ -23,6 +35,7 @@ const { CacheManager } = await import('../../js/cms/cache-manager.js');
 describe('CacheManager', () => {
   beforeEach(() => {
     mockStore.clear();
+    mockClearFn.mockClear();
   });
 
   describe('get', () => {
@@ -72,6 +85,36 @@ describe('CacheManager', () => {
       const ttlMs = 3600000;
       const entry = { cachedAt: Date.now() - ttlMs };
       expect(CacheManager.isStale(entry, ttlMs)).toBe(true);
+    });
+  });
+
+  describe('invalidateStore', () => {
+    it('should clear all entries in the specified store', async () => {
+      await CacheManager.invalidateStore('programs');
+      expect(mockClearFn).toHaveBeenCalledOnce();
+    });
+
+    it('should throw descriptive error for nonexistent store', async () => {
+      await expect(CacheManager.invalidateStore('nonexistent'))
+        .rejects.toThrow('CacheManager: store not found: nonexistent');
+    });
+  });
+
+  describe('invalidateAll', () => {
+    it('should clear all known stores', async () => {
+      await CacheManager.invalidateAll();
+      expect(mockClearFn).toHaveBeenCalledTimes(3);
+    });
+
+    it('should skip stores not present in IndexedDB', async () => {
+      // Override to simulate a store missing from IndexedDB
+      const origContains = mockDb.objectStoreNames.contains;
+      mockDb.objectStoreNames.contains = (name) => name !== 'translations';
+
+      await CacheManager.invalidateAll();
+      expect(mockClearFn).toHaveBeenCalledTimes(2); // programs + pricing only
+
+      mockDb.objectStoreNames.contains = origContains;
     });
   });
 });

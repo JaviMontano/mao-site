@@ -13,11 +13,12 @@ import {
   orderBy,
 } from 'firebase/firestore';
 import { CacheManager } from './cache-manager.js';
+import { DEFAULT_CACHE_TTL_MS } from './constants.js';
 
 let db = null;
 let ready = false;
 let migratedCollections = [];
-let cacheTtlMs = 3600000; // default 1 hour
+let cacheTtlMs = DEFAULT_CACHE_TTL_MS;
 const readyCallbacks = [];
 
 export const ContentService = {
@@ -179,7 +180,7 @@ export const ContentService = {
     db = null;
     ready = false;
     migratedCollections = [];
-    cacheTtlMs = 3600000;
+    cacheTtlMs = DEFAULT_CACHE_TTL_MS;
     readyCallbacks.length = 0;
   },
 };

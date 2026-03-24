@@ -3,18 +3,15 @@
  * @module js/cms/cache-manager
  */
 import { openDB } from 'idb';
-
-const DB_NAME = 'metodologia-cms';
-const DB_VERSION = 1;
-const STORES = ['programs', 'pricing', 'translations'];
+import { CACHE_DB_NAME, CACHE_DB_VERSION, CACHE_STORES } from './constants.js';
 
 let dbPromise = null;
 
 function getDB() {
   if (!dbPromise) {
-    dbPromise = openDB(DB_NAME, DB_VERSION, {
-      upgrade(db) {
-        for (const store of STORES) {
+    dbPromise = openDB(CACHE_DB_NAME, CACHE_DB_VERSION, {
+      upgrade(db, oldVersion, newVersion) {
+        for (const store of CACHE_STORES) {
           if (!db.objectStoreNames.contains(store)) {
             db.createObjectStore(store);
           }
@@ -55,5 +52,34 @@ export const CacheManager = {
    */
   isStale(entry, ttlMs) {
     return Date.now() - entry.cachedAt >= ttlMs;
+  },
+
+  /**
+   * Clear all entries in a single cache store.
+   * @param {string} storeName
+   * @throws {Error} if store does not exist
+   */
+  async invalidateStore(storeName) {
+    const db = await getDB();
+    if (!db.objectStoreNames.contains(storeName)) {
+      throw new Error(`CacheManager: store not found: ${storeName}`);
+    }
+    const tx = db.transaction(storeName, 'readwrite');
+    await tx.objectStore(storeName).clear();
+    await tx.done;
+  },
+
+  /**
+   * Clear all known cache stores.
+   */
+  async invalidateAll() {
+    const db = await getDB();
+    for (const store of CACHE_STORES) {
+      if (db.objectStoreNames.contains(store)) {
+        const tx = db.transaction(store, 'readwrite');
+        await tx.objectStore(store).clear();
+        await tx.done;
+      }
+    }
   },
 };

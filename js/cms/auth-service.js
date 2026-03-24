@@ -9,10 +9,9 @@ import {
   signOut as firebaseSignOut,
   onAuthStateChanged as firebaseOnAuthStateChanged,
 } from 'firebase/auth';
+import { ROLE_LEVELS } from './constants.js';
 
 let auth = null;
-
-const ROLE_LEVELS = { super_admin: 4, admin: 3, editor: 2, viewer: 1 };
 
 export const AuthService = {
   /**

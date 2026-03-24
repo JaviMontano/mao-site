@@ -3,8 +3,7 @@
  * @module admin/js/program-editor
  */
 import { AdminAPI } from '../../js/cms/admin-api.js';
-
-const BILINGUAL_FIELDS = ['title', 'tagline', 'description', 'transformation'];
+import { BILINGUAL_FIELDS } from '../../js/cms/constants.js';
 
 export const ProgramEditor = {
   renderProgramList(programs) {

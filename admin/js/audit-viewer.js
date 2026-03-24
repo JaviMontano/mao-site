@@ -4,6 +4,7 @@
  */
 import { getFirestore, collection, getDocs, query, orderBy, where, addDoc, doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { AuthService } from '../../js/cms/auth-service.js';
+import { AUDIT_TTL_MS } from '../../js/cms/constants.js';
 import { getFirebaseApp } from '../../js/cms/firebase-config.js';
 
 const app = getFirebaseApp();
@@ -159,7 +160,7 @@ export const AuditViewer = {
         field: entry.field,
         previous_value: entry.new_value,
         new_value: entry.previous_value,
-        ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        ttl: new Date(Date.now() + AUDIT_TTL_MS),
       });
 
       statusEl.textContent = '✓ Restored';

@@ -1,0 +1,29 @@
+{
+  "feature": "007-infrastructure-hardening",
+  "phase": "spec",
+  "branch": "007-infrastructure-hardening",
+  "created": "2026-03-23",
+  "requirements": {
+    "FR-001": "Constants module — single source of truth",
+    "FR-002": "Cache manager upgrade handler",
+    "FR-003": "Cache invalidation methods",
+    "FR-004": "Atomic batch writes in AdminAPI",
+    "FR-005": "Read-before-write audit entries"
+  },
+  "files_to_create": [
+    "js/cms/constants.js",
+    "tests/unit/constants.test.js",
+    "tests/unit/cache-invalidation.test.js"
+  ],
+  "files_to_modify": [
+    "js/cms/cache-manager.js",
+    "js/cms/content-service.js",
+    "js/cms/admin-api.js",
+    "js/cms/auth-service.js",
+    "admin/js/admin-app.js",
+    "admin/js/program-editor.js",
+    "tests/unit/admin-api.test.js",
+    "tests/unit/cache-manager.test.js"
+  ],
+  "assertion_hashes": {}
+}

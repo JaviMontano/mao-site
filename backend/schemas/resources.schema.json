@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Resource",
+  "description": "Individual resource item in the MetodologIA resource library",
+  "type": "object",
+  "required": ["slug", "category_id", "title_es", "title_en", "description_es", "description_en", "type", "url_path", "is_premium", "is_published", "sort_order", "updated_at", "updated_by"],
+  "properties": {
+    "slug": { "type": "string", "minLength": 1 },
+    "category_id": { "type": "string", "minLength": 1 },
+    "title_es": { "type": "string", "minLength": 1 },
+    "title_en": { "type": "string", "minLength": 1 },
+    "description_es": { "type": "string", "minLength": 1 },
+    "description_en": { "type": "string", "minLength": 1 },
+    "type": {
+      "type": "string",
+      "enum": ["biblioteca", "miniapp", "ebook", "playbook", "asistente", "workflow", "prototipo", "plugin", "flujo", "catalogo", "a-medida"]
+    },
+    "url_path": { "type": "string", "minLength": 1 },
+    "icon": { "type": "string" },
+    "is_premium": { "type": "boolean" },
+    "is_published": { "type": "boolean" },
+    "sort_order": { "type": "integer", "minimum": 0 },
+    "tags_es": { "type": "array", "items": { "type": "string" } },
+    "tags_en": { "type": "array", "items": { "type": "string" } },
+    "updated_at": {},
+    "updated_by": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

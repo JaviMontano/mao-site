@@ -201,6 +201,62 @@ registerExtractor('config_access', async () => {
   }];
 });
 
+// --- Feature 008: Resource categories extractor ---
+registerExtractor('resource_categories', async () => {
+  const seedPath = resolve(process.cwd(), 'backend/seed-data/resource_categories.json');
+  const categories = JSON.parse(readFileSync(seedPath, 'utf-8'));
+  const now = new Date();
+  return categories.map((cat) => ({
+    id: cat.id,
+    data: { ...cat.data, updated_at: now, updated_by: 'seed-script' },
+  }));
+});
+
+// --- Feature 008: Site config extractor ---
+registerExtractor('site_config', async () => {
+  const configDir = resolve(process.cwd(), 'backend/seed-data/site_config');
+  const docs = ['branding', 'navigation', 'social', 'features'];
+  const now = new Date();
+  return docs.map((docId) => {
+    const data = JSON.parse(readFileSync(resolve(configDir, `${docId}.json`), 'utf-8'));
+    return { id: docId, data: { ...data, updated_at: now, updated_by: 'seed-script' } };
+  });
+});
+
+// --- Feature 008: Curriculum stubs ---
+registerExtractor('curriculum', async () => {
+  // Stub entries linked to existing program slugs — content populated via CMS
+  const now = new Date();
+  const programs = [
+    { audience: 'empresas', slug: 'diagnostico' },
+    { audience: 'empresas', slug: 'estrategia' },
+    { audience: 'empresas', slug: 'amplificacion' },
+    { audience: 'empresas', slug: 'ofimatica' },
+    { audience: 'empresas', slug: 'ventas' },
+    { audience: 'empresas', slug: 'champions' },
+    { audience: 'personas', slug: 'diagnostico' },
+    { audience: 'personas', slug: 'estrategia' },
+    { audience: 'personas', slug: 'amplificacion' },
+    { audience: 'personas', slug: 'ofimatica' },
+    { audience: 'personas', slug: 'ventas' },
+    { audience: 'personas', slug: 'empoderamiento' },
+  ];
+  return programs.map(({ audience, slug }) => ({
+    id: `${audience}_${slug}`,
+    data: {
+      audience,
+      program_slug: slug,
+      modules: [],
+      total_hours: 0,
+      certification_name_es: '',
+      certification_name_en: '',
+      is_published: false,
+      updated_at: now,
+      updated_by: 'seed-script',
+    },
+  }));
+});
+
 /**
  * Seed config/access separately (not a standard collection).
  */

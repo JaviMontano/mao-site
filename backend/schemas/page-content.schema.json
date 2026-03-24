@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Page Content",
+  "description": "CMS-managed content for a static HTML page",
+  "type": "object",
+  "required": ["path", "meta", "is_migrated", "updated_at", "updated_by"],
+  "properties": {
+    "path": { "type": "string", "minLength": 1 },
+    "sections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["title_es", "title_en", "body_es", "body_en", "sort_order", "is_visible"],
+        "properties": {
+          "title_es": { "type": "string" },
+          "title_en": { "type": "string" },
+          "body_es": { "type": "string" },
+          "body_en": { "type": "string" },
+          "sort_order": { "type": "integer", "minimum": 0 },
+          "is_visible": { "type": "boolean" }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": ["title_es", "title_en"],
+      "properties": {
+        "title_es": { "type": "string", "minLength": 1 },
+        "title_en": { "type": "string", "minLength": 1 },
+        "description_es": { "type": "string" },
+        "description_en": { "type": "string" },
+        "og_image": { "type": "string" }
+      }
+    },
+    "level": { "type": "string", "enum": ["L1", "L2", "L3", "L4", "L5"] },
+    "i18n_key_count": { "type": "integer", "minimum": 0 },
+    "is_migrated": { "type": "boolean" },
+    "updated_at": {},
+    "updated_by": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

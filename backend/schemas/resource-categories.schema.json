@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Resource Category",
+  "description": "Category grouping for resources (e.g., biblioteca-prompts, asistentes-gpt)",
+  "type": "object",
+  "required": ["slug", "name_es", "name_en", "description_es", "description_en", "sort_order", "is_published", "updated_at", "updated_by"],
+  "properties": {
+    "slug": { "type": "string", "minLength": 1 },
+    "name_es": { "type": "string", "minLength": 1 },
+    "name_en": { "type": "string", "minLength": 1 },
+    "description_es": { "type": "string", "minLength": 1 },
+    "description_en": { "type": "string", "minLength": 1 },
+    "icon": { "type": "string" },
+    "sort_order": { "type": "integer", "minimum": 0 },
+    "parent_category": { "type": ["string", "null"] },
+    "is_published": { "type": "boolean" },
+    "updated_at": {},
+    "updated_by": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

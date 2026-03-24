@@ -142,5 +142,84 @@ service cloud.firestore {
       allow create, update: if hasWriteAccess();
       allow delete: if hasAdminAccess();
     }
+
+    // === Phase 1: New Collections (Feature 008) ===
+
+    // Resources — public read, editor+ write with schema validation
+    match /resources/{resourceId} {
+      allow read: if true;
+      allow create, update: if hasWriteAccess()
+        && hasString(request.resource.data.slug)
+        && hasString(request.resource.data.category_id)
+        && hasString(request.resource.data.title_es)
+        && hasString(request.resource.data.title_en)
+        && hasString(request.resource.data.description_es)
+        && hasString(request.resource.data.description_en)
+        && request.resource.data.type in [
+          'biblioteca', 'miniapp', 'ebook', 'playbook', 'asistente',
+          'workflow', 'prototipo', 'plugin', 'flujo', 'catalogo', 'a-medida'
+        ]
+        && hasString(request.resource.data.url_path)
+        && request.resource.data.is_premium is bool
+        && request.resource.data.is_published is bool
+        && request.resource.data.sort_order is int
+        && request.resource.data.sort_order >= 0
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+      allow delete: if hasAdminAccess();
+    }
+
+    // Resource categories — public read, editor+ write
+    match /resource_categories/{categoryId} {
+      allow read: if true;
+      allow create, update: if hasWriteAccess()
+        && hasString(request.resource.data.slug)
+        && hasString(request.resource.data.name_es)
+        && hasString(request.resource.data.name_en)
+        && hasString(request.resource.data.description_es)
+        && hasString(request.resource.data.description_en)
+        && request.resource.data.sort_order is int
+        && request.resource.data.sort_order >= 0
+        && request.resource.data.is_published is bool
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+      allow delete: if hasAdminAccess();
+    }
+
+    // Page content — public read, editor+ write
+    match /page_content/{pathHash} {
+      allow read: if true;
+      allow create, update: if hasWriteAccess()
+        && hasString(request.resource.data.path)
+        && request.resource.data.meta.keys().hasAny(['title_es', 'title_en'])
+        && hasString(request.resource.data.meta.title_es)
+        && hasString(request.resource.data.meta.title_en)
+        && request.resource.data.is_migrated is bool
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+      allow delete: if hasAdminAccess();
+    }
+
+    // Curriculum — public read, editor+ write
+    match /curriculum/{curriculumId} {
+      allow read: if true;
+      allow create, update: if hasWriteAccess()
+        && request.resource.data.audience in ['empresas', 'personas']
+        && hasString(request.resource.data.program_slug)
+        && request.resource.data.modules is list
+        && request.resource.data.total_hours is number
+        && request.resource.data.is_published is bool
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+      allow delete: if hasAdminAccess();
+    }
+
+    // Site config — public read, super_admin only write
+    match /site_config/{configId} {
+      allow read: if true;
+      allow create, update, delete: if isSuperAdmin()
+        && request.resource.data.updated_at is timestamp
+        && hasString(request.resource.data.updated_by);
+    }
   }
 }

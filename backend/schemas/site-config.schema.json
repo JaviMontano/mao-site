@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Site Config",
+  "description": "Site-wide configuration documents (branding, navigation, social, features)",
+  "oneOf": [
+    {
+      "title": "Branding",
+      "type": "object",
+      "required": ["site_name", "tagline_es", "tagline_en", "primary_color", "gold_color"],
+      "properties": {
+        "site_name": { "type": "string" },
+        "tagline_es": { "type": "string" },
+        "tagline_en": { "type": "string" },
+        "logo_url": { "type": "string" },
+        "favicon_url": { "type": "string" },
+        "primary_color": { "type": "string" },
+        "gold_color": { "type": "string" },
+        "dark_bg": { "type": "string" },
+        "updated_at": {},
+        "updated_by": { "type": "string" }
+      }
+    },
+    {
+      "title": "Navigation",
+      "type": "object",
+      "required": ["main_menu"],
+      "properties": {
+        "main_menu": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label_es", "label_en", "href", "sort_order", "is_visible"],
+            "properties": {
+              "label_es": { "type": "string" },
+              "label_en": { "type": "string" },
+              "href": { "type": "string" },
+              "sort_order": { "type": "integer" },
+              "is_visible": { "type": "boolean" }
+            }
+          }
+        },
+        "footer_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label_es": { "type": "string" },
+              "label_en": { "type": "string" },
+              "href": { "type": "string" },
+              "group": { "type": "string" }
+            }
+          }
+        },
+        "updated_at": {},
+        "updated_by": { "type": "string" }
+      }
+    },
+    {
+      "title": "Social",
+      "type": "object",
+      "properties": {
+        "whatsapp": { "type": "string" },
+        "linkedin": { "type": "string" },
+        "email": { "type": "string" },
+        "youtube": { "type": "string" },
+        "updated_at": {},
+        "updated_by": { "type": "string" }
+      }
+    },
+    {
+      "title": "Features",
+      "type": "object",
+      "properties": {
+        "show_cotizador": { "type": "boolean" },
+        "show_premium": { "type": "boolean" },
+        "maintenance_mode": { "type": "boolean" },
+        "cms_enabled_pages": { "type": "array", "items": { "type": "string" } },
+        "updated_at": {},
+        "updated_by": { "type": "string" }
+      }
+    }
+  ]
+}

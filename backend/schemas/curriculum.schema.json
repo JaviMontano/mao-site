@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Curriculum",
+  "description": "Program curriculum with modules, duration, and certification",
+  "type": "object",
+  "required": ["audience", "program_slug", "modules", "total_hours", "is_published", "updated_at", "updated_by"],
+  "properties": {
+    "audience": { "type": "string", "enum": ["empresas", "personas"] },
+    "program_slug": { "type": "string", "minLength": 1 },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title_es", "title_en", "description_es", "description_en", "duration_hours", "sort_order"],
+        "properties": {
+          "title_es": { "type": "string", "minLength": 1 },
+          "title_en": { "type": "string", "minLength": 1 },
+          "description_es": { "type": "string", "minLength": 1 },
+          "description_en": { "type": "string", "minLength": 1 },
+          "duration_hours": { "type": "number", "minimum": 0 },
+          "topics_es": { "type": "array", "items": { "type": "string" } },
+          "topics_en": { "type": "array", "items": { "type": "string" } },
+          "sort_order": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "total_hours": { "type": "number", "minimum": 0 },
+    "certification_name_es": { "type": "string" },
+    "certification_name_en": { "type": "string" },
+    "is_published": { "type": "boolean" },
+    "updated_at": {},
+    "updated_by": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false
+}

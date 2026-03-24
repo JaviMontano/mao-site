@@ -1,23 +1,22 @@
 /**
  * Admin write operations — edit, validate, audit log.
+ * Atomic writes via runTransaction (programs) and writeBatch (pricing, translations).
  * @module js/cms/admin-api
  */
 import {
   getFirestore,
   doc,
-  updateDoc,
+  getDoc,
   addDoc,
   collection,
   serverTimestamp,
+  runTransaction,
+  writeBatch,
 } from 'firebase/firestore';
 import { AuthService } from './auth-service.js';
+import { BILINGUAL_FIELDS, AUDIT_TTL_MS, FIRESTORE_BATCH_LIMIT } from './constants.js';
 
 let db = null;
-
-// Bilingual field pairs that must be updated together
-const BILINGUAL_FIELDS = [
-  'title', 'tagline', 'description', 'transformation',
-];
 
 /**
  * Strip HTML tags from text input.
@@ -38,6 +37,21 @@ function sanitizeInput(input) {
     .replace(/<[^>]+>/g, '');
 }
 
+/**
+ * Navigate a nested object using a dot-notation path.
+ * @param {Object} obj
+ * @param {string} dotPath - e.g. 'nav.home'
+ * @returns {any}
+ */
+function getNestedValue(obj, dotPath) {
+  return dotPath.split('.').reduce(
+    (o, k) => (o && typeof o === 'object' ? o[k] : undefined),
+    obj,
+  );
+}
+
+export { getNestedValue };
+
 export const AdminAPI = {
   init(app) {
     db = getFirestore(app);
@@ -46,7 +60,7 @@ export const AdminAPI = {
   sanitizeInput,
 
   /**
-   * Write an audit log entry with extended action types.
+   * Write a standalone audit log entry (for non-batched operations like role changes).
    * @param {Object} entry
    */
   async writeAuditEntry(entry) {
@@ -56,12 +70,13 @@ export const AdminAPI = {
       admin_id: user?.uid || 'unknown',
       admin_email: user?.email || 'unknown',
       ...entry,
-      ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      ttl: new Date(Date.now() + AUDIT_TTL_MS),
     });
   },
 
   /**
    * Update a program document with bilingual validation and audit log.
+   * Uses runTransaction for atomic read-write consistency.
    * @param {string} programId
    * @param {Object} fields
    */
@@ -86,53 +101,82 @@ export const AdminAPI = {
     sanitized.updated_by = user?.email || 'unknown';
 
     const docRef = doc(db, 'programs', programId);
-    await updateDoc(docRef, sanitized);
 
-    // Create audit log entry with fully qualified field paths
-    for (const [key, val] of Object.entries(fields)) {
-      await addDoc(collection(db, 'audit_log'), {
-        timestamp: serverTimestamp(),
-        admin_id: user?.uid || 'unknown',
-        admin_email: user?.email || 'unknown',
-        collection: 'programs',
-        document_id: programId,
-        field: `programs/${programId}.${key}`,
-        previous_value: null, // Would need a read-before-write for actual previous
-        new_value: typeof val === 'string' ? sanitizeInput(val) : val,
-        ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      });
+    // Validate batch size: 1 update + N audit entries
+    const auditFieldKeys = Object.keys(fields);
+    if (1 + auditFieldKeys.length > FIRESTORE_BATCH_LIMIT) {
+      throw new Error(`Batch size ${1 + auditFieldKeys.length} exceeds limit ${FIRESTORE_BATCH_LIMIT}`);
     }
+
+    await runTransaction(db, async (transaction) => {
+      // Read current state for previous_value
+      const currentSnap = await transaction.get(docRef);
+      const currentData = currentSnap.exists() ? currentSnap.data() : {};
+
+      // Write updated fields
+      transaction.update(docRef, sanitized);
+
+      // Create per-field audit entries with actual previous values
+      // doc(collection(...)) generates auto-ID, equivalent to addDoc behavior
+      for (const [key, val] of Object.entries(fields)) {
+        const auditRef = doc(collection(db, 'audit_log'));
+        transaction.set(auditRef, {
+          timestamp: serverTimestamp(),
+          admin_id: user?.uid || 'unknown',
+          admin_email: user?.email || 'unknown',
+          collection: 'programs',
+          document_id: programId,
+          field: `programs/${programId}.${key}`,
+          previous_value: currentData[key] ?? null,
+          new_value: typeof val === 'string' ? sanitizeInput(val) : val,
+          ttl: new Date(Date.now() + AUDIT_TTL_MS),
+        });
+      }
+    });
   },
 
   /**
    * Update a pricing document.
+   * Uses writeBatch for atomic write + audit.
    * @param {string} category
    * @param {Object} data
    */
   async updatePricing(category, data) {
     const user = AuthService.getCurrentUser();
     const docRef = doc(db, 'pricing', category);
-    await updateDoc(docRef, {
+
+    // Read-before-write (outside batch — acceptable for low-contention)
+    const currentSnap = await getDoc(docRef);
+    const currentData = currentSnap.exists() ? currentSnap.data() : {};
+
+    const batch = writeBatch(db);
+
+    batch.update(docRef, {
       ...data,
       updated_at: serverTimestamp(),
       updated_by: user?.email || 'unknown',
     });
 
-    await addDoc(collection(db, 'audit_log'), {
+    // doc(collection(...)) generates auto-ID, equivalent to addDoc behavior
+    const auditRef = doc(collection(db, 'audit_log'));
+    batch.set(auditRef, {
       timestamp: serverTimestamp(),
       admin_id: user?.uid || 'unknown',
       admin_email: user?.email || 'unknown',
       collection: 'pricing',
       document_id: category,
       field: `pricing/${category}`,
-      previous_value: null,
+      previous_value: currentData,
       new_value: data,
-      ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      ttl: new Date(Date.now() + AUDIT_TTL_MS),
     });
+
+    await batch.commit();
   },
 
   /**
    * Merge partial translation updates.
+   * Uses writeBatch for atomic write + audit.
    * @param {string} lang
    * @param {Object} updates - Nested key-value partial updates
    */
@@ -157,18 +201,36 @@ export const AdminAPI = {
     flatUpdates['_meta.updated_at'] = serverTimestamp();
     flatUpdates['_meta.updated_by'] = user?.email || 'unknown';
 
-    await updateDoc(docRef, flatUpdates);
+    // Read-before-write for changed keys only
+    const currentSnap = await getDoc(docRef);
+    const currentData = currentSnap.exists() ? currentSnap.data() : {};
 
-    await addDoc(collection(db, 'audit_log'), {
+    // Extract previous values for changed keys (skip _meta.*)
+    const previousValues = {};
+    for (const key of Object.keys(flatUpdates)) {
+      if (!key.startsWith('_meta.')) {
+        previousValues[key] = getNestedValue(currentData, key) ?? null;
+      }
+    }
+
+    const batch = writeBatch(db);
+
+    batch.update(docRef, flatUpdates);
+
+    // doc(collection(...)) generates auto-ID, equivalent to addDoc behavior
+    const auditRef = doc(collection(db, 'audit_log'));
+    batch.set(auditRef, {
       timestamp: serverTimestamp(),
       admin_id: user?.uid || 'unknown',
       admin_email: user?.email || 'unknown',
       collection: 'translations',
       document_id: lang,
       field: `translations/${lang}`,
-      previous_value: null,
+      previous_value: previousValues,
       new_value: flatUpdates,
-      ttl: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      ttl: new Date(Date.now() + AUDIT_TTL_MS),
     });
+
+    await batch.commit();
   },
 };

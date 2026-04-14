@@ -330,7 +330,7 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 
 - **FR-070**: El home MUST registrar eventos en Firebase Analytics: `home_view`, `cta_click_primary`, `cta_click_secondary`, `cta_click_tertiary`, `diagnostic_start`, `diagnostic_step_{1..6}`, `diagnostic_completed`, `diagnostic_abandoned`, `resource_open`, `resource_premium_unlock`, `program_request`.
 - **FR-071**: Cada evento MUST incluir: `locale` (es/en), `device_class` (xs/sm/md/lg/xl/2xl), `source` (organic/utm/direct), `utm_content` si aplica, `variant` si A/B.
-- **FR-072**: El home MUST declarar consent banner LGPD-light con opciones aceptar/rechazar analytics antes de disparar eventos (cookie `mdg_consent`).
+- **FR-072**: El home MUST declarar consent banner LGPD-light con opciones **aceptar/rechazar** Analytics antes de disparar eventos (cookie `mdg_consent`). **Two-tier consent**: el banner cubre exclusivamente Analytics (FR-070, FR-071); la captura de PII en el diagnóstico (`leads/`, `diagnostics/`) está gateada por el checkbox explícito de FR-012 que es independiente y necesario para la entrega del servicio. Si el usuario **rechaza** el banner: (a) el home renderiza normalmente, (b) el diagnóstico funciona end-to-end, (c) cero eventos Analytics se disparan (ni siquiera `home_view`), (d) `leads/` y `diagnostics/` se siguen escribiendo si el checkbox de FR-012 está marcado, porque son necesarios para mostrar el resultado personalizado. Alineado con Constitution XXII (PII-Append-Only): el banner no sustituye al checkbox explícito de PII.
 
 **Contexto personalizado por intención**
 
@@ -405,7 +405,50 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **Programa Educativo**: `{id, slug, nombre, duracion, audiencia, resultado, estado, segmento:"empresa"|"persona", href}` (existente).
 - **Evento de Conversión**: `{tipo, sessionId, route, variant?, locale, deviceClass, timestamp, utm?}`
 
-### 4.4 Diagnóstico Logic (declarative rules)
+### 4.4 v7 Constitutional Alignment
+
+> Added in v4 clarification session per Constitution v7.0.0 (BaaS-First + Feature-Bounded Architecture + SWR+Offline UX). This section is a MUST for every feature under v7.
+
+#### Firebase services used (Constitution I)
+
+| Service | Usage | Fallback when down |
+|---|---|---|
+| Firestore | Read `programs/`, `resources/`, `testimonials/`, `pages/`, `blocks/` (public published docs). Write `leads/{uid}`, `diagnostics/{uid}` (append-only). | Static fallback via `js/i18n/dictionaries/*.json` + hard-coded HTML in `index.html`. Diagnóstico falls back to `mailto:` form (FR-015). |
+| Auth | Anonymous sign-in (`signInAnonymously`) before any PII write. | PII write blocked → show degraded contact form. |
+| Storage | Read published asset URLs from Firestore doc references (images, PDFs). | Static `img/` + `recursos/` directories in the repo. |
+| Analytics | Event tracking per FR-070..FR-072 (consented only). | Events dropped silently; no blocking. |
+| App Check | Attestation token on all writes to `leads/` and `diagnostics/`. | Write rejected → degraded contact form. |
+
+#### Collections touched (Constitution XXIII)
+
+| Collection | Read | Write | Notes |
+|---|---|---|---|
+| `programs/` | ✅ public-published | ❌ | Seeded by `scripts/seed.js` until feature 010 lands |
+| `resources/` | ✅ public-published | ❌ | Existing catalog |
+| `testimonials/` | ✅ public-published | ❌ | Seeded manually |
+| `pages/` | ✅ public-published (only `pages/home`) | ❌ | Optional; static `index.html` is the fallback |
+| `blocks/` | ✅ public-published | ❌ | Only if `pages/home` references blocks |
+| `leads/{uid}` | ✅ own-uid | ✅ create (append-only per FR-017) | PII per Constitution XXII |
+| `diagnostics/{uid}` | ✅ own-uid | ✅ create (append-only per FR-017) | PII per Constitution XXII |
+| `translations/` | ❌ (flag OFF by default — FR-107) | ❌ | Activates in feature 010 |
+
+#### Seed path (Constitution XXIII)
+
+Feature 009 ships with `scripts/seed.js` that populates `programs/`, `resources/`, `testimonials/` idempotently from a local JSON manifest. The home page renders correctly with empty collections via static fallback. Seed script run order:
+1. Login to Firebase CLI as project owner
+2. `node scripts/seed.js --dry-run` to preview
+3. `node scripts/seed.js --apply` to write
+
+#### Explicit offline UX (Constitution VIII)
+
+- **FR-097**: The home MUST surface cache state with visible pills near the header/footer:
+  - `offline` pill (yellow): stale cache served, revalidation failed
+  - `syncing` pill (blue, animated): revalidation in progress
+  - `fallback` pill (gray): static fallback served (Firestore gated by flag or unreachable on first load)
+- **FR-098**: A Playwright test in `tests/e2e/offline-pill.spec.js` MUST stub Firestore to fail and assert the `offline` pill appears on the home within 3 seconds.
+- **FR-099**: The pills are `aria-live="polite"` so screen readers announce cache state changes.
+
+### 4.5 Diagnóstico Logic (declarative rules)
 
 > Single source of truth para la lógica del diagnóstico (FR-011, FR-012). Este bloque alimenta tanto la implementación como los `.feature` scenarios. Cambios a esta tabla MUST acompañarse de update a tests.
 
@@ -960,6 +1003,10 @@ flowchart LR
 ---
 
 ## 12. Clarifications
+
+### Session 2026-04-14 (v5 — post-Constitution v7 alignment)
+
+- Q: ¿Qué pasa si el usuario rechaza el banner LGPD-light de Analytics? → A: **Two-tier consent** — reject bloquea SOLO eventos Analytics (ni siquiera `home_view`); el home renderiza normalmente; el diagnóstico funciona end-to-end porque la captura de PII está gateada por el checkbox explícito de FR-012, independiente del banner y necesario para entregar el servicio (mostrar resultado personalizado). Alineado con Constitution v7 XXII. [FR-072 actualizado; FR-012; XXII]
 
 ### Session 2026-04-14 (v4 — /iikit-clarify plan-readiness pass)
 

@@ -1,0 +1,34 @@
+{
+  "name": "my-project",
+  "mode": "vendored",
+  "dependencies": {
+    "tessl-labs/intent-integrity-kit": {
+      "version": "2.9.8"
+    },
+    "tessl-labs/quickstart-debug-api-endpoints": {
+      "version": "1.0.5"
+    },
+    "JaviMontano/jm-agentic-development-kit": {
+      "version": "a174232ae3eec7600c1a29a2b4c04c7798eec17c",
+      "source": "https://github.com/JaviMontano/jm-agentic-development-kit"
+    },
+    "tessl/npm-firebase": {
+      "version": "12.2.0"
+    },
+    "tessl/npm-firebase-functions": {
+      "version": "6.4.0"
+    },
+    "tessl/npm-firebase-tools": {
+      "version": "14.15.0"
+    },
+    "tessl-labs/web-accessibility-essentials": {
+      "version": "0.2.2"
+    },
+    "tessl/npm-playwright--test": {
+      "version": "1.55.0"
+    },
+    "tessl-labs/playwright-testing": {
+      "version": "0.2.0"
+    }
+  }
+}

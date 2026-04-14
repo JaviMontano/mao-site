@@ -387,6 +387,22 @@ legal → home (nav)
 
 ---
 
+## 12. Cross-cutting toggles — three-axis adaptive blueprint
+
+Esta IA es compatible — y se refuerza — con el patrón **blueprint homologado + 3 toggles globales** especificado en [adaptive-blueprint.md](./adaptive-blueprint.md). Summary:
+
+- Las 13 páginas (§2) comparten un **shell único** con header + main + footer. La variación entre páginas es qué slots están presentes, no qué layout usan.
+- El header expone 3 toggles visibles en md+ (colapsados en xs/sm): **locale** (ES/EN), **theme** (light/dark), **audience** (persona/empresa).
+- **Theme es ortogonal al contenido** (solo tokens CSS). Locale + audience generan 4 variantes de copy por slot.
+- **Principio F reafirmado** (13 pages): el toggle de audience NO crea páginas nuevas — adapta los slots de las existentes. `/empresas/` y `/personas/` mantienen audiencia intrínseca pero el toggle en su header actúa como "switch to the other landing" (FR-206), no como mutación in-place.
+- **Principio J reforzado** (scent preserved): los CTAs cruzados ahora son conscientes del audience state — `/programas/?audiencia=empresa` es redundante cuando `mdg_audience=empresa` ya está activo, pero se preserva como override explícito.
+- **Acceptance adicional** para esta IA:
+  - [ ] El toggle bar aparece en las 13 páginas vía `SiteHeader` único.
+  - [ ] La matriz 52 (13 pages × 2 locale × 2 audience) está cubierta por el E2E parametrizado (FR-215).
+  - [ ] Ninguna página depende de theme para su contenido.
+
+---
+
 ## 11. Acceptance criteria for this IA spec
 
 Para considerar §1–§10 "aceptados" y proceder a re-plan:

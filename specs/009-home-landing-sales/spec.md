@@ -305,6 +305,7 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **FR-043**: El home MUST usar el sistema tipográfico de 3 niveles: `--font-head 'Poppins'` (headings), `--font-body 'Montserrat'` (body), `--font-note 'Trebuchet MS'` (notes, labels, micro-copy).
 - **FR-044**: El home MUST usar radios `--radius-sm 6px`, `--radius-md 12px`, `--radius-lg 20px`, `--radius-xl 32px` y shadows `--shadow-card`, `--shadow-glow` idénticos a las cartillas.
 - **FR-045**: El home MUST persistir el modo activo (light/dark) en `localStorage` como `mdg_theme`, respetando `prefers-color-scheme` como fallback.
+- **FR-046** *(añadido en v6, derivado de backcasting §3.1 gap B)*: Cada variante de copy por audience (`persona` vs `empresa`) MUST pasar un audit manual de brand voice antes de merge, validando que (a) persona mantiene tono cercano e inspiracional, (b) empresa mantiene tono seguro y basado en resultados, (c) ambas preservan los principios de voz de marca MetodologIA (claridad > cleverness, evidencia > hype, humano > corporativo). El checklist de review del PR MUST incluir sección "Voice audit — persona + empresa" por cada dictionary modificado. *(Deriva de Constitution XI Brand Voice Integrity.)*
 
 **Responsive y diseño nativo**
 
@@ -403,7 +404,9 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **Diagnóstico**: `{uid, leadUid, steps:[{id,answer}], resultado:{nivel,recomendacion}, locale, deviceClass, fuente, startedAt, completedAt, status:"in-progress"|"completed"|"abandoned"}`
 - **Recurso**: `{id, tipo, estado:"free"|"premium", locale, previewUrl, fullUrl}` (existente en el CMS).
 - **Programa Educativo**: `{id, slug, nombre, duracion, audiencia, resultado, estado, segmento:"empresa"|"persona", href}` (existente).
-- **Evento de Conversión**: `{tipo, sessionId, route, variant?, locale, deviceClass, timestamp, utm?}`
+- **Evento de Conversión**: `{tipo, sessionId, route, variant?, locale, deviceClass, audience, timestamp, utm?}`
+- **AudienceState** *(client-only, never persisted to Firestore)*: `{value: "persona"|"empresa"|"unknown", provenance: "url"|"localStorage"|"landing"|"diagnostic"|"utm"|"default", updatedAt, locked: boolean}` — ver adaptive-blueprint.md §3
+- **ContentSlot**: `{slot, pageSlug, variants: {[audience]: {[locale]: {headline, subheadline, cta_label, cta_href, ...}}}}` — bundled en `js/i18n/dictionaries/{pageSlug}.json` en 009; migra a Firestore `slots/{pageSlug}` en 010 — ver adaptive-blueprint.md §2.2
 
 ### 4.4 v7 Constitutional Alignment
 
@@ -1002,7 +1005,23 @@ flowchart LR
 
 ---
 
+## 13. Adaptive Blueprint (3-axis toggles + homogeneous shell)
+
+Todas las 13 páginas (sitemap §2) comparten un único **blueprint homologado** cuyos slots se adaptan declarativamente a la combinación activa de 3 toggles globales: **Locale** (ES/EN), **Theme** (light/dark), **Audience** (persona/empresa/unknown). Theme afecta solo tokens CSS (ortogonal al contenido); Locale + Audience afectan copy vía cascada de fallback.
+
+La especificación completa — FRs FR-200..FR-232, diagrama de shell, slots canónicos, cascada de resolución, provenance de audience state, test plan parametrizado 52 combinaciones — vive en **[adaptive-blueprint.md](./adaptive-blueprint.md)** y es input obligatorio de `plan.md` y `data-model.md`. Las entidades nuevas (`AudienceState`, `ContentSlot`) se integran a §4.3 Key Entities; los FRs se integran a §4.1 tras FR-099.
+
+Este es el patrón "single blueprint, adaptive slots": un shell, 8 combinaciones (2×2×2), cero páginas duplicadas. Los dos únicos nodos con audiencia intrínseca (`/empresas/`, `/personas/`) siguen siendo páginas separadas (decision Sitemap §5 Q1) pero exponen el toggle global como "switch to the other" (FR-206).
+
+---
+
 ## 12. Clarifications
+
+### Session 2026-04-14 (v6 — adaptive blueprint integration)
+
+- Q: ¿Cómo unificar EN/ES + light/dark + personas/empresas en una experiencia de un click? → A: **Three-axis adaptive blueprint** — shell único con 3 toggles globales en el header (locale, theme, audience), slots declarativos con cascada de fallback (audience × locale), theme ortogonal (solo CSS). Las 13 páginas heredan el shell; `/empresas/` y `/personas/` mantienen audiencia intrínseca pero con affordance para cambiar. [nueva §13, nueva adaptive-blueprint.md, FR-200..FR-232, AudienceState y ContentSlot entities, nuevo principio candidato Constitution XXIV ver backcasting.md]
+- Q: ¿El audience state se persiste a Firestore? → A: **No** — es puramente client-side (localStorage + cookie opcional). Nunca se escribe a `leads/{uid}` excepto cuando el diagnóstico infiere `segmento` como parte del flujo PII existente (FR-013). Mantiene el principio XXII PII-Append-Only intacto.
+- Q: ¿Theme puede afectar contenido (ej. logo inverso)? → A: **No** — invariante del blueprint: theme afecta exclusivamente tokens CSS. Cualquier asset dependiente de theme se resuelve por CSS (`var(--logo-url)`), nunca por JS/content. Esto garantiza ortogonalidad 2×2×2 sin combinatoria de copy.
 
 ### Session 2026-04-14 (v5 — post-Constitution v7 alignment)
 

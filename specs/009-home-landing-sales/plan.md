@@ -133,6 +133,15 @@ js/diagnostic/
 ├── logic.js                        + puro: lee diagnostic-logic.json, calcula score/nivel/recomendación
 └── controller.js                   + glue DOM + localStorage TTL 24h + Firestore write + mailto fallback
 
+# Adaptive blueprint — 3 toggles + slots (ver adaptive-blueprint.md)
+js/audience/
+├── state.js                        + puro: cascada de provenance §3.1, get/set/subscribe, lock
+└── controller.js                   + glue DOM: escucha mdg:state-changed, re-renderiza slots [data-audience-variant] y filtros [data-audience-filter]
+js/i18n/
+└── resolver.js                     + implementa cascada §2.3 (audience × locale fallback en 5 niveles)
+js/state/
+└── bus.js                          + event bus mínimo mdg:state-changed (pub/sub, zero deps)
+
 # Analítica (delgado, tipado)
 js/analytics/events.js              + wrapper FR-070..FR-072 + consent gating (mdg_consent)
 
@@ -163,13 +172,16 @@ firebase/
 tests/
 ├── unit/
 │   ├── diagnostic-logic.spec.js    + Vitest — scoring, thresholds, i18n recomendaciones
-│   └── analytics-events.spec.js    + Vitest — gating consent, shape payload, PII scrub
+│   ├── analytics-events.spec.js    + Vitest — gating consent, shape payload, PII scrub, audience field
+│   ├── audience-state.spec.js      + Vitest — provenance cascada §3.1, persist, subscribe, lock
+│   └── i18n-resolver.spec.js       + Vitest — cascada fallback §2.3 (5 niveles), zero raw keys
 ├── integration/
 │   └── security-rules.spec.js      + emulador — per-collection rules (append-only, auth, App Check)
 └── e2e/
     ├── home.spec.js                + Playwright — responsive (6 viewports) + critical CSS fold + i18n switch + axe a11y
     ├── offline.spec.js             + Playwright — stub Firestore fail → pill <3s → recuperación
-    └── diagnostic.spec.js          + Playwright — 6 pasos + resultado + append-only doc + mailto fallback
+    ├── diagnostic.spec.js          + Playwright — 6 pasos + resultado + append-only doc + mailto fallback
+    └── adaptive-blueprint.spec.js  + Playwright parametrizado — matriz 52 (13 pages × 2 locale × 2 audience); FR-215; <100ms transición; zero raw keys
 ```
 
 **Structure Decision**: Static single-project. **Nada de `src/`**, nada de bundler runtime, nada de framework. Tailwind prebuilt sigue siendo la única build step opcional. Los 13 shells comparten `components/SiteHeader.js` + `components/SiteFooter.js` cargados como `<script type="module">` en cada page — esto es el único mecanismo de consistencia cross-page.

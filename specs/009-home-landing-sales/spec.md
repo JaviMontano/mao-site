@@ -283,6 +283,7 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **FR-014**: El sistema MUST persistir el diagnóstico en curso en `localStorage` con TTL 24h para retomar en la misma sesión o dentro del día.
 - **FR-015**: El sistema MUST degradar el CTA a un formulario de contacto cuando Firestore no esté disponible, mostrando mensaje claro ("Servicio temporal fuera — usa este formulario").
 - **FR-016**: El sistema MUST generar una cookie `mdg_returning` (SHA-256 del email, Secure, SameSite=Lax, 180 días) al completar el diagnóstico, y cambiar el CTA primario a "Continuar tu ruta" cuando esté presente.
+- **FR-017**: El sistema MUST aplicar **append-only** a `leads/{uid}` y `diagnostics/{uid}`: cada completion crea documentos nuevos bajo el anonymous uid de la sesión actual, aunque el email coincida con un lead previo. La deduplicación por email es responsabilidad de una reconciliación admin diferida a feature `010-backoffice-cms`. Razón: los anonymous uids son device-scoped y las security rules validan `auth.uid`, no el hash de email.
 
 **Recursos**
 
@@ -336,7 +337,7 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **FR-080**: El home MUST leer `utm_content` y cuando sea `diagnostico`, `recurso` u `oferta`, destacar visualmente la ruta correspondiente con un halo/glow gold sutil, sin cambiar la jerarquía base.
 - **FR-081**: El home MUST detectar la cookie `mdg_returning` y mutar el CTA primario a "Continuar tu ruta" + link directo al diagnóstico con estado restaurado.
 
-**Backoffice CMS — gestión sin código**
+**Backoffice CMS — gestión sin código** *(FR-100..FR-120 movidos a feature `010-backoffice-cms` por decisión v4 clarification Q1. Feature 009 consume `js/cms/` existente en modo read-only sobre colecciones ya seedeadas manualmente. La única escritura de 009 es a `leads/{uid}` y `diagnostics/{uid}` bajo anonymous auth. Los FRs se listan aquí por trazabilidad histórica pero su implementación es scope de 010.)*
 
 - **FR-100**: El sistema MUST exponer un backoffice en `/admin/` (autenticado con Firebase Auth + custom claim `admin:true`) que permita gestionar sin tocar código: productos, servicios, precios, URLs, traducciones, recursos, testimonios, páginas, bloques de contenido, imágenes, SEO metadata, feature flags, y variantes de experimentos.
 - **FR-101**: El backoffice MUST proveer CRUD completo sobre las colecciones Firestore: `products`, `services`, `programs`, `pricing`, `resources`, `testimonials`, `pages`, `blocks`, `assets`, `seo`, `flags`, `experiments`, `translations`, `leads`, `diagnostics`, `settings`.
@@ -345,7 +346,7 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **FR-104**: Las páginas del sitio (`pages/{slug}`) MUST modelarse como documento con: título, slug, locale, SEO metadata, array ordenado de bloques con overrides, estado (draft/scheduled/published), fecha publicación, autor, versionado.
 - **FR-105**: Las URLs MUST ser editables — cada `pages/{slug}` define su `path` canónico + array de `redirects` (array de paths antiguos). Un router client-side en el home y páginas dinámicas resuelve slug→path usando un índice cacheado.
 - **FR-106**: Los precios MUST vivir en `pricing/{id}` con: moneda, valor base, descuentos, fecha vigencia desde/hasta, multi-moneda (COP/USD/MXN/EUR), estado activo/archivado, producto/servicio asociado.
-- **FR-107**: Las traducciones MUST vivir en `translations/{locale}/{namespace}/{key}` reemplazando el fetch estático de `js/i18n/dictionaries/*.json` cuando el flag `cms-i18n` esté activo — con fallback estático si Firestore no responde.
+- **FR-107** *(movido a feature 010-backoffice-cms; en 009 el flag `cms-i18n` se mantiene OFF por default y las traducciones se sirven exclusivamente desde `js/i18n/dictionaries/*.json`. `migration-bridge.js` conserva el código dual-source pero solo activa lectura desde Firestore cuando 010 habilite el flag.)*
 - **FR-108**: El backoffice MUST soportar **versionado y rollback**: cada escritura a una entidad CMS crea un documento en `{entity}_versions/{id}/{versionId}` con snapshot completo, autor, timestamp y diff resumen. El admin puede ver historial y restaurar.
 - **FR-109**: El backoffice MUST soportar **audit log** inmutable en `audit/{eventId}` con: actor (uid), acción (create/update/delete/publish), entidad, antes/después hash, IP, user-agent, timestamp server.
 - **FR-110**: El backoffice MUST proveer **workflow de publicación**: estados `draft → in-review → scheduled → published → archived` con roles (`editor`, `reviewer`, `publisher`, `admin`) controlados por custom claims.
@@ -368,7 +369,8 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 
 - **FR-090**: El home MUST cargar el LCP en ≤2.5s en 4G (slow 3G Fast simulación) y ≤1.5s en desktop cable.
 - **FR-091**: El home MUST tener TBT <200ms, CLS <0.1, INP <200ms.
-- **FR-092**: El home MUST inline el critical CSS del fold y diferir el resto (`media="print"` + `onload`).
+- **FR-092**: El home MUST inline critical CSS del fold (hand-authored en `estilos/critical.css`, embebido en `<style>` del `<head>`: tokens + hero layout + CTA primario + typography above-the-fold) y diferir `dist/output.css` vía `media="print"` + `onload` swap. Sin herramientas de extracción automática (ver FR-095).
+- **FR-096**: El archivo `estilos/critical.css` MUST mantenerse como source-of-truth hand-authored; los cambios a tokens o al hero MUST reflejarse manualmente. Un test Playwright valida que el primer paint renderiza hero+CTA sin FOUC.
 - **FR-093**: El home MUST cargar fuentes con `font-display: swap` y preconnect a `fonts.googleapis.com`.
 - **FR-094**: El home MUST diferir toda JS no crítica con `defer` o `type="module"`.
 - **FR-095**: El home MUST consumir los assets existentes del proyecto (`dist/output.css`, `components/SiteHeader.js`, `components/SiteFooter.js`, `js/icons.js`) sin introducir dependencias nuevas.
@@ -402,6 +404,43 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **Recurso**: `{id, tipo, estado:"free"|"premium", locale, previewUrl, fullUrl}` (existente en el CMS).
 - **Programa Educativo**: `{id, slug, nombre, duracion, audiencia, resultado, estado, segmento:"empresa"|"persona", href}` (existente).
 - **Evento de Conversión**: `{tipo, sessionId, route, variant?, locale, deviceClass, timestamp, utm?}`
+
+### 4.4 Diagnóstico Logic (declarative rules)
+
+> Single source of truth para la lógica del diagnóstico (FR-011, FR-012). Este bloque alimenta tanto la implementación como los `.feature` scenarios. Cambios a esta tabla MUST acompañarse de update a tests.
+
+**Preguntas (6 pasos, obligatorias, orden fijo):**
+
+| step | id | pregunta_es | pregunta_en | opciones (id · weight) |
+|---|---|---|---|---|
+| 1 | `q_segmento` | ¿Qué representas hoy? | What best describes you today? | `persona·0`, `lider_equipo·1`, `fundador·2`, `directivo·3` |
+| 2 | `q_madurez` | ¿Cuál es tu nivel actual de metodología de trabajo? | What's your current methodology maturity? | `sin_metodo·0`, `ad_hoc·1`, `scrum_basico·2`, `marco_propio·3` |
+| 3 | `q_dolor` | ¿Cuál es tu mayor dolor hoy? | What's your biggest pain point? | `claridad·1`, `velocidad·2`, `calidad·2`, `alineacion·3` |
+| 4 | `q_urgencia` | ¿En cuánto tiempo necesitas resultados? | How urgently do you need results? | `90d·3`, `6m·2`, `12m·1`, `explorando·0` |
+| 5 | `q_equipo` | ¿Cuántas personas impacta tu decisión? | How many people does your decision impact? | `solo_yo·0`, `2_10·1`, `11_50·2`, `50_plus·3` |
+| 6 | `q_contacto` | Email + nombre + consent (no tiene weight; es el paso de captura PII descrito en FR-012) | — | — |
+
+**Scoring:** suma de weights de pasos 1..5 → rango 0..15.
+
+**Thresholds → nivel:**
+
+| score | nivel_id | nivel_es | nivel_en |
+|---|---|---|---|
+| 0–4 | `explorer` | Explorador | Explorer |
+| 5–9 | `builder` | Constructor | Builder |
+| 10–15 | `strategist` | Estratega | Strategist |
+
+**Recomendación (i18n, por nivel):**
+
+| nivel_id | titulo_es | titulo_en | cta_id | cta_href |
+|---|---|---|---|---|
+| `explorer` | Empieza con recursos gratuitos | Start with free resources | `go_resources` | `/recursos/` |
+| `builder` | Conoce nuestros programas para equipos | Explore our team programs | `go_personas` | `/personas/` |
+| `strategist` | Agenda una sesión de estrategia | Book a strategy session | `go_empresas` | `/empresas/` |
+
+**Regla de resultado:** al completar paso 6, el sistema calcula `score = sum(weights)`, mapea a `nivel_id`, resuelve `recomendacion` en el locale activo, persiste en `diagnostics/{uid}.resultado = {score, nivel, recomendacion, cta}` y muestra pantalla final con el CTA.
+
+**Empates / edge cases:** si falta una respuesta (no debería: todos los pasos son obligatorios), el paso se bloquea hasta responder. No hay ponderación por combinaciones; es suma simple. Los thresholds son fijos en v1 (no se editan en 009).
 
 ---
 
@@ -447,11 +486,14 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **A-003**: El catálogo de recursos en `recursos/` está operativo y los premium están marcados.
 - **A-004**: La consola Firebase del proyecto permite crear colecciones `diagnostics/` y `leads/` con security rules bajo el modelo de sesión anónima.
 - **A-005**: Los usuarios LatAm aceptan consent banner LGPD-light sin double opt-in.
+- **A-006**: Feature `010-backoffice-cms` se ejecuta DESPUÉS de 009. Durante 009 las colecciones Firestore no-PII (`programs`, `resources`, `testimonials`, `pages`, `blocks`) se seedean manualmente (script en `scripts/seed.js`) o permanecen vacías con fallback a contenido estático en `js/i18n/dictionaries/` y páginas existentes en `empresas/`, `personas/`, `recursos/`.
 
 ---
 
 ## 7. Out of Scope
 
+- **Backoffice CMS completo (FR-100..FR-120)** — movido a feature `010-backoffice-cms`. Incluye: schema registry, block editor, versioning, audit log, publish workflow, feature flags UI, experiments, asset upload pipeline, preview signed tokens, dashboard métricas, export CSV/JSON, i18n desde Firestore, schema migrations. 009 opera read-only sobre datos seedeados manualmente (A-006).
+- **Deduplicación de leads por email** — los writes son append-only (FR-017). La reconciliación es scope de 010 (o feature posterior).
 - Integración email marketing (Mailchimp, Brevo) — fuera del MVP, se hace en fase 2.
 - A/B testing framework — la infraestructura se prepara (`variant` en eventos) pero no se lanzan experimentos en el v1.
 - Nuevas páginas de programas educativos — solo reutilización.
@@ -473,6 +515,8 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 | R-06 | Usuarios rechazan consent → eventos no se disparan | Medio | Media | Eventos esenciales (page_view) son cookieless; el resto requieren consent |
 | R-07 | Touch targets fallan en iOS Safari por hit-area reducida | Medio | Media | hitSlop CSS padding invisible + test manual en 3 devices |
 | R-08 | Spec ambigua en fase plan | Alto | Baja | Este documento v2 + `/iikit-clarify` siguiente ronda si surgen dudas |
+| R-09 | Leads duplicados en Firestore por append-only (FR-017) degradan analítica | Medio | Media | Acepted en 009; reconciliación por email programada para feature 010; dashboard admin filtra por email más reciente hasta entonces |
+| R-10 | Split 009/010 genera contenido estático stale que requiere redeploy | Medio | Media | Seed script en `scripts/seed.js` + convención "cambios de contenido requieren PR" durante la vida de 009; 010 rompe esa convención |
 
 ---
 
@@ -916,6 +960,14 @@ flowchart LR
 ---
 
 ## 12. Clarifications
+
+### Session 2026-04-14 (v4 — /iikit-clarify plan-readiness pass)
+
+- Q: ¿Mantener el backoffice CMS (FR-100..FR-120) en esta feature o dividir? → A: **Split** — 009 se reduce a home + diagnóstico + consumo de `js/cms/` existente; los FR-100..FR-120 se mueven a feature nueva `010-backoffice-cms`. Razón: US-1..US-5 entregan valor independientes del CMS; partir reduce el plan a tamaño sprint y respeta phase discipline. [FR-100..FR-120 → mover a 010; §7 Out of Scope actualizado; §9/§10/§11 secciones CMS marcadas "coverage en 010"]
+- Q: ¿Lógica del diagnóstico (6 pasos + scoring + nivel + recomendación)? → A: **Declarativa en spec §4.4** — tabla de datos (preguntas, opciones, pesos, thresholds, recomendación i18n) dentro de spec.md para que TDD pueda escribir `.feature` scenarios contra ella sin decidir en plan. [nueva §4.4 "Diagnóstico Logic"; FR-011, FR-012, US-1]
+- Q: ¿Estado default del flag `cms-i18n` al lanzar 009? → A: **OFF** — 009 lanza con dictionaries estáticos de `js/i18n/` como única fuente; `migration-bridge` sigue soportando dual-source pero no lee Firestore `translations/` hasta que 010 active el flag. Razón: cero acoplamiento con 010, 009 shippable independiente. [FR-107 actualizado; A-006 nuevo]
+- Q: ¿Qué hacer con leads/diagnostics cuando email existente colisiona en anonymous auth? → A: **Append-only** — cada completion crea docs nuevos `leads/{uid}` y `diagnostics/{uid}`; la deduplicación por email se difiere a una reconciliación admin en 010 (o posterior). Razón: anonymous uids son device-scoped; merging requiere leer across-uids y romper security rules. [FR-017 nuevo; NFR-005; US-1; risk R-09 nuevo]
+- Q: ¿Cómo reconciliar "inline critical CSS" (FR-092) con "reusar `dist/output.css` sin nuevas deps" (FR-095)? → A: **Hand-authored `estilos/critical.css`** inlined en `<style>` del `<head>` (tokens + hero + CTA + above-the-fold typography) + `dist/output.css` diferido vía `media="print"` + `onload`. Cero dependencias nuevas, control manual sobre una sola página. [FR-092 actualizado; FR-095 mantenido; nuevo FR-096]
 
 ### Session 2026-04-14 (v3 — BFF architecture + Backoffice CMS + C4/BPMN)
 

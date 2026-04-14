@@ -168,8 +168,29 @@ firebase/
 ├── firestore.rules                 ~ append-only leads/ diagnostics/ + public-read programs/ resources/ testimonials/
 └── firestore.indexes.json          ~ composite (status, order) para programs/resources/testimonials
 
-# Tests — consolidados
+# Test config (nuevo, por robustness v7)
+vitest.config.js                    + thresholds per-capa (NFR-008), exclude list, v8 coverage provider
+playwright.config.js                ~ workers: 4, sharding por (locale, audience), budget <3min (NFR-012)
+cucumber.config.js                  + BDD runner para tests/features (NFR-009)
+
+# Tests — consolidados + robustness additions
 tests/
+├── features/                       + .feature files ATDD, uno por User Story
+│   ├── us-1-diagnostico.feature
+│   ├── us-2-recursos.feature
+│   ├── us-3-programas.feature
+│   ├── us-4-identidad.feature
+│   ├── us-5-responsive.feature
+│   ├── us-6-adaptive-blueprint.feature   + cubre FR-200..FR-232
+│   ├── us-7-sitemap-ia.feature            + cubre sitemap + redirects + 404
+│   └── step_definitions/
+│       ├── common.steps.js
+│       ├── diagnostic.steps.js
+│       ├── i18n.steps.js
+│       ├── audience.steps.js
+│       ├── theme.steps.js
+│       ├── offline.steps.js
+│       └── analytics.steps.js
 ├── unit/
 │   ├── diagnostic-logic.spec.js    + Vitest — scoring, thresholds, i18n recomendaciones
 │   ├── analytics-events.spec.js    + Vitest — gating consent, shape payload, PII scrub, audience field
@@ -181,10 +202,20 @@ tests/
     ├── home.spec.js                + Playwright — responsive (6 viewports) + critical CSS fold + i18n switch + axe a11y
     ├── offline.spec.js             + Playwright — stub Firestore fail → pill <3s → recuperación
     ├── diagnostic.spec.js          + Playwright — 6 pasos + resultado + append-only doc + mailto fallback
-    └── adaptive-blueprint.spec.js  + Playwright parametrizado — matriz 52 (13 pages × 2 locale × 2 audience); FR-215; <100ms transición; zero raw keys
+    ├── adaptive-blueprint.spec.js  + Playwright parametrizado — matriz 52 (13 pages × 2 locale × 2 audience); FR-215; <100ms transición; zero raw keys
+    ├── flow-linkedin-b2b.spec.js   + independent flow 1 (utm inference + returning user)
+    ├── flow-mobile-flaky.spec.js   + independent flow 2 (cache + mailto fallback)
+    ├── flow-keyboard-a11y.spec.js  + independent flow 3 (keyboard + aria-live)
+    ├── flow-seo-crawler.spec.js    + independent flow 4 (Googlebot no-JS)
+    ├── flow-lgpd-audit.spec.js     + independent flow 5 (consent rejection + PII still works)
+    ├── flow-theme-chaos.spec.js    + independent flow 6 (20x theme toggle stress)
+    ├── flow-social-share.spec.js   + independent flow 10 (OG meta per slug)
+    └── seed-roundtrip.spec.js      + independent flow 8 (content editor path)
 ```
 
 **Structure Decision**: Static single-project. **Nada de `src/`**, nada de bundler runtime, nada de framework. Tailwind prebuilt sigue siendo la única build step opcional. Los 13 shells comparten `components/SiteHeader.js` + `components/SiteFooter.js` cargados como `<script type="module">` en cada page — esto es el único mecanismo de consistencia cross-page.
+
+**Delta robustness v7**: +3 config files (vitest, playwright update, cucumber) + `tests/features/` (7 .feature files + 7 step_definitions) + 8 independent flow E2E tests + 1 integration test (`cache-manager-corruption`). Total archivos nuevos netos ahora: ~14 → **~35**. El incremento es en tests, no en production code; respeta NFR-008 (coverage layered) y NFR-013 (independent flows). Los módulos de producción permanecen en **~14**.
 
 ## Architecture (reutiliza spec §9, sin cambios)
 

@@ -248,6 +248,49 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 
 ---
 
+### US-6 — Blueprint Adaptativo de 3 Ejes (Priority: P1)
+
+*Añadida en v7 robustness pass — ver robustness-v1.md §F.4. Cubre los FR-200..FR-232 y FR-099b que quedaban huérfanos.*
+
+Un visitante llega al sitio en cualquier página de las 13 y ve una experiencia coherente con 3 toggles (locale ES/EN, theme light/dark, audience persona/empresa) en el header. Un click en cualquiera cambia el shell completo en <100ms sin recargar, sin flicker, sin pérdida de contexto. Visitantes que llegan con `?audiencia=X` ven esa audiencia pre-seleccionada antes del primer paint. El contenido de cada slot se adapta a la combinación activa usando cascada de fallback; nunca aparece una key cruda en el DOM.
+
+**Why this priority**: Sin el blueprint homologado, el sitio es inconsistente, el audience switching no existe, y cada página requiere implementación a medida. Es la base de la experiencia personalizada cross-page.
+
+**Independent test**: Recorriendo las 13 páginas × 4 combinaciones (locale × audience), ninguna presenta keys crudas en el DOM, layout roto, o transición >100ms. El test parametrizado `tests/e2e/adaptive-blueprint.spec.js` cubre las 52 validaciones.
+
+**Acceptance Scenarios**:
+
+1. **Given** un visitante en `/programas/` con `mdg_audience=persona`, **When** hace click en el toggle de audience a `empresa`, **Then** hero copy, proof section y filtered programs se actualizan en <100ms, `localStorage.mdg_audience='empresa'` y `html[data-audience]='empresa'`.
+2. **Given** un visitante en cualquiera de las 13 páginas en md+, **When** inspecciona el header, **Then** los 3 toggles están visibles; en xs/sm colapsan a un botón "⚙ Preferencias" con `aria-expanded`.
+3. **Given** URL `/metodo/?audiencia=empresa`, **When** la página carga, **Then** `html[data-audience]='empresa'` se setea **antes** del primer paint (inline `<script>` en `<head>`), sin flicker.
+4. **Given** un visitante navega por teclado, **When** tabula al toggle de audience y presiona `Arrow Right`, **Then** la otra opción activa, `aria-live` anuncia "Cambiado a vista empresas" / "Switched to business view".
+5. **Given** key i18n `home.hero.empresa.en` ausente, **When** el resolver ejecuta cascada, **Then** cae a `home.hero.unknown.en` y nunca muestra la key cruda.
+6. **Given** un cambio de theme light→dark, **When** se re-pintan los slots, **Then** el contenido (hero, proof, CTA) NO cambia — solo tokens CSS. Ortogonalidad verificada.
+
+---
+
+### US-7 — Sitemap de 13 páginas homologado (Priority: P1)
+
+*Añadida en v7 robustness pass — cubre sitemap.md §2 (IA) + redirects legacy.*
+
+Un visitante, un crawler o un auditor recorre el sitio completo y encuentra exactamente 13 páginas (incluyendo 404), cada una siguiendo el shell homologado del blueprint adaptativo, sin orphans ni dead-ends. Los redirects legacy (`/vision.html`, `/servicios/`, `/ruta/`, `/sitemap.html`) resuelven a destinos canónicos con 301. El `sitemap.xml` refleja exactamente 12 URLs públicas (excluyendo 404). El nav primario expone 5 items; el footer cubre las 12 restantes.
+
+**Why this priority**: El constraint de 13 páginas es arquitectónico. Sin test automatizado, el drift es certero: una feature futura añade una página sin darse cuenta y rompe la IA.
+
+**Independent test**: Un crawler sin JS visita `/` y sigue enlaces; no encuentra más de 12 URLs únicas (excluyendo detail slugs dinámicos `?slug=`). Un GET a cada URL legacy devuelve 301 con Location correcto. Script `scripts/count-pages.js` cuenta exactamente 13 `.html` canónicos bajo el directorio root.
+
+**Acceptance Scenarios**:
+
+1. **Given** `sitemap.xml` generado por `scripts/generate-sitemap-xml.js`, **When** se parsea, **Then** contiene exactamente 12 `<url>` entries.
+2. **Given** GET `/vision.html`, **Then** response es 301 con Location `/metodo/`.
+3. **Given** GET `/servicios/`, **Then** response es 301 con Location `/programas/`.
+4. **Given** GET `/ruta/`, **Then** response es 301 con Location `/diagnostico/?utm_source=legacy-ruta`.
+5. **Given** GET `/nonexistent`, **Then** response es 404 y body renderiza `404.html` shell con botón "Volver al home".
+6. **Given** el nav primario renderizado, **When** inspeccionado, **Then** contiene exactamente 5 nav items + 1 CTA button + 3 toggles.
+7. **Given** el footer renderizado, **When** inspeccionado, **Then** lista las 12 páginas públicas.
+
+---
+
 ### Edge Cases
 
 - Visitante con JavaScript deshabilitado: hero y los 3 CTAs renderizan como HTML estático con hrefs funcionales a `/diagnostico/`, `/recursos/`, `/empresas/`. El diagnóstico degrada a formulario de contacto simple.
@@ -385,6 +428,22 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 - **NFR-005**: Firestore security rules MUST restringir escritura a `diagnostics/{uid}` y `leads/{uid}` solo al uid de la sesión anónima que las creó.
 - **NFR-006**: PII protegida — email nunca en logs de cliente, eventos de Analytics sin email raw (solo hash).
 
+**Calidad (añadidos en v7 robustness pass, ver robustness-v1.md §§B-D)**
+
+- **NFR-007** *(Testing Discipline)*: El desarrollo MUST seguir el ciclo **ATDD outer loop + TDD inner loop** especificado en robustness-v1.md §B: cada `.feature` scenario se escribe antes de step definitions; cada unit test se escribe antes del módulo. Commits que violen el orden (código antes que test) son rechazados por revisión.
+- **NFR-008** *(Coverage contract)*: La cobertura de código MUST cumplir:
+  - **Pure modules** (`js/diagnostic/logic.js`, `js/state/bus.js`): **100% lines + 100% branches**
+  - **Logic modules** (`js/audience/state.js`, `js/i18n/resolver.js`, `js/analytics/events.js`, `js/theme/toggle.js`): **≥95% lines + ≥90% branches**
+  - **Controllers** (`js/diagnostic/controller.js`, `js/audience/controller.js`): **≥80% lines + ≥75% branches**
+  - **Web Components** (`components/*.js`): **≥70% lines + ≥65% branches**
+  - **Global weighted**: **≥85% lines + ≥80% branches**
+  Enforced by `vitest.config.js` thresholds; CI failure on miss.
+- **NFR-009** *(ATDD coverage)*: Cada User Story MUST tener un `.feature` file en `tests/features/us-N-<name>.feature` con al menos un scenario por acceptance scenario del spec. Cada `.feature` inicia con un header `@covers FR-... @story US-... @success SC-...` para trazabilidad automática.
+- **NFR-010** *(Test traceability)*: Cada `.spec.js` y `.feature` MUST comenzar con el header de trazabilidad (robustness-v1.md §C schema template). Pre-commit hook rechaza archivos sin header.
+- **NFR-011** *(Integration testing policy)*: Security rules y auth flows MUST probarse exclusivamente contra Firebase Emulator Suite (no mocks). Network failure scenarios y analytics emission MUST probarse con mocks (no emulator). Policy hybrid declarada en robustness-v1.md §A Q3.
+- **NFR-012** *(E2E performance budget)*: El test E2E parametrizado (`adaptive-blueprint.spec.js` matriz 52) + los 10 flows independientes (§E) MUST ejecutarse en <3 min wall time total con 4 Playwright workers en paralelo.
+- **NFR-013** *(Independent flows)*: El asistente QA entrega 10 flujos black-box adicionales en robustness-v1.md §E que NO derivan directamente de FRs sino de historias end-to-end emergentes. Cada flow se materializa como 1 archivo de test (8 E2E + 1 unit + 1 integration).
+
 ### 4.3 Key Entities
 
 - **Product**: `{id, slug, title_i18n, description_i18n, type:"course|workshop|bootcamp|consulting|service", segmento, pricingRef, assets[], tags[], status, createdAt, updatedAt, version}`
@@ -505,6 +564,16 @@ Feature 009 ships with `scripts/seed.js` that populates `programs/`, `resources/
 - **SC-006**: **Consistencia visual cartillas ↔ home** — ≥95% en auditoría lado-a-lado (mismos custom properties, mismos patrones componentes, mismo sistema tipográfico).
 - **SC-007**: **Lighthouse** — ≥90 en Performance, Accessibility, Best Practices, SEO en mobile y desktop.
 - **SC-008**: **Usabilidad** — ≥90% de usuarios en prueba moderada identifican los 3 caminos y eligen uno en ≤10 segundos.
+
+**Añadidos en v7 robustness pass (ver robustness-v1.md §F.5)**
+
+- **SC-013**: **Toggle transition time** — cualquier cambio de locale, theme o audience MUST completar transición DOM en <100ms medido de click-event a next-paint (E2E Playwright `performance.now()`).
+- **SC-014**: **Adaptive blueprint matrix** — el test parametrizado `tests/e2e/adaptive-blueprint.spec.js` MUST pasar **52/52** combinaciones (13 pages × 2 locale × 2 audience). Sin skips, sin flakes en 10 runs consecutivos.
+- **SC-015**: **Zero raw i18n keys** — cero ocurrencias de keys crudas (`{pageSlug}.{slot}.{...}`) en el DOM renderizado de producción, en cualquier combinación. Enforced por aserción regex en cada E2E.
+- **SC-016**: **13 páginas exactas** — el recuento físico de páginas canónicas (archivos `index.html` y `404.html` bajo root, excluyendo `dist/`, `node_modules/`, subdirectorios detail) MUST ser exactamente 13. Enforced por `scripts/count-pages.js` en pre-commit.
+- **SC-017**: **Lead source traceability** — 100% de los leads escritos a `leads/{uid}` MUST tener un campo `fuente` no vacío mapeable a uno de los 3 CTAs (valores enumerados: `home-diagnostic`, `home-resource-premium`, `contact-form`, `insights-subscribe`, `diagnostic-mailto-fallback`). Verificado en `tests/integration/security-rules.spec.js`.
+- **SC-018**: **Coverage floor** — el pipeline CI MUST enforzar los thresholds de NFR-008. Merge bloqueado si coverage global <85% o si un módulo pure <100%.
+- **SC-019**: **Backcasting closed loop** — cada FR del spec MUST tener trazabilidad explícita a ≥1 US, cada US a ≥1 SC, cada SC a ≥1 Constitution principle. Matriz verificable en robustness-v1.md §F.1-F.3, sin orphans.
 - **SC-009**: **Conversión total leads** — uplift ≥2× vs baseline en los primeros 30 días post-lanzamiento `[BASELINE-TBD]`.
 - **SC-010**: **Cobertura i18n** — 0 cadenas sin traducir en auditoría automática ES y EN.
 - **SC-011**: **Matriz responsive** — 6/6 viewports (xs/sm/md/lg/xl/2xl) pasan el checklist de 12 puntos de US-5.
@@ -1017,6 +1086,16 @@ Este es el patrón "single blueprint, adaptive slots": un shell, 8 combinaciones
 ---
 
 ## 12. Clarifications
+
+### Session 2026-04-14 (v7 — robustness pass: TDD/ATDD, 85% coverage, independent flows, backwards trace)
+
+- Q: ¿Cómo endurecer el spec antes de `/iikit-04-testify` para evitar que un test débil enmascare bugs? → A: **Robustness pass v1** con ciclo TDD/ATDD explícito, schemas de unit tests, contrato de cobertura 85% weighted layered, 10 flows independientes black-box aportados por el asistente, y backcasting inverso FR→US→SC→Constitution. Todo documentado en `robustness-v1.md`. [NFR-007..NFR-013, SC-013..SC-019, US-6 y US-7 nuevas para cubrir orphans FR-200..FR-232]
+- Q: ¿85% de cobertura es el número correcto? → A: Sí pero **weighted layered**: pure modules 100%, logic 95%, controllers 80%, global weighted ≥85%. Mutation testing opcional post-merge con Stryker sobre pure modules. [NFR-008]
+- Q: ¿TDD y ATDD? → A: **Complementarios, no excluyentes**. ATDD outer loop (`.feature` files from US), TDD inner loop (unit tests from module needs). Pattern: red acceptance → red unit → green unit → green acceptance → refactor. [NFR-007, NFR-009, robustness-v1.md §B]
+- Q: ¿Mocks o emulator en integration tests? → A: **Hybrid declarado**. Security rules + auth = solo emulator. Network failures + analytics = solo mocks. [NFR-011]
+- Q: ¿Cómo prevenir "test theater"? → A: Header de trazabilidad obligatorio en cada `.spec.js` con `@covers`, `@story`, `@success` tags; pre-commit hook rechaza tests sin header. Mutation testing opcional como segunda capa. [NFR-010]
+- Q: ¿Cómo cubrir flujos emergentes que no están en FRs? → A: El asistente aporta **10 flujos black-box** (LinkedIn B2B, mobile flaky, keyboard a11y, SEO crawler, LGPD audit, theme chaos, dev onboarding, content editor, cache poisoning, social share) como QA independiente. Cada flow se materializa como test adicional. [NFR-013, robustness-v1.md §E]
+- Q: ¿Hay FRs huérfanos sin User Story? → A: **Sí — 15 FRs (FR-097..099b, FR-200..FR-232) eran orphans**. Corrección: añadir **US-6** (blueprint adaptativo) y **US-7** (sitemap 13 páginas) para cerrar el loop. Backcasting §F.4 detalla scenarios. [US-6, US-7, SC-013..SC-017]
 
 ### Session 2026-04-14 (v6 — adaptive blueprint integration)
 

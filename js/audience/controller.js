@@ -7,7 +7,7 @@
  */
 
 import { getAudience, setAudience, subscribe } from './state.js';
-import { resolveSlot } from '../blueprint/slot-resolver.js';
+import { resolveSlot } from '../blueprint/slot-resolver-v2.js';
 import { emit } from '../state/bus.js';
 
 /** @type {{ pageSlug: string, locale: string, dictionaries: object, firestoreSlots: object, cmsEnabled: boolean } | null} */

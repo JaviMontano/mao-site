@@ -1,15 +1,15 @@
 /**
- * SiteHeader — Canonical NeoSwiss header matching Montano_Javier_Canonical.html
- * Uses exact class names from neoswiss-system.css:
- *   .site-header, .menu-toggle, .site-header__brand, .site-header__logo-wrap,
- *   .site-header__text, .site-header__name, .site-header__role,
- *   .theme-toggle, .site-header__cta
+ * SiteHeader — Canonical NeoSwiss header
+ *
+ * Mobile (≤640px): hamburger + brand + theme-toggle (CTA moves to sidebar)
+ * Desktop (>640px): hamburger(hidden) + brand + theme-toggle + CTA
+ * Ecosystem hover-reveal on brand (desktop only)
  *
  * @license Copyleft
  * @copyright MetodologIA
  */
 
-import { getTheme, toggleTheme } from '../js/theme/toggle.js?v=2';
+import { getTheme, toggleTheme } from '../js/theme/toggle.js?v=3';
 
 const LOGO_SVG = `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MetodologIA">
   <defs><linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0A122A"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs>
@@ -23,8 +23,10 @@ const SUN_SVG = `<svg class="theme-toggle__sun" width="18" height="18" viewBox="
 const MOON_SVG = `<svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
 
 const I18N = {
-  es: { cta: 'Primera Conversación', ctaShort: 'Contacto', role: 'Success', roleBrand: '· as a Service' },
-  en: { cta: 'First Conversation', ctaShort: 'Contact', role: 'Success', roleBrand: '· as a Service' },
+  es: { cta: 'Primera Conversación', ctaShort: 'Contacto', role: 'Success', roleBrand: '· as a Service',
+        eco: '<strong>4</strong> Founders · <strong>10+</strong> Embajadores · <strong>50+</strong> Nodos' },
+  en: { cta: 'First Conversation', ctaShort: 'Contact', role: 'Success', roleBrand: '· as a Service',
+        eco: '<strong>4</strong> Founders · <strong>10+</strong> Ambassadors · <strong>50+</strong> Nodes' },
 };
 
 class SiteHeader extends HTMLElement {
@@ -53,6 +55,7 @@ class SiteHeader extends HTMLElement {
         <span class="site-header__text">
           <span class="site-header__name">MetodologIA</span>
           <span class="site-header__role">${t.role} <span class="site-header__role-brand">${t.roleBrand}</span></span>
+          <span class="site-header__ecosystem" data-cms="ecosystem.header">${t.eco}</span>
         </span>
       </a>
 
@@ -68,7 +71,6 @@ class SiteHeader extends HTMLElement {
   }
 
   _setupEvents() {
-    // Menu toggle → sidebar
     const menuBtn = this.querySelector('.menu-toggle');
     if (menuBtn) {
       menuBtn.addEventListener('click', () => {
@@ -78,7 +80,6 @@ class SiteHeader extends HTMLElement {
       });
     }
 
-    // Theme toggle
     const themeBtn = this.querySelector('.theme-toggle');
     if (themeBtn) {
       themeBtn.addEventListener('click', () => {

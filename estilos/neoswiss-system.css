@@ -368,17 +368,42 @@ strong {
   display: none;
 }
 
+/* Ecosystem hover-reveal (desktop only) */
+.site-header__ecosystem {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--brand-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height .3s var(--ease), opacity .3s var(--ease);
+}
+
+.site-header__brand:hover .site-header__ecosystem,
+.site-header__brand:focus-within .site-header__ecosystem {
+  max-height: 1.5em;
+  opacity: 1;
+}
+
+.site-header__ecosystem strong {
+  color: var(--brand-gold);
+  font-weight: 700;
+}
+
 /* Header responsive: <= 640px */
 @media (max-width: 640px) {
-  .site-header__cta-long {
+  .site-header__cta {
     display: none;
   }
 
-  .site-header__cta-short {
-    display: inline;
+  .site-header__role {
+    display: none;
   }
 
-  .site-header__role {
+  .site-header__ecosystem {
     display: none;
   }
 
@@ -407,24 +432,60 @@ strong {
     font-weight: 700;
   }
 
-  .site-header__cta {
-    padding: .5rem .75rem;
-    font-size: 10px;
-    letter-spacing: .04em;
-    min-height: 38px;
-    flex-shrink: 0;
-  }
-
-  .site-header__inner {
-    gap: .45rem;
-    padding: 0 .85rem;
-  }
-
   .menu-toggle {
     width: 40px;
     height: 40px;
     flex-shrink: 0;
   }
+}
+
+/* Sidebar CTA (mobile only — shown when header CTA is hidden) */
+.sidebar__cta {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .sidebar__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 .85rem 1rem;
+    padding: .8rem 1.2rem;
+    background: var(--brand-gold);
+    color: var(--brand-dark);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .06em;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    min-height: 44px;
+    transition: box-shadow .3s var(--ease);
+  }
+
+  .sidebar__cta:hover,
+  .sidebar__cta:focus-visible {
+    box-shadow: 0 0 20px rgba(255, 215, 0, .4);
+    outline: none;
+  }
+}
+
+/* Sidebar ecosystem stats */
+.sidebar__ecosystem {
+  padding: .75rem .85rem;
+  margin-top: .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--brand-muted);
+  letter-spacing: .08em;
+  line-height: 1.8;
+  border-top: 1px solid var(--brand-border);
+}
+
+.sidebar__ecosystem strong {
+  color: var(--brand-gold);
+  font-weight: 700;
 }
 
 /* Menu toggle (hamburger) */
@@ -1904,13 +1965,131 @@ strong {
 /* === 22. FOOTER === */
 
 .site-footer {
-  padding: 2.5rem var(--gutter);
+  padding: 3rem var(--gutter);
   padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--brand-border);
   background: var(--brand-darker);
+}
+
+.site-footer .container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.site-footer__brand-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--brand-text);
+  margin-bottom: .35rem;
+}
+
+.site-footer__brand-tagline {
+  font-size: 12px;
+  color: var(--brand-muted);
+  line-height: 1.6;
+  margin-bottom: .75rem;
+}
+
+.site-footer__col-head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brand-gold);
+  border-bottom: 1px solid rgba(255, 215, 0, .15);
+  padding-bottom: .5rem;
+  margin-bottom: .75rem;
+}
+
+.site-footer__link {
+  display: block;
+  padding: .3rem 0;
+  font-size: 13px;
+  color: var(--brand-text-soft);
+  text-decoration: none;
+  transition: color .2s var(--ease), transform .2s var(--ease);
+}
+
+.site-footer__link:hover,
+.site-footer__link:focus-visible {
+  color: var(--brand-gold);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.site-footer__ecosystem {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--brand-border);
+  border-bottom: 1px solid var(--brand-border);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-footer__stat {
   text-align: center;
 }
 
+.site-footer__stat-num {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--brand-gold);
+  line-height: 1;
+}
+
+.site-footer__stat-label {
+  display: block;
+  margin-top: .3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--brand-muted);
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+  font-size: 11px;
+  color: var(--brand-muted);
+}
+
+.site-footer__bottom a {
+  color: var(--brand-gold);
+}
+
+/* Legacy compat */
 .site-footer__line {
   font-size: 12px;
   color: var(--brand-text-soft);
@@ -2272,6 +2451,40 @@ html[data-theme="light"] .section-foot__text strong {
 /* Light: Footer */
 html[data-theme="light"] .site-footer {
   background: #e2e8f0;
+}
+
+html[data-theme="light"] .site-footer__col-head {
+  color: #b88700;
+  border-bottom-color: rgba(184, 135, 0, .2);
+}
+
+html[data-theme="light"] .site-footer__link {
+  color: #334155;
+}
+
+html[data-theme="light"] .site-footer__link:hover {
+  color: #b88700;
+}
+
+html[data-theme="light"] .site-footer__stat-num {
+  color: #b88700;
+}
+
+html[data-theme="light"] .site-footer__brand-name {
+  color: #0a122a;
+}
+
+html[data-theme="light"] .sidebar__cta {
+  background: #b88700;
+  color: #fff;
+}
+
+html[data-theme="light"] .sidebar__ecosystem strong {
+  color: #b88700;
+}
+
+html[data-theme="light"] .site-header__ecosystem strong {
+  color: #b88700;
 }
 
 /* Light: Hero photo */

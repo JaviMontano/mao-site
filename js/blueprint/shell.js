@@ -13,12 +13,12 @@
  */
 
 // --- Component imports (self-register on import) ---
-// ?v=2 cache-bust ensures fresh components after design system migration
-import '../../components/SiteHeader.js?v=2';
-import '../../components/SiteSidebar.js?v=2';
-import '../../components/TripleToggle.js?v=2';
-import '../../components/OfflinePill.js?v=2';
-import '../../components/ConsentBanner.js?v=2';
+// ?v=3 cache-bust ensures fresh components after design system migration
+import '../../components/SiteHeader.js?v=3';
+import '../../components/SiteSidebar.js?v=3';
+import '../../components/TripleToggle.js?v=3';
+import '../../components/OfflinePill.js?v=3';
+import '../../components/ConsentBanner.js?v=3';
 
 // --- Module imports ---
 import { initTheme } from '../theme/toggle.js';

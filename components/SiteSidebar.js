@@ -59,6 +59,13 @@ class SiteSidebar extends HTMLElement {
     const sections = getSections(this._pageSlug);
     const pageLabels = this._labels?.sidebar?.[this._pageSlug] ?? {};
 
+    // Mobile CTA (visible only ≤640px via CSS)
+    const cta = document.createElement('a');
+    cta.className = 'sidebar__cta';
+    cta.href = '/diagnostico/';
+    cta.textContent = this._lang === 'en' ? 'Free Diagnostic →' : 'Diagnóstico Gratuito →';
+    this.appendChild(cta);
+
     // Sidebar head (canonical: .sidebar__head)
     const head = document.createElement('div');
     head.className = 'sidebar__head';
@@ -91,6 +98,13 @@ class SiteSidebar extends HTMLElement {
     });
 
     this.appendChild(nav);
+
+    // Ecosystem stats
+    const eco = document.createElement('div');
+    eco.className = 'sidebar__ecosystem';
+    eco.setAttribute('data-cms', 'ecosystem.sidebar');
+    eco.innerHTML = '<strong>4</strong> Founders · <strong>10+</strong> Embajadores · <strong>50+</strong> Nodos';
+    this.appendChild(eco);
 
     // Sidebar footer
     const footer = document.createElement('div');

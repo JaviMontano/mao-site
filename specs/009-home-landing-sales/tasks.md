@@ -17,12 +17,12 @@
 
 **Purpose**: Baseline capture, project structure, tooling, redirect infrastructure
 
-- [ ] T001 Capture GA4 baseline for SC-001, SC-002, SC-009 (30-day window) — document in specs/009-home-landing-sales/baseline.md
-- [ ] T002 [P] Create new directory structure: `js/diagnostic/`, `js/audience/`, `js/analytics/`, `js/theme/`, `js/state/`, `js/blueprint/`, `js/sidebar/`, `js/redirects/`, `diagnostico/`, `metodo/`, `casos/`, `insights/`
-- [ ] T003 [P] Update `vitest.config.js` with per-module coverage thresholds per NFR-008
-- [ ] T004 [P] Create pre-commit hook script `scripts/count-pages.js` — enforce exactly 13 canonical pages [TS-057]
-- [ ] T005 [P] Create `.htaccess` with 17 legacy 301 redirect rules (see plan.md v6 §3 redirect map) [TS-053, TS-054, TS-055, TS-056]
-- [ ] T006 [P] Add layout tokens to `estilos/variables.css`: `--sidebar-w: 260px; --header-h: 72px; --gutter: clamp(1rem,3vw,2rem); --ease: cubic-bezier(.4,0,.2,1)` [FR-240, FR-242]
+- [x] T001 Capture GA4 baseline for SC-001, SC-002, SC-009 (30-day window) — document in specs/009-home-landing-sales/baseline.md
+- [x] T002 [P] Create new directory structure: `js/diagnostic/`, `js/audience/`, `js/analytics/`, `js/theme/`, `js/state/`, `js/blueprint/`, `js/sidebar/`, `js/redirects/`, `diagnostico/`, `metodo/`, `casos/`, `insights/`
+- [x] T003 [P] Update `vitest.config.js` with per-module coverage thresholds per NFR-008
+- [x] T004 [P] Create pre-commit hook script `scripts/count-pages.js` — enforce exactly 13 canonical pages [TS-057]
+- [x] T005 [P] Create `.htaccess` with 17 legacy 301 redirect rules (see plan.md v6 §3 redirect map) [TS-053, TS-054, TS-055, TS-056]
+- [x] T006 [P] Add layout tokens to `estilos/variables.css`: `--sidebar-w: 260px; --header-h: 72px; --gutter: clamp(1rem,3vw,2rem); --ease: cubic-bezier(.4,0,.2,1)` [FR-240, FR-242]
 
 **Checkpoint**: Structure ready, baseline documented, .htaccess deployed, layout tokens available
 

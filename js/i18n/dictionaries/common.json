@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "ruta": { "es": "Ruta", "en": "Path" },
+    "servicios": { "es": "Servicios", "en": "Services" },
+    "contacto": { "es": "Contacto", "en": "Contact" },
+    "recursos": { "es": "Recursos", "en": "Resources" },
+    "campus": { "es": "Campus", "en": "Campus" },
+    "inicio": { "es": "Inicio", "en": "Home" }
+  },
+  "footer": {
+    "servicios": { "es": "Servicios", "en": "Services" },
+    "empresas": { "es": "Empresas", "en": "For Companies" },
+    "personas": { "es": "Personas", "en": "For Individuals" },
+    "aceleradores": { "es": "Aceleradores a Medida", "en": "Custom Accelerators" },
+    "a_medida": { "es": "Servicios a Medida", "en": "Custom Services" },
+    "recursos": { "es": "Recursos", "en": "Resources" },
+    "catalogo": { "es": "Catalogo", "en": "Catalog" },
+    "premium": { "es": "Premium", "en": "Premium" },
+    "comunidad": { "es": "Comunidad", "en": "Community" },
+    "ruta": { "es": "Ruta", "en": "Path" },
+    "contacto": { "es": "Contacto", "en": "Contact" },
+    "privacidad": { "es": "Politica de Privacidad", "en": "Privacy Policy" }
+  },
+  "toggles": {
+    "theme": { "es": "Modo oscuro", "en": "Dark mode" },
+    "locale": { "es": "English", "en": "Espanol" },
+    "audience": { "es": "Para empresas", "en": "For teams" }
+  },
+  "skip_link": { "es": "Saltar al contenido", "en": "Skip to content" },
+  "missing_key": { "es": "[Contenido pendiente]", "en": "[Content pending]" }
+}

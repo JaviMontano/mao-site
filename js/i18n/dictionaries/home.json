@@ -1,0 +1,210 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Descubre tu nivel metodologico",
+        "subtitle": "Un diagnostico gratuito que transforma como trabajas",
+        "cta": "Iniciar Diagnostico"
+      },
+      "en": {
+        "title": "Discover your methodology level",
+        "subtitle": "A free diagnostic that transforms how you work",
+        "cta": "Start Diagnostic"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Transforma la metodologia de tu equipo",
+        "subtitle": "Diagnostico de madurez organizacional gratuito",
+        "cta": "Iniciar Diagnostico"
+      },
+      "en": {
+        "title": "Transform your team's methodology",
+        "subtitle": "Free organizational maturity diagnostic",
+        "cta": "Start Diagnostic"
+      }
+    }
+  },
+  "propuesta": {
+    "persona": {
+      "es": {
+        "title": "Tu camino hacia la excelencia metodologica",
+        "subtitle": "Herramientas y recursos personalizados para potenciar tu forma de trabajar",
+        "cta": "Explorar Recursos"
+      },
+      "en": {
+        "title": "Your path to methodological excellence",
+        "subtitle": "Personalized tools and resources to empower how you work",
+        "cta": "Explore Resources"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Metodologia probada para equipos de alto rendimiento",
+        "subtitle": "Frameworks y aceleradores que transforman resultados organizacionales",
+        "cta": "Explorar Recursos"
+      },
+      "en": {
+        "title": "Proven methodology for high-performing teams",
+        "subtitle": "Frameworks and accelerators that transform organizational results",
+        "cta": "Explore Resources"
+      }
+    }
+  },
+  "diagnostico": {
+    "persona": {
+      "es": {
+        "title": "Conoce tu punto de partida",
+        "subtitle": "Un diagnostico rapido y gratuito que revela tus fortalezas y areas de mejora",
+        "cta": "Iniciar Diagnostico"
+      },
+      "en": {
+        "title": "Know your starting point",
+        "subtitle": "A quick, free diagnostic that reveals your strengths and areas for growth",
+        "cta": "Start Diagnostic"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Mide la madurez metodologica de tu equipo",
+        "subtitle": "Evaluacion integral que identifica brechas y oportunidades de mejora",
+        "cta": "Iniciar Diagnostico"
+      },
+      "en": {
+        "title": "Measure your team's methodological maturity",
+        "subtitle": "Comprehensive assessment that identifies gaps and improvement opportunities",
+        "cta": "Start Diagnostic"
+      }
+    }
+  },
+  "recursos": {
+    "persona": {
+      "es": {
+        "title": "Recursos para crecer a tu ritmo",
+        "subtitle": "Guias, plantillas y herramientas practicas para tu desarrollo profesional",
+        "cta": "Explorar Recursos"
+      },
+      "en": {
+        "title": "Resources to grow at your own pace",
+        "subtitle": "Guides, templates, and practical tools for your professional development",
+        "cta": "Explore Resources"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Recursos para escalar tu operacion",
+        "subtitle": "Frameworks, plantillas y aceleradores listos para implementar en tu equipo",
+        "cta": "Explorar Recursos"
+      },
+      "en": {
+        "title": "Resources to scale your operation",
+        "subtitle": "Frameworks, templates, and accelerators ready to deploy across your team",
+        "cta": "Explore Resources"
+      }
+    }
+  },
+  "programas": {
+    "persona": {
+      "es": {
+        "title": "Programas que impulsan tu carrera",
+        "subtitle": "Formacion practica y acompanamiento para dominar metodologias agiles",
+        "cta": "Ver Programas"
+      },
+      "en": {
+        "title": "Programs that boost your career",
+        "subtitle": "Hands-on training and mentorship to master agile methodologies",
+        "cta": "View Programs"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Programas de transformacion organizacional",
+        "subtitle": "Capacitacion y acompanamiento para equipos que buscan resultados medibles",
+        "cta": "Ver Programas"
+      },
+      "en": {
+        "title": "Organizational transformation programs",
+        "subtitle": "Training and coaching for teams seeking measurable results",
+        "cta": "View Programs"
+      }
+    }
+  },
+  "metodo": {
+    "persona": {
+      "es": {
+        "title": "Un metodo disenado para ti",
+        "subtitle": "Aprende paso a paso con una ruta clara hacia la excelencia profesional",
+        "cta": "Explorar Recursos"
+      },
+      "en": {
+        "title": "A method designed for you",
+        "subtitle": "Learn step by step with a clear path to professional excellence",
+        "cta": "Explore Resources"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Metodologia con resultados comprobados",
+        "subtitle": "Un enfoque sistematico que acelera la madurez de equipos y organizaciones",
+        "cta": "Explorar Recursos"
+      },
+      "en": {
+        "title": "Methodology with proven results",
+        "subtitle": "A systematic approach that accelerates team and organizational maturity",
+        "cta": "Explore Resources"
+      }
+    }
+  },
+  "prueba-social": {
+    "persona": {
+      "es": {
+        "title": "Historias de transformacion real",
+        "subtitle": "Profesionales como tu que elevaron su nivel metodologico",
+        "cta": "Ver Programas"
+      },
+      "en": {
+        "title": "Real transformation stories",
+        "subtitle": "Professionals like you who elevated their methodology level",
+        "cta": "View Programs"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Resultados que hablan por si solos",
+        "subtitle": "Organizaciones que transformaron sus equipos con nuestra metodologia",
+        "cta": "Ver Programas"
+      },
+      "en": {
+        "title": "Results that speak for themselves",
+        "subtitle": "Organizations that transformed their teams with our methodology",
+        "cta": "View Programs"
+      }
+    }
+  },
+  "contacto": {
+    "persona": {
+      "es": {
+        "title": "Da el primer paso",
+        "subtitle": "Conversemos sobre como podemos ayudarte a alcanzar tus metas",
+        "cta": "Iniciar Diagnostico"
+      },
+      "en": {
+        "title": "Take the first step",
+        "subtitle": "Let's talk about how we can help you reach your goals",
+        "cta": "Start Diagnostic"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Agenda una primera conversacion",
+        "subtitle": "Descubre como podemos acelerar la transformacion de tu equipo",
+        "cta": "Iniciar Diagnostico"
+      },
+      "en": {
+        "title": "Schedule a first conversation",
+        "subtitle": "Discover how we can accelerate your team's transformation",
+        "cta": "Start Diagnostic"
+      }
+    }
+  }
+}

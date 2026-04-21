@@ -179,6 +179,41 @@ Feature: Cross-Cutting: Performance, Accessibility, i18n, and Analytics
     When the page finishes loading
     Then event "home_view" fires with locale, device_class, and source
 
+  # ── Two-Tier Consent: Analytics Rejection (from spec v5 clarification + FR-072) ──
+  # The Analytics consent banner and the PII consent checkbox (FR-012 step 6) are
+  # orthogonal. Rejecting analytics MUST NOT block diagnostic completion or lead writes.
+
+  @TS-084 @FR-072 @P1 @acceptance
+  Scenario: Rejected analytics consent suppresses home_view event
+    Given a visitor rejects the Analytics consent banner
+    When the home page loads
+    Then event "home_view" is NOT fired
+    And the home page renders normally with all sections visible
+
+  @TS-085 @FR-072 @FR-012 @SC-017 @P1 @acceptance
+  Scenario: Rejected analytics consent does not block diagnostic lead write
+    Given a visitor rejects the Analytics consent banner
+    And they complete the diagnostic with PII consent checkbox checked
+    When the diagnostic result is shown
+    Then the lead is persisted in Firestore "leads/{uid}" with fuente "home-diagnostic"
+    And the diagnostic is persisted in Firestore "diagnostics/{uid}"
+    And event "diagnostic_completed" is NOT fired
+
+  @TS-086 @FR-072 @FR-070 @P1 @acceptance
+  Scenario: Rejected analytics consent suppresses all CTA click events
+    Given a visitor rejects the Analytics consent banner
+    When they click the primary CTA
+    Then event "cta_click_primary" is NOT fired
+    And the diagnostic flow opens normally
+
+  @TS-087 @FR-072 @FR-015 @P1 @acceptance
+  Scenario: Rejected analytics consent with Firestore fallback still works
+    Given a visitor rejects the Analytics consent banner
+    And Firestore is unavailable
+    When they submit the degraded contact form
+    Then the mailto fallback activates
+    And zero Analytics events are fired
+
   # ── Bundle Size (from spec NFR-004) ──
 
   @TS-082 @SC-007 @P1 @validation

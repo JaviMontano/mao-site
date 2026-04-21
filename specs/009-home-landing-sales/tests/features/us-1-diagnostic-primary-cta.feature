@@ -120,6 +120,46 @@ Feature: Diagnostic as Primary CTA
       Then a validation error is shown for the email field
       And submission is blocked
 
+  Rule: Back-navigation preserves state and recalculates score
+
+    @TS-088 @FR-011 @FR-014 @P1 @validation
+    Scenario: In-app back button preserves previous answers in localStorage
+      Given a visitor has answered steps 1-3 of the diagnostic
+      When they click the in-app back button to return to step 1
+      Then step 1 shows their previous answer pre-selected
+      And steps 2 and 3 retain their answers in localStorage
+
+    @TS-089 @FR-011 @FR-012 @P1 @validation
+    Scenario: Changing an earlier answer recalculates the final score
+      Given a visitor has answered all 5 weighted steps (total weight 7, nivel "builder")
+      When they navigate back to step 1 and change their answer (weight delta +3)
+      And they advance back to step 6 and complete the diagnostic
+      Then the resultado.score reflects the updated sum (10)
+      And the nivel_id is "strategist"
+
+  Rule: Step 6 PII validation is complete
+
+    @TS-090 @FR-012 @P1 @validation
+    Scenario: Step 6 validates name length (2-80 characters)
+      Given a visitor reaches step 6 of the diagnostic
+      When they enter a name with 1 character
+      Then a validation error is shown for the name field
+      And submission is blocked
+
+    @TS-091 @FR-012 @P1 @validation
+    Scenario: Step 6 consent checkbox is required
+      Given a visitor reaches step 6 with valid email and name
+      When they attempt to submit without checking the consent checkbox
+      Then a validation error is shown for the consent field
+      And submission is blocked
+
+    @TS-092 @FR-012 @FR-014 @P1 @validation
+    Scenario: PII fields preserved in memory when navigating back from step 6
+      Given a visitor has entered email and name on step 6
+      When they navigate back to step 5 and then return to step 6
+      Then the email and name fields retain their values from memory
+      And the PII data is NOT stored in localStorage
+
   # ── Degraded State Tests (from spec FR-015) ──
 
   @TS-014 @FR-015 @P1 @acceptance

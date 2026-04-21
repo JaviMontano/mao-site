@@ -20,21 +20,23 @@ Feature: Neo-Swiss Light Identity Coherent with Cartillas
     And both use the same CSS custom properties
 
   @TS-027 @FR-041 @SC-006 @P1 @acceptance
-  Scenario: Light mode matches cartilla token values
+  Scenario: Light mode matches cartilla token values (measured via getComputedStyle)
     Given the home in light mode (default)
-    When compared with "cartilla-onboarding-programa-v11.html"
-    Then bg is "#F9FAFB"
-    And navy is "#122562"
-    And gold is "#FFD700"
-    And the typography is identical (Poppins/Montserrat/Trebuchet MS)
+    When getComputedStyle(document.documentElement).getPropertyValue is read for each token
+    Then "--bg" resolves to "#F9FAFB"
+    And "--navy" resolves to "#122562"
+    And "--gold" resolves to "#FFD700"
+    And "--font-head" resolves to "Poppins"
+    And "--font-body" resolves to "Montserrat"
+    And "--font-note" resolves to "Trebuchet MS"
 
   @TS-028 @FR-042 @SC-006 @P1 @acceptance
-  Scenario: Dark mode mirrors cartilla dark tokens
-    Given the home in dark mode (toggle)
-    When compared with the dark mirror of the cartillas
-    Then bg is "#0B2545"
-    And text is "#F0F4F8"
-    And the palette adapts with the same desaturated tokens
+  Scenario: Dark mode mirrors cartilla dark tokens (measured via getComputedStyle)
+    Given the home in dark mode (toggle activated, html[data-theme="dark"])
+    When getComputedStyle(document.documentElement).getPropertyValue is read for each token
+    Then "--bg" resolves to "#0B2545"
+    And "--text" resolves to "#F0F4F8"
+    And "--gold" and "--blue" retain their values with desaturated equivalents
 
   @TS-029 @FR-001 @FR-002 @SC-006 @P1 @acceptance
   Scenario: CTA hierarchy preserved across all viewports
@@ -54,17 +56,18 @@ Feature: Neo-Swiss Light Identity Coherent with Cartillas
     And "--font-note" resolves to "Trebuchet MS"
 
   @TS-031 @FR-044 @P1 @validation
-  Scenario: Border radii match design system values
+  Scenario: Border radii match design system values (px canonical unit)
     Given the home is rendered
-    When CSS custom properties are inspected
-    Then "--radius-sm" is "6px"
-    And "--radius-md" is "12px"
-    And "--radius-lg" is "20px"
-    And "--radius-xl" is "32px"
+    When getComputedStyle(document.documentElement).getPropertyValue is read
+    Then "--radius-sm" resolves to "6px"
+    And "--radius-md" resolves to "12px"
+    And "--radius-lg" resolves to "20px"
+    And "--radius-xl" resolves to "32px"
 
-  @TS-032 @FR-045 @P1 @validation
-  Scenario: Theme preference persists in localStorage
+  @TS-032 @FR-045 @SC-013 @P1 @validation
+  Scenario: Theme toggle completes DOM update in <100ms with persistence
     Given a visitor toggles to dark mode
-    When they reload the page
-    Then "mdg_theme" in localStorage is "dark"
-    And the page renders in dark mode without flash
+    When the toggle click event fires
+    Then the DOM update (html[data-theme="dark"] + re-paint) completes in <100ms measured via performance.now()
+    And "mdg_theme" in localStorage is "dark"
+    And reloading the page renders dark mode immediately (no light-to-dark flash)

@@ -68,9 +68,9 @@ Feature: Adaptive Blueprint with 3 Toggles
   Scenario Outline: Adaptive blueprint matrix passes for all combinations
     Given page "<page>" with locale "<locale>" and audience "<audience>"
     When the page renders
-    Then no raw i18n keys appear in the DOM
-    And layout is correct without visual breaks
-    And all content slots resolve to non-empty values
+    Then no text node, title, alt, aria-label, or placeholder attribute matches the raw key pattern /[\w-]+\.[\w-]+\.[\w-]+/
+    And document.documentElement.scrollWidth <= document.documentElement.clientWidth (zero horizontal overflow)
+    And every visible element with [data-i18n] or [data-slot] has textContent.trim().length > 0
 
     Examples:
       | page            | locale | audience |

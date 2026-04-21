@@ -199,3 +199,49 @@
     max-width: 960px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL TOUCH TARGETS (T073) — WCAG 2.5.8
+   xs/sm: ≥44x44px | md+: ≥48x48px | ≥8px spacing
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Base: buttons, links in nav, interactive controls */
+.hamburger,
+.site-sidebar a,
+.site-sidebar button {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Sidebar nav links: comfortable spacing */
+.site-sidebar nav a,
+.site-sidebar nav button {
+  padding-block: 0.5rem;
+  gap: 8px; /* minimum 8px between adjacent targets */
+}
+
+/* md+: upgrade global touch targets to 48px */
+@media (min-width: 640px) {
+  .hamburger,
+  .site-sidebar a,
+  .site-sidebar button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Skip-link touch target */
+.skip-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .skip-link {
+    min-height: 48px;
+  }
+}

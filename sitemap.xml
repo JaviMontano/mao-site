@@ -1,281 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Core -->
-    <url>
-        <loc>https://metodologia.info/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/sitemap.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/vision.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Hubs -->
-    <url>
-        <loc>https://metodologia.info/empresas/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/personas/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Products (B2C) -->
-    <url>
-        <loc>https://metodologia.info/personas/bootcamp-amplificacion-profesional.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/personas/consultive-workshops-estrategia-personal.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/personas/autodiagnostico.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Products (B2B) -->
-    <url>
-        <loc>https://metodologia.info/empresas/bootcamp-ventas-ia.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/empresas/workshop-venta-amplificada.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.8</priority>
-    </url>
-     <url>
-        <loc>https://metodologia.info/empresas/diagnostico-gratuito.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- The Route & Cotizadores -->
-    <url>
-        <loc>https://metodologia.info/ruta/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/ruta/cotizador-personas.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/ruta/cotizador-empresas.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/ruta/levels_grid.html</loc>
-        <lastmod>2026-01-30</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/ruta/service_blueprint.html</loc>
-        <lastmod>2026-01-30</lastmod>
-        <priority>0.9</priority>
-    </url>
-
-    <!-- Route (Additional) -->
-    <url>
-        <loc>https://metodologia.info/ruta/a-medida.html</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/ruta/cotizador.html</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Resources (Bibliotecas) -->
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-prompts/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-universal/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/plugins-claude-code/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/workflows/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/prototipos-stitch/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/prototipos-v0/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.6</priority>
-    </url>
-
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-ventas/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-marketing/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-estrategia/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-desarrollo/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-productos/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-proyectos/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-consulting/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/biblioteca-vibe-coding/</loc>
-        <lastmod>2026-03-22</lastmod>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Resources (Deep) -->
-    <url>
-        <loc>https://metodologia.info/recursos/a-medida/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/asistentes-gemini/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/asistentes-gpt/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/automatizaciones/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/catalogo/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/ebooks/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/playbooks/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/miniapps-claude/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/miniapps-aistudio/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/flujos-manus/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-    <url>
-        <loc>https://metodologia.info/recursos/flujos-genspark/</loc>
-        <lastmod>2026-01-29</lastmod>
-    </url>
-
-    <!-- Premium Resources -->
-    <url>
-        <loc>https://metodologia.info/recursos/premium/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Services -->
-    <url>
-        <loc>https://metodologia.info/servicios/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.7</priority>
-    </url>
-
-    <!-- Brand -->
-    <url>
-        <loc>https://metodologia.info/nosotros/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/nosotros/mision.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/nosotros/ecosistema.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.6</priority>
-    </url>
-
-    <!-- Legal -->
-    <url>
-        <loc>https://metodologia.info/legal/privacidad.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.2</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/legal/terminos.html</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.2</priority>
-    </url>
-    <url>
-        <loc>https://metodologia.info/contacto/</loc>
-        <lastmod>2026-01-29</lastmod>
-        <priority>0.9</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://metodologia.info/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/diagnostico/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/diagnostico/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/diagnostico/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/empresas/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/empresas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/empresas/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/personas/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/personas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/personas/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/programas/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/programas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/programas/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/recursos/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/recursos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/recursos/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/metodo/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/metodo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/metodo/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/casos/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/casos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/casos/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/nosotros/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/nosotros/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/insights/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/insights/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/insights/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/contacto/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/contacto/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://metodologia.info/legal/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://metodologia.info/legal/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://metodologia.info/legal/?lang=en"/>
+  </url>
 </urlset>

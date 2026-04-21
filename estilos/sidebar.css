@@ -1,37 +1,47 @@
 /* ═══════════════════════════════════════════════════════════════
    Sidebar Navigation — scroll-spy active state, numbered links
-   Inner content styles; outer container lives in blueprint.css.
+   Uses --brand-* variables from neoswiss-system.css
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Vertical nav list ─────────────────────────────────────── */
 .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   list-style: none;
   margin: 0;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
 }
 
 /* ── Individual link ───────────────────────────────────────── */
 .sidebar-link {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  padding: 0.75rem 1rem;
-  border-radius: var(--ns-radius-sm, 6px);
-  color: var(--ns-text-sec);
-  text-decoration: none;
-  transition: all var(--duration-fast) var(--ease);
-}
-
-.sidebar-link:hover {
-  background: var(--ns-border);
-  color: var(--ns-text);
-}
-
-/* ── Active state (scroll-spy) ─────────────────────────────── */
-.sidebar-link.is-active {
-  background: rgba(18, 37, 98, 0.08);
-  color: var(--ns-navy);
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  color: var(--brand-text-soft, #334155);
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  font-size: 13.5px;
+  text-decoration: none;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+  min-height: 44px;
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
+  background: rgba(255, 215, 0, 0.08);
+  color: var(--brand-gold, #b88700);
+  text-decoration: none;
+  outline: none;
+}
+
+/* ── Active state (scroll-spy) — gold left border inset ───── */
+.sidebar-link.is-active {
+  background: rgba(255, 215, 0, 0.12);
+  color: var(--brand-gold, #b88700);
+  box-shadow: inset 3px 0 0 var(--brand-gold, #b88700);
 }
 
 /* ── Numbered badge ────────────────────────────────────────── */
@@ -42,23 +52,31 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  background: var(--ns-border);
-  color: var(--ns-text-muted);
-  font-size: var(--text-xs);
-  margin-right: 0.75rem;
+  background: var(--brand-border, rgba(10,18,42,0.08));
+  color: var(--brand-muted, #64748b);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   flex-shrink: 0;
 }
 
 .sidebar-link.is-active .sidebar-number {
-  background: var(--ns-gold);
-  color: var(--ns-navy);
+  background: var(--brand-gold, #b88700);
+  color: var(--brand-dark, #0a122a);
+}
+
+/* ── Section label ────────────────────────────────────────── */
+.sidebar-label {
+  font-size: 13.5px;
+  line-height: 1.25;
 }
 
 /* ── Optional icon ─────────────────────────────────────────── */
 .sidebar-icon {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
   opacity: 0.6;
 }
 
@@ -66,15 +84,15 @@
   opacity: 1;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   Dark theme overrides
-   ═══════════════════════════════════════════════════════════════ */
-[data-theme="dark"] .sidebar-link.is-active {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--ns-gold);
-}
-
-[data-theme="dark"] .sidebar-link.is-active .sidebar-number {
-  background: var(--ns-gold);
-  color: var(--ns-navy);
+/* ── Sidebar head label ────────────────────────────────────── */
+.sidebar__head {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brand-muted, #64748b);
+  margin: 0 0.5rem 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--brand-border, rgba(10,18,42,0.08));
 }

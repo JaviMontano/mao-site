@@ -1,0 +1,49 @@
+{
+  "instruction": "Build a settings page where users can update their display name, email notification preferences (on/off toggle or checkboxes for different notification types), and select a theme (light/dark/system) from a dropdown. Include a save button.",
+  "relevant_when": "Agent creates or modifies any HTML page, React component, Vue component, or frontend UI that contains form elements, settings, or preferences",
+  "context": "The user asked for a settings form without mentioning accessibility. The agent must proactively include labels on all inputs, fieldset/legend for grouped checkboxes, aria-required, proper select labeling, keyboard-accessible toggles, and semantic structure.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "all-inputs-labeled",
+      "rule": "Every input, select, textarea, and toggle has an associated <label> with for/id linking or aria-label. This includes the display name input, theme select, and any toggles/checkboxes.",
+      "relevant_when": "Agent creates form controls"
+    },
+    {
+      "name": "fieldset-for-checkbox-group",
+      "rule": "Related checkboxes (notification types) or radio buttons are grouped in a <fieldset> with a <legend> describing the group",
+      "relevant_when": "Agent creates a group of related checkboxes or radio buttons"
+    },
+    {
+      "name": "select-has-label",
+      "rule": "The theme dropdown/select element has an associated <label> with for/id linking",
+      "relevant_when": "Agent creates a select/dropdown element"
+    },
+    {
+      "name": "toggle-is-accessible",
+      "rule": "If a custom toggle/switch is used instead of a native checkbox, it has role=\"switch\" or role=\"checkbox\", is keyboard operable (Space to toggle), and has an accessible name via aria-label or associated label",
+      "relevant_when": "Agent creates a custom toggle or switch control"
+    },
+    {
+      "name": "save-feedback-announced",
+      "rule": "When the form is saved, success or error feedback is announced to screen readers using role=\"alert\", role=\"status\", or aria-live",
+      "relevant_when": "Agent implements save/submit functionality with feedback"
+    },
+    {
+      "name": "heading-for-sections",
+      "rule": "The settings page uses headings (h1, h2) to organize sections, not just bold text or styled divs",
+      "relevant_when": "Agent creates a settings page with multiple sections"
+    },
+    {
+      "name": "semantic-form-element",
+      "rule": "Settings are wrapped in a <form> element with a proper submit handler, not just div containers",
+      "relevant_when": "Agent creates a settings form"
+    }
+  ]
+}

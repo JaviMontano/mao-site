@@ -5,6 +5,32 @@
     RewriteEngine On
     RewriteBase /
 
+    # ── Legacy 301 Redirects (T005 / plan.md v6 §3) ──────────────
+    # Specific page redirects (must precede catch-all rules)
+    RewriteRule ^vision\.html$                          /metodo/  [R=301,L]
+    RewriteRule ^metodologia\.html$                     /metodo/  [R=301,L]
+    RewriteRule ^empresas/diagnostico-gratuito\.html$   /diagnostico/?audiencia=empresa  [R=301,L]
+    RewriteRule ^personas/autodiagnostico\.html$        /diagnostico/?audiencia=persona  [R=301,L]
+    RewriteRule ^legal/privacidad\.html$                /legal/#privacidad  [R=301,NE,L]
+    RewriteRule ^legal/terminos\.html$                  /legal/#terminos    [R=301,NE,L]
+    RewriteRule ^nosotros/ecosistema\.html$             /nosotros/  [R=301,L]
+    RewriteRule ^nosotros/mision\.html$                 /nosotros/  [R=301,L]
+    RewriteRule ^sitemap\.html$                         /  [R=301,L]
+
+    # /ruta/ specific pages (before catch-all)
+    RewriteRule ^ruta/cotizador.*\.html$                /diagnostico/  [R=301,L]
+    RewriteRule ^ruta/levels_grid\.html$                /programas/    [R=301,L]
+    RewriteRule ^ruta/service_blueprint\.html$          /programas/    [R=301,L]
+    RewriteRule ^ruta/a-medida\.html$                   /contacto/     [R=301,L]
+
+    # Directory-level redirects
+    RewriteRule ^servicios/(.*)$                        /programas/$1  [R=301,L]
+
+    # /ruta/ catch-all (after specific /ruta/ rules)
+    RewriteRule ^ruta/(.*)$                             /diagnostico/  [R=301,L]
+    RewriteRule ^ruta/?$                                /diagnostico/  [R=301,L]
+    # ── End Legacy Redirects ──────────────────────────────────────
+
     # Force HTTPS
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

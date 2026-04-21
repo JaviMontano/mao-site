@@ -1,0 +1,247 @@
+/**
+ * MetodologIA Blueprint Layout System
+ * Sidebar + Header + Main — 009-home-landing-sales
+ *
+ * Tokens consumed from variables.css:
+ *   --sidebar-w, --header-h, --gutter, --ease,
+ *   --ns-bg, --ns-bg-soft, --ns-text, --ns-border,
+ *   --z-nav
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER — fixed top bar
+   ═══════════════════════════════════════════════════════════════ */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-h, 72px);
+  z-index: var(--z-nav, 50);
+  background: var(--ns-bg);
+  border-bottom: 1px solid var(--ns-border);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--gutter);
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIDEBAR — fixed left panel (desktop), off-canvas (mobile)
+   ═══════════════════════════════════════════════════════════════ */
+.site-sidebar {
+  position: fixed;
+  top: var(--header-h, 72px);
+  left: 0;
+  width: var(--sidebar-w, 260px);
+  height: calc(100vh - var(--header-h, 72px));
+  z-index: 40;
+  overflow-y: auto;
+  background: var(--ns-bg-soft);
+  border-right: 1px solid var(--ns-border);
+  box-sizing: border-box;
+  transition: transform var(--ease) 0.3s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN — content area with offset for header + sidebar
+   ═══════════════════════════════════════════════════════════════ */
+.main {
+  padding-top: var(--header-h, 72px);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTAINER — centered content column
+   ═══════════════════════════════════════════════════════════════ */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION — scroll-spy targets with anchor offset
+   ═══════════════════════════════════════════════════════════════ */
+.section {
+  scroll-margin-top: calc(var(--header-h, 72px) + 1rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIDEBAR BACKDROP — mobile overlay
+   ═══════════════════════════════════════════════════════════════ */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 39;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--ease) 0.3s, visibility var(--ease) 0.3s;
+}
+
+.sidebar-backdrop.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HAMBURGER — mobile menu toggle
+   ═══════════════════════════════════════════════════════════════ */
+.hamburger {
+  display: none;
+  z-index: 51;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--ns-text);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SAFE-AREA INSETS — notched phones (env() fallback to 0px)
+   ═══════════════════════════════════════════════════════════════ */
+.site-header {
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+.main {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.site-sidebar {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DESKTOP LAYOUT (lg: ≥960px) — sidebar visible, no layout shift
+   ═══════════════════════════════════════════════════════════════ */
+@media (min-width: 960px) {
+  .main {
+    padding-left: var(--sidebar-w, 260px);
+    /* Prevent layout shift on sidebar collapse/expand */
+    transition: padding-left 0.3s var(--ease, cubic-bezier(.4,0,.2,1));
+  }
+
+  .site-sidebar {
+    transform: translateX(0);
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .sidebar-backdrop {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE LAYOUT (<960px) — sidebar off-canvas, zero layout shift
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 959.98px) {
+  .site-sidebar {
+    transform: translateX(-100%);
+    will-change: transform;
+  }
+
+  .site-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .main {
+    padding-left: 0;
+    /* Sidebar opens as overlay — main stays put, no layout shift */
+    transition: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BREAKPOINT REFINEMENTS — 6-breakpoint mobile-first
+   xs(0) sm(480) md(640) lg(960) xl(1280) 2xl(1536)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* xs: base — already mobile-first above */
+
+/* sm: 480px — slightly wider gutter */
+@media (min-width: 480px) {
+  .container {
+    padding: 0 var(--gutter);
+  }
+}
+
+/* md: 640px — relax spacing */
+@media (min-width: 640px) {
+  .container {
+    max-width: 860px;
+  }
+}
+
+/* xl: 1280px — wider container option */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 920px;
+  }
+}
+
+/* 2xl: 1536px — max comfort */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL TOUCH TARGETS (T073) — WCAG 2.5.8
+   xs/sm: ≥44x44px | md+: ≥48x48px | ≥8px spacing
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Base: buttons, links in nav, interactive controls */
+.hamburger,
+.site-sidebar a,
+.site-sidebar button {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Sidebar nav links: comfortable spacing */
+.site-sidebar nav a,
+.site-sidebar nav button {
+  padding-block: 0.5rem;
+  gap: 8px; /* minimum 8px between adjacent targets */
+}
+
+/* md+: upgrade global touch targets to 48px */
+@media (min-width: 640px) {
+  .hamburger,
+  .site-sidebar a,
+  .site-sidebar button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Skip-link touch target */
+.skip-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .skip-link {
+    min-height: 48px;
+  }
+}

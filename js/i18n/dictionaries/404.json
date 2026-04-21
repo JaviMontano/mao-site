@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Pagina no encontrada",
+        "subtitle": "Lo sentimos, la pagina que buscas no existe o ha sido movida"
+      },
+      "en": {
+        "title": "Page not found",
+        "subtitle": "Sorry, the page you're looking for doesn't exist or has been moved"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Pagina no encontrada",
+        "subtitle": "Lo sentimos, la pagina que buscas no existe o ha sido movida"
+      },
+      "en": {
+        "title": "Page not found",
+        "subtitle": "Sorry, the page you're looking for doesn't exist or has been moved"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Volver al inicio",
+        "cta1_href": "/",
+        "cta2_label": "Explorar recursos",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Go back home",
+        "cta1_href": "/",
+        "cta2_label": "Explore resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Volver al inicio",
+        "cta1_href": "/",
+        "cta2_label": "Ver programas",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Go back home",
+        "cta1_href": "/",
+        "cta2_label": "View programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Volver al inicio",
+        "cta_href": "/"
+      },
+      "en": {
+        "cta_label": "Go back home",
+        "cta_href": "/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Volver al inicio",
+        "cta_href": "/"
+      },
+      "en": {
+        "cta_label": "Go back home",
+        "cta_href": "/"
+      }
+    }
+  }
+}

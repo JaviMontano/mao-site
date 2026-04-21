@@ -1,0 +1,488 @@
+{
+  "name": "JaviMontano/jm-agentic-development-kit",
+  "version": "a174232ae3eec7600c1a29a2b4c04c7798eec17c",
+  "summary": "Auto-generated tile from GitHub (160 skills)",
+  "private": true,
+  "skills": {
+    "acceptance-criteria-writer": {
+      "path": "sovereign-architect/skills/acceptance-criteria-writer/SKILL.md"
+    },
+    "accessibility-implementation": {
+      "path": "sovereign-architect/skills/accessibility-implementation/SKILL.md"
+    },
+    "adr-generator": {
+      "path": "sovereign-architect/skills/adr-generator/SKILL.md"
+    },
+    "analytics-engineering": {
+      "path": "sovereign-architect/skills/analytics-engineering/SKILL.md"
+    },
+    "api-architecture": {
+      "path": "sovereign-architect/skills/api-architecture/SKILL.md"
+    },
+    "api-designer-skill": {
+      "path": "sovereign-architect/skills/api-designer-skill/SKILL.md"
+    },
+    "api-surface-analyzer": {
+      "path": "sovereign-architect/skills/api-surface-analyzer/SKILL.md"
+    },
+    "architecture-design": {
+      "path": "sovereign-architect/skills/architecture-design/SKILL.md"
+    },
+    "architecture-mapper": {
+      "path": "sovereign-architect/skills/architecture-mapper/SKILL.md"
+    },
+    "audit-content-quality": {
+      "path": "plugin-qa/skills/audit-content-quality/SKILL.md"
+    },
+    "audit-security": {
+      "path": "plugin-qa/skills/audit-security/SKILL.md"
+    },
+    "auth-architecture": {
+      "path": "sovereign-architect/skills/auth-architecture/SKILL.md"
+    },
+    "bi-architecture": {
+      "path": "sovereign-architect/skills/bi-architecture/SKILL.md"
+    },
+    "build-moat-assets": {
+      "path": "plugin-qa/skills/build-moat-assets/SKILL.md"
+    },
+    "build-plugin-scaffold": {
+      "path": "plugin-qa/skills/build-plugin-scaffold/SKILL.md"
+    },
+    "caching-strategy": {
+      "path": "sovereign-architect/skills/caching-strategy/SKILL.md"
+    },
+    "ci-cd-analyzer": {
+      "path": "sovereign-architect/skills/ci-cd-analyzer/SKILL.md"
+    },
+    "ci-cd-pipeline-designer": {
+      "path": "sovereign-architect/skills/ci-cd-pipeline-designer/SKILL.md"
+    },
+    "cloud-migration": {
+      "path": "sovereign-architect/skills/cloud-migration/SKILL.md"
+    },
+    "cloud-native-architecture": {
+      "path": "sovereign-architect/skills/cloud-native-architecture/SKILL.md"
+    },
+    "code-review-framework": {
+      "path": "sovereign-architect/skills/code-review-framework/SKILL.md"
+    },
+    "code-smell-detector": {
+      "path": "sovereign-architect/skills/code-smell-detector/SKILL.md"
+    },
+    "codebase-metrics": {
+      "path": "sovereign-architect/skills/codebase-metrics/SKILL.md"
+    },
+    "commercial-model": {
+      "path": "sovereign-architect/skills/commercial-model/SKILL.md"
+    },
+    "compliance-assessment": {
+      "path": "sovereign-architect/skills/compliance-assessment/SKILL.md"
+    },
+    "component-designer": {
+      "path": "sovereign-architect/skills/component-designer/SKILL.md"
+    },
+    "context-optimization": {
+      "path": "sovereign-architect/skills/context-optimization/SKILL.md"
+    },
+    "copywriting": {
+      "path": "sovereign-architect/skills/copywriting/SKILL.md"
+    },
+    "cost-estimation": {
+      "path": "sovereign-architect/skills/cost-estimation/SKILL.md"
+    },
+    "css-architecture": {
+      "path": "sovereign-architect/skills/css-architecture/SKILL.md"
+    },
+    "data-engineering": {
+      "path": "sovereign-architect/skills/data-engineering/SKILL.md"
+    },
+    "data-governance": {
+      "path": "sovereign-architect/skills/data-governance/SKILL.md"
+    },
+    "data-model-analyzer": {
+      "path": "sovereign-architect/skills/data-model-analyzer/SKILL.md"
+    },
+    "data-model-designer": {
+      "path": "sovereign-architect/skills/data-model-designer/SKILL.md"
+    },
+    "data-modeling-patterns": {
+      "path": "sovereign-architect/skills/data-modeling-patterns/SKILL.md"
+    },
+    "data-storytelling": {
+      "path": "sovereign-architect/skills/data-storytelling/SKILL.md"
+    },
+    "database-architecture": {
+      "path": "sovereign-architect/skills/database-architecture/SKILL.md"
+    },
+    "debt-classifier": {
+      "path": "sovereign-architect/skills/debt-classifier/SKILL.md"
+    },
+    "dependency-analysis": {
+      "path": "sovereign-architect/skills/dependency-analysis/SKILL.md"
+    },
+    "dependency-auditor": {
+      "path": "sovereign-architect/skills/dependency-auditor/SKILL.md"
+    },
+    "deployment-strategy": {
+      "path": "sovereign-architect/skills/deployment-strategy/SKILL.md"
+    },
+    "design-agent": {
+      "path": "plugin-qa/skills/design-agent/SKILL.md"
+    },
+    "design-skill": {
+      "path": "plugin-qa/skills/design-skill/SKILL.md"
+    },
+    "design-system": {
+      "path": "sovereign-architect/skills/design-system/SKILL.md"
+    },
+    "developer-experience-auditor": {
+      "path": "sovereign-architect/skills/developer-experience-auditor/SKILL.md"
+    },
+    "devsecops-architecture": {
+      "path": "sovereign-architect/skills/devsecops-architecture/SKILL.md"
+    },
+    "diagnostic-engine": {
+      "path": "sovereign-architect/skills/diagnostic-engine/SKILL.md"
+    },
+    "disaster-recovery-planner": {
+      "path": "sovereign-architect/skills/disaster-recovery-planner/SKILL.md"
+    },
+    "discovery-handover": {
+      "path": "sovereign-architect/skills/discovery-handover/SKILL.md"
+    },
+    "discovery-orchestrator": {
+      "path": "sovereign-architect/skills/discovery-orchestrator/SKILL.md"
+    },
+    "documentation-auditor": {
+      "path": "sovereign-architect/skills/documentation-auditor/SKILL.md"
+    },
+    "documentation-generator": {
+      "path": "sovereign-architect/skills/documentation-generator/SKILL.md"
+    },
+    "dynamic-sme": {
+      "path": "sovereign-architect/skills/dynamic-sme/SKILL.md"
+    },
+    "enterprise-architecture": {
+      "path": "sovereign-architect/skills/enterprise-architecture/SKILL.md"
+    },
+    "event-architecture": {
+      "path": "sovereign-architect/skills/event-architecture/SKILL.md"
+    },
+    "event-driven-design": {
+      "path": "sovereign-architect/skills/event-driven-design/SKILL.md"
+    },
+    "evidence-classifier": {
+      "path": "sovereign-architect/skills/evidence-classifier/SKILL.md"
+    },
+    "excellence-loop": {
+      "path": "sovereign-architect/skills/excellence-loop/SKILL.md"
+    },
+    "executive-pitch": {
+      "path": "sovereign-architect/skills/executive-pitch/SKILL.md"
+    },
+    "file-change-planner": {
+      "path": "sovereign-architect/skills/file-change-planner/SKILL.md"
+    },
+    "find-skills": {
+      "path": "sovereign-architect/skills/find-skills/SKILL.md"
+    },
+    "fix-common-issues": {
+      "path": "plugin-qa/skills/fix-common-issues/SKILL.md"
+    },
+    "flow-mapping": {
+      "path": "sovereign-architect/skills/flow-mapping/SKILL.md"
+    },
+    "friction-detector": {
+      "path": "sovereign-architect/skills/friction-detector/SKILL.md"
+    },
+    "functional-spec": {
+      "path": "sovereign-architect/skills/functional-spec/SKILL.md"
+    },
+    "generate-qa-report": {
+      "path": "plugin-qa/skills/generate-qa-report/SKILL.md"
+    },
+    "generate-qa-scorecard": {
+      "path": "plugin-qa/skills/generate-qa-scorecard/SKILL.md"
+    },
+    "ideate-component": {
+      "path": "plugin-qa/skills/ideate-component/SKILL.md"
+    },
+    "ideate-plugin": {
+      "path": "plugin-qa/skills/ideate-plugin/SKILL.md"
+    },
+    "iikit-00-constitution": {
+      "path": "aad-metodologia/.claude/skills/iikit-00-constitution/SKILL.md"
+    },
+    "iikit-01-specify": {
+      "path": "aad-metodologia/.claude/skills/iikit-01-specify/SKILL.md"
+    },
+    "iikit-02-plan": {
+      "path": "aad-metodologia/.claude/skills/iikit-02-plan/SKILL.md"
+    },
+    "iikit-03-checklist": {
+      "path": "aad-metodologia/.claude/skills/iikit-03-checklist/SKILL.md"
+    },
+    "iikit-04-testify": {
+      "path": "aad-metodologia/.claude/skills/iikit-04-testify/SKILL.md"
+    },
+    "iikit-05-tasks": {
+      "path": "aad-metodologia/.claude/skills/iikit-05-tasks/SKILL.md"
+    },
+    "iikit-06-analyze": {
+      "path": "aad-metodologia/.claude/skills/iikit-06-analyze/SKILL.md"
+    },
+    "iikit-07-implement": {
+      "path": "aad-metodologia/.claude/skills/iikit-07-implement/SKILL.md"
+    },
+    "iikit-08-taskstoissues": {
+      "path": "aad-metodologia/.claude/skills/iikit-08-taskstoissues/SKILL.md"
+    },
+    "iikit-bugfix": {
+      "path": "aad-metodologia/.claude/skills/iikit-bugfix/SKILL.md"
+    },
+    "iikit-clarify": {
+      "path": "aad-metodologia/.claude/skills/iikit-clarify/SKILL.md"
+    },
+    "iikit-core": {
+      "path": "aad-metodologia/.claude/skills/iikit-core/SKILL.md"
+    },
+    "implementation-planning": {
+      "path": "sovereign-architect/skills/implementation-planning/SKILL.md"
+    },
+    "incident-analyzer": {
+      "path": "sovereign-architect/skills/incident-analyzer/SKILL.md"
+    },
+    "infrastructure-architecture": {
+      "path": "sovereign-architect/skills/infrastructure-architecture/SKILL.md"
+    },
+    "infrastructure-mapper": {
+      "path": "sovereign-architect/skills/infrastructure-mapper/SKILL.md"
+    },
+    "input-analysis": {
+      "path": "sovereign-architect/skills/input-analysis/SKILL.md"
+    },
+    "lessons-learned-tracker": {
+      "path": "sovereign-architect/skills/lessons-learned-tracker/SKILL.md"
+    },
+    "maintainability-scorer": {
+      "path": "sovereign-architect/skills/maintainability-scorer/SKILL.md"
+    },
+    "maturity-assessment": {
+      "path": "sovereign-architect/skills/maturity-assessment/SKILL.md"
+    },
+    "mermaid-diagramming": {
+      "path": "sovereign-architect/skills/mermaid-diagramming/SKILL.md"
+    },
+    "microservices-decomposer": {
+      "path": "sovereign-architect/skills/microservices-decomposer/SKILL.md"
+    },
+    "migration-planner": {
+      "path": "sovereign-architect/skills/migration-planner/SKILL.md"
+    },
+    "monitoring-setup": {
+      "path": "sovereign-architect/skills/monitoring-setup/SKILL.md"
+    },
+    "observability-architecture": {
+      "path": "sovereign-architect/skills/observability-architecture/SKILL.md"
+    },
+    "observability-design": {
+      "path": "sovereign-architect/skills/observability-design/SKILL.md"
+    },
+    "observability-gap-analyzer": {
+      "path": "sovereign-architect/skills/observability-gap-analyzer/SKILL.md"
+    },
+    "output-engineering": {
+      "path": "sovereign-architect/skills/output-engineering/SKILL.md"
+    },
+    "performance-bottleneck-identifier": {
+      "path": "sovereign-architect/skills/performance-bottleneck-identifier/SKILL.md"
+    },
+    "performance-budget": {
+      "path": "sovereign-architect/skills/performance-budget/SKILL.md"
+    },
+    "performance-engineering": {
+      "path": "sovereign-architect/skills/performance-engineering/SKILL.md"
+    },
+    "performance-profiler": {
+      "path": "sovereign-architect/skills/performance-profiler/SKILL.md"
+    },
+    "plan-architecture": {
+      "path": "plugin-qa/skills/plan-architecture/SKILL.md"
+    },
+    "plan-moat-strategy": {
+      "path": "plugin-qa/skills/plan-moat-strategy/SKILL.md"
+    },
+    "pwa-architecture": {
+      "path": "sovereign-architect/skills/pwa-architecture/SKILL.md"
+    },
+    "quality-engineering": {
+      "path": "sovereign-architect/skills/quality-engineering/SKILL.md"
+    },
+    "query-optimization": {
+      "path": "sovereign-architect/skills/query-optimization/SKILL.md"
+    },
+    "realtime-data-sync": {
+      "path": "sovereign-architect/skills/realtime-data-sync/SKILL.md"
+    },
+    "release-planner": {
+      "path": "sovereign-architect/skills/release-planner/SKILL.md"
+    },
+    "repository-scanner": {
+      "path": "sovereign-architect/skills/repository-scanner/SKILL.md"
+    },
+    "resilience-design": {
+      "path": "sovereign-architect/skills/resilience-design/SKILL.md"
+    },
+    "responsive-design": {
+      "path": "sovereign-architect/skills/responsive-design/SKILL.md"
+    },
+    "risk-controlling": {
+      "path": "sovereign-architect/skills/risk-controlling/SKILL.md"
+    },
+    "risk-scorer": {
+      "path": "sovereign-architect/skills/risk-scorer/SKILL.md"
+    },
+    "roadmap-poc": {
+      "path": "sovereign-architect/skills/roadmap-poc/SKILL.md"
+    },
+    "rollback-strategy": {
+      "path": "sovereign-architect/skills/rollback-strategy/SKILL.md"
+    },
+    "root-cause-analyzer": {
+      "path": "sovereign-architect/skills/root-cause-analyzer/SKILL.md"
+    },
+    "scaffold-angular-app": {
+      "path": "sovereign-architect/skills/scaffold-angular-app/SKILL.md"
+    },
+    "scaffold-api-rest": {
+      "path": "sovereign-architect/skills/scaffold-api-rest/SKILL.md"
+    },
+    "scaffold-docker-dev": {
+      "path": "sovereign-architect/skills/scaffold-docker-dev/SKILL.md"
+    },
+    "scaffold-firebase-project": {
+      "path": "sovereign-architect/skills/scaffold-firebase-project/SKILL.md"
+    },
+    "scaffold-monorepo": {
+      "path": "sovereign-architect/skills/scaffold-monorepo/SKILL.md"
+    },
+    "scaffold-nextjs-app": {
+      "path": "sovereign-architect/skills/scaffold-nextjs-app/SKILL.md"
+    },
+    "scaffold-react-app": {
+      "path": "sovereign-architect/skills/scaffold-react-app/SKILL.md"
+    },
+    "scaffold-supabase-project": {
+      "path": "sovereign-architect/skills/scaffold-supabase-project/SKILL.md"
+    },
+    "scalability-assessor": {
+      "path": "sovereign-architect/skills/scalability-assessor/SKILL.md"
+    },
+    "scenario-analysis": {
+      "path": "sovereign-architect/skills/scenario-analysis/SKILL.md"
+    },
+    "schema-migration-strategy": {
+      "path": "sovereign-architect/skills/schema-migration-strategy/SKILL.md"
+    },
+    "sector-intelligence": {
+      "path": "sovereign-architect/skills/sector-intelligence/SKILL.md"
+    },
+    "security-architecture": {
+      "path": "sovereign-architect/skills/security-architecture/SKILL.md"
+    },
+    "security-surface-scanner": {
+      "path": "sovereign-architect/skills/security-surface-scanner/SKILL.md"
+    },
+    "security-threat-modeler": {
+      "path": "sovereign-architect/skills/security-threat-modeler/SKILL.md"
+    },
+    "seo-technical": {
+      "path": "sovereign-architect/skills/seo-technical/SKILL.md"
+    },
+    "software-architecture": {
+      "path": "sovereign-architect/skills/software-architecture/SKILL.md"
+    },
+    "software-viability": {
+      "path": "sovereign-architect/skills/software-viability/SKILL.md"
+    },
+    "solution-roadmap": {
+      "path": "sovereign-architect/skills/solution-roadmap/SKILL.md"
+    },
+    "solutions-architecture": {
+      "path": "sovereign-architect/skills/solutions-architecture/SKILL.md"
+    },
+    "spec-agent-command": {
+      "path": "plugin-qa/skills/spec-agent-command/SKILL.md"
+    },
+    "spec-skill-moat": {
+      "path": "plugin-qa/skills/spec-skill-moat/SKILL.md"
+    },
+    "stakeholder-mapping": {
+      "path": "sovereign-architect/skills/stakeholder-mapping/SKILL.md"
+    },
+    "state-management-design": {
+      "path": "sovereign-architect/skills/state-management-design/SKILL.md"
+    },
+    "storytelling": {
+      "path": "sovereign-architect/skills/storytelling/SKILL.md"
+    },
+    "team-topology": {
+      "path": "sovereign-architect/skills/team-topology/SKILL.md"
+    },
+    "tech-debt-quantifier": {
+      "path": "sovereign-architect/skills/tech-debt-quantifier/SKILL.md"
+    },
+    "technical-discovery": {
+      "path": "sovereign-architect/skills/technical-discovery/SKILL.md"
+    },
+    "technical-feasibility": {
+      "path": "sovereign-architect/skills/technical-feasibility/SKILL.md"
+    },
+    "technical-writing": {
+      "path": "sovereign-architect/skills/technical-writing/SKILL.md"
+    },
+    "test-coverage-analyzer": {
+      "path": "sovereign-architect/skills/test-coverage-analyzer/SKILL.md"
+    },
+    "test-strategy-designer": {
+      "path": "sovereign-architect/skills/test-strategy-designer/SKILL.md"
+    },
+    "testing-strategy": {
+      "path": "sovereign-architect/skills/testing-strategy/SKILL.md"
+    },
+    "trade-off-analyzer": {
+      "path": "sovereign-architect/skills/trade-off-analyzer/SKILL.md"
+    },
+    "ux-writing": {
+      "path": "sovereign-architect/skills/ux-writing/SKILL.md"
+    },
+    "validate-components": {
+      "path": "plugin-qa/skills/validate-components/SKILL.md"
+    },
+    "validate-cross-refs": {
+      "path": "plugin-qa/skills/validate-cross-refs/SKILL.md"
+    },
+    "validate-hooks": {
+      "path": "plugin-qa/skills/validate-hooks/SKILL.md"
+    },
+    "validate-manifest": {
+      "path": "plugin-qa/skills/validate-manifest/SKILL.md"
+    },
+    "validate-structure": {
+      "path": "plugin-qa/skills/validate-structure/SKILL.md"
+    },
+    "vector-database-design": {
+      "path": "sovereign-architect/skills/vector-database-design/SKILL.md"
+    },
+    "web-performance": {
+      "path": "sovereign-architect/skills/web-performance/SKILL.md"
+    },
+    "web-security-implementation": {
+      "path": "sovereign-architect/skills/web-security-implementation/SKILL.md"
+    },
+    "workshop-design": {
+      "path": "sovereign-architect/skills/workshop-design/SKILL.md"
+    }
+  }
+}

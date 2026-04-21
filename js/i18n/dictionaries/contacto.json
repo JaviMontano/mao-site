@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Hablemos de tu siguiente paso",
+        "subtitle": "Estamos aqui para ayudarte a encontrar el programa o recurso ideal para tu crecimiento"
+      },
+      "en": {
+        "title": "Let's talk about your next step",
+        "subtitle": "We're here to help you find the ideal program or resource for your growth"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Construyamos juntos la solucion",
+        "subtitle": "Agenda una conversacion para disenar un plan de transformacion a la medida de tu organizacion"
+      },
+      "en": {
+        "title": "Let's build the solution together",
+        "subtitle": "Schedule a conversation to design a transformation plan tailored to your organization"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Haz tu diagnostico primero",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Explora recursos gratuitos",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Take your diagnostic first",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Explore free resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Ver casos de exito",
+        "cta2_href": "/casos/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "View success stories",
+        "cta2_href": "/casos/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Enviar mensaje",
+        "cta_href": "#formulario"
+      },
+      "en": {
+        "cta_label": "Send message",
+        "cta_href": "#formulario"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Agendar reunion",
+        "cta_href": "#formulario"
+      },
+      "en": {
+        "cta_label": "Schedule meeting",
+        "cta_href": "#formulario"
+      }
+    }
+  },
+  "sections": {
+    "formulario": { "es": "Formulario", "en": "Form" },
+    "servicios": { "es": "Servicios", "en": "Services" },
+    "ubicacion": { "es": "Ubicacion", "en": "Location" },
+    "redes": { "es": "Redes", "en": "Social" },
+    "faq": { "es": "FAQ", "en": "FAQ" },
+    "horario": { "es": "Horario", "en": "Hours" },
+    "mapa": { "es": "Mapa", "en": "Map" }
+  }
+}

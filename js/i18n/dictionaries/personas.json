@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Tu camino hacia la excelencia profesional",
+        "subtitle": "Herramientas, diagnosticos y recursos personalizados para potenciar tu forma de trabajar"
+      },
+      "en": {
+        "title": "Your path to professional excellence",
+        "subtitle": "Tools, diagnostics, and personalized resources to empower how you work"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Invierte en el crecimiento de tu equipo",
+        "subtitle": "Programas individuales que elevan el nivel metodologico de cada miembro de tu organizacion"
+      },
+      "en": {
+        "title": "Invest in your team's growth",
+        "subtitle": "Individual programs that elevate the methodology level of each member of your organization"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Haz tu autodiagnostico",
+        "cta1_href": "/diagnostico/?audiencia=persona",
+        "cta2_label": "Explora recursos gratuitos",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Take your self-diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=persona",
+        "cta2_label": "Explore free resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico de equipo",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Ver programas corporativos",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Team diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "View corporate programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Descubre tu nivel metodologico",
+        "cta_href": "/diagnostico/?audiencia=persona"
+      },
+      "en": {
+        "cta_label": "Discover your methodology level",
+        "cta_href": "/diagnostico/?audiencia=persona"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Conoce nuestros programas individuales",
+        "cta_href": "/programas/"
+      },
+      "en": {
+        "cta_label": "Explore our individual programs",
+        "cta_href": "/programas/"
+      }
+    }
+  },
+  "sections": {
+    "autodiagnostico": { "es": "Autodiagnostico", "en": "Self-diagnostic" },
+    "recursos": { "es": "Recursos", "en": "Resources" },
+    "programas": { "es": "Programas", "en": "Programs" },
+    "comunidad": { "es": "Comunidad", "en": "Community" },
+    "metodo": { "es": "Metodo", "en": "Method" },
+    "casos": { "es": "Casos", "en": "Cases" },
+    "contacto": { "es": "Contacto", "en": "Contact" }
+  }
+}

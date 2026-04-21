@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Quienes somos y por que existimos",
+        "subtitle": "Un equipo apasionado por democratizar las metodologias de alto rendimiento en Latinoamerica"
+      },
+      "en": {
+        "title": "Who we are and why we exist",
+        "subtitle": "A team passionate about democratizing high-performance methodologies in Latin America"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Tu socio en transformacion metodologica",
+        "subtitle": "Experiencia probada acompanando equipos y organizaciones hacia la excelencia operacional"
+      },
+      "en": {
+        "title": "Your partner in methodological transformation",
+        "subtitle": "Proven experience guiding teams and organizations toward operational excellence"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Conoce tu nivel",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Recursos gratuitos",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Know your level",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Free resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Ver programas",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "View programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Forma parte de nuestra comunidad",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Join our community",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Conversemos sobre tu organizacion",
+        "cta_href": "/contacto/"
+      },
+      "en": {
+        "cta_label": "Let's talk about your organization",
+        "cta_href": "/contacto/"
+      }
+    }
+  },
+  "sections": {
+    "vision": { "es": "Vision", "en": "Vision" },
+    "equipo": { "es": "Equipo", "en": "Team" },
+    "ecosistema": { "es": "Ecosistema", "en": "Ecosystem" },
+    "metodologia": { "es": "Metodologia", "en": "Methodology" },
+    "valores": { "es": "Valores", "en": "Values" },
+    "comunidad": { "es": "Comunidad", "en": "Community" },
+    "contacto": { "es": "Contacto", "en": "Contact" }
+  }
+}

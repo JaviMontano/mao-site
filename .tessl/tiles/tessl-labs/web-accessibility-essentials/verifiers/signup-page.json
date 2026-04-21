@@ -1,0 +1,59 @@
+{
+  "instruction": "Build a signup page with a registration form (name, email, password, confirm password) and a simple page layout with header, navigation, and footer.",
+  "relevant_when": "Agent creates or modifies any HTML page, React component, Vue component, or frontend UI that contains page layout and form elements",
+  "context": "The user asked for a signup page without mentioning accessibility. The agent must proactively include semantic landmarks (header, nav, main, footer — not divs), skip-to-content link, heading hierarchy, form labels, aria attributes for validation, and keyboard support.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "semantic-landmarks",
+      "rule": "Page uses semantic HTML landmark elements: <header>, <nav>, <main>, and <footer> instead of generic <div> elements for layout structure",
+      "relevant_when": "Agent creates page layout"
+    },
+    {
+      "name": "skip-to-content-link",
+      "rule": "Page includes a skip-to-content link (e.g., <a href=\"#main-content\">Skip to content</a>) as the first focusable element, linked to the main content area",
+      "relevant_when": "Agent creates a page with navigation"
+    },
+    {
+      "name": "nav-has-aria-label",
+      "rule": "The <nav> element has an aria-label attribute describing its purpose (e.g., aria-label=\"Main navigation\")",
+      "relevant_when": "Agent creates navigation"
+    },
+    {
+      "name": "heading-hierarchy",
+      "rule": "Page has exactly one <h1> and headings follow a logical hierarchy (h1 > h2 > h3) without skipping levels",
+      "relevant_when": "Agent creates page structure with headings"
+    },
+    {
+      "name": "labels-linked-to-inputs",
+      "rule": "Every form input has a visible <label> with for/id linking (or htmlFor in React). Placeholder alone is not acceptable.",
+      "relevant_when": "Agent creates form inputs"
+    },
+    {
+      "name": "aria-required-on-fields",
+      "rule": "Required form fields have aria-required=\"true\"",
+      "relevant_when": "Agent creates required form inputs"
+    },
+    {
+      "name": "aria-invalid-and-describedby",
+      "rule": "When validation fails, invalid inputs get aria-invalid=\"true\" and error messages are linked via aria-describedby",
+      "relevant_when": "Agent implements form validation"
+    },
+    {
+      "name": "error-messages-role-alert",
+      "rule": "Validation error messages use role=\"alert\" so screen readers announce them",
+      "relevant_when": "Agent shows validation errors"
+    },
+    {
+      "name": "submit-is-button",
+      "rule": "Form submission uses <button type=\"submit\">, not a div or span with onClick",
+      "relevant_when": "Agent creates form submit control"
+    }
+  ]
+}

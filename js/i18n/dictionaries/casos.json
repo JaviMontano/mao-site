@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Historias de transformacion real",
+        "subtitle": "Profesionales como tu que elevaron su nivel metodologico y alcanzaron resultados extraordinarios"
+      },
+      "en": {
+        "title": "Real transformation stories",
+        "subtitle": "Professionals like you who elevated their methodology level and achieved extraordinary results"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Resultados que hablan por si solos",
+        "subtitle": "Organizaciones que transformaron sus equipos y procesos con nuestra metodologia"
+      },
+      "en": {
+        "title": "Results that speak for themselves",
+        "subtitle": "Organizations that transformed their teams and processes with our methodology"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Inicia tu transformacion",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Recursos para empezar",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Start your transformation",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Resources to get started",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostica tu equipo",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Programas corporativos",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Diagnose your team",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Corporate programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Escribe tu propia historia de exito",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Write your own success story",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Agenda tu primera conversacion",
+        "cta_href": "/contacto/"
+      },
+      "en": {
+        "cta_label": "Schedule your first conversation",
+        "cta_href": "/contacto/"
+      }
+    }
+  },
+  "sections": {
+    "destacados": { "es": "Destacados", "en": "Featured" },
+    "empresa": { "es": "Empresa", "en": "Enterprise" },
+    "persona": { "es": "Persona", "en": "Individual" },
+    "resultados": { "es": "Resultados", "en": "Results" },
+    "metodologia": { "es": "Metodologia", "en": "Methodology" },
+    "testimonios": { "es": "Testimonios", "en": "Testimonials" },
+    "contacto": { "es": "Contacto", "en": "Contact" }
+  }
+}

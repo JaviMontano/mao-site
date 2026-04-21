@@ -1,0 +1,54 @@
+{
+  "instruction": "Build a contact form with name, email, and message fields. Include a submit button.",
+  "relevant_when": "Agent creates or modifies any HTML page, React component, Vue component, Svelte component, Angular template, or frontend UI that contains form elements",
+  "context": "The user asked for a contact form without mentioning accessibility. The agent must proactively include full accessibility support: labels linked to inputs, aria-required on required fields, aria-invalid and aria-describedby for error states, role=\"alert\" on error messages, semantic HTML, and keyboard support.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "labels-linked-to-inputs",
+      "rule": "Every input, select, and textarea has a visible <label> element with for/id linking (HTML) or htmlFor (React/JSX). Placeholder text alone is not sufficient.",
+      "relevant_when": "Agent creates form inputs"
+    },
+    {
+      "name": "aria-required-on-required-fields",
+      "rule": "Required form fields have aria-required=\"true\" in addition to the HTML required attribute",
+      "relevant_when": "Agent creates required form fields"
+    },
+    {
+      "name": "aria-invalid-on-error",
+      "rule": "When validation fails, the invalid input has aria-invalid=\"true\" set (can be conditional/dynamic)",
+      "relevant_when": "Agent implements form validation"
+    },
+    {
+      "name": "aria-describedby-for-errors",
+      "rule": "Error messages are linked to their input via aria-describedby pointing to the error element's id",
+      "relevant_when": "Agent displays inline validation error messages"
+    },
+    {
+      "name": "role-alert-on-error-messages",
+      "rule": "Validation error message elements use role=\"alert\" so screen readers announce them immediately",
+      "relevant_when": "Agent displays validation error messages"
+    },
+    {
+      "name": "semantic-form-element",
+      "rule": "The form uses a <form> element (not a <div>) with an onSubmit handler",
+      "relevant_when": "Agent creates a form"
+    },
+    {
+      "name": "button-for-submit",
+      "rule": "The submit action uses a <button type=\"submit\"> element, not a <div> or <span> with an onClick handler",
+      "relevant_when": "Agent creates a form submit action"
+    },
+    {
+      "name": "focus-visible-not-removed",
+      "rule": "Agent does not remove focus outlines (no outline:none without a visible replacement focus style). If custom focus styles are used, :focus-visible is present.",
+      "relevant_when": "Agent writes CSS for the form"
+    }
+  ]
+}

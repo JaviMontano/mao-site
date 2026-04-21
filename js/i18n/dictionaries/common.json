@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "ruta": { "es": "Ruta", "en": "Path" },
+    "servicios": { "es": "Servicios", "en": "Services" },
+    "contacto": { "es": "Contacto", "en": "Contact" },
+    "recursos": { "es": "Recursos", "en": "Resources" },
+    "campus": { "es": "Campus", "en": "Campus" },
+    "inicio": { "es": "Inicio", "en": "Home" }
+  },
+  "footer": {
+    "col_explorar": { "es": "Explorar", "en": "Explore" },
+    "col_aprender": { "es": "Aprender", "en": "Learn" },
+    "col_conectar": { "es": "Conectar", "en": "Connect" },
+    "home": { "es": "Inicio", "en": "Home" },
+    "diagnostico": { "es": "Diagnóstico", "en": "Diagnostic" },
+    "empresas": { "es": "Empresas", "en": "For Companies" },
+    "personas": { "es": "Personas", "en": "For Individuals" },
+    "programas": { "es": "Programas", "en": "Programs" },
+    "recursos": { "es": "Recursos", "en": "Resources" },
+    "metodo": { "es": "Método", "en": "Methodology" },
+    "casos": { "es": "Casos de Éxito", "en": "Case Studies" },
+    "nosotros": { "es": "Nosotros", "en": "About Us" },
+    "insights": { "es": "Insights", "en": "Insights" },
+    "contacto": { "es": "Contacto", "en": "Contact" },
+    "legal": { "es": "Legal", "en": "Legal" },
+    "quote": { "es": "\"La excelencia no se compra, se diseña. Se cocrea y se comparte.\"", "en": "\"Excellence is not bought, it is designed. Co-created and shared.\"" },
+    "copyright": { "es": "© 2026 MetodologIA. Copyleft.", "en": "© 2026 MetodologIA. Copyleft." }
+  },
+  "toggles": {
+    "theme": { "es": "Modo oscuro", "en": "Dark mode" },
+    "locale": { "es": "English", "en": "Espanol" },
+    "audience": { "es": "Para empresas", "en": "For teams" }
+  },
+  "skip_link": { "es": "Saltar al contenido", "en": "Skip to content" },
+  "missing_key": { "es": "[Contenido pendiente]", "en": "[Content pending]" }
+}

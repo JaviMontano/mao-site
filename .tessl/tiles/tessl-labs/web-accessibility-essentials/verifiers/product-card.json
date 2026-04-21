@@ -1,0 +1,44 @@
+{
+  "instruction": "Build a product card component that displays a product image, name, price, and an 'Add to cart' button.",
+  "relevant_when": "Agent creates or modifies any HTML, React, Vue, Svelte, or Angular component that displays product information or card-style UI",
+  "context": "The user asked for a product card without mentioning accessibility. The agent must proactively include alt text on the product image, proper button semantics for the add-to-cart action, semantic heading for the product name, and keyboard accessibility.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "image-has-alt-text",
+      "rule": "The product image has a descriptive alt attribute (e.g., alt=\"Blue running shoes\" or alt={product.name}), not an empty alt or missing alt",
+      "relevant_when": "Agent creates an image element for the product"
+    },
+    {
+      "name": "button-not-div",
+      "rule": "The 'Add to cart' action uses a <button> element, not a <div>, <span>, or <a> without href",
+      "relevant_when": "Agent creates the add-to-cart interaction"
+    },
+    {
+      "name": "button-has-accessible-name",
+      "rule": "The add-to-cart button has clear text content or aria-label that identifies which product it refers to (e.g., 'Add Widget to cart' or aria-label with product name)",
+      "relevant_when": "Agent creates action buttons in a product card"
+    },
+    {
+      "name": "semantic-heading-for-name",
+      "rule": "The product name uses a heading element (h2, h3, etc.) appropriate to the page hierarchy, not a styled <div> or <span>",
+      "relevant_when": "Agent displays the product name"
+    },
+    {
+      "name": "price-is-accessible",
+      "rule": "The price is readable by screen readers — either as plain text content or with an aria-label like 'Price: $29.99'",
+      "relevant_when": "Agent displays a product price"
+    },
+    {
+      "name": "focus-visible-styles",
+      "rule": "Interactive elements (button, links) have visible focus indicators. Agent does not set outline:none without providing a replacement.",
+      "relevant_when": "Agent writes CSS for interactive elements"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Programas que impulsan tu carrera",
+        "subtitle": "Formacion practica y acompanamiento para dominar metodologias de alto rendimiento"
+      },
+      "en": {
+        "title": "Programs that boost your career",
+        "subtitle": "Hands-on training and mentorship to master high-performance methodologies"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Programas de transformacion organizacional",
+        "subtitle": "Capacitacion y acompanamiento para equipos que buscan resultados medibles y sostenibles"
+      },
+      "en": {
+        "title": "Organizational transformation programs",
+        "subtitle": "Training and coaching for teams seeking measurable, sustainable results"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Diagnostico gratuito primero",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Recursos de apoyo",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Free diagnostic first",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Support resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Explorar recursos B2B",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Explore B2B resources",
+        "cta2_href": "/recursos/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Encuentra tu programa ideal",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Find your ideal program",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Solicita una propuesta personalizada",
+        "cta_href": "/contacto/"
+      },
+      "en": {
+        "cta_label": "Request a personalized proposal",
+        "cta_href": "/contacto/"
+      }
+    }
+  },
+  "sections": {
+    "catalogo": { "es": "Catalogo", "en": "Catalog" },
+    "detalle": { "es": "Detalle", "en": "Detail" },
+    "audiencia": { "es": "Audiencia", "en": "Audience" },
+    "duracion": { "es": "Duracion", "en": "Duration" },
+    "resultado": { "es": "Resultado", "en": "Outcome" },
+    "testimonios": { "es": "Testimonios", "en": "Testimonials" },
+    "inscripcion": { "es": "Inscripcion", "en": "Enrollment" }
+  }
+}

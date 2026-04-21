@@ -7,7 +7,7 @@
   @poweredBy Pristino Agent
 -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,6 +41,8 @@
     
     <!-- MetodologIA Design System -->
     <link rel="stylesheet" href="../../estilos/variables.css">
+    <link rel="stylesheet" href="../../estilos/sidebar.css">
+    <script src="../../js/dark-mode-toggle.js"></script>
     <link rel="stylesheet" href="../../estilos/base.css">
     <link rel="stylesheet" href="../../estilos/components.css">
     
@@ -49,7 +51,7 @@
 
     <!-- Components -->
     <script src="../../js/icons.js" defer></script>
-    <script src="../../components/SiteHeader.js" defer></script>
+    <script src="../../components/SiteSidebar.js" defer></script>
     <script src="../../components/SiteFooter.js" defer></script>
     
     <style>
@@ -58,9 +60,9 @@
            ═══════════════════════════════════════════════════════════════ */
         
         body {
-            font-family: var(--font-primary);
-            background: var(--bg-body);
-            color: var(--text-primary);
+            font-family: var(--font-head);
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
         }
         
@@ -69,7 +71,7 @@
             position: relative;
             background: linear-gradient(180deg, 
                 rgba(15, 23, 42, 0.95) 0%, 
-                var(--bg-body) 100%);
+                var(--bg) 100%);
             border-bottom: 1px solid rgba(255, 215, 0, 0.15);
             padding: 5rem 2rem 4rem;
             text-align: center;
@@ -102,7 +104,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-family: 'Montserrat', var(--font-primary);
+            font-family: 'Montserrat', var(--font-head);
             font-size: clamp(2.25rem, 5vw, 4rem);
             font-weight: 900;
             margin-bottom: 1.25rem;
@@ -112,8 +114,8 @@
         
         .hub-hero .subtitle {
             position: relative;
-            color: var(--text-secondary);
-            font-family: 'Jost', var(--font-primary);
+            color: var(--text-sec);
+            font-family: 'Jost', var(--font-head);
             font-size: 1.25rem;
             max-width: 700px;
             margin: 0 auto 2rem;
@@ -159,10 +161,10 @@
         }
         
         .section-title {
-            font-family: 'Montserrat', var(--font-primary);
+            font-family: 'Montserrat', var(--font-head);
             font-size: 1.75rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: var(--text);
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
@@ -222,7 +224,7 @@
         }
         
         .featured-content h2 {
-            font-family: 'Montserrat', var(--font-primary);
+            font-family: 'Montserrat', var(--font-head);
             font-size: 2rem;
             font-weight: 800;
             color: var(--brand-gold);
@@ -230,7 +232,7 @@
         }
         
         .featured-content p {
-            color: var(--text-secondary);
+            color: var(--text-sec);
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 1.5rem;
@@ -247,7 +249,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-secondary);
+            color: var(--text-sec);
             font-size: 0.9rem;
         }
         
@@ -350,15 +352,15 @@
         }
         
         .library-card h3 {
-            font-family: 'Montserrat', var(--font-primary);
+            font-family: 'Montserrat', var(--font-head);
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--text);
             margin-bottom: 0.5rem;
         }
         
         .library-card p {
-            color: var(--text-secondary);
+            color: var(--text-sec);
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1.25rem;
@@ -452,12 +454,12 @@
         .elite-card h3 {
             font-size: 1.3rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: var(--text);
             margin-bottom: 0.75rem;
         }
         
         .elite-card p {
-            color: var(--text-secondary);
+            color: var(--text-sec);
             font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 1rem;
@@ -514,7 +516,7 @@
         .ruta-card h4 {
             font-size: 0.85rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--text);
             margin-bottom: 0.5rem;
         }
         
@@ -525,7 +527,7 @@
         
         /* Section subtitle */
         .section-subtitle {
-            color: var(--text-secondary);
+            color: var(--text-sec);
             font-size: 0.95rem;
             max-width: 800px;
             margin: 0 auto 2rem;
@@ -563,7 +565,7 @@
         }
         
         .info-card p {
-            color: var(--text-secondary);
+            color: var(--text-sec);
             font-size: 0.9rem;
             line-height: 1.6;
             margin: 0;
@@ -610,7 +612,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-secondary);
+            color: var(--text-sec);
             text-decoration: none;
             padding: 1.5rem 2rem;
             font-size: 0.9rem;
@@ -649,11 +651,11 @@
         }
     </style>
 </head>
-<body class="bg-[var(--bg-body)] text-slate-100 font-sans antialiased">
+<body class="bg-[var(--bg)] text-slate-100 font-sans antialiased">
     <div class="mesh-bg"></div>
     <div class="grid-bg"></div>
 
-    <site-header base-path="../.." theme="dark"></site-header>
+    <site-sidebar base-path="../.." theme="dark"></site-sidebar>
 
     <main id="main-content">
         <!-- Golden Layout: Quote & Breadcrumb -->
@@ -682,10 +684,10 @@
             <span class="featured-badge"><i data-lucide="check-circle" class="w-3 h-3 inline-block mr-1"></i> <span data-i18n="biblioteca.featured.status_available">Disponible</span></span>
             <div class="featured-content">
                 <h2><i data-lucide="book" class="w-8 h-8 inline-block mr-2 text-brand-gold"></i> <span data-i18n="biblioteca.featured.title">Biblioteca Universal</span></h2>
-                <p data-i18n="biblioteca.featured.desc">La colección más completa y versátil. 180 prompts para análisis, comunicación, estrategia, productividad y mucho más. Compatible con ChatGPT, Gemini, Claude y cualquier IA.</p>
+                <p data-i18n="biblioteca.featured.desc">443 prompts en formato SPEC (Situación · Pedido · Ejecución · Criterio). Comandos, aceleradores, pipeline metacognitivo y specs de alto rendimiento. Compatible con ChatGPT, Gemini, Claude y cualquier IA.</p>
                 <div class="featured-stats">
-                    <span class="featured-stat"><i data-lucide="file-text" class="w-4 h-4 text-brand-gold"></i> <strong>202</strong> <span data-i18n="biblioteca.featured.stat_prompts">prompts</span></span>
-                    <span class="featured-stat"><i data-lucide="tag" class="w-4 h-4 text-brand-gold"></i> <strong>29</strong> <span data-i18n="biblioteca.featured.stat_categories">categorías</span></span>
+                    <span class="featured-stat"><i data-lucide="file-text" class="w-4 h-4 text-brand-gold"></i> <strong>443</strong> <span data-i18n="biblioteca.featured.stat_prompts">prompts</span></span>
+                    <span class="featured-stat"><i data-lucide="tag" class="w-4 h-4 text-brand-gold"></i> <strong>24</strong> <span data-i18n="biblioteca.featured.stat_categories">categorías</span></span>
                     <span class="featured-stat"><i data-lucide="clipboard-list" class="w-4 h-4 text-brand-gold"></i> <span data-i18n="biblioteca.featured.stat_params">Incluye <strong>parámetros</strong></span></span>
                     <span class="featured-stat"><i data-lucide="target" class="w-4 h-4 text-brand-gold"></i> <span data-i18n="biblioteca.featured.stat_archetypes"><strong>Arquetipos expertos</strong></span></span>
                 </div>

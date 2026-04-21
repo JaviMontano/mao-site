@@ -169,4 +169,60 @@
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
   --shadow-glow-gold: 0 0 30px rgba(255, 240, 51, 0.3);
   --shadow-glow-cyan: 0 0 30px rgba(34, 211, 238, 0.3);
+
+  /* ═══════════════════════════════════════════════════════════════
+     LAYOUT TOKENS (009 — Sidebar Architecture v8)
+     ═══════════════════════════════════════════════════════════════ */
+  --sidebar-w: 260px;
+  --header-h: 72px;
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --ease: cubic-bezier(.4, 0, .2, 1);
+
+  /* ═══════════════════════════════════════════════════════════════
+     NEO-SWISS THEMED TOKENS (FR-041..FR-044)
+     Default: Light. Override: [data-theme="dark"].
+     These semantic tokens are consumed by all 009+ pages.
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* Typography — 3-level system (FR-043) */
+  --font-head: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-note: 'Trebuchet MS', 'Jost', 'Futura', Arial, sans-serif;
+
+  /* Radii — cartilla reference (FR-044) */
+  --ns-radius-sm: 6px;
+  --ns-radius-md: 12px;
+  --ns-radius-lg: 20px;
+  --ns-radius-xl: 32px;
+
+  /* Neo-Swiss Light — default (FR-041) */
+  --ns-bg: #F9FAFB;
+  --ns-bg-soft: #F0F0EC;
+  --ns-bg-card: rgba(255, 255, 255, 0.88);
+  --ns-navy: #122562;
+  --ns-gold: #FFD700;
+  --ns-gold-dark: #B8860B;
+  --ns-blue: #137DC5;
+  --ns-text: #1F2833;
+  --ns-text-sec: #4A5568;
+  --ns-text-muted: #808080;
+  --ns-border: rgba(18, 37, 98, 0.08);
+  --ns-shadow-card: 0 2px 8px rgba(18, 37, 98, 0.06);
+  --ns-shadow-glow: 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEO-SWISS DARK MIRROR (FR-042)
+   Activated by: [data-theme="dark"] on <html>
+   ═══════════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --ns-bg: #0B2545;
+  --ns-bg-soft: #071A33;
+  --ns-bg-card: rgba(11, 37, 69, 0.88);
+  --ns-text: #F0F4F8;
+  --ns-text-sec: #CBD5E1;
+  --ns-text-muted: #94A3B8;
+  --ns-border: rgba(255, 255, 255, 0.1);
+  --ns-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --ns-shadow-glow: 0 0 20px rgba(255, 215, 0, 0.25);
 }

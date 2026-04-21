@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Tu privacidad es nuestra prioridad",
+        "subtitle": "Arquitectura Local-First, soberania de datos y transparencia total en el tratamiento de tu informacion"
+      },
+      "en": {
+        "title": "Your privacy is our priority",
+        "subtitle": "Local-First architecture, data sovereignty, and full transparency in handling your information"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Marco legal transparente para tu organizacion",
+        "subtitle": "Politicas de privacidad, terminos y cookies disenados con estandares de cumplimiento empresarial"
+      },
+      "en": {
+        "title": "Transparent legal framework for your organization",
+        "subtitle": "Privacy policies, terms, and cookies designed with enterprise compliance standards"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Diagnostico gratuito",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Recursos disponibles",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Free diagnostic",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Available resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Contactar equipo legal",
+        "cta2_href": "/contacto/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Contact legal team",
+        "cta2_href": "/contacto/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Contactar al Oficial de Privacidad",
+        "cta_href": "/contacto/"
+      },
+      "en": {
+        "cta_label": "Contact the Privacy Officer",
+        "cta_href": "/contacto/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Solicitar informacion de cumplimiento",
+        "cta_href": "/contacto/"
+      },
+      "en": {
+        "cta_label": "Request compliance information",
+        "cta_href": "/contacto/"
+      }
+    }
+  },
+  "sections": {
+    "privacidad": { "es": "Privacidad", "en": "Privacy" },
+    "terminos": { "es": "Terminos", "en": "Terms" },
+    "cookies": { "es": "Cookies", "en": "Cookies" },
+    "datos": { "es": "Datos", "en": "Data" },
+    "derechos": { "es": "Derechos", "en": "Rights" },
+    "cambios": { "es": "Cambios", "en": "Changes" },
+    "contacto": { "es": "Contacto", "en": "Contact" }
+  }
+}

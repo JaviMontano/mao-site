@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Un metodo disenado para ti",
+        "subtitle": "Aprende paso a paso con una ruta clara hacia la excelencia profesional"
+      },
+      "en": {
+        "title": "A method designed for you",
+        "subtitle": "Learn step by step with a clear path to professional excellence"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Metodologia con resultados comprobados",
+        "subtitle": "Un enfoque sistematico que acelera la madurez de equipos y organizaciones"
+      },
+      "en": {
+        "title": "Methodology with proven results",
+        "subtitle": "A systematic approach that accelerates team and organizational maturity"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Mide tu nivel actual",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Recursos del metodo",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Measure your current level",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Method resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Ver casos de exito",
+        "cta2_href": "/casos/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "View success stories",
+        "cta2_href": "/casos/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Comienza con tu diagnostico",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Start with your diagnostic",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Aplica el metodo en tu equipo",
+        "cta_href": "/diagnostico/?audiencia=empresa"
+      },
+      "en": {
+        "cta_label": "Apply the method to your team",
+        "cta_href": "/diagnostico/?audiencia=empresa"
+      }
+    }
+  },
+  "sections": {
+    "filosofia": { "es": "Filosofia", "en": "Philosophy" },
+    "diagnostico": { "es": "Diagnostico", "en": "Diagnostic" },
+    "estrategia": { "es": "Estrategia", "en": "Strategy" },
+    "amplificacion": { "es": "Amplificacion", "en": "Amplification" },
+    "pivote": { "es": "Pivote", "en": "Pivot" },
+    "evidencia": { "es": "Evidencia", "en": "Evidence" },
+    "siguiente": { "es": "Siguiente Paso", "en": "Next Step" }
+  }
+}

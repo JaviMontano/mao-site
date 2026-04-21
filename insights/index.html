@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-page-slug="insights">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights | MetodologIA</title>
+  <meta name="description" content="Articulos, tendencias, herramientas e investigacion sobre metodologias agiles, datos e IA. Acceso anticipado para suscriptores.">
+  <link rel="canonical" href="https://metodologia.info/insights/">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metodologia.info/insights/">
+  <meta property="og:title" content="Insights | MetodologIA">
+  <meta property="og:description" content="Articulos, tendencias, herramientas e investigacion sobre metodologias agiles, datos e IA. Acceso anticipado para suscriptores.">
+  <meta property="og:image" content="https://metodologia.info/og-image.png">
+
+  <!-- Anti-FOUC inline theme restore -->
+  <script>
+    const t = localStorage.getItem('mdg_theme');
+    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+  </script>
+
+  <style>/* inline critical.css content placeholder */</style>
+
+  <link rel="stylesheet" href="../dist/output.css">
+  <link rel="stylesheet" href="../estilos/variables.css">
+  <link rel="stylesheet" href="../estilos/blueprint.css">
+  <link rel="stylesheet" href="../estilos/sidebar.css">
+  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+</head>
+<body>
+  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+
+  <site-header></site-header>
+  <site-sidebar data-page="insights"></site-sidebar>
+
+  <main id="main" class="main">
+    <div class="container">
+
+      <!-- Early Access Banner -->
+      <div class="early-access-banner" role="status" data-i18n="insights.early_access_banner">
+        Acceso anticipado — contenido en construccion. Suscribete para ser el primero en enterarte.
+      </div>
+
+      <!-- Section 1: Articulos -->
+      <section id="articulos" class="section" aria-labelledby="articulos-heading">
+        <h1 id="articulos-heading" class="section__title" data-i18n="insights.articulos.title">
+          Articulos
+        </h1>
+        <p class="section__lead" data-i18n="insights.articulos.lead">
+          Analisis profundos sobre metodologias, productividad y transformacion digital.
+        </p>
+      </section>
+
+      <!-- Section 2: Tendencias -->
+      <section id="tendencias" class="section" aria-labelledby="tendencias-heading">
+        <h2 id="tendencias-heading" class="section__title" data-i18n="insights.tendencias.title">
+          Tendencias
+        </h2>
+        <p class="section__body" data-i18n="insights.tendencias.body">
+          Lo que viene en el mundo de las metodologias agiles, IA y datos.
+        </p>
+      </section>
+
+      <!-- Section 3: Herramientas -->
+      <section id="herramientas" class="section" aria-labelledby="herramientas-heading">
+        <h2 id="herramientas-heading" class="section__title" data-i18n="insights.herramientas.title">
+          Herramientas
+        </h2>
+        <p class="section__body" data-i18n="insights.herramientas.body">
+          Reviews, comparativas y guias practicas de herramientas metodologicas.
+        </p>
+      </section>
+
+      <!-- Section 4: Investigacion -->
+      <section id="investigacion" class="section" aria-labelledby="investigacion-heading">
+        <h2 id="investigacion-heading" class="section__title" data-i18n="insights.investigacion.title">
+          Investigacion
+        </h2>
+        <p class="section__body" data-i18n="insights.investigacion.body">
+          Estudios propios y curados sobre efectividad metodologica con datos reales.
+        </p>
+      </section>
+
+      <!-- Section 5: Comunidad -->
+      <section id="comunidad" class="section" aria-labelledby="comunidad-heading">
+        <h2 id="comunidad-heading" class="section__title" data-i18n="insights.comunidad.title">
+          Comunidad
+        </h2>
+        <p class="section__body" data-i18n="insights.comunidad.body">
+          Discusiones, preguntas y aportes de la comunidad MetodologIA.
+        </p>
+      </section>
+
+      <!-- Section 6: Suscripcion — Leads form -->
+      <section id="suscripcion" class="section" aria-labelledby="suscripcion-heading">
+        <h2 id="suscripcion-heading" class="section__title" data-i18n="insights.suscripcion.title">
+          Suscribete
+        </h2>
+        <p class="section__body" data-i18n="insights.suscripcion.body">
+          Recibe insights exclusivos, acceso anticipado a herramientas y contenido premium.
+        </p>
+        <form id="insights-subscribe-form" class="subscribe-form" aria-label="Formulario de suscripcion">
+          <div class="subscribe-form__field">
+            <label for="subscribe-email" class="subscribe-form__label" data-i18n="insights.suscripcion.email_label">
+              Correo electronico
+            </label>
+            <input
+              id="subscribe-email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              class="subscribe-form__input"
+              placeholder="tu@email.com"
+              data-i18n-placeholder="insights.suscripcion.email_placeholder"
+            >
+          </div>
+          <div class="subscribe-form__field">
+            <label for="subscribe-name" class="subscribe-form__label" data-i18n="insights.suscripcion.name_label">
+              Nombre (opcional)
+            </label>
+            <input
+              id="subscribe-name"
+              type="text"
+              name="nombre"
+              autocomplete="given-name"
+              class="subscribe-form__input"
+              data-i18n-placeholder="insights.suscripcion.name_placeholder"
+            >
+          </div>
+          <input type="hidden" name="fuente" value="insights-subscribe">
+          <button type="submit" class="subscribe-form__btn" data-i18n="insights.suscripcion.submit">
+            Suscribirme
+          </button>
+          <p class="subscribe-form__status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- Section 7: Archivo -->
+      <section id="archivo" class="section" aria-labelledby="archivo-heading">
+        <h2 id="archivo-heading" class="section__title" data-i18n="insights.archivo.title">
+          Archivo
+        </h2>
+        <p class="section__body" data-i18n="insights.archivo.body">
+          Todos los insights publicados, organizados por fecha y categoria.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <triple-toggle></triple-toggle>
+  <offline-pill></offline-pill>
+  <consent-banner></consent-banner>
+  <site-footer></site-footer>
+
+  <script type="module">
+    import { initShell } from '../js/blueprint/shell.js';
+    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    initShell({ pageSlug: 'insights' });
+
+    // Subscription form → leads/ collection
+    const form = document.getElementById('insights-subscribe-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const status = form.querySelector('.subscribe-form__status');
+        const email = form.elements.email.value.trim();
+        const nombre = form.elements.nombre?.value?.trim() || '';
+        const fuente = form.elements.fuente.value;
+
+        if (!email) return;
+
+        try {
+          status.textContent = '';
+          const db = getFirestore();
+          await addDoc(collection(db, 'leads'), {
+            email,
+            nombre,
+            fuente,
+            createdAt: serverTimestamp(),
+          });
+          status.textContent = 'Suscripcion exitosa. Bienvenido!';
+          status.dataset.i18n = 'insights.suscripcion.success';
+          form.reset();
+        } catch (err) {
+          console.error('[insights-subscribe]', err);
+          status.textContent = 'Error al suscribirse. Intenta de nuevo.';
+          status.dataset.i18n = 'insights.suscripcion.error';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

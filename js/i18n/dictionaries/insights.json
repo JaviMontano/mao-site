@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Ideas que impulsan tu crecimiento",
+        "subtitle": "Articulos, tendencias e investigaciones sobre metodologias, IA y productividad profesional"
+      },
+      "en": {
+        "title": "Ideas that drive your growth",
+        "subtitle": "Articles, trends, and research on methodologies, AI, and professional productivity"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Inteligencia para decisiones estrategicas",
+        "subtitle": "Investigacion aplicada, tendencias del mercado y patrones de exito organizacional"
+      },
+      "en": {
+        "title": "Intelligence for strategic decisions",
+        "subtitle": "Applied research, market trends, and organizational success patterns"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Diagnostica tu nivel",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Recursos practicos",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Diagnose your level",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Practical resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Programas de transformacion",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Transformation programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Suscribete para acceso anticipado",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Subscribe for early access",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Recibe insights exclusivos B2B",
+        "cta_href": "/contacto/"
+      },
+      "en": {
+        "cta_label": "Receive exclusive B2B insights",
+        "cta_href": "/contacto/"
+      }
+    }
+  },
+  "sections": {
+    "articulos": { "es": "Articulos", "en": "Articles" },
+    "tendencias": { "es": "Tendencias", "en": "Trends" },
+    "herramientas": { "es": "Herramientas", "en": "Tools" },
+    "investigacion": { "es": "Investigacion", "en": "Research" },
+    "comunidad": { "es": "Comunidad", "en": "Community" },
+    "suscripcion": { "es": "Suscripcion", "en": "Subscription" },
+    "archivo": { "es": "Archivo", "en": "Archive" }
+  }
+}

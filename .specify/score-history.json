@@ -86,5 +86,57 @@
       "low": 1,
       "total_findings": 5
     }
+  ],
+  "009-home-landing-sales": [
+    {
+      "timestamp": "2026-04-21T15:19:07Z",
+      "score": 93,
+      "coverage_pct": 88,
+      "critical": 0,
+      "high": 0,
+      "medium": 3,
+      "low": 3,
+      "total_findings": 6
+    },
+    {
+      "timestamp": "2026-04-21T15:22:44Z",
+      "score": 100,
+      "coverage_pct": 88,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "total_findings": 0
+    },
+    {
+      "timestamp": "2026-04-21T20:45:00Z",
+      "score": 90,
+      "coverage_pct": 98.5,
+      "critical": 0,
+      "high": 1,
+      "medium": 3,
+      "low": 2,
+      "total_findings": 6
+    },
+    {
+      "timestamp": "2026-04-21T21:00:00Z",
+      "score": 100,
+      "coverage_pct": 100,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "total_findings": 0
+    },
+    {
+      "timestamp": "2026-04-21T21:15:00Z",
+      "score": 100,
+      "coverage_pct": 100,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 1,
+      "total_findings": 1
+    }
   ]
 }

@@ -1,26 +1,28 @@
 <!-- Sync Impact Report
-Version: 6.2.0 (Zero Hardcoding Principle)
-Added:
-  - XXI: Zero Hardcoding — all values managed via
-    configuration mechanisms (env vars, config stores, CMS),
-    never literal values in source code
-Modified:
-  - Assumptions: removed bootstrap "only exception" —
-    bootstrap accounts now managed via environment variables
-  - Development Workflow: Act phase references XXI
-Origin: Owner directive — as a CMS, editability and
-  manageability of all values is a core identity trait.
-  Hardcoded values defeat the purpose of a content
-  management system. Security invariants use env vars
-  and deploy-time config, not source code literals.
-Previous version: 6.1.0 (TO-BE RBAC Governance)
+Version: 7.1.0 (Adaptive Blueprint Personalization)
+Breaking changes: none
+Additive changes:
+  - XXIV (NEW): Adaptive Blueprint Personalization —
+    three-axis orthogonal personalization (locale/theme/
+    audience), single shell with intra-page navigation,
+    declarative slot cascade, instant transitions,
+    client-only state, content manageable without redeploy.
+Non-breaking: all principles I-XXIII unchanged
+Origin: Feature 009-home-landing-sales v8 introduced
+  sidebar architecture + triple toggle + admin content
+  editor as systemic patterns affecting all future features
+  that touch public pages. Backcasting Direction 2 validated
+  the pattern as constitutional (4/4 systemicity test).
+  Socratic debate (Elena/Diego/Carlos) refined wording to
+  abstract invariants, removing implementation details
+  (sidebar width, toggle position, section count) which
+  belong in plan.md.
+Previous version: 7.0.0 (Cloud-First Content-as-Data)
 Follow-up TODOs:
-  - Update INS-RBAC-004: mechanism from hardcoded array
-    to environment variables
-  - Update feature 006 plan.md: bootstrap accounts in
-    functions config, not hardcoded in index.js
-  - Set up GitHub branch protection rules on main + staging
-  - Add GitHub Actions CI for staging PR gate
+  - Refresh PREMISE.md to v7.1 alignment
+  - Create insights/adaptive-blueprint-pattern.md (XVII)
+  - Add blueprint compliance row to feature spec template
+  - Feature 010 MUST expose slot editor enforcing cascade
 -->
 
 # Site MetodologIA Constitution
@@ -113,42 +115,56 @@ evidence, not anticipation.
 
 ## Core Principles
 
-### I. Client-Rendered, Cloud-Backed
+### I. BaaS-First, Zero Server
 
-The site is a client-rendered application backed by a
-managed Backend-as-a-Service (BaaS). The browser renders;
-the cloud stores content.
+The site is a client-rendered application with **Firebase
+as the single backend**. There is no custom server —
+ever. The browser renders; Firestore stores content;
+Firebase Auth authenticates; Firebase Storage holds
+assets; Firebase Analytics captures events; App Check
+prevents abuse.
 
 - Pages render entirely in the browser — no server-side
-  rendering framework
-- Editable content is stored in a cloud document store
-  and fetched at runtime
-- Static HTML provides the shell; the cloud provides data
-- The site MUST function in degraded mode when backend is
-  unreachable — cached or fallback content, never blank
-- No custom servers — only managed cloud services
+  rendering framework, no Node runtime in production
+- The ONLY runtime dependencies are Firebase client SDKs
+  and the static shell served by Hostinger
+- Writes to PII collections use Firebase anonymous auth
+  with App Check attestation (see XXII PII-Append-Only)
+- Cloud Functions are permitted ONLY when a client-side
+  approach is infeasible (e.g., OG image generation,
+  third-party webhook handlers) — never as "poor man's
+  server" for business logic that can live in the client
+- Every feature spec MUST declare which Firebase services
+  it depends on and what happens when each is down
+- Introducing a non-Firebase backend service requires a
+  constitutional amendment (major version bump)
 - The build step (CSS compilation) is a dev convenience,
   not a runtime dependency
 
-**Rationale**: Client rendering preserves static site speed
-while enabling real-time content updates. BaaS eliminates
-server ops. Degraded mode ensures the site never breaks.
-
-**Migration note**: During transition, pages may source
-content from either static HTML or the cloud. Both modes
-must coexist until migration completes per section.
+**Rationale**: Formalizing Firebase as the single backend
+eliminates vendor-drift debates, reduces ops to zero, and
+gives security rules a single enforcement surface. The
+"managed BaaS" abstraction of v6 was honest but invited
+abstraction leakage; v7 is concrete. Client rendering
+preserves static-site speed while enabling real-time
+content updates.
 
 > **Acceptance criteria**:
-> - Every page renders meaningful content with backend off
+> - Every page renders meaningful content with Firestore
+>   stubbed offline (fallback to static or cache)
 > - No `<noscript>` fallback shows a blank or error state
 > - Zero custom server processes in production
+> - Each feature spec has a "Firebase services used" list
 >
 > **Anti-pattern**: Adding an SSR framework or Node server
 > "for SEO" when static HTML + client fetch suffices.
+> Adding a second backend provider "just for this one
+> thing."
 >
 > **Edge case**: If a future page requires server-side
 > rendering (e.g., dynamic OG images), it is handled by a
-> serverless function — not a persistent server.
+> Cloud Function — not a persistent server, not a new
+> provider.
 
 ### II. Accessibility-First
 
@@ -257,15 +273,25 @@ represents MetodologIA exclusively.
 > **Edge case**: Technical docs (specs, plans) may
 > reference tool names — the rule applies to public pages.
 
-### VI. Content Authority
+### VI. Cloud-First with Declarative Static Fallback
 
-Editable content has a single source of truth. No content
-is duplicated between static files and the cloud backend.
+Content authority lives in Firestore by default. Static
+files are a **declarative, versioned fallback** consumed
+automatically by `migration-bridge.js` when Firestore is
+unreachable, stale-beyond-TTL, or gated by a feature flag.
 
-- Each editable piece lives in exactly one place
-- During migration: authority shifts from HTML to cloud
-  one section at a time — never both for the same content
-- Content schema must be documented and validated
+- The dual-source bridge is **PERMANENT**, not
+  transitional — it is the resilience mechanism, not a
+  migration step
+- Each editable key has exactly one canonical location
+  (Firestore) and at most one fallback (static JSON or
+  HTML snippet)
+- When a feature flag toggles a collection from static to
+  Firestore, the static copy MUST remain valid as the
+  fallback contract — it is not deleted, it is frozen
+- Schema validation rejects writes that would invalidate
+  the fallback contract (e.g., adding a new required
+  field without a default)
 - Bilingual content (ES/EN) stores both variants together
 - Admin changes take effect immediately — no deploy step
 - **Reversibility**: every destructive write (update,
@@ -275,23 +301,29 @@ is duplicated between static files and the cloud backend.
 - Content versions are immutable snapshots — restoring a
   version creates a new write, never overwrites history
 
-**Rationale**: Dual sources create conflicts and stale
-data. Migration must be incremental to avoid big-bang risk.
-Reversibility ensures that content authority includes the
-ability to undo — a single source of truth must also be a
-recoverable source of truth.
+**Rationale**: v6 framed dual-source as transitional
+("during migration"). Reality proved that dual-source is
+the steady-state resilience mechanism: Firestore is
+primary, static is the fallback guarantee. v7 formalizes
+this. Reversibility still applies — content authority
+must also be a recoverable source of truth.
 
 > **Acceptance criteria**:
-> - No content key exists in both static HTML and cloud
-> - Schema validation rejects unstructured writes
+> - Every editable key has a declared canonical location
+>   (Firestore) and optional fallback source (static)
+> - Schema validation rejects writes that break the
+>   fallback contract
 > - Both ES/EN variants present for every content key
+> - Fallback coverage test: every page renders meaningful
+>   content with Firestore stubbed offline
 >
 > **Anti-pattern**: Editing a price in both the HTML file
-> and the CMS "just to be safe."
+> and Firestore "just to be safe" — the static copy is
+> the frozen fallback, not an editable source.
 >
-> **Edge case**: During migration, a page may read from
-> static HTML if its section hasn't migrated yet — this is
-> the intended coexistence, not a violation.
+> **Edge case**: A feature may ship with a collection
+> still empty in Firestore if `scripts/seed.js` hasn't
+> run yet — the declarative fallback covers day-1 launch.
 
 ### VII. Secure by Default
 
@@ -351,34 +383,52 @@ not an afterthought bolted onto content permissions.
 > are the only exception to "no hardcoded config" — they
 > are a security invariant, not a convenience shortcut.
 
-### VIII. Offline Resilience
+### VIII. SWR + Explicit Offline UX
 
-The site degrades gracefully when connectivity is impaired.
+The site uses Stale-While-Revalidate (SWR) caching and
+provides an **EXPLICIT offline UX signal** — never silent
+degradation. Users always know whether they see fresh,
+cached, or fallback content.
 
-- Client-side caching ensures the site works with
-  intermittent connectivity
-- Critical content cached for offline after first visit
-- Cache invalidation follows a clear strategy — stale
-  content acceptable temporarily
-- Backend unreachable = last known good content, not error
+- All Firestore reads go through `js/cms/cache-manager.js`
+  with IndexedDB SWR: fresh window ≤60s, stale window
+  ≤7d, then revalidate-or-fallback
+- The UI MUST surface cache state with visible signals:
+  - An "offline" pill shows when serving from stale cache
+    without a successful revalidation
+  - A "syncing" micro-indicator shows during revalidation
+  - A "fallback" pill shows when static fallback served
+    (Firestore unreachable or flag gated)
+- Admin interfaces show a **blocking** connectivity banner
+  when Firestore is unreachable — they do not operate in
+  stale-read mode
+- Every feature spec MUST include at least one Playwright
+  test that asserts the offline pill appears when
+  Firestore is stubbed to fail
+- Cache TTLs are documented per-collection in
+  `js/cms/cache-manager.js` and enforced by tests
 
-**Rationale**: The site serves users across Latin America
-where connectivity varies. A backend dependency must not
-make the site less reliable than the static version.
+**Rationale**: v6 required "no error state when backend
+is unreachable" but did not mandate visible feedback.
+Users who see stale data without knowing it make decisions
+on stale data. v7 makes cache state an explicit UX
+contract: the user is always told the truth.
 
 > **Acceptance criteria**:
-> - Site renders program catalog with network offline
-> - Cache TTL is documented and enforced
-> - No error state visible when backend is unreachable
+> - Site renders program catalog with network offline AND
+>   shows the offline pill
+> - Cache TTL is documented per-collection and enforced
+> - Every feature has a Playwright test for the offline pill
+> - Admin shows a blocking banner when Firestore is down
 >
 > **Anti-pattern**: Showing a spinner indefinitely when
-> the backend times out instead of falling back to cache.
+> Firestore times out. Silently serving stale data without
+> a visible signal.
 >
-> **Edge case**: Admin interfaces (CMS backoffice) are
-> exempt from offline resilience — they require the
-> backend to function. They MUST show a clear connectivity
-> warning when the backend is unreachable, not silently
-> degrade.
+> **Edge case**: Admin interfaces (CMS backoffice in
+> feature 010) are exempt from stale-read resilience —
+> they MUST show a clear connectivity warning and refuse
+> to write until Firestore is reachable.
 
 ### IX. Test-Driven Development
 
@@ -419,20 +469,35 @@ The site follows a documented design system with canonical
 tokens. Visual decisions are made once and enforced
 everywhere.
 
-- **Aesthetic**: Neo-Swiss Clean — flat vector, Swiss grid,
+- **Aesthetic**: Neo-Swiss Light — flat vector, Swiss grid,
   generous whitespace, soft geometric forms, consistent
-  iconography
-- **Palette** (exclusive):
-  Navy #122562, Gold #FFD700, Blue #137DC5, Dark #1F2833,
-  Lavender #BBA0CC, Gray #808080
-- **Typography**: Poppins (headings), Trebuchet (body),
-  Futura (footnotes, small UI labels)
+  iconography. Light is the DEFAULT theme; Dark is a
+  user-toggleable mirror
+- **Palette v7 (Light default, exclusive)**:
+  `--bg #F9FAFB`, `--bg-soft #F0F0EC`,
+  `--bg-card rgba(255,255,255,.88)`,
+  `--navy #122562`, `--gold #FFD700`,
+  `--gold-dark #B8860B`, `--blue #137DC5`,
+  `--text #1F2833`, `--text-sec #4A5568`,
+  `--text-muted #808080`, `--border rgba(18,37,98,.08)`
+- **Palette v7 (Dark mirror)**:
+  `--bg #0B2545`, `--bg-soft #071A33`,
+  `--text #F0F4F8`, gold/blue desaturated
+- **Typography v7**: Poppins (headings), Montserrat (body),
+  Trebuchet MS (notes, labels, micro-copy) — supersedes
+  v6 Poppins/Trebuchet/Futura trio
+- **Radius tokens**: `--radius-sm 6px`, `--radius-md 12px`,
+  `--radius-lg 20px`, `--radius-xl 32px`
+- **Theme persistence**: active theme stored in
+  `localStorage` as `mdg_theme`, with
+  `prefers-color-scheme` fallback
 - **Visual rules**: high legibility, no text on noisy
   backgrounds, soft shadows, faceless figures in
   illustrations
 - All tokens defined in one source (CSS custom properties)
   and referenced — never hardcoded as raw values
-- Dark/light themes both comply with palette and contrast
+- Dark and Light themes both comply with palette and
+  contrast (WCAG 2.1 AA minimum)
 
 **Rationale**: Without a governed design system, pages
 drift into visual inconsistency. Canonical tokens ensure
@@ -850,6 +915,183 @@ boundary as source code without the rigidity.
 > Test fixtures and mock data are exempt — they are not
 > production configuration.
 
+### XXII. PII-Append-Only
+
+Writes to collections containing personally identifiable
+information (PII) are **append-only**. Deduplication,
+merging, and reconciliation happen in a separate admin
+surface, never from client-side consumer features.
+
+- PII collections (`leads/`, `diagnostics/`, and any
+  future collection holding email, name, phone, or other
+  personal data) MUST be declared in the feature spec
+- Client-side writes create NEW documents under the
+  current anonymous auth uid — never update-by-email or
+  merge-by-phone or any form of cross-uid reconciliation
+- Security rules enforce: `create` allowed for the
+  owning uid; `update` restricted to the uid that
+  created the doc; `delete` denied from the client
+- Reconciliation (dedup by email, merge across uids) is
+  the responsibility of the admin backoffice and runs
+  via trusted admin session or Cloud Function
+- The feature spec MUST list how stale/duplicate PII
+  docs will be handled downstream (usually: deferred to
+  admin feature)
+
+**Rationale**: Anonymous uids are device-scoped — they
+do not persist across devices, cleared storage, or
+incognito sessions. Merging across uids from the client
+requires reading other uids' docs, which breaks the
+"own data only" security model. Append-only is safe,
+auditable, and compatible with "no registration required"
+UX promises. Duplicate leads are a manageable downstream
+problem; PII leakage is not.
+
+> **Acceptance criteria**:
+> - Every PII collection listed in the feature spec with
+>   its reconciliation story
+> - Security rules reject client-side updates across uids
+> - Admin has a documented reconciliation procedure
+> - Analytics/dashboard queries tolerate duplicate emails
+>
+> **Anti-pattern**: Querying `leads/` by email from the
+> client to "reuse" an existing doc. Writing a Cloud
+> Function that the client can invoke to merge docs.
+>
+> **Edge case**: If a user explicitly requests data
+> deletion (GDPR/LGPD right-to-be-forgotten), the admin
+> deletes all docs matching the email hash via trusted
+> session. This is the only merge operation permitted.
+
+### XXIII. Feature-Bounded Architecture
+
+Each feature declares an explicit boundary on which
+Firestore collections it READS and WRITES. Features that
+need backoffice UI belong in their own dedicated feature,
+not bolted onto consumer-facing features.
+
+- Every `spec.md` MUST include a "Collections touched"
+  table listing each collection with `read` / `write` /
+  `admin` rights
+- A feature that introduces a new collection MUST also
+  introduce its security rules in the same PR
+- Consumer features (home, landing, catalog, diagnóstico)
+  READ published data; they MAY write only to their own
+  PII collections (see XXII); they do NOT write to
+  shared content collections
+- Backoffice features (admin CRUD, schema editor, bulk
+  operations) live in dedicated features and are the
+  only features that hold write rights to content
+  collections (`products`, `services`, `pricing`,
+  `pages`, `blocks`, `translations`, `flags`,
+  `experiments`, etc.)
+- Feature splits that move writes to a dedicated
+  backoffice MUST document a **seed path** for the
+  consumer feature to launch standalone (typically a
+  `scripts/seed.js` or declarative fallback)
+- A feature's Firestore read scope MUST match its
+  security rules — no "this feature reads collection X"
+  without public-read rules on X
+
+**Rationale**: Feature 009 proved that mixing consumer
+UX with CMS backoffice inflates scope beyond sprint size,
+blurs security boundaries, and blocks independent
+shipping. Dedicated backoffice features keep consumer
+features small, testable, and shippable. The split also
+clarifies ownership: consumer teams and content teams
+work on different features with different review cycles.
+
+> **Acceptance criteria**:
+> - Every spec has a "Collections touched" table
+> - PR diff shows rules changes for any new collection
+> - Consumer feature CI passes with empty content
+>   collections (fallback path proven)
+> - Backoffice features are separately scoped in `specs/`
+>
+> **Anti-pattern**: Adding "admin can also edit this
+> here" to a consumer feature spec. Shipping consumer
+> features that depend on backoffice features being
+> implemented first.
+>
+> **Edge case**: A consumer feature may include a
+> one-off admin seed script (`scripts/seed-X.js`) to
+> populate a new collection before the backoffice lands.
+> Seed scripts are not a backoffice.
+
+### XXIV. Adaptive Blueprint Personalization
+
+Every public page MUST render from a **single homologated
+shell** whose content adapts declaratively to the active
+combination of three orthogonal axes:
+
+- **Locale** (`es`/`en`): affects text via `data-i18n` and
+  external dictionaries. NEVER affects layout or styling.
+- **Theme** (`light`/`dark`): affects **exclusively** CSS
+  custom properties. NEVER affects content, copy, or slot
+  resolution.
+- **Audience** (`persona`/`empresa`/`unknown`): affects
+  copy, proof, CTAs, and listing filters via typed content
+  slots. NEVER affects CSS tokens.
+
+**Invariants**:
+
+1. **Orthogonality** — theme is CSS-only; locale + audience
+   are content-only. No combinatorial CSS per audience, no
+   combinatorial content per theme.
+2. **Homologated shell** — all public pages share the same
+   HTML skeleton with standard landmarks (header, intra-page
+   navigation, main, footer). Variation allowed: which
+   content slots are present. Variation prohibited:
+   alternative layouts, custom headers/footers.
+3. **Intra-page navigation** — every page (except error
+   pages) MUST provide structured section navigation
+   enabling visitors to explore page content non-linearly.
+4. **Fallback cascade** — content slots resolve through a
+   multi-level cascade (exact match → audience-neutral →
+   locale-fallback → default). No raw key MUST ever appear
+   in the production DOM.
+5. **Instant transitions** — toggling any axis MUST complete
+   the DOM update in <100ms without page reload.
+6. **Client-only state** — locale, theme, and audience
+   preferences live in client storage. None is PII.
+7. **Always-accessible toggles** — axis switches MUST be
+   accessible at all times without requiring navigation to
+   a settings page or opening a menu.
+8. **Verifiable coverage** — every new page MUST be added
+   to the parametric E2E test matrix (N pages × locales ×
+   audiences), validated for zero raw keys and instant
+   transitions. No skips.
+9. **Content manageable without redeploy** — text content
+   MUST be editable through a Firestore-backed admin
+   interface with static JSON fallback, so copy changes
+   do not require git push + deploy.
+
+**Rationale**: Without this principle, future features
+could (a) create pages with divergent layouts breaking UX
+consistency, (b) hardcode copy without audience variants
+which segments communication poorly, (c) mix theme with
+content which explodes variant combinatorics, (d) forget
+to include new pages in the parametric test which allows
+silent drift, (e) require redeploy for every copy change
+which bottlenecks content operations.
+
+> **Acceptance criteria**:
+> - Every feature with public content verifies blueprint
+>   compliance in its Constitution Check table
+> - E2E parametric matrix runs in CI and blocks merge
+> - Content slots exist in locale × audience variants
+> - Admin editor enables copy changes without redeploy
+>
+> **Anti-patterns**:
+> - Creating a page with its own `<header>` instead of the
+>   shared header component
+> - Writing `if (theme === 'dark') show(darkLogo)` in JS —
+>   theme switching belongs in CSS
+> - Creating `/empresas/programas/` as a separate page for
+>   "the business version of programs" when audience state
+>   + content slots solve this declaratively
+> - Requiring a deploy to fix a typo in hero copy
+
 ## Principle Precedence
 
 When principles conflict, resolution order:
@@ -978,4 +1220,4 @@ development. It supersedes ad-hoc decisions.
 - **Indexability** (XVIII) enforced on every commit that
   creates a directory
 
-**Version**: 6.2.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-03-23
+**Version**: 7.0.0 | **Ratified**: 2026-03-22 | **Last Amended**: 2026-04-14

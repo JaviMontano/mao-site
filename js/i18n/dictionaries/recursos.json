@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Recursos para crecer a tu ritmo",
+        "subtitle": "Guias, plantillas, prompts y herramientas practicas para tu desarrollo profesional"
+      },
+      "en": {
+        "title": "Resources to grow at your own pace",
+        "subtitle": "Guides, templates, prompts, and practical tools for your professional development"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Recursos para escalar tu operacion",
+        "subtitle": "Frameworks, playbooks y aceleradores listos para implementar en tu equipo"
+      },
+      "en": {
+        "title": "Resources to scale your operation",
+        "subtitle": "Frameworks, playbooks, and accelerators ready to deploy across your team"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Diagnostico personalizado",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Ver programas de formacion",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Personalized diagnostic",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "View training programs",
+        "cta2_href": "/programas/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Programas corporativos",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Corporate programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Descubre que recursos necesitas",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Discover which resources you need",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Diagnostica tu equipo primero",
+        "cta_href": "/diagnostico/?audiencia=empresa"
+      },
+      "en": {
+        "cta_label": "Diagnose your team first",
+        "cta_href": "/diagnostico/?audiencia=empresa"
+      }
+    }
+  },
+  "sections": {
+    "biblioteca": { "es": "Biblioteca", "en": "Library" },
+    "playbooks": { "es": "Playbooks", "en": "Playbooks" },
+    "herramientas": { "es": "Herramientas", "en": "Tools" },
+    "premium": { "es": "Premium", "en": "Premium" },
+    "prompts": { "es": "Prompts", "en": "Prompts" },
+    "automatizacion": { "es": "Automatizacion", "en": "Automation" },
+    "comunidad": { "es": "Comunidad", "en": "Community" }
+  }
+}

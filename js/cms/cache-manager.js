@@ -6,7 +6,7 @@ import { openDB } from 'idb';
 
 const DB_NAME = 'metodologia-cms';
 const DB_VERSION = 1;
-const STORES = ['programs', 'pricing', 'translations'];
+const STORES = ['programs', 'pricing', 'translations', 'slots'];
 
 let dbPromise = null;
 

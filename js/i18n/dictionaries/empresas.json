@@ -1,0 +1,85 @@
+{
+  "hero": {
+    "persona": {
+      "es": {
+        "title": "Soluciones empresariales a tu alcance",
+        "subtitle": "Descubre como las metodologias de alto rendimiento pueden transformar tu carrera dentro de una organizacion"
+      },
+      "en": {
+        "title": "Enterprise solutions within your reach",
+        "subtitle": "Discover how high-performance methodologies can transform your career within an organization"
+      }
+    },
+    "empresa": {
+      "es": {
+        "title": "Transformacion metodologica para tu organizacion",
+        "subtitle": "Programas, diagnosticos y acompanamiento disenados para equipos que buscan resultados medibles"
+      },
+      "en": {
+        "title": "Methodological transformation for your organization",
+        "subtitle": "Programs, diagnostics, and coaching designed for teams seeking measurable results"
+      }
+    }
+  },
+  "escape_routes": {
+    "persona": {
+      "es": {
+        "cta1_label": "Haz tu diagnostico",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Explora recursos gratuitos",
+        "cta2_href": "/recursos/"
+      },
+      "en": {
+        "cta1_label": "Take your diagnostic",
+        "cta1_href": "/diagnostico/",
+        "cta2_label": "Explore free resources",
+        "cta2_href": "/recursos/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta1_label": "Diagnostico organizacional",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "Ver programas B2B",
+        "cta2_href": "/programas/"
+      },
+      "en": {
+        "cta1_label": "Organizational diagnostic",
+        "cta1_href": "/diagnostico/?audiencia=empresa",
+        "cta2_label": "View B2B programs",
+        "cta2_href": "/programas/"
+      }
+    }
+  },
+  "closing": {
+    "persona": {
+      "es": {
+        "cta_label": "Inicia tu diagnostico gratuito",
+        "cta_href": "/diagnostico/"
+      },
+      "en": {
+        "cta_label": "Start your free diagnostic",
+        "cta_href": "/diagnostico/"
+      }
+    },
+    "empresa": {
+      "es": {
+        "cta_label": "Agenda una primera conversacion",
+        "cta_href": "/diagnostico/?audiencia=empresa"
+      },
+      "en": {
+        "cta_label": "Schedule a first conversation",
+        "cta_href": "/diagnostico/?audiencia=empresa"
+      }
+    }
+  },
+  "sections": {
+    "b2b": { "es": "B2B", "en": "B2B" },
+    "programas": { "es": "Programas", "en": "Programs" },
+    "diagnostico": { "es": "Diagnostico", "en": "Diagnostic" },
+    "recursos": { "es": "Recursos", "en": "Resources" },
+    "casos": { "es": "Casos", "en": "Cases" },
+    "metodo": { "es": "Metodo", "en": "Method" },
+    "contacto": { "es": "Contacto", "en": "Contact" }
+  }
+}

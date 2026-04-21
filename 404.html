@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-page-slug="404">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina No Encontrada | MetodologIA</title>
+  <meta name="description" content="La pagina que buscas no existe. Vuelve al inicio para explorar MetodologIA.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Anti-FOUC inline theme restore -->
+  <script>
+    const t = localStorage.getItem('mdg_theme');
+    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+  </script>
+
+  <style>/* inline critical.css content placeholder */</style>
+
+  <link rel="stylesheet" href="./dist/output.css">
+  <link rel="stylesheet" href="./estilos/variables.css">
+  <link rel="stylesheet" href="./estilos/blueprint.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="apple-touch-icon" href="./favicon.svg">
+</head>
+<body>
+  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+
+  <site-header></site-header>
+  <!-- NO sidebar for 404 -->
+
+  <main id="main" class="main">
+    <div class="container error-page">
+
+      <div class="error-page__content" role="main">
+        <h1 class="error-page__code">404</h1>
+        <p class="error-page__title" data-i18n="404.title">
+          Pagina no encontrada
+        </p>
+        <p class="error-page__body" data-i18n="404.body">
+          La pagina que buscas no existe o fue movida. Puedes volver al inicio
+          y explorar todo lo que MetodologIA tiene para ti.
+        </p>
+        <a href="/" class="error-page__cta" data-i18n="404.cta">
+          Volver al home
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <consent-banner></consent-banner>
+  <site-footer></site-footer>
+
+  <script type="module">
+    import { initShell } from './js/blueprint/shell.js';
+    initShell({ pageSlug: '404' });
+
+    // Analytics: track 404 hit
+    try {
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_not_found', {
+          page_path: window.location.pathname,
+          page_referrer: document.referrer || '(direct)',
+        });
+      }
+    } catch (_) { /* analytics non-blocking */ }
+  </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-page-slug="diagnostico">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnostico Metodologico | MetodologIA</title>
+  <meta name="description" content="Diagnostico gratuito de madurez metodologica. Descubre tu nivel y recibe recomendaciones personalizadas.">
+  <link rel="canonical" href="https://metodologia.info/diagnostico/">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metodologia.info/diagnostico/">
+  <meta property="og:title" content="Diagnostico Metodologico | MetodologIA">
+  <meta property="og:description" content="Diagnostico gratuito de madurez metodologica. Descubre tu nivel y recibe recomendaciones personalizadas.">
+  <meta property="og:image" content="https://metodologia.info/og-image.png">
+
+  <!-- Anti-FOUC inline theme restore -->
+  <script>
+    const t = localStorage.getItem('mdg_theme');
+    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+  </script>
+
+  <style>/* inline critical.css content placeholder */</style>
+
+  <link rel="stylesheet" href="../dist/output.css">
+  <link rel="stylesheet" href="../estilos/variables.css">
+  <link rel="stylesheet" href="../estilos/blueprint.css">
+  <link rel="stylesheet" href="../estilos/sidebar.css">
+  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+  <link rel="stylesheet" href="../estilos/diagnostic.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+</head>
+<body>
+  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+
+  <site-header></site-header>
+  <site-sidebar data-page="diagnostico"></site-sidebar>
+
+  <main id="main" class="main">
+    <div class="container">
+
+      <!-- Section 1: Introduccion -->
+      <section id="introduccion" class="diag-section" aria-labelledby="introduccion-heading">
+        <h1 id="introduccion-heading" class="diag-section__title" data-i18n="diag.intro.title">
+          Diagnostico Metodologico
+        </h1>
+        <p class="diag-section__lead" data-i18n="diag.intro.lead">
+          Descubre en minutos tu nivel de madurez metodologica y recibe un plan de accion personalizado.
+        </p>
+        <p class="diag-section__body" data-i18n="diag.intro.body">
+          Este diagnostico gratuito evalua cinco dimensiones clave de tu forma de trabajar.
+          Al finalizar, obtendras un perfil detallado con recomendaciones priorizadas.
+        </p>
+      </section>
+
+      <!-- Section 2: Segmento -->
+      <section id="segmento" class="diag-section" aria-labelledby="segmento-heading">
+        <h2 id="segmento-heading" class="diag-section__title" data-i18n="diag.segmento.title">
+          Tu Segmento
+        </h2>
+        <p class="diag-section__body" data-i18n="diag.segmento.body">
+          Selecciona tu perfil para personalizar las preguntas y recomendaciones.
+        </p>
+        <div class="diag-segment-selector" role="radiogroup" aria-label="Tipo de audiencia">
+          <button class="diag-segment-btn" data-audience="persona" data-i18n="diag.segmento.persona" aria-pressed="false">
+            Persona
+          </button>
+          <button class="diag-segment-btn" data-audience="empresa" data-i18n="diag.segmento.empresa" aria-pressed="false">
+            Empresa
+          </button>
+        </div>
+      </section>
+
+      <!-- Section 3: Madurez -->
+      <section id="madurez" class="diag-section" aria-labelledby="madurez-heading">
+        <h2 id="madurez-heading" class="diag-section__title" data-i18n="diag.madurez.title">
+          Nivel de Madurez
+        </h2>
+        <p class="diag-section__body" data-i18n="diag.madurez.body">
+          Evalua tus procesos actuales, herramientas y nivel de sistematizacion.
+        </p>
+        <div class="diag-question-group" data-dimension="madurez">
+          <!-- Questions injected by diagnostic-stepper WC -->
+        </div>
+      </section>
+
+      <!-- Section 4: Dolor -->
+      <section id="dolor" class="diag-section" aria-labelledby="dolor-heading">
+        <h2 id="dolor-heading" class="diag-section__title" data-i18n="diag.dolor.title">
+          Puntos de Dolor
+        </h2>
+        <p class="diag-section__body" data-i18n="diag.dolor.body">
+          Identifica los principales obstaculos que frenan tu rendimiento.
+        </p>
+        <div class="diag-question-group" data-dimension="dolor">
+          <!-- Questions injected by diagnostic-stepper WC -->
+        </div>
+      </section>
+
+      <!-- Section 5: Urgencia -->
+      <section id="urgencia" class="diag-section" aria-labelledby="urgencia-heading">
+        <h2 id="urgencia-heading" class="diag-section__title" data-i18n="diag.urgencia.title">
+          Nivel de Urgencia
+        </h2>
+        <p class="diag-section__body" data-i18n="diag.urgencia.body">
+          Determina que tan critico es resolver tus desafios metodologicos ahora.
+        </p>
+        <div class="diag-question-group" data-dimension="urgencia">
+          <!-- Questions injected by diagnostic-stepper WC -->
+        </div>
+      </section>
+
+      <!-- Section 6: Equipo -->
+      <section id="equipo" class="diag-section" aria-labelledby="equipo-heading">
+        <h2 id="equipo-heading" class="diag-section__title" data-i18n="diag.equipo.title">
+          Tu Equipo
+        </h2>
+        <p class="diag-section__body" data-i18n="diag.equipo.body">
+          Describe el contexto de tu equipo para afinar las recomendaciones.
+        </p>
+        <div class="diag-question-group" data-dimension="equipo">
+          <!-- Questions injected by diagnostic-stepper WC -->
+        </div>
+      </section>
+
+      <!-- Section 7: Resultado -->
+      <section id="resultado" class="diag-section" aria-labelledby="resultado-heading">
+        <h2 id="resultado-heading" class="diag-section__title" data-i18n="diag.resultado.title">
+          Tu Resultado
+        </h2>
+        <p class="diag-section__body" data-i18n="diag.resultado.body">
+          Perfil de madurez, recomendaciones priorizadas y siguiente paso sugerido.
+        </p>
+        <diagnostic-stepper></diagnostic-stepper>
+      </section>
+
+    </div>
+  </main>
+
+  <triple-toggle></triple-toggle>
+  <offline-pill></offline-pill>
+  <consent-banner></consent-banner>
+  <site-footer></site-footer>
+
+  <script type="module">
+    import { initShell } from '../js/blueprint/shell.js';
+
+    // Accept ?audiencia= param for pre-set audience context
+    const params = new URLSearchParams(window.location.search);
+    const audiencia = params.get('audiencia');
+
+    initShell({ pageSlug: 'diagnostico' });
+
+    // Pre-select audience segment if provided via URL param
+    if (audiencia && ['persona', 'empresa'].includes(audiencia)) {
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector(
+          `.diag-segment-btn[data-audience="${audiencia}"]`
+        );
+        if (btn) {
+          btn.setAttribute('aria-pressed', 'true');
+          btn.classList.add('diag-segment-btn--active');
+          // Dispatch custom event for diagnostic-stepper to consume
+          document.dispatchEvent(
+            new CustomEvent('audiencia-selected', { detail: { audiencia } })
+          );
+        }
+      });
+    }
+  </script>
+</body>
+</html>

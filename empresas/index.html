@@ -1,501 +1,155 @@
-<!--
-  @license Copyleft
-  @copyright MetodologIA
-  @author Javier Montaño
-  @technology Antigravity | GoogleAI Studio | Gemini 3 Pro | Gemini 3 Flash
-  @poweredBy Pristino Agent
--->
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" data-theme="light" data-page-slug="empresas" data-audience-lock="empresa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="../manifest.json">
-    <title>IA para Empresas | Consultoría B2B | MetodologIA</title>
-    <meta name="theme-color" content="#111621" media="(prefers-color-scheme: dark)">
-    <meta name="color-scheme" content="dark">
-    <meta name="description" content="Consultoría estratégica y formación corporativa en IA. Diagnóstico, Workshops y Bootcamps para equipos de alto rendimiento.">
-    <meta name="robots" content="index, follow">
-    <meta name="keywords" content="consultoría IA empresas, formación corporativa IA, diagnóstico comercial, workshops B2B, bootcamps IA">
-    <link rel="canonical" href="https://metodologia.info/empresas/">
-    <link rel="alternate" hreflang="es" href="https://metodologia.info/empresas/">
-    <link rel="alternate" hreflang="en" href="https://metodologia.info/empresas/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Empresas | MetodologIA</title>
+  <meta name="description" content="Consultoria estrategica y formacion corporativa en IA. Diagnostico, Workshops y Bootcamps para equipos de alto rendimiento.">
+  <link rel="canonical" href="https://metodologia.info/empresas/">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="es" href="https://metodologia.info/empresas/">
+  <link rel="alternate" hreflang="en" href="https://metodologia.info/empresas/">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://metodologia.info/empresas/">
-    <meta property="og:title" content="IA para Empresas | Consultoría B2B">
-    <meta property="og:description" content="Consultoría estratégica y formación corporativa en IA para organizaciones.">
-    <meta property="og:image" content="https://metodologia.info/recursos/og-image.png">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metodologia.info/empresas/">
+  <meta property="og:title" content="IA para Empresas | Consultoria B2B">
+  <meta property="og:description" content="Consultoria estrategica y formacion corporativa en IA para organizaciones.">
+  <meta property="og:image" content="https://metodologia.info/recursos/og-image.png">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://metodologia.info/empresas/">
-    <meta property="twitter:title" content="IA para Empresas | Consultoría B2B">
-    <meta property="twitter:description" content="Consultoría estratégica y formación corporativa en IA para organizaciones.">
-    <meta property="twitter:image" content="https://metodologia.info/recursos/og-image.png">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://metodologia.info/empresas/">
+  <meta property="twitter:title" content="IA para Empresas | Consultoria B2B">
+  <meta property="twitter:description" content="Consultoria estrategica y formacion corporativa en IA para organizaciones.">
+  <meta property="twitter:image" content="https://metodologia.info/recursos/og-image.png">
 
-    <!-- JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Consultoría IA para Empresas",
-        "description": "Servicios B2B de implementación de IA y formación de equipos.",
-        "provider": { "@type": "Organization", "name": "MetodologIA" }
-    }
-    </script>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&family=Montserrat:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&family=Montserrat:wght@400;600&display=swap"></noscript>
-    
-    <link rel="stylesheet" href="../estilos/variables.css">
-    
-    <!-- Critical CSS (Inlined for FCP) -->
-    <style>
-    body{background-color:var(--bg-body);color:var(--text-secondary);overflow-x:hidden;font-family:var(--font-secondary);margin:0;line-height:1.5}h1,h2,h3,h4,h5,h6,.nav-link,.premium-nav,.nav-logo-link h1{font-family:var(--font-primary);color:var(--text-primary)!important}.modal-content,.card-glass{font-family:var(--font-tertiary)}.container-max{max-width:80rem;margin:0 auto;padding:0 1.5rem}@media(min-width:1080px){.container{max-width:1080px}}html{scroll-behavior:smooth}.font-primary{font-family:var(--font-primary)}.font-secondary{font-family:var(--font-secondary)}.font-heading{font-family:var(--font-primary)}
-    </style>
-    <link rel="stylesheet" href="../estilos/components.css?v=2026.1.29" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="../estilos/components.css?v=2026.1.29"></noscript>
-    
-    <!-- Tailwind (Local Build) -->
-    <link rel="stylesheet" href="../dist/output.css?v=2026.1.29">
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Consultoria IA para Empresas",
+    "description": "Servicios B2B de implementacion de IA y formacion de equipos.",
+    "provider": { "@type": "Organization", "name": "MetodologIA" }
+  }
+  </script>
 
+  <!-- Anti-FOUC inline theme restore -->
+  <script>const t=localStorage.getItem('mdg_theme');if(t==='dark')document.documentElement.dataset.theme='dark';</script>
 
-    
-    <script src="../js/icons.js?v=2026.1.29" defer></script>
-    <script src="../js/modal-system.js" defer></script>
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    
-    <script src="../components/SiteHeader.js?v=2026.1.29" defer></script>
-    <script src="../components/SiteFooter.js?v=2026.1.29" defer></script>
-    <link rel="apple-touch-icon" href="../favicon.svg">
+  <link rel="stylesheet" href="../dist/output.css">
+  <link rel="stylesheet" href="../estilos/variables.css">
+  <link rel="stylesheet" href="../estilos/blueprint.css">
+  <link rel="stylesheet" href="../estilos/sidebar.css">
+  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
-<body class="text-slate-100 font-sans antialiased">
+<body>
+  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
 
-<!-- NAV (Homologated) -->
-<site-header base-path=".."></site-header>
+  <site-header></site-header>
+  <site-sidebar data-page="empresas"></site-sidebar>
 
-<!-- HERO -->
-    <!-- Main Content -->
-    <main id="main-content" class="relative min-h-screen flex flex-col overflow-hidden">
-        
-        <!-- Golden Layout: Quote & Breadcrumb -->
-        <section class="hook-quote-section">
-            <div class="hook-quote-divider"></div>
-            <div class="hook-quote-content">
-                <p class="hook-quote-text" data-i18n="empresas.quote.text">"La IA no reemplazará a las empresas, pero las empresas con IA sí"</p>
-            </div>
-        </section>
+  <main id="main" class="main">
+    <div class="container">
 
-        <nav class="breadcrumb-nav">
-            <ol class="breadcrumb-list">
-                <li class="breadcrumb-item">
-                    <a href="../index.html">Inicio</a>
-                </li>
-                <li class="breadcrumb-separator">/</li>
-                <li class="breadcrumb-item active" data-i18n="empresas.breadcrumb.current">Empresas</li>
-            </ol>
-        </nav>
-
-        <div class="layout-space"></div>
-
-    <!-- HERO -->
-    <section class="relative min-h-[90vh] flex items-center pt-32 lg:pt-48 bg-[var(--bg-body)] overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,_var(--brand-gold-glow)_0%,_transparent_50%)] pointer-events-none"></div>
-    <div class="absolute top-1/4 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-    
-    <div class="container-max relative z-10">
-
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
-            <!-- Left: Content -->
-            <div class="text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/30 mb-6">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-gold"></span>
-                    </span>
-                    <span class="text-xs font-bold text-brand-gold tracking-[0.15em] uppercase" data-i18n="empresas.hero.badge">Formación Corporativa</span>
-                </div>
-                
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight" data-i18n="empresas.hero.title">
-                    Acelere su<br>
-                    <span class="text-gradient-gold" data-i18n="empresas.hero.title.highlight">Flujo de Caja</span><br>
-                    <span class="text-2xl md:text-3xl text-slate-100 font-light" data-i18n="empresas.hero.title.sub">con Inteligencia Artificial</span>
-                </h1>
-                
-                <p class="text-lg md:text-xl text-slate-100 leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0" data-i18n="empresas.hero.description">
-                    Un sistema comercial asistido por IA que genera la <strong class="text-brand-gold">liquidez necesaria</strong> para financiar su (R)Evolución Organizacional.
-                </p>
-
-                <!-- CTAs -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="workshop-venta-amplificada.html" class="px-8 py-4 rounded-xl bg-brand-gold text-slate-950 font-bold hover:bg-brand-gold-dark transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/20 hover:scale-105">
-                        <i data-lucide="users" class="w-5 h-5"></i>
-                        <span data-i18n="empresas.hero.cta.primary">Diagnóstico + Taller</span>
-                    </a>
-                    <a href="bootcamp-ventas-ia.html" class="px-8 py-4 rounded-xl bg-white/5 border border-white/20 text-white font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="zap" class="w-5 h-5"></i>
-                        <span data-i18n="empresas.hero.cta.secondary">Ver Bootcamp</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right: KPI Cards -->
-            <div class="grid grid-cols-2 gap-4 max-w-md mx-auto lg:mx-0 lg:max-w-none">
-                <div class="card-glass p-6 rounded-2xl border border-white/10 text-center group hover:border-brand-gold/30 transition-all">
-                    <div class="text-4xl font-black text-brand-gold mb-2">+127%</div>
-                    <div class="text-xs text-slate-100 uppercase tracking-wider" data-i18n="empresas.kpi.pipeline">Pipeline Velocity</div>
-                </div>
-                <div class="card-glass p-6 rounded-2xl border border-white/10 text-center group hover:border-emerald-500/30 transition-all">
-                    <div class="text-4xl font-black text-emerald-400 mb-2">18h</div>
-                    <div class="text-xs text-slate-100 uppercase tracking-wider" data-i18n="empresas.kpi.immersion">Inmersión Total</div>
-                </div>
-                <div class="card-glass p-6 rounded-2xl border border-white/10 text-center group hover:border-blue-500/30 transition-all">
-                    <div class="text-4xl font-black text-blue-400 mb-2">3</div>
-                    <div class="text-xs text-slate-100 uppercase tracking-wider" data-i18n="empresas.kpi.steps">Pasos Probados</div>
-                </div>
-                <div class="card-glass p-6 rounded-2xl border border-white/10 text-center group hover:border-brand-gold/30 transition-all">
-                    <div class="text-4xl font-black text-brand-gold mb-2">100 ✓</div>
-                    <div class="text-xs text-slate-100 uppercase tracking-wider" data-i18n="empresas.kpi.quality">Estándar de Calidad</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 3-STEP PATH -->
-<section class="py-24 bg-[var(--bg-body)] border-t border-white/5">
-    <div class="container-max">
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 mb-6">
-                <i data-lucide="route" class="w-4 h-4 text-blue-400"></i>
-                <span class="text-blue-400 text-xs font-bold tracking-widest uppercase" data-i18n="empresas.route.badge">Ruta Empresas</span>
-            </div>
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" data-i18n="empresas.route.title">
-                Ruta de <span class="text-gradient-gold" data-i18n="empresas.route.title.highlight">Aceleración</span>
-            </h2>
-            <p class="text-slate-100 max-w-2xl mx-auto" data-i18n="empresas.route.description">Un camino de 3 pasos diseñado para mitigar riesgo y maximizar retorno.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <!-- Step 1: Diagnóstico -->
-            <div class="relative">
-            <a href="diagnostico-gratuito.html" class="card-glass p-8 rounded-2xl border border-cyan-500/20 hover:border-cyan-500/40 transition-all group block">
-                <div class="text-5xl font-black text-slate-800 group-hover:text-cyan-400 mb-4 transition-colors">01</div>
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-white" data-i18n="empresas.step1.title">Diagnóstico</h3>
-                    <span class="px-2 py-1 rounded bg-cyan-500/20 text-cyan-400 text-[10px] font-bold" data-i18n="empresas.step1.badge">GRATIS</span>
-                </div>
-                <p class="text-sm text-slate-100 mb-6" data-i18n="empresas.step1.description">Identificamos brechas y fricciones manuales en 1 hora.</p>
-                <div class="flex items-center justify-between text-xs text-slate-100 border-t border-white/10 pt-4">
-                    <span data-i18n="empresas.step1.risk">Riesgo: $0</span>
-                    <span class="text-cyan-400 group-hover:underline" data-i18n="empresas.step1.cta">Agendar →</span>
-                </div>
-            </a>
-            <button onclick="event.preventDefault(); event.stopPropagation(); openProgramModal('diagnostico')" class="absolute top-4 left-4 z-10 w-8 h-8 rounded-full bg-white/10 hover:bg-brand-gold/20 border border-white/10 hover:border-brand-gold/30 flex items-center justify-center transition-all hover:scale-110 group/info" aria-label="Ver beneficios del Diagnostico">
-                <i data-lucide="info" class="w-4 h-4 text-slate-400 group-hover/info:text-brand-gold transition-colors"></i>
-            </button>
-            </div>
-
-            <!-- Step 2: Workshop -->
-            <div class="relative">
-            <a href="workshop-venta-amplificada.html" class="card-glass p-8 rounded-2xl border border-brand-gold/30 hover:border-brand-gold/50 transition-all group relative block">
-                <div class="absolute -top-3 right-4 bg-brand-gold text-black text-[10px] font-bold px-3 py-1 rounded-full">RECOMENDADO</div>
-                <div class="text-5xl font-black text-slate-800 group-hover:text-brand-gold mb-4 transition-colors">02</div>
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-white" data-i18n="empresas.step2.title">Workshop Venta Amplificada</h3>
-                    <span class="px-2 py-1 rounded bg-brand-gold/20 text-brand-gold text-[10px] font-bold" data-i18n="empresas.step2.badge">EXPLORACIÓN</span>
-                </div>
-                <p class="text-sm text-slate-100 mb-6" data-i18n="empresas.step2.description">Alineación estratégica y roadmap. Deep Research en vivo.</p>
-                <div class="flex items-center justify-between text-xs text-slate-100 border-t border-white/10 pt-4">
-                    <span class="text-brand-gold font-bold">$3M COP</span>
-                    <span class="text-brand-gold group-hover:underline" data-i18n="empresas.step2.cta">Ver detalles →</span>
-                </div>
-            </a>
-            <button onclick="event.preventDefault(); event.stopPropagation(); openProgramModal('workshop')" class="absolute top-4 left-4 z-10 w-8 h-8 rounded-full bg-white/10 hover:bg-brand-gold/20 border border-white/10 hover:border-brand-gold/30 flex items-center justify-center transition-all hover:scale-110 group/info" aria-label="Ver beneficios del Workshop">
-                <i data-lucide="info" class="w-4 h-4 text-slate-400 group-hover/info:text-brand-gold transition-colors"></i>
-            </button>
-            </div>
-
-            <!-- Step 3: Bootcamp -->
-            <div class="relative">
-            <a href="bootcamp-ventas-ia.html" class="card-glass p-8 rounded-2xl border border-white/10 hover:border-white/30 transition-all group relative block">
-                <div class="absolute -top-3 right-4 bg-white text-black text-[10px] font-bold px-3 py-1 rounded-full hidden group-hover:block">COMPROMISO</div>
-                <div class="text-5xl font-black text-slate-800 group-hover:text-white mb-4 transition-colors">03</div>
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-white" data-i18n="empresas.step3.title">Bootcamp</h3>
-                    <span class="px-2 py-1 rounded bg-white/10 text-white text-[10px] font-bold" data-i18n="empresas.step3.badge">FULL</span>
-                </div>
-                <p class="text-sm text-slate-100 mb-6" data-i18n="empresas.step3.description">18h de formación + certificación. Incluye el Workshop.</p>
-                <div class="flex items-center justify-between text-xs text-slate-100 border-t border-white/10 pt-4">
-                    <span class="text-white font-bold">$12M COP</span>
-                    <span class="text-slate-100 group-hover:underline" data-i18n="empresas.step3.cta">Ver programa →</span>
-                </div>
-            </a>
-            <button onclick="event.preventDefault(); event.stopPropagation(); openProgramModal('bootcamp')" class="absolute top-4 left-4 z-10 w-8 h-8 rounded-full bg-white/10 hover:bg-brand-gold/20 border border-white/10 hover:border-brand-gold/30 flex items-center justify-center transition-all hover:scale-110 group/info" aria-label="Ver beneficios del Bootcamp">
-                <i data-lucide="info" class="w-4 h-4 text-slate-400 group-hover/info:text-brand-gold transition-colors"></i>
-            </button>
-            </div>
-        </div>
-
-         <!-- PyME Policy -->
-        <div class="max-w-2xl mx-auto mt-12 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-                <i data-lucide="building-2" class="w-4 h-4 text-emerald-400"></i>
-                <span class="text-xs text-emerald-300 font-medium">
-                    <strong data-i18n="empresas.pyme.label">Acceso Universal:</strong> <span data-i18n="empresas.pyme.text">Empresas ≤ 10 empleados / ≤ 3 años pueden aspirar a Tarifa <a href="../personas/index.html" class="underline hover:text-white transition-colors">Personas</a>. (Sujeto a validación).</span>
-                </span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA COTIZADOR -->
-<section class="py-24 bg-[var(--bg-body)] relative">
-    <div class="container-max text-center">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 mb-6">
-            <i data-lucide="calculator" class="w-4 h-4 text-brand-gold"></i>
-            <span class="text-brand-gold text-xs font-bold tracking-widest uppercase" data-i18n="empresas.cotizador.badge">Calculadora B2B</span>
-        </div>
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6" data-i18n="empresas.cotizador.title">
-            Calcule su <span class="text-gradient-gold" data-i18n="empresas.cotizador.title.highlight">Inversión</span>
-        </h2>
-        <p class="text-slate-100 max-w-2xl mx-auto text-lg mb-8" data-i18n="empresas.cotizador.description">
-            Explore opciones de pago y descuentos por compromiso. El cotizador aplica multiplicadores según tamaño de equipo.
+      <!-- Section 1: B2B -->
+      <section id="b2b" class="home-section home-hero" aria-labelledby="b2b-heading">
+        <h1 id="b2b-heading" data-slot="empresas.b2b.title" data-i18n="empresas.b2b.title">
+          Acelere su Flujo de Caja con Inteligencia Artificial
+        </h1>
+        <p data-slot="empresas.b2b.body" data-i18n="empresas.b2b.body">
+          Un sistema comercial asistido por IA que genera la liquidez necesaria para financiar su (R)Evolucion Organizacional. Consultoria estrategica y formacion corporativa para equipos de alto rendimiento.
         </p>
-        <a href="../ruta/cotizador-empresas.html" class="inline-flex items-center gap-3 px-10 py-5 bg-brand-gold text-black font-bold rounded-xl hover:bg-brand-gold-dark transition-all transform hover:scale-105 shadow-lg shadow-brand-gold/20">
-            <i data-lucide="calculator" class="w-5 h-5"></i>
-            <span data-i18n="empresas.cotizador.cta">Simular Inversión</span>
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-        </a>
-</section>
-
-<!-- A MEDIDA PROMOTION -->
-<section class="py-16 bg-slate-900/30">
-    <div class="container-max">
-        <div class="max-w-6xl mx-auto p-8 md:p-12 rounded-[2.5rem] bg-slate-900/50 border border-brand-gold/10 relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 blur-[80px] rounded-full pointer-events-none"></div>
-            
-            <div class="relative z-10">
-                <div class="text-center mb-10">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/20 mb-4">
-                        <i data-lucide="sparkles" class="w-3 h-3 text-brand-gold"></i>
-                        <span class="text-brand-gold text-xs font-bold uppercase tracking-widest" data-i18n="empresas.boutique.badge">Soluciones Boutique</span>
-                    </div>
-                    <h3 class="text-2xl md:text-4xl font-black text-white mb-4" data-i18n="empresas.boutique.title">¿Busca algo a su medida?</h3>
-                    <p class="text-slate-100 max-w-2xl mx-auto text-sm md:text-base" data-i18n="empresas.boutique.description">
-                        Diseñamos el sistema operativo que su organización necesita para escalar sin fricción.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- 1. Catálogo Premium -->
-                    <a href="../recursos/index.html#catalogo" class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-gold/30 hover:bg-white/10 transition-all group text-center">
-                        <div class="w-10 h-10 rounded-xl bg-brand-gold/20 flex items-center justify-center text-brand-gold group-hover:scale-110 transition-transform">
-                            <i data-lucide="grid" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-sm font-bold text-white uppercase tracking-tight" data-i18n="empresas.boutique.card1">Catálogo de recursos premium</span>
-                    </a>
-
-                    <!-- 2. Recursos A Medida -->
-                    <a href="../recursos/a-medida/index.html" class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/30 hover:bg-white/10 transition-all group text-center">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="rocket" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-sm font-bold text-white uppercase tracking-tight" data-i18n="empresas.boutique.card2">Recursos a Medida</span>
-                    </a>
-
-                    <!-- 3. Servicios A Medida -->
-                    <a href="../ruta/a-medida.html" class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-white/10 transition-all group text-center">
-                        <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                            <i data-lucide="sparkles" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-sm font-bold text-white uppercase tracking-tight" data-i18n="empresas.boutique.card3">Servicios a Medida</span>
-                    </a>
-
-                    <!-- 4. Conversación VIP -->
-                    <a href="https://calendar.app.google/AszsCEqcjtEFhUGz9" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center gap-3 p-6 rounded-2xl bg-brand-gold border border-brand-gold hover:bg-yellow-400 transition-all group text-center shadow-lg shadow-brand-gold/10">
-                        <div class="w-10 h-10 rounded-xl bg-slate-950/10 flex items-center justify-center text-slate-950 group-hover:scale-110 transition-transform">
-                            <i data-lucide="calendar" class="w-5 h-5"></i>
-                        </div>
-                        <span class="text-sm font-bold text-slate-950 uppercase tracking-tight" data-i18n="empresas.boutique.card4">Agendamiento de primer espacio</span>
-                    </a>
-                </div>
-            </div>
+        <div class="home-hero__cta-group">
+          <a href="../diagnostico/?audiencia=empresa" class="home-hero__cta home-hero__cta--p1" data-i18n="empresas.b2b.cta_diagnostico">Diagnostico Gratuito</a>
+          <a href="../ruta/cotizador-empresas.html" class="home-hero__cta home-hero__cta--p2" data-i18n="empresas.b2b.cta_cotizador">Simular Inversion</a>
+          <a href="#programas" class="home-hero__cta home-hero__cta--p3" data-i18n="empresas.b2b.cta_programas">Ver Programas</a>
         </div>
+      </section>
+
+      <!-- Section 2: Programas -->
+      <section id="programas" class="home-section" aria-labelledby="programas-heading">
+        <h2 id="programas-heading" data-slot="empresas.programas.title" data-i18n="empresas.programas.title">
+          Ruta de Aceleracion
+        </h2>
+        <p data-slot="empresas.programas.body" data-i18n="empresas.programas.body">
+          Un camino de 3 pasos disenado para mitigar riesgo y maximizar retorno: Diagnostico gratuito, Workshop de Venta Amplificada y Bootcamp de Gestion Comercial con IA.
+        </p>
+      </section>
+
+      <!-- Section 3: Diagnostico -->
+      <section id="diagnostico" class="home-section home-section--alt" aria-labelledby="diagnostico-heading">
+        <h2 id="diagnostico-heading" data-slot="empresas.diagnostico.title" data-i18n="empresas.diagnostico.title">
+          Diagnostico Empresarial
+        </h2>
+        <p data-slot="empresas.diagnostico.body" data-i18n="empresas.diagnostico.body">
+          Identificamos brechas y fricciones manuales en 1 hora. Mapa de perdidas de tiempo, priorizacion basada en impacto real y plan de accion inmediato. Sin costo, sin compromiso.
+        </p>
+      </section>
+
+      <!-- Section 4: Recursos -->
+      <section id="recursos" class="home-section" aria-labelledby="recursos-heading">
+        <h2 id="recursos-heading" data-slot="empresas.recursos.title" data-i18n="empresas.recursos.title">
+          Recursos para Empresas
+        </h2>
+        <p data-slot="empresas.recursos.body" data-i18n="empresas.recursos.body">
+          Catalogo de recursos premium, recursos a medida, servicios boutique y agendamiento de primer espacio. Disenamos el sistema operativo que su organizacion necesita para escalar sin friccion.
+        </p>
+      </section>
+
+      <!-- Section 5: Casos -->
+      <section id="casos" class="home-section home-section--alt" aria-labelledby="casos-heading">
+        <h2 id="casos-heading" data-slot="empresas.casos.title" data-i18n="empresas.casos.title">
+          Resultados Reales
+        </h2>
+        <p data-slot="empresas.casos.body" data-i18n="empresas.casos.body">
+          +127% Pipeline Velocity. 18h de inmersion total. 3 pasos probados. Estandar de calidad 100. La diferencia entre un trimestre predecible y uno incierto esta en la adopcion estrategica de IA.
+        </p>
+      </section>
+
+      <!-- Section 6: Metodo -->
+      <section id="metodo" class="home-section" aria-labelledby="metodo-heading">
+        <h2 id="metodo-heading" data-slot="empresas.metodo.title" data-i18n="empresas.metodo.title">
+          El Metodo
+        </h2>
+        <p data-slot="empresas.metodo.body" data-i18n="empresas.metodo.body">
+          Primero evolucionar con metodo, luego revolucionar con tecnologia. Diagnosticar, disenar, implementar y optimizar. Un sistema comercial replicable y escalable asistido por IA.
+        </p>
+      </section>
+
+      <!-- Section 7: Contacto -->
+      <section id="contacto" class="home-section home-section--alt" aria-labelledby="contacto-heading">
+        <h2 id="contacto-heading" data-slot="empresas.contacto.title" data-i18n="empresas.contacto.title">
+          Su Flujo de Caja No Espera
+        </h2>
+        <p data-slot="empresas.contacto.body" data-i18n="empresas.contacto.body">
+          Sin compromiso. Solo claridad estrategica. Agende su diagnostico gratuito y reciba un roadmap personalizado.
+        </p>
+        <div class="home-contacto__actions">
+          <a href="https://calendar.app.google/NjLeBD2S4dryzVkQ6" target="_blank" rel="noopener noreferrer" class="home-contacto__cta home-contacto__cta--primary" data-i18n="empresas.contacto.cta">
+            Agendar Diagnostico Gratuito
+          </a>
+        </div>
+      </section>
+
     </div>
-</section>
+  </main>
 
-<!-- FINAL CTA -->
-<section class="py-24 relative">
-    <div class="container-max text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-i18n="empresas.finalcta.title">Su flujo de caja no espera.</h2>
-        <p class="text-slate-100 mb-8 max-w-2xl mx-auto" data-i18n="empresas.finalcta.description">La diferencia entre un trimestre predecible y uno incierto está en la adopción estratégica de IA.</p>
-        <a href="https://calendar.app.google/NjLeBD2S4dryzVkQ6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 transition-all">
-            <i data-lucide="calendar" class="w-5 h-5"></i>
-            <span data-i18n="empresas.finalcta.cta">Agendar Diagnóstico Gratuito</span>
-        </a>
-        <p class="mt-4 text-sm text-slate-100" data-i18n="empresas.finalcta.note">Sin compromiso. Solo claridad estratégica.</p>
-    </div>
-</section>
+  <triple-toggle></triple-toggle>
+  <offline-pill></offline-pill>
+  <consent-banner></consent-banner>
+  <site-footer></site-footer>
 
-<!-- Program Info Modal -->
-<div id="program-info-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[9999] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="program-info-heading">
-    <div class="bg-gradient-to-b from-slate-900 to-slate-800 border border-white/10 p-8 md:p-10 rounded-3xl max-w-lg w-full shadow-2xl transform scale-95 transition-all duration-300 relative max-h-[90vh] overflow-y-auto">
-        <button onclick="closeProgramModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-all" aria-label="Cerrar" data-i18n-aria-label="modal.close">
-            <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-        <div id="program-info-content"></div>
-    </div>
-</div>
-
-<!-- FOOTER -->
-<site-footer base-path=".."></site-footer>
-
-<script>
-/* eslint-disable no-var -- exposed to CMS module for Firestore override */
-var programsData = {
-    diagnostico: {
-        icon: 'search',
-        iconColor: 'text-cyan-400 bg-cyan-500/15',
-        title: 'Diagnostico Estrategico',
-        tagline: 'Primero evolucionar con metodo',
-        description: 'Detectamos exactamente donde falla su sistema hoy. Un examen completo de su forma de trabajar para saber que arreglar primero.',
-        benefits: [
-            'Mapa de perdidas de tiempo y fricciones',
-            'Priorización basada en impacto real',
-            'Plan de accion inmediato',
-            'Sin costo, sin compromiso'
-        ],
-        transformation: 'De operar a ciegas a tener un GPS estrategico para su organizacion.'
-    },
-    workshop: {
-        icon: 'users',
-        iconColor: 'text-brand-gold bg-brand-gold/15',
-        title: 'Workshop Venta Amplificada',
-        tagline: 'Revolucionar con tecnologia',
-        description: 'Alineacion estrategica profunda con Deep Research en vivo. El equipo comercial descubre como la IA amplifica cada conversacion.',
-        benefits: [
-            'Roadmap de adopcion personalizado',
-            'Alineación de equipo comercial',
-            'Deep Research aplicado a sus cuentas',
-            'Quick wins implementables en 48h'
-        ],
-        transformation: 'De vender con intuicion a vender con inteligencia aumentada.'
-    },
-    bootcamp: {
-        icon: 'zap',
-        iconColor: 'text-white bg-white/15',
-        title: 'Bootcamp Gestión Comercial con IA',
-        tagline: 'Primero evolucionar, luego revolucionar',
-        description: '18 horas de inmersion total. Su equipo sale certificado y con un sistema comercial asistido por IA listo para producir resultados.',
-        benefits: [
-            'Prospeccion inteligente con IA',
-            'Personalizacion masiva de comunicaciones',
-            'Automatizacion del seguimiento comercial',
-            'Certificacion oficial MetodologIA'
-        ],
-        transformation: 'De depender de heroísmo individual a tener un sistema comercial replicable y escalable.'
-    }
-};
-
-function openProgramModal(key) {
-    const data = programsData[key];
-    if (!data) return;
-
-    const content = `
-        <div class="text-center mb-6">
-            <div class="w-14 h-14 rounded-2xl ${data.iconColor} flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="${data.icon}" class="w-7 h-7"></i>
-            </div>
-            <p class="text-xs font-bold text-brand-gold uppercase tracking-widest mb-2">${data.tagline}</p>
-            <h3 id="program-info-heading" class="text-2xl font-black text-white">${data.title}</h3>
-        </div>
-        <p class="text-sm text-slate-300 leading-relaxed mb-6 text-center">${data.description}</p>
-        <div class="mb-6">
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3" data-i18n="modal.section_benefits_transform">Beneficios y Transformaciones</h4>
-            <ul class="space-y-2">
-                ${data.benefits.map(b => `
-                    <li class="flex items-start gap-3 text-sm text-slate-200">
-                        <svg class="w-4 h-4 text-brand-gold mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        <span>${b}</span>
-                    </li>
-                `).join('')}
-            </ul>
-        </div>
-        <div class="p-4 rounded-xl bg-brand-gold/5 border border-brand-gold/20">
-            <p class="text-sm text-brand-gold italic text-center">"${data.transformation}"</p>
-        </div>
-    `;
-
-    document.getElementById('program-info-content').innerHTML = content;
-    const modal = document.getElementById('program-info-modal');
-    modal.querySelector('.max-w-lg').classList.remove('scale-95');
-    modal.querySelector('.max-w-lg').classList.add('scale-100');
-
-    // Use ModalSystem if available, otherwise manual
-    if (typeof ModalSystem !== 'undefined') {
-        ModalSystem.open('program-info-modal');
-    } else {
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        modal.classList.add('opacity-100');
-    }
-    if (typeof icons !== 'undefined') icons.createIcons();
-}
-
-function closeProgramModal() {
-    const modal = document.getElementById('program-info-modal');
-    modal.querySelector('.max-w-lg').classList.add('scale-95');
-    modal.querySelector('.max-w-lg').classList.remove('scale-100');
-    if (typeof ModalSystem !== 'undefined') {
-        ModalSystem.close('program-info-modal');
-    } else {
-        modal.classList.add('opacity-0', 'pointer-events-none');
-        modal.classList.remove('opacity-100');
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof icons !== 'undefined') icons.createIcons();
-});
-</script>
-
-<script type="module">
-import { getFirebaseApp } from '../js/cms/firebase-config.js';
-import { ContentService } from '../js/cms/content-service.js';
-
-async function loadCmsPrograms() {
-    try {
-        const app = getFirebaseApp();
-        await ContentService.init({ app });
-        const programs = await ContentService.getPrograms('empresas');
-        if (!programs) return; // T032: null = keep static HTML intact
-
-        // Build lookup by slug for programsData override
-        const lookup = {};
-        for (const p of programs) {
-            lookup[p.slug] = {
-                icon: p.icon,
-                iconColor: p.icon_color,
-                title: p.title_es,
-                tagline: p.tagline_es,
-                description: p.description_es,
-                benefits: p.benefits_es,
-                transformation: p.transformation_es,
-            };
-        }
-        // Override global programsData with Firestore content
-        Object.assign(programsData, lookup);
-    } catch {
-        // Firestore unavailable — static HTML preserved
-    }
-}
-loadCmsPrograms();
-</script>
-
+  <script type="module">
+    import { initShell } from '../js/blueprint/shell.js';
+    initShell({ pageSlug: 'empresas' });
+  </script>
 </body>
 </html>

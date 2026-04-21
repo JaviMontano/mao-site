@@ -2,14 +2,21 @@
   "tdd_determination": "mandatory",
   "planview": {
     "nodeClassifications": {
-      "Browser (admin SPA)": "client",
-      "admin-bundle.js": "client",
-      "Firebase Auth": "server",
-      "Cloud Functions v2": "server",
+      "Visitor Browser": "client",
+      "13 HTML Pages": "client",
+      "JS Modules": "client",
+      "Web Components": "client",
+      "CSS": "client",
+      "js/cms/ SDK": "client",
+      "IndexedDB": "storage",
       "Firestore": "storage",
-      "IndexedDB Cache": "storage",
-      "Google OAuth": "external"
-    }
+      "Firebase Auth": "external",
+      "Firebase Storage": "external",
+      "Firebase Analytics": "external",
+      "App Check": "external",
+      "Hostinger": "external"
+    },
+    "evalScores": {}
   },
-  "checklist_reviewed_at": "2026-03-23T17:33:22Z"
+  "checklist_reviewed_at": "2026-04-21T14:59:59Z"
 }

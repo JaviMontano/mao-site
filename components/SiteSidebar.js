@@ -1,0 +1,193 @@
+/**
+ * SiteSidebar.js — 7-section numbered nav Web Component with scroll-spy
+ * and mobile drawer.
+ *
+ * @license Copyleft
+ * @copyright MetodologIA
+ */
+
+import { getSections } from '../js/sidebar/sections-config.js';
+import { createScrollSpy } from '../js/sidebar/scroll-spy.js';
+import { on, off } from '../js/state/bus.js';
+
+/** Infer page slug from the current URL pathname. */
+function slugFromURL() {
+  const path = window.location.pathname.replace(/\/index\.html$/, '/');
+  const segment = path.split('/').filter(Boolean).pop();
+  return segment || 'home';
+}
+
+class SiteSidebar extends HTMLElement {
+  constructor() {
+    super();
+    /** @type {Array<HTMLAnchorElement>} */
+    this._links = [];
+    this._backdrop = null;
+    this._scrollSpy = null;
+    this._escHandler = null;
+    this._pageSlug = 'home';
+    this._labels = null;
+    this._lang = document.documentElement.lang || 'es';
+    this._onLangChange = this._handleLangChange.bind(this);
+  }
+
+  connectedCallback() {
+    this._pageSlug = this.dataset.page || slugFromURL();
+    this.setAttribute('role', 'navigation');
+    this._loadLabels().then(() => {
+      this.render();
+      this._initScrollSpy();
+    });
+    on('langchange', this._onLangChange);
+  }
+
+  disconnectedCallback() {
+    this._destroyScrollSpy();
+    this._removeEscListener();
+    off('langchange', this._onLangChange);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Rendering                                                          */
+  /* ------------------------------------------------------------------ */
+
+  render() {
+    this.innerHTML = '';
+    this._links = [];
+
+    const sections = getSections(this._pageSlug);
+    const pageLabels = this._labels?.sidebar?.[this._pageSlug] ?? {};
+
+    sections.forEach((sec, idx) => {
+      const a = document.createElement('a');
+      a.className = 'sidebar-link';
+      a.href = `#${sec.id}`;
+      a.dataset.section = sec.id;
+      a.addEventListener('click', (e) => this._handleLinkClick(e, sec.id));
+
+      const num = document.createElement('span');
+      num.className = 'sidebar-number';
+      num.textContent = String(idx + 1).padStart(2, '0');
+      a.appendChild(num);
+
+      const icon = document.createElement('span');
+      icon.className = 'sidebar-icon';
+      icon.dataset.icon = sec.icon;
+      a.appendChild(icon);
+
+      const label = document.createElement('span');
+      label.className = 'sidebar-label';
+      label.textContent = pageLabels[sec.id]?.[this._lang] ?? sec.id;
+      a.appendChild(label);
+
+      this.appendChild(a);
+      this._links.push(a);
+    });
+
+    // Backdrop for mobile drawer
+    this._backdrop = document.createElement('div');
+    this._backdrop.className = 'sidebar-backdrop';
+    this._backdrop.addEventListener('click', () => this.close());
+    this.appendChild(this._backdrop);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Public API                                                         */
+  /* ------------------------------------------------------------------ */
+
+  /** Highlight the link matching `sectionId`, clearing others. */
+  setActive(sectionId) {
+    for (const link of this._links) {
+      if (link.dataset.section === sectionId) {
+        link.classList.add('is-active');
+      } else {
+        link.classList.remove('is-active');
+      }
+    }
+  }
+
+  /** Open the mobile drawer. */
+  open() {
+    this.classList.add('is-open');
+    this._escHandler = (e) => {
+      if (e.key === 'Escape') this.close();
+    };
+    document.addEventListener('keydown', this._escHandler);
+  }
+
+  /** Close the mobile drawer. */
+  close() {
+    this.classList.remove('is-open');
+    this._removeEscListener();
+  }
+
+  /** Toggle the mobile drawer open/closed. */
+  toggle() {
+    if (this.classList.contains('is-open')) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  /** Switch page and re-render. */
+  setPage(slug) {
+    this._pageSlug = slug;
+    this.render();
+  }
+
+  /** Provide labels externally (avoids re-fetch). */
+  setLabels(labels) {
+    this._labels = labels;
+    this.render();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Internal                                                           */
+  /* ------------------------------------------------------------------ */
+
+  async _loadLabels() {
+    try {
+      const basePath = this.getAttribute('base-path') || '.';
+      const res = await fetch(`${basePath}/js/i18n/dictionaries/sidebar-labels.json`);
+      if (res.ok) this._labels = await res.json();
+    } catch { /* labels remain null — ids used as fallback */ }
+  }
+
+  _initScrollSpy() {
+    this._scrollSpy = createScrollSpy({
+      onActivate: (id) => this.setActive(id),
+    });
+    this._scrollSpy.observe();
+  }
+
+  _destroyScrollSpy() {
+    if (this._scrollSpy) {
+      this._scrollSpy.disconnect();
+      this._scrollSpy = null;
+    }
+  }
+
+  _removeEscListener() {
+    if (this._escHandler) {
+      document.removeEventListener('keydown', this._escHandler);
+      this._escHandler = null;
+    }
+  }
+
+  _handleLinkClick(e, sectionId) {
+    e.preventDefault();
+    const target = document.getElementById(sectionId);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    // Close drawer on mobile
+    if (this.classList.contains('is-open')) this.close();
+  }
+
+  _handleLangChange(lang) {
+    this._lang = lang || 'es';
+    this.render();
+  }
+}
+
+customElements.define('site-sidebar', SiteSidebar);
+export default SiteSidebar;

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://metodologia.info/schemas/diagnostic-logic.v1.json",
+  "version": "1.0.0",
+  "source": "specs/009-home-landing-sales/spec.md §4.5",
+  "questions": [
+    {
+      "step": 1,
+      "id": "q_segmento",
+      "prompt": {
+        "es": "¿Qué representas hoy?",
+        "en": "What best describes you today?"
+      },
+      "options": [
+        { "id": "persona", "weight": 0, "label": { "es": "Persona", "en": "Individual" } },
+        { "id": "lider_equipo", "weight": 1, "label": { "es": "Líder de equipo", "en": "Team lead" } },
+        { "id": "fundador", "weight": 2, "label": { "es": "Fundador(a)", "en": "Founder" } },
+        { "id": "directivo", "weight": 3, "label": { "es": "Directivo(a)", "en": "Executive" } }
+      ]
+    },
+    {
+      "step": 2,
+      "id": "q_madurez",
+      "prompt": {
+        "es": "¿Cuál es tu nivel actual de metodología de trabajo?",
+        "en": "What's your current methodology maturity?"
+      },
+      "options": [
+        { "id": "sin_metodo", "weight": 0, "label": { "es": "Sin método", "en": "No method" } },
+        { "id": "ad_hoc", "weight": 1, "label": { "es": "Ad hoc", "en": "Ad hoc" } },
+        { "id": "scrum_basico", "weight": 2, "label": { "es": "Scrum básico", "en": "Basic Scrum" } },
+        { "id": "marco_propio", "weight": 3, "label": { "es": "Marco propio", "en": "Own framework" } }
+      ]
+    },
+    {
+      "step": 3,
+      "id": "q_dolor",
+      "prompt": {
+        "es": "¿Cuál es tu mayor dolor hoy?",
+        "en": "What's your biggest pain point?"
+      },
+      "options": [
+        { "id": "claridad", "weight": 1, "label": { "es": "Claridad", "en": "Clarity" } },
+        { "id": "velocidad", "weight": 2, "label": { "es": "Velocidad", "en": "Speed" } },
+        { "id": "calidad", "weight": 2, "label": { "es": "Calidad", "en": "Quality" } },
+        { "id": "alineacion", "weight": 3, "label": { "es": "Alineación", "en": "Alignment" } }
+      ]
+    },
+    {
+      "step": 4,
+      "id": "q_urgencia",
+      "prompt": {
+        "es": "¿En cuánto tiempo necesitas resultados?",
+        "en": "How urgently do you need results?"
+      },
+      "options": [
+        { "id": "90d", "weight": 3, "label": { "es": "90 días", "en": "90 days" } },
+        { "id": "6m", "weight": 2, "label": { "es": "6 meses", "en": "6 months" } },
+        { "id": "12m", "weight": 1, "label": { "es": "12 meses", "en": "12 months" } },
+        { "id": "explorando", "weight": 0, "label": { "es": "Explorando", "en": "Exploring" } }
+      ]
+    },
+    {
+      "step": 5,
+      "id": "q_equipo",
+      "prompt": {
+        "es": "¿Cuántas personas impacta tu decisión?",
+        "en": "How many people does your decision impact?"
+      },
+      "options": [
+        { "id": "solo_yo", "weight": 0, "label": { "es": "Solo yo", "en": "Just me" } },
+        { "id": "2_10", "weight": 1, "label": { "es": "2–10", "en": "2–10" } },
+        { "id": "11_50", "weight": 2, "label": { "es": "11–50", "en": "11–50" } },
+        { "id": "50_plus", "weight": 3, "label": { "es": "50+", "en": "50+" } }
+      ]
+    },
+    {
+      "step": 6,
+      "id": "q_contacto",
+      "kind": "pii-capture",
+      "fields": ["email", "name", "consent"],
+      "notStored": true
+    }
+  ],
+  "scoring": {
+    "rule": "sum(weights[1..5])",
+    "range": { "min": 0, "max": 15 }
+  },
+  "thresholds": [
+    { "min": 0, "max": 4, "nivel_id": "explorer" },
+    { "min": 5, "max": 9, "nivel_id": "builder" },
+    { "min": 10, "max": 15, "nivel_id": "strategist" }
+  ],
+  "recommendations": {
+    "explorer": {
+      "titulo": { "es": "Empieza con recursos gratuitos", "en": "Start with free resources" },
+      "cta_id": "go_resources",
+      "cta_href": "/recursos/"
+    },
+    "builder": {
+      "titulo": { "es": "Conoce nuestros programas para equipos", "en": "Explore our team programs" },
+      "cta_id": "go_personas",
+      "cta_href": "/personas/"
+    },
+    "strategist": {
+      "titulo": { "es": "Agenda una sesión de estrategia", "en": "Book a strategy session" },
+      "cta_id": "go_empresas",
+      "cta_href": "/empresas/"
+    }
+  }
+}

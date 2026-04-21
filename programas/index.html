@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-page-slug="programas">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programas | MetodologIA</title>
+  <meta name="description" content="Catalogo de programas de formacion metodologica para personas y empresas. Elige tu ruta de aprendizaje.">
+  <link rel="canonical" href="https://metodologia.info/programas/">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://metodologia.info/programas/">
+  <meta property="og:title" content="Programas | MetodologIA">
+  <meta property="og:description" content="Catalogo de programas de formacion metodologica para personas y empresas. Elige tu ruta de aprendizaje.">
+  <meta property="og:image" content="https://metodologia.info/og-image.png">
+
+  <!-- Anti-FOUC inline theme restore -->
+  <script>
+    const t = localStorage.getItem('mdg_theme');
+    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+  </script>
+
+  <style>/* inline critical.css content placeholder */</style>
+
+  <link rel="stylesheet" href="../dist/output.css">
+  <link rel="stylesheet" href="../estilos/variables.css">
+  <link rel="stylesheet" href="../estilos/blueprint.css">
+  <link rel="stylesheet" href="../estilos/sidebar.css">
+  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+</head>
+<body>
+  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+
+  <site-header></site-header>
+  <site-sidebar data-page="programas"></site-sidebar>
+
+  <main id="main" class="main">
+    <div class="container">
+
+      <!-- Section 1: Catalogo -->
+      <section id="catalogo" class="section" aria-labelledby="catalogo-heading">
+        <h1 id="catalogo-heading" class="section__title" data-i18n="programas.catalogo.title">
+          Catalogo de Programas
+        </h1>
+        <p class="section__lead" data-i18n="programas.catalogo.lead">
+          Explora nuestra oferta formativa en metodologias agiles, datos e IA.
+        </p>
+        <div data-slug-listing class="programas-listing">
+          <!-- Program cards injected dynamically -->
+        </div>
+      </section>
+
+      <!-- Section 2: Detalle -->
+      <section id="detalle" class="section" aria-labelledby="detalle-heading">
+        <h2 id="detalle-heading" class="section__title" data-i18n="programas.detalle.title">
+          Detalle del Programa
+        </h2>
+        <p class="section__body" data-i18n="programas.detalle.body">
+          Descripcion completa, temario y objetivos de aprendizaje.
+        </p>
+        <div data-slug-content class="programas-content">
+          <!-- Single program detail injected dynamically -->
+        </div>
+      </section>
+
+      <!-- Section 3: Audiencia -->
+      <section id="audiencia" class="section" aria-labelledby="audiencia-heading">
+        <h2 id="audiencia-heading" class="section__title" data-i18n="programas.audiencia.title">
+          Para Quien Es
+        </h2>
+        <p class="section__body" data-i18n="programas.audiencia.body">
+          Perfiles ideales, prerequisitos y nivel de experiencia recomendado.
+        </p>
+      </section>
+
+      <!-- Section 4: Duracion -->
+      <section id="duracion" class="section" aria-labelledby="duracion-heading">
+        <h2 id="duracion-heading" class="section__title" data-i18n="programas.duracion.title">
+          Duracion y Modalidad
+        </h2>
+        <p class="section__body" data-i18n="programas.duracion.body">
+          Horas de dedicacion, formato (en vivo, asincrono, hibrido) y calendario.
+        </p>
+      </section>
+
+      <!-- Section 5: Resultado -->
+      <section id="resultado" class="section" aria-labelledby="resultado-heading">
+        <h2 id="resultado-heading" class="section__title" data-i18n="programas.resultado.title">
+          Resultados Esperados
+        </h2>
+        <p class="section__body" data-i18n="programas.resultado.body">
+          Competencias adquiridas, certificacion y aplicabilidad inmediata.
+        </p>
+      </section>
+
+      <!-- Section 6: Testimonios -->
+      <section id="testimonios" class="section" aria-labelledby="testimonios-heading">
+        <h2 id="testimonios-heading" class="section__title" data-i18n="programas.testimonios.title">
+          Testimonios
+        </h2>
+        <p class="section__body" data-i18n="programas.testimonios.body">
+          Lo que dicen quienes ya completaron nuestros programas.
+        </p>
+      </section>
+
+      <!-- Section 7: Inscripcion -->
+      <section id="inscripcion" class="section" aria-labelledby="inscripcion-heading">
+        <h2 id="inscripcion-heading" class="section__title" data-i18n="programas.inscripcion.title">
+          Inscripcion
+        </h2>
+        <p class="section__body" data-i18n="programas.inscripcion.body">
+          Reserva tu lugar, consulta disponibilidad y opciones de pago.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <triple-toggle></triple-toggle>
+  <offline-pill></offline-pill>
+  <consent-banner></consent-banner>
+  <site-footer></site-footer>
+
+  <script type="module">
+    import { initShell } from '../js/blueprint/shell.js';
+    initShell({ pageSlug: 'programas' });
+  </script>
+</body>
+</html>

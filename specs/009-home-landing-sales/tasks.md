@@ -152,7 +152,7 @@
 ### Tier A — Rewrite existing pages (each with 7 sections for sidebar)
 
 - [x] T054 [US-7] Rewrite `empresas/index.html` — Neo-Swiss shell, 7 sections (b2b, programas, diagnostico, recursos, casos, metodo, contacto), audience=empresa locked (FR-245), preserve JSON-LD [TS-052, TS-058]
-- [ ] T055 [P] [US-7] Rewrite `personas/index.html` — Neo-Swiss shell, 7 sections, audience=persona locked [TS-052, TS-058]
+- [x] T055 [P] [US-7] Rewrite `personas/index.html` — Neo-Swiss shell, 7 sections, audience=persona locked [TS-052, TS-058]
 - [ ] T056 [P] [US-7] Rewrite `recursos/index.html` — Neo-Swiss shell, 7 sections (biblioteca, playbooks, herramientas, premium, prompts, automatizacion, comunidad), preserve subcategory links [TS-052, TS-058]
 - [ ] T057 [P] [US-7] Rewrite `nosotros/index.html` — Neo-Swiss shell, 7 sections, absorb ecosistema.html + mision.html [TS-052, TS-058]
 - [ ] T058 [P] [US-7] Rewrite `contacto/index.html` — Neo-Swiss shell, 7 sections, preserve JSON-LD ContactPage [TS-052, TS-058]
@@ -250,7 +250,7 @@
 
 ## Phase 11: Polish & Cross-Cutting Concerns
 
-- [ ] T090 Write E2E `tests/e2e/home-offline-pill.spec.js` — stub Firestore → pill appears [TS-072, TS-074, TS-080]
+- [x] T090 Write E2E `tests/e2e/home-offline-pill.spec.js` — stub Firestore → pill appears [TS-072, TS-074, TS-080]
 - [ ] T091 Performance audit — Lighthouse ≥90 (4 categories), bundle <250KB initial / <800KB total, deferred JS [TS-060, TS-061, TS-062, TS-064, TS-065, TS-066, TS-085, TS-086]
 - [ ] T092 Brand voice audit per FR-046 + quickstart.md validation + coverage report [TS-067, TS-068, TS-069, TS-070, TS-071, TS-080, TS-081, TS-082, TS-083, TS-084, TS-085, TS-086, TS-087]
 - [ ] T093 Verify all 17 .htaccess redirects return 301 on production [TS-053, TS-054, TS-055, TS-056]

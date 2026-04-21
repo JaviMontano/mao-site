@@ -207,17 +207,17 @@
 
 ### Tests
 
-- [ ] T075 [P] [US-8] Write integration test `tests/integration/admin-slots.spec.js` — Emulator: admin write to slots/, public read, non-admin denied [TS-105, TS-106]
+- [x] T075 [P] [US-8] Write integration test `tests/integration/admin-slots.spec.js` — Emulator: admin write to slots/, public read, non-admin denied [TS-105, TS-106]
 
 ### Implementation
 
-- [ ] T076 [US-8] Create `admin/content-editor.html` — page picker grid (13 cards) + slot editor UI with 4 textareas per slot (ES×persona, ES×empresa, EN×persona, EN×empresa) [TS-100, TS-101]
-- [ ] T077 [US-8] Create `admin/content-editor.js` — Firestore CRUD for `slots/{pageSlug}`, schema: `{ slotId, variants: { "persona.es", "persona.en", "empresa.es", "empresa.en" } }`, save per slot (depends on T048 for rules) [TS-102]
-- [ ] T078 [US-8] Update `firebase/firestore.rules` — add `slots/{pageSlug}` rules: public read (published) + admin write (custom claim `admin: true`). Owns all slots/ rules (T048 does NOT touch slots/) [TS-105, TS-106]
-- [ ] T079 [US-8] Update `js/cms/migration-bridge.js` — enable `cms-i18n` flag: read from Firestore `slots/{pageSlug}` when documents exist, fallback to static JSON [TS-103, TS-104]
-- [ ] T080 [US-8] Update `js/blueprint/slot-resolver.js` — integrate migration-bridge for Firestore-first slot resolution with static fallback [TS-103, TS-104]
-- [ ] T081 [US-8] Write E2E `tests/e2e/admin-content-editor.spec.js` — login → select page → edit 4 variants → save → verify Firestore + public render [TS-100, TS-101, TS-102, TS-103, TS-107]
-- [ ] T082 [US-8] Auth gate: verify `/admin/content-editor.html` redirects to login for unauthenticated users [TS-107]
+- [x] T076 [US-8] Create `admin/content-editor.html` — page picker grid (13 cards) + slot editor UI with 4 textareas per slot (ES×persona, ES×empresa, EN×persona, EN×empresa) [TS-100, TS-101]
+- [x] T077 [US-8] Create `admin/content-editor.js` — Firestore CRUD for `slots/{pageSlug}`, schema: `{ slotId, variants: { "persona.es", "persona.en", "empresa.es", "empresa.en" } }`, save per slot (depends on T048 for rules) [TS-102]
+- [x] T078 [US-8] Update `firebase/firestore.rules` — add `slots/{pageSlug}` rules: public read (published) + admin write (custom claim `admin: true`). Owns all slots/ rules (T048 does NOT touch slots/) [TS-105, TS-106]
+- [x] T079 [US-8] Update `js/cms/migration-bridge.js` — enable `cms-i18n` flag: read from Firestore `slots/{pageSlug}` when documents exist, fallback to static JSON [TS-103, TS-104]
+- [x] T080 [US-8] Update `js/blueprint/slot-resolver.js` — integrate migration-bridge for Firestore-first slot resolution with static fallback [TS-103, TS-104]
+- [x] T081 [US-8] Write E2E `tests/e2e/admin-content-editor.spec.js` — login → select page → edit 4 variants → save → verify Firestore + public render [TS-100, TS-101, TS-102, TS-103, TS-107]
+- [x] T082 [US-8] Auth gate: verify `/admin/content-editor.html` redirects to login for unauthenticated users [TS-107]
 
 **Checkpoint**: Admin can edit any page's content in 4 variants without redeploy
 
@@ -241,8 +241,8 @@
 **Goal**: Dynamic ProgramCard WC + Firestore on home
 
 - [x] T087 [US-3] Create `components/ProgramCard.js` — name_i18n, audiencia, duracion, resultado_i18n, CTA href [TS-022, TS-023]
-- [ ] T088 [US-3] Replace static program cards in `index.html` with ProgramCard WC from Firestore `programs/` [TS-022, TS-024, TS-025]
-- [ ] T089 [US-3] Write E2E for program section [TS-022, TS-023, TS-024, TS-025]
+- [x] T088 [US-3] Replace static program cards in `index.html` with ProgramCard WC from Firestore `programs/` [TS-022, TS-024, TS-025]
+- [x] T089 [US-3] Write E2E for program section [TS-022, TS-023, TS-024, TS-025]
 
 **Checkpoint**: Dynamic programs on home
 

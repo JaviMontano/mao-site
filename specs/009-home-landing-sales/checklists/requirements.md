@@ -96,16 +96,9 @@
 - [x] **XA-05**: Are the diagnostic scoring thresholds in spec §4.5 consistent with the diagnostic-logic.json contract? [Consistency, Spec §4.5 vs contracts/diagnostic-logic.json] — Identical questions, weights, thresholds (0-4/5-9/10-15), recommendations
 - [x] **XA-06**: Do the plan's Web Component names match the spec §9.4 component diagram? [Consistency, Plan §Web Components vs Spec §9.4] — Plan adds OfflinePill, ConsentBanner, ProgramCard (009-scope concretizations). Spec §9.4 includes 010-scope components (BlockRenderer). No conflict.
 
-## H. Readiness Verdict
+## H. Readiness Verdict (original — superseded by §M)
 
-| Gate | Status | Notes |
-|------|--------|-------|
-| G0 — Spec exists | ✅ PASS | 1,151 lines, v7 consolidated |
-| G1 — Constitution aligned | ✅ PASS | §4.4 + backcasting.md |
-| G2 — Phase separation clean | ✅ PASS | Exemptions justified |
-| G3 — Ready for next phase | ✅ PASS | All 54 items checked, 3 cross-artifact fixes applied |
-
-**Overall**: ✅ **READY** — Proceed to `/iikit-05-tasks`
+*Retained for audit trail. See §M for current verdict.*
 
 ## I. Testify Traceability (Backcasting-Informed)
 

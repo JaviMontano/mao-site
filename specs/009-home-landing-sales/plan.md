@@ -468,7 +468,7 @@ npx vitest run --coverage
 | Gate | Criteria for 009 | Enforced by |
 |---|---|---|
 | **G0** | Secrets scan clean, branch `009-home-landing-sales` from staging, constitution v7 compliance | Pre-commit hook |
-| **G1** | Spec complete (45+ FRs, 19 SCs, 7 US with GWT), evidence tags, no `[NEEDS CLARIFICATION]` | `/iikit-01-specify` |
+| **G1** | Spec complete (45+ FRs, 22 SCs, 7 US with GWT), evidence tags, no `[NEEDS CLARIFICATION]` | `/iikit-01-specify` |
 | **G2** | Data model (v3), API contracts (3 files), security rules, BDD hash-locked, tokens referenced, role governance | This plan (`/iikit-02-plan`) |
 | **G3** | Tests pass, Lighthouse ≥90 (4 cats), emulator tests, a11y audit, brand scan clean, 85% coverage | Pre-merge CI |
 

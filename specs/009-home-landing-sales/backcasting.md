@@ -1,200 +1,128 @@
-# Backcasting — Constitution ↔ Spec (009)
+# Backcasting — Constitution ↔ Spec (009) v2
 
-**Purpose**: Dos ciclos de trazabilidad bidireccional entre `CONSTITUTION.md` v7.0.0 y los spec artifacts de 009 (spec.md, sitemap.md, adaptive-blueprint.md, plan.md). El backcasting es **obligatorio después de introducir patrones cross-cutting** (como el 3-axis adaptive blueprint) porque son las únicas adiciones que justifican evaluar si la Constitution debe evolucionar.
+**Purpose**: Trazabilidad bidireccional entre `CONSTITUTION.md` v7.0.0 y los spec artifacts de 009 v8 (spec.md, plan.md, sitemap.md, adaptive-blueprint.md, tasks.md). Actualizado para la **sidebar architecture v8**: sidebar de 7 secciones + triple toggle fixed bottom-left + admin content editor Firestore-backed.
+
+**Version**: v2 (v1 + sidebar architecture + triple toggle relocation + admin content editor + 17 legacy redirects)
 
 ---
 
 ## Direction 1 — Constitution → Spec (forward pass)
 
-**Question**: ¿Qué principios constitucionales **exigen** algo del 3-axis adaptive blueprint, y cómo los materializamos como FRs en el spec?
+**Question**: ¿Qué principios constitucionales **exigen** algo de la sidebar architecture v8, y cómo los materializamos como FRs?
 
-Cada fila es una **derivación normativa**: el principio manda, el spec responde.
-
-| Constitution v7 principle | Exigencia sobre adaptive blueprint | Dónde se materializa en 009 | Status |
+| Constitution v7 principle | Exigencia sobre v8 architecture | Dónde se materializa en 009 v8 | Status |
 |---|---|---|---|
-| **I. BaaS-First, Zero Server** | El switching de audience/theme/locale MUST ser client-side. No hay redirect server-side obligatorio. | `js/audience/state.js` client-only; cookie `mdg_audience` es opcional, usada solo para hint pre-first-paint | ✅ cubierto |
-| **II. Accessibility-First** | Toggles MUST ser keyboard-navigable (radiogroup), anunciar cambios vía live-region, contrast ≥3:1 UI | FR-230, FR-231, FR-232 | ✅ cubierto |
-| **III. SEO Integrity** | El canonical URL MUST ser estable; audience no genera URLs distintas; `html[lang]` se sync con locale para crawlers | adaptive-blueprint.md §7 risk "SEO canonical confusion" → `canonical` sin query params; shell §2.1 mantiene `html[lang]` sync | ✅ cubierto |
-| **IV. Component Consistency** | Los 3 toggles MUST vivir en UN componente único (`<site-header>`), no 3 implementaciones | FR-203 | ✅ cubierto |
-| **V. Brand Separation** | — (MetodologIA single brand) | N/A | N/A |
-| **VI. Cloud-First + Static Fallback** | Sin JS, el blueprint MUST degradar limpiamente a una variante (default audience=unknown, locale=es, theme=light) | adaptive-blueprint.md §2.3 cascada + FR-063 en spec; `<noscript>` implícito via SSR-less static HTML con defaults | ✅ cubierto |
-| **VII. Secure by Default** | audience state NO es PII, no requiere App Check; cuando el diagnóstico infiere audience, se proyecta a `leads/{uid}.segmento` bajo App Check ya existente | adaptive-blueprint.md §3.3; FR-222 | ✅ cubierto |
-| **VIII. SWR + Offline UX** | La offline pill MUST aparecer igual en las 13 pages del blueprint; audience/theme/locale no la ocultan | FR-097 ampliado implícitamente por §5.3 sitemap (toggle bar + pill cohabitan en header) | ⚠️ **gap**: añadir FR explícito de que la pill es independiente de toggles |
-| **IX. TDD** | El blueprint con 52 combinaciones MUST tener cobertura automatizada antes de ship | FR-215 + `tests/e2e/adaptive-blueprint.spec.js` parametrizado | ✅ cubierto |
-| **X. Design System Governance** | Los 3 toggles MUST usar exclusivamente tokens CSS existentes; no crear tokens nuevos para states "activo/inactivo" | FR-200, FR-232 + constrain implícito FR-040..FR-045 | ✅ cubierto |
-| **XI. Brand Voice Integrity** | Las variantes `persona` vs `empresa` MUST preservar la voz de marca (no tornarse "corporativo frío" en empresa ni "influencer coach" en persona) | adaptive-blueprint.md §7 risk "dev divergence" → pre-commit grep + review checklist | ⚠️ **gap**: añadir FR explícito de voice-audit en el flujo de edición de copy |
-| **XII. Code Sustainability** | Cero dependencias nuevas para blueprint; todos los módulos son ES2022 planos | adaptive-blueprint.md §5.4 lista 4 archivos nuevos, todos puros, zero deps | ✅ cubierto |
-| **XIII. Think First** | El 3-axis pattern MUST derivarse de una reflexión explícita, no improvisarse | Este archivo (backcasting.md) + spec §13 + sesión clarifications v6 | ✅ cubierto |
-| **XIV. Simple First** | El blueprint MUST preferir cascada de fallback a combinatoria completa | adaptive-blueprint.md §2.3 (5-level cascada con 20% combinatoria efectiva) vs approach ingenuo 4×13×slots | ✅ cubierto |
-| **XV. BDD Full-Spectrum** | `.feature` scenarios MUST cubrir el toggle flow como comportamiento de usuario | Pendiente `/iikit-04-testify` generará `.feature` desde FR-200..FR-232 | ⏳ diferido a phase 04 |
-| **XVI. Sequential-First, Parallel-Ready** | El blueprint MUST ser refactor-compatible con features 010-012 (backoffice CMS, audience analytics, personalization engine) | adaptive-blueprint.md §5.2 migration path: ContentSlot de JSON → Firestore `slots/{pageSlug}` en 010 | ✅ cubierto |
-| **XVII. Continuous Learning Loop** | El patrón del blueprint MUST archivarse en `insights/` como reusable decision pattern | Pendiente — crear `insights/adaptive-blueprint-pattern.md` post-merge | ⏳ pendiente post-merge |
-| **XVIII. Indexable & Self-Organizing Repo** | El blueprint MUST encajar en directorios existentes; no crear top-level dirs | `js/audience/`, `js/state/`, `js/i18n/resolver.js` son subdirectorios/archivos bajo `js/` (existente) | ✅ cubierto |
-| **XIX. User-Reported Bug Protocol** | N/A (new feature) | — | N/A |
-| **XX. Branch-to-Environment Parity** | Sin impacto | — | N/A |
-| **XXI. Zero Hardcoding** | Cada variante de copy MUST vivir en dictionaries externos (JSON); cero strings hardcodeados en JS o HTML | FR-211, FR-212 + estructura `js/i18n/dictionaries/{pageSlug}.json` en plan.md | ✅ cubierto |
-| **XXII. PII-Append-Only** | audience state NO es PII; cuando se proyecta al diagnóstico, respeta append-only existente | adaptive-blueprint.md §3.3; FR-222 + FR-013/FR-017 ya existentes | ✅ cubierto |
-| **XXIII. Feature-Bounded Architecture** | El blueprint MUST ser útil para futuras features sin mezclar scopes; slots JSON → Firestore es migration path, no coupling | adaptive-blueprint.md §5.2, §8 out-of-scope explícito; plan.md no introduce CMS backoffice | ✅ cubierto |
+| **I. BaaS-First, Zero Server** | Sidebar, triple toggle y admin editor MUST ser client-side. Admin escribe a Firestore, no a server propio. | Admin editor → Firestore `slots/{pageSlug}` (FR-250..FR-253). Triple toggle client-only (FR-245..FR-249). Zero server runtime. | ✅ cubierto |
+| **II. Accessibility-First** | Sidebar MUST ser keyboard-navigable. Triple toggle MUST usar `role="switch"` con `aria-checked`. Screen readers MUST anunciar cambios. Touch targets ≥44px. | FR-249 (keyboard + aria-live), FR-248 (touch targets), FR-240 (sidebar ARIA landmark), FR-243 (scroll-spy). SiteHeader.js con hamburger `aria-expanded`. | ✅ cubierto |
+| **III. SEO Integrity** | El sidebar NO afecta URLs canónicas. 13 páginas con sitemap.xml. Legacy redirects son 301. | FR-242 (header 3 nav), sitemap.md (12 URLs), .htaccess (17 RewriteRule 301s), scripts/generate-sitemap-xml.js | ✅ cubierto |
+| **IV. Component Consistency** | Triple toggle es UN componente (`TripleToggle.js`). Sidebar es UN componente (`SiteSidebar.js`). Header simplificado. Todos usan tokens de `variables.css`. | FR-245 (TripleToggle WC), FR-240 (SiteSidebar WC), FR-242 (SiteHeader simplificado). Tokens compartidos. | ✅ cubierto |
+| **V. Brand Separation** | MetodologIA single brand. Admin UI no expone branding interno. | N/A — todo es MetodologIA. Admin en `/admin/` es internal-only. | ✅ N/A |
+| **VI. Cloud-First + Static Fallback** | Admin escribe a Firestore; site lee via migration-bridge.js; fallback a JSON estático si Firestore down. | FR-252 (fallback explícito), FR-251 (Firestore schema), plan.md v7 clarification. | ✅ cubierto |
+| **VII. Secure by Default** | Admin write requires custom claim. Public read gated by `status=='published'`. App Check en PII writes. | FR-253 (admin custom claim), FR-248 (security rules slots/), contracts/firestore-rules.md ampliado. | ✅ cubierto |
+| **VIII. SWR + Offline UX** | Offline pill MUST ser visible independiente de sidebar y triple toggle. No debe ser obstruida. | FR-099b v8 (pill en header/main, no overlap con sidebar/toggle). OfflinePill.js independiente de SiteSidebar. | ✅ cubierto |
+| **IX. TDD** | 107 BDD scenarios hash-locked. Tests antes de implementación en cada phase de tasks.md. | 9 .feature files, testify hash locked. Tasks.md v3.1 ordena tests primero en cada phase. NFR-007. | ✅ cubierto |
+| **X. Design System Governance** | Sidebar, triple toggle y admin UI usan tokens CSS canónicos. No tokens nuevos. | FR-240 usa `--sidebar-w`, `--header-h` (nuevos en variables.css pero son layout, no design). Todos los colores usan tokens existentes. | ✅ cubierto |
+| **XI. Brand Voice Integrity** | 4 variantes de copy (ES×persona, ES×empresa, EN×persona, EN×empresa) MUST preservar voz de marca. Admin editor facilita pero no garantiza voice. | FR-046 (brand voice audit manual por PR). T092 (brand voice audit task). Admin editor escribe; humano audita. | ✅ cubierto |
+| **XII. Code Sustainability** | Nuevos módulos con nombres business-readable. Domain-organized. | `SiteSidebar.js`, `TripleToggle.js`, `scroll-spy.js`, `sections-config.js`, `content-editor.js`. Todo claro. | ✅ cubierto |
+| **XIII. Think First** | Sidebar architecture derivada de Socratic debate con panel UX+Producto+Tech. 3 sesiones documentadas. | plan.md v7 clarifications (3 sessions), backcasting.md (este archivo). | ✅ cubierto |
+| **XIV. Simple First** | Admin editor es la mínima CMS viable (4 textareas, zero schema registry). Sidebar usa IntersectionObserver nativo (no library). Triple toggle son 3 `<button>` con `role="switch"`. | Plan v7 clarification Q7 justifica scope bounded. scroll-spy.js ~40 líneas. TripleToggle.js ~150 líneas. | ✅ cubierto (justified) |
+| **XV. BDD Full-Spectrum** | Scenarios cubren sidebar (TS-093..099), triple toggle (TS-043..049 v8), admin (TS-100..107). Multi-ángulo: UX, a11y, security, perf. | 9 .feature files, 107 scenarios. us-6 (sidebar+toggle), us-8 (admin), cross-cutting (a11y+perf). | ✅ cubierto |
+| **XVI. Sequential-First** | Leaf modules primero (scroll-spy, sections-config, bus, toggle), luego componentes, luego shell, luego páginas. WIP ≤3. | Tasks.md v3.1 Phase 2 (7 leaf modules) → Phase 4 (components) → Phase 5-6 (pages). | ✅ cubierto |
+| **XVII. Continuous Learning** | Patrón sidebar architecture MUST archivarse en insights/ post-merge. | Pendiente `insights/sidebar-architecture-pattern.md` post-merge. | ⏳ pendiente post-merge |
+| **XVIII. Indexable Repo** | Nuevos dirs (`js/sidebar/`) requieren README. | Plan structure lists all new dirs. README auto-generation post-implement. | ✅ cubierto |
+| **XIX. Bug Protocol** | N/A (new feature). | — | N/A |
+| **XX. Branch-to-Environment** | feature → staging → main → production via SSH. | Unchanged. Branch `009-home-landing-sales`. | ✅ cubierto |
+| **XXI. Zero Hardcoding** | 84 section labels en i18n (168 keys). Copy en dictionaries. Admin custom claim from env. | FR-244 (section i18n keys), FR-251 (slot variants in Firestore), plan.md. Zero hardcoded strings. | ✅ cubierto |
+| **XXII. PII-Append-Only** | `slots/` NO es PII. leads/ y diagnostics/ unchanged (append-only). | FR-253 clarifies slots/ is non-PII content. Existing PII contracts untouched. | ✅ cubierto |
+| **XXIII. Feature-Bounded** | Solo `slots/{pageSlug}` añadido. Full backoffice deferred to 010. 13 pages hard constraint. | Plan v7 §Scope Boundary. FR-250..FR-253 scoped to content editing only. | ✅ cubierto |
 
-### Direction 1 — gaps to close
+### Direction 1 — gaps
 
-Identificamos **2 gaps** que el forward pass exige corregir:
-
-#### Gap A — FR explícito: Offline pill es independiente de toggles (VIII)
-
-**Nueva cláusula a añadir en spec.md §4.1 (después de FR-099)**:
-
-> **FR-099b**: Los 3 toggles globales (locale, theme, audience) MUST coexistir en el header con la offline/syncing/fallback pill (FR-097) sin obstruirla visualmente ni funcionalmente. El pill MUST permanecer visible en el mismo landmark independientemente del estado de los toggles, y sus estados (offline|syncing|fallback) MUST tener contraste ≥3:1 en ambos themes.
-
-#### Gap B — FR explícito: Brand voice audit por audience variant (XI)
-
-**Nueva cláusula a añadir en spec.md §4.1 (en el bloque Branding)**:
-
-> **FR-046**: Cada variante de copy por audience (`persona` vs `empresa`) MUST pasar un audit manual de brand voice antes de merge, validando que (a) persona mantiene tono cercano e inspiracional, (b) empresa mantiene tono seguro y basado en resultados, (c) ambas preservan los principios de voz de marca MetodologIA (claridad > cleverness, evidencia > hype, humano > corporativo). El checklist de review del PR debe incluir una sección "Voice audit — persona + empresa" por cada dictionary modificado.
-
-Ambos gaps se consolidan en el próximo commit (sección §3 de este archivo).
+**0 gaps.** Todos los principios cubiertos. Los 2 gaps de v1 (FR-099b y FR-046) ya fueron resueltos en spec.md v8.
 
 ---
 
 ## Direction 2 — Spec → Constitution (reverse pass)
 
-**Question**: ¿El adaptive blueprint revela un patrón **suficientemente sistémico** para justificar una amendment a la Constitution? Si sí, ¿qué principio y en qué versión?
+### Propuesta de amendment — Constitution v7.1.0 (XXIV)
 
-### Test de sistemicidad (4 preguntas, las 4 deben ser "sí")
-
-1. **¿El patrón aplica más allá de 009?** → Sí. Toda feature futura que toque páginas públicas heredará el blueprint. Feature 010 (backoffice CMS) necesita editar slots; feature 011+ (nuevas páginas de contenido) necesita usar el shell; feature de personalización avanzada extenderá el eje audience. Es un **estructural**, no un **táctico**.
-2. **¿Sin este principio, futuras features podrían reintroducir el problema que el blueprint resuelve?** → Sí. Sin gobernanza explícita, un futuro editor podría crear páginas con layout propio, copy sin audience variants, o theme-dependent content. El drift es certero sin enforcement constitucional.
-3. **¿El patrón cambia reglas de decisión en fases anteriores (spec, plan)?** → Sí. Afecta cómo se escriben nuevas specs (cada FR de content debe contemplar audience variants), cómo se auditan nuevos plans (Constitution Check debe verificar shell compliance), cómo se organiza el repo (`js/audience/`, `js/i18n/resolver.js` son estructuras canonicas).
-4. **¿El patrón tiene un contrato verificable?** → Sí. El test E2E parametrizado de 52 combinaciones es el contrato ejecutable. El pre-commit grep bloquea keys crudas. Ambos son objetivos, no subjetivos.
-
-**Veredicto**: **Sí — amendment constitucional justificada**. Versión propuesta: **v7.1.0** (minor bump, additive, non-breaking).
-
-### Propuesta de amendment — Constitution v7.1.0
-
-#### New principle: XXIV. Adaptive Blueprint Personalization
+La propuesta de v1 sigue vigente con actualización para v8:
 
 > **XXIV. Adaptive Blueprint Personalization**
 >
-> Cada página pública del sitio MUST renderizarse desde un **shell único** cuyo contenido se adapta declarativamente a la combinación activa de tres ejes ortogonales:
->
-> - **Locale** (`es`/`en`): afecta texto vía `data-i18n` + diccionarios externos.
-> - **Theme** (`light`/`dark`): afecta exclusivamente tokens CSS. **NUNCA** afecta contenido.
-> - **Audience** (`persona`/`empresa`/`unknown`): afecta copy, proof, CTAs y filtros de listados vía slots tipados.
+> Cada página pública del sitio MUST renderizarse desde un **shell único** con:
+> - **Sidebar izquierdo** con 7 secciones numeradas por página y scroll-spy (≥960px: fixed, <960px: drawer).
+> - **Triple toggle** siempre visible fixed bottom-left para 3 ejes ortogonales:
+>   - **Locale** (`es`/`en`): afecta texto vía `data-i18n` + diccionarios externos.
+>   - **Theme** (`light`/`dark`): afecta exclusivamente tokens CSS. **NUNCA** afecta contenido.
+>   - **Audience** (`persona`/`empresa`/`unknown`): afecta copy, proof, CTAs y filtros vía slots tipados.
+> - **Header simplificado**: logo + 3 nav (Ruta, Servicios, Contacto). Sin toggles.
+> - **Admin content editor**: cada text slot editable en 4 variantes (2 locales × 2 audiences) via Firestore-backed UI.
 >
 > **Invariantes**:
->
-> 1. **Ortogonalidad**: theme es CSS-only; locale + audience son content-only. No hay combinatoria de CSS por audience ni combinatoria de contenido por theme.
-> 2. **Shell homologado**: todas las páginas públicas comparten el mismo HTML skeleton (`<html data-theme data-audience>`, `<site-header>`, `<main data-page-slug>`, `<site-footer>`). Variación permitida: qué slots están presentes. Variación prohibida: layout propio, header/footer alternativos.
-> 3. **Cascada de fallback**: slots se resuelven en 5 niveles — `{pageSlug}.{slot}.{audience}.{locale}` → `{pageSlug}.{slot}.unknown.{locale}` → `{pageSlug}.{slot}.{audience}.es` → `{pageSlug}.{slot}.unknown.es` → `common.missing.{slot}`. Ninguna key cruda puede aparecer en el DOM de producción.
-> 4. **Instantaneidad**: el cambio de cualquier toggle MUST completar la transición DOM en <100ms y sin reload.
-> 5. **Client-only state**: locale/theme/audience viven en `localStorage` + atributos en `<html>`. Ninguno es PII. El audience state puede proyectarse a `leads/{uid}.segmento` **solo** a través del flujo de diagnóstico existente (XXII sigue intacto).
-> 6. **Cobertura verificable**: cada página nueva MUST incluirse en el test E2E parametrizado que recorre la matriz (N pages × 2 locale × 2 audience), validando ausencia de keys crudas y transición <100ms.
->
-> **Rationale**: Sin este principio, futuras features podrían (a) crear páginas con layouts divergentes que rompen la consistencia UX, (b) hardcodear copy sin variantes de audience lo cual segmenta mal la comunicación, (c) mezclar theme con contenido lo cual explota la combinatoria de variantes, (d) olvidar cubrir nuevas páginas en el test parametrizado lo cual permite drift silencioso. El blueprint adaptativo es la única forma de escalar content personalization sin fragmentar la arquitectura.
->
-> **Acceptance criteria**:
-> - Toda nueva feature con contenido público verifica el blueprint en su Constitution Check (gate).
-> - El E2E matriz parametrizado se ejecuta en CI y bloquea merge si falla.
-> - Pre-commit hook rechaza `data-i18n` keys que no contengan `{audience}` en slots donde aplica.
->
-> **Anti-patterns**:
-> - Crear una página con su propio `<header>` en lugar de `<site-header>`.
-> - Escribir `if (theme === 'dark') { show('logo-dark') }` en JS — debe ser CSS.
-> - Crear una ruta `/empresas/programas/` para "la versión empresa de programas" cuando basta con `?audiencia=empresa` + audience state.
->
-> **Edge case**: `/empresas/` y `/personas/` son las **dos únicas páginas con audiencia intrínseca** (no adaptativa). Su toggle actúa como "switch to the other landing" (FR-206), no como mutación in-place. Esta excepción es aceptable porque son **hubs de entrada** con proof social específica por segmento, no páginas de contenido generalista.
+> 1. **Ortogonalidad**: theme es CSS-only; locale + audience son content-only.
+> 2. **Shell homologado**: todas las páginas comparten skeleton (`<html data-theme data-audience>`, `<site-header>`, `<site-sidebar>`, `<triple-toggle>`, `<main data-page-slug>`, `<site-footer>`).
+> 3. **7 secciones por página**: cada página (excl. 404) define exactamente 7 `<section id>` navegables via sidebar scroll-spy.
+> 4. **Cascada de fallback**: 5 niveles. Ninguna key cruda en DOM de producción.
+> 5. **Instantaneidad**: toggle <100ms sin reload.
+> 6. **Client-only state**: locale/theme/audience en localStorage. Ninguno es PII.
+> 7. **Triple toggle siempre visible**: `position: fixed; bottom: 1rem; left: 1rem;` independiente del sidebar.
+> 8. **Cobertura verificable**: test E2E parametrizado (N pages × 2 locale × 2 audience), sin skips.
 
-#### Sync Impact Report (header para CONSTITUTION.md)
-
-```
-Version: 7.1.0 (Adaptive Blueprint Personalization)
-Breaking changes: none
-Additive changes:
-  - XXIV (NEW): Adaptive Blueprint Personalization —
-    three-axis orthogonal personalization (locale/theme/audience),
-    single shell, declarative slot cascade, instant transitions,
-    client-only state.
-Non-breaking: all principles I-XXIII unchanged
-Origin: Feature 009-home-landing-sales, spec v6 introduced
-  the 3-toggle pattern as a systemic affordance. Backcasting
-  Direction 2 validated it as constitutional, not tactical.
-Previous version: 7.0.0 (Cloud-First Content-as-Data)
-Follow-up TODOs:
-  - Update PREMISE.md to reference XXIV
-  - Add blueprint compliance row to feature spec template's
-    Constitution Check table
-  - Create insights/adaptive-blueprint-pattern.md as the
-    continuous-learning archive (Constitution XVII)
-  - Define pre-commit hook: reject data-i18n keys missing
-    {audience} segment in adaptive slots
-  - Feature 010 (backoffice CMS) MUST expose a slot editor
-    that enforces the fallback cascade
-```
-
-### Direction 2 — status
-
-**Proposed but NOT auto-applied**. Constitution amendments require explicit user approval per the `.tessl/.../rules/constitution.md` rule:
-
-> NEVER amend `CONSTITUTION.md` without explicit user approval and version increment
-
-Por tanto este archivo **propone** la amendment; el usuario decide:
-
-- ✅ **Aprobar como v7.1.0 exactamente como está** → commit CONSTITUTION.md update
-- ⚙️ **Aprobar con modificaciones** → iterar el wording antes de commit
-- ❌ **Rechazar** → el blueprint queda como patrón de 009 sin promoción constitucional, y esta `backcasting.md` se archiva como contexto para futuras features
-
-Mi recomendación: **aprobar como v7.1.0** porque el test de sistemicidad pasó los 4 puntos y el coste de no promoverlo (drift futuro) supera el coste de promoverlo (una entrada más en CONSTITUTION.md).
+**Status**: Propuesta. Requiere aprobación explícita del usuario.
 
 ---
 
-## 3. Consolidation — changes triggered by this backcasting
+## 3. Consolidation — changes from backcasting v2
 
-Esta sección lista **exactamente** los cambios que este ciclo backcasting exige aplicar al repo. Son las acciones concretas que el siguiente commit debe materializar.
+### 3.1 Direction 1 gaps → ZERO
 
-### 3.1 Changes from Direction 1 (gaps A + B)
+Todos los gaps de v1 ya fueron resueltos:
+- [x] FR-099b v8 (offline pill independiente de sidebar/toggle) — en spec.md
+- [x] FR-046 (brand voice audit por audience variant) — en spec.md
+- [x] FR-240..FR-253 cubren toda la sidebar architecture — en spec.md v8
 
-- [ ] **spec.md §4.1**: añadir `FR-099b` (offline pill coexiste con toggles) y `FR-046` (brand voice audit por audience variant)
-- [ ] **sitemap.md §12**: sin cambios (ya apunta a adaptive-blueprint.md)
-- [ ] **adaptive-blueprint.md §4**: añadir `FR-099b` y `FR-046` a la lista que se merge hacia spec.md
+### 3.2 Direction 2 → PENDING user approval
 
-### 3.2 Changes from Direction 2 (Constitution v7.1.0)
-
-- [ ] **CONSTITUTION.md**: añadir principio XXIV completo (section §2 de este archivo) con Sync Impact Report actualizado a v7.1.0 — **pendiente de aprobación del usuario**
-- [ ] **PREMISE.md**: update si existe referencia a v7.0.0 que convenga bumpear
-- [ ] **insights/adaptive-blueprint-pattern.md**: crear post-merge como archivo de continuous learning (Constitution XVII)
-- [ ] Pre-commit hook en `.husky/pre-commit` o similar: reject `data-i18n` keys missing `{audience}` segment — diferido a tasks phase 05
-
-### 3.3 Cascada hacia phases siguientes
-
-- **/iikit-03-checklist** debe incluir un checklist item "Blueprint compliance" que valide shell, slots, cascada, matriz E2E.
-- **/iikit-04-testify** debe generar `.feature` scenarios derivados de FR-200..FR-232 (BDD coverage del toggle flow).
-- **/iikit-05-tasks** debe ordenar las tareas de modo que `js/state/bus.js` + `js/audience/state.js` existan antes que `SiteHeader.js` modificado + `adaptive-blueprint.spec.js`, para respetar dependencies.
+- [ ] **CONSTITUTION.md**: añadir principio XXIV con wording v8 (sidebar + triple toggle + admin) — **pendiente de aprobación del usuario**
 
 ---
 
 ## 4. Convergence test — is the loop closed?
 
-Un ciclo de backcasting se considera **cerrado** cuando:
+- [x] Cada principio Constitution v7 tiene verificación en Direction 1 (23/23)
+- [x] Cada gap de Direction 1 tiene FR resuelto en spec v8
+- [x] Test de sistemicidad Direction 2 ejecutado (4/4 "sí")
+- [x] Wording de amendment en §2 listo para commit
+- [ ] Usuario ha dado approval sobre Constitution v7.1.0 (**pendiente**)
 
-- [x] Cada principio Constitution v7 tiene una columna de verificación en Direction 1
-- [x] Cada gap identificado en Direction 1 tiene un FR propuesto o un cambio concreto en §3
-- [x] El test de sistemicidad de Direction 2 se ejecutó con las 4 preguntas respondidas
-- [x] Si la amendment se justificó, el wording exacto está en §2 listo para commit
-- [x] La consolidación §3 es ejecutable (no handwavy)
-- [ ] El usuario ha dado approval sobre la amendment v7.1.0 (**pendiente**)
-
-**Status del loop**: **95% cerrado**. El 5% restante es el approval del usuario sobre la Constitution amendment. Hasta entonces:
-
-- Los cambios de Direction 1 (gap A + gap B) se aplican **ahora** en este commit (son FRs del feature, no de la constitution).
-- Los cambios de Direction 2 (nuevo principio XXIV) quedan **propuestos** en este archivo y esperan aprobación explícita antes de tocar CONSTITUTION.md.
+**Status del loop**: **95% cerrado**. El 5% restante es el approval del usuario sobre la Constitution amendment.
 
 ---
 
-## 5. Meta — why this artifact exists
+## 5. FR → US → SC → Constitution traceability (v8 additions)
 
-Backcasting bidireccional (Constitution ↔ Spec) es el único mecanismo que previene dos patologías:
+| FR | US | SC | Constitution |
+|---|---|---|---|
+| FR-240 (SiteSidebar) | US-6 | SC-014 | IV, II, XXIV (prop) |
+| FR-241 (7 sections) | US-6 | SC-014 | XXIV (prop) |
+| FR-242 (Header 3 nav) | US-6 | SC-007 | IV, III |
+| FR-243 (Scroll-spy) | US-6 | SC-013 | II, XXIV (prop) |
+| FR-244 (Section i18n) | US-6 | SC-015 | XXI, IV |
+| FR-245 (TripleToggle fixed) | US-6 | SC-013 | XXIV (prop), II |
+| FR-246 (3 switches) | US-6 | SC-013 | II, XXIV (prop) |
+| FR-247 (<100ms) | US-6 | SC-013 | XXIV (prop), XIV |
+| FR-248 (Touch targets) | US-6 | SC-020 | II |
+| FR-249 (Keyboard + ARIA) | US-6 | SC-007 | II |
+| FR-250 (Admin editor) | US-8 | SC-009 | I, XXIII |
+| FR-251 (Firestore schema) | US-8 | SC-009 | I, VI |
+| FR-252 (Static fallback) | US-8 | SC-009 | VI |
+| FR-253 (Admin security) | US-8 | SC-017 | VII |
 
-1. **Constitution rot** (la constitución se aleja de la realidad del código): se previene con Direction 2 que fuerza a mirar cada feature como posible evolución constitucional.
-2. **Spec anarchy** (las specs se libran de gobernanza mientras nadie mira): se previene con Direction 1 que obliga a rastrear cada FR contra un principio.
+**Orphan check**: 0 FRs without US. 0 FRs without SC. 0 FRs without Constitution principle.
 
-El backcasting NO es opcional cuando una feature introduce un patrón cross-cutting. Este archivo queda como **precedente** y **template** para futuros backcasting rounds. Feature 010 lo replicará.
+---
+
+## 6. Meta
+
+Backcasting v2 actualiza v1 para la sidebar architecture. Feature 010 replicará este template cuando agregue backoffice CMS completo.

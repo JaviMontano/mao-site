@@ -1,0 +1,49 @@
+{
+  "instruction": "Build a search results page with a search input field, a list of results showing title and description, and a 'no results found' empty state.",
+  "relevant_when": "Agent creates or modifies any HTML page, React component, or frontend UI that contains search functionality, result lists, or page layouts",
+  "context": "The user asked for a search page without mentioning accessibility. The agent must proactively include semantic page structure (main, nav), a properly labeled search input, aria-live region to announce result count changes, semantic list markup, heading hierarchy, and keyboard navigation.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "search-input-has-label",
+      "rule": "The search input has an associated label — either a visible <label> with for/id linking, or an aria-label attribute. Placeholder alone is not sufficient.",
+      "relevant_when": "Agent creates a search input"
+    },
+    {
+      "name": "semantic-main-landmark",
+      "rule": "The page content is wrapped in a <main> element, not just generic <div> elements",
+      "relevant_when": "Agent creates a page layout"
+    },
+    {
+      "name": "aria-live-for-results",
+      "rule": "The search results area or a status region uses aria-live=\"polite\" (or role=\"status\") to announce when results update, so screen reader users know new results have loaded",
+      "relevant_when": "Agent builds dynamic search results that update without page reload"
+    },
+    {
+      "name": "heading-hierarchy",
+      "rule": "The page has a logical heading hierarchy — h1 for the page title, h2/h3 for result items or sections. No heading levels are skipped.",
+      "relevant_when": "Agent creates page structure with headings"
+    },
+    {
+      "name": "result-links-are-descriptive",
+      "rule": "Result items use <a> links for navigation to detail pages, with descriptive link text (the result title), not generic 'click here' or 'read more'",
+      "relevant_when": "Agent creates clickable result items"
+    },
+    {
+      "name": "empty-state-announced",
+      "rule": "The 'no results found' empty state is inside an aria-live region or uses role=\"status\" so screen readers announce it when search returns no results",
+      "relevant_when": "Agent creates an empty state for no search results"
+    },
+    {
+      "name": "focus-visible-styles",
+      "rule": "Interactive elements have visible focus indicators and outline:none is not used without a replacement",
+      "relevant_when": "Agent writes CSS for the page"
+    }
+  ]
+}

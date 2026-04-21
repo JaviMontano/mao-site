@@ -1,0 +1,49 @@
+{
+  "instruction": "Build a data table component that displays a list of users (name, email, role, status) with sortable column headers and a delete button for each row.",
+  "relevant_when": "Agent creates or modifies any HTML, React, Vue, or frontend UI that contains data tables, sortable lists, or tabular data",
+  "context": "The user asked for a data table without mentioning accessibility. The agent must proactively include proper table markup with scope attributes on headers, caption or aria-label on the table, aria-sort on sortable headers, descriptive labels on per-row action buttons, and keyboard-accessible sorting.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "proper-table-markup",
+      "rule": "Uses a <table> element with <thead>, <tbody>, <th>, and <td> — not divs styled as a table",
+      "relevant_when": "Agent creates tabular data display"
+    },
+    {
+      "name": "th-has-scope",
+      "rule": "Table header cells (<th>) have scope=\"col\" (for column headers) or scope=\"row\" (for row headers)",
+      "relevant_when": "Agent creates table headers"
+    },
+    {
+      "name": "table-has-caption-or-label",
+      "rule": "The table has a <caption> element or aria-label/aria-labelledby describing its purpose (e.g., 'User management table')",
+      "relevant_when": "Agent creates a data table"
+    },
+    {
+      "name": "sortable-headers-aria-sort",
+      "rule": "Sortable column headers use aria-sort attribute (ascending, descending, or none) to indicate current sort state",
+      "relevant_when": "Agent implements sortable columns"
+    },
+    {
+      "name": "sort-controls-are-buttons",
+      "rule": "Sortable column headers use <button> elements inside <th> for the sort trigger, making them keyboard accessible",
+      "relevant_when": "Agent implements column sorting"
+    },
+    {
+      "name": "action-buttons-labeled",
+      "rule": "Per-row action buttons (delete, edit) have descriptive aria-label that includes the row identifier (e.g., aria-label=\"Delete user John Smith\"), not just generic 'Delete'",
+      "relevant_when": "Agent creates action buttons in table rows"
+    },
+    {
+      "name": "focus-visible-on-controls",
+      "rule": "All interactive elements (sort buttons, delete buttons) have visible focus indicators",
+      "relevant_when": "Agent writes CSS for table controls"
+    }
+  ]
+}

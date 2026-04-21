@@ -1,0 +1,11 @@
+{
+  "name": "tessl-labs/web-accessibility-essentials",
+  "version": "0.2.2",
+  "summary": "Web accessibility from the start — always apply semantic HTML, form labels, ARIA attributes, keyboard navigation, live regions, alt text, and heading hierarchy when building any UI component",
+  "skills": {
+    "web-accessibility-essentials": {
+      "path": "skills/web-accessibility-essentials/SKILL.md"
+    }
+  },
+  "private": false
+}

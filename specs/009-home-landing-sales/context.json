@@ -1,8 +1,8 @@
 {
   "testify": {
-    "assertion_hash": "16a9e91b48962e6239a4429b5eb717af6e8820a5f7158d0ebe2556d60b948e17",
-    "generated_at": "2026-04-21T13:58:08Z",
+    "assertion_hash": "a859fe4d2a3b51a1f8a010eecfbf1528e8e3ad1d6fd7a5bfa2154cf3690ece7e",
+    "generated_at": "2026-04-21T15:03:08Z",
     "features_dir": "specs/009-home-landing-sales/tests/features",
-    "file_count": 8
+    "file_count": 9
   }
 }

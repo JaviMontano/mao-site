@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "lastRun": "2026-04-10T12:48:22Z",
+  "runCount": 0,
+  "intervalMinutes": 30,
+  "suppressedUntil": null,
+  "findings": [],
+  "autoClosedCount": 0
+}

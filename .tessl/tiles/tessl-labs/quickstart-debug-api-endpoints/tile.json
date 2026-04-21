@@ -1,0 +1,11 @@
+{
+  "name": "tessl-labs/quickstart-debug-api-endpoints",
+  "version": "1.0.5",
+  "summary": "Quickstart example: Systematic API testing workflow (skill)",
+  "private": false,
+  "skills": {
+    "debug-api-endpoints": {
+      "path": "skills/debug-api-endpoints/SKILL.md"
+    }
+  }
+}

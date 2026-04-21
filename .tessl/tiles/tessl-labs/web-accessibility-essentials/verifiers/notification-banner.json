@@ -1,0 +1,44 @@
+{
+  "instruction": "Build a notification banner component that can show success, warning, and error messages. Include a dismiss button.",
+  "relevant_when": "Agent creates or modifies any UI component that displays notifications, alerts, toasts, banners, or dynamic messages",
+  "context": "The user asked for a notification banner without mentioning accessibility. The agent must proactively add ARIA live region attributes so screen readers announce the notifications, use role=\"alert\" for errors, role=\"status\" for success, and ensure the dismiss button is keyboard accessible with an aria-label.",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "role-alert-for-errors",
+      "rule": "Error notifications use role=\"alert\" or aria-live=\"assertive\" so screen readers immediately announce them",
+      "relevant_when": "Agent creates error notification variant"
+    },
+    {
+      "name": "role-status-for-success",
+      "rule": "Success/info notifications use role=\"status\" or aria-live=\"polite\" so screen readers announce them without interrupting",
+      "relevant_when": "Agent creates success or info notification variant"
+    },
+    {
+      "name": "dismiss-button-is-button",
+      "rule": "The dismiss/close action uses a <button> element, not a <div>, <span>, or clickable icon without button semantics",
+      "relevant_when": "Agent creates a dismiss control"
+    },
+    {
+      "name": "dismiss-button-has-label",
+      "rule": "The dismiss button has an accessible name — either visible text or aria-label (e.g., aria-label=\"Dismiss notification\" or aria-label=\"Close\")",
+      "relevant_when": "Agent creates a dismiss button, especially icon-only"
+    },
+    {
+      "name": "icon-is-decorative",
+      "rule": "Status icons (checkmark, warning triangle, X) are marked as decorative with aria-hidden=\"true\" since the role/text already conveys the meaning",
+      "relevant_when": "Agent includes status icons in the notification"
+    },
+    {
+      "name": "not-color-only",
+      "rule": "The notification type (success/warning/error) is conveyed through more than just color — includes an icon, text prefix, or other non-color indicator",
+      "relevant_when": "Agent creates multiple notification variants distinguished visually"
+    }
+  ]
+}

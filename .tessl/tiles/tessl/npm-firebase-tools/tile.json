@@ -1,0 +1,7 @@
+{
+  "name": "tessl/npm-firebase-tools",
+  "version": "14.15.0",
+  "docs": "docs/index.md",
+  "describes": "pkg:npm/firebase-tools@14.15.2",
+  "summary": "Command-Line Interface for Firebase that provides deployment, testing, and management functionality for Firebase projects."
+}

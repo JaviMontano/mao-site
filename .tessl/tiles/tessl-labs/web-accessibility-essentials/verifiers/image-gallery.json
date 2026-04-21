@@ -1,0 +1,54 @@
+{
+  "instruction": "Build an image gallery component that displays a grid of thumbnail images. Clicking a thumbnail opens a larger view in a modal/lightbox overlay.",
+  "relevant_when": "Agent creates or modifies any UI component that displays images, galleries, modals, lightboxes, or overlay content",
+  "context": "The user asked for an image gallery without mentioning accessibility. The agent must proactively include alt text on all images, keyboard navigation for the gallery, and a fully accessible modal (role=\"dialog\", aria-modal, focus trap, Escape to close, focus return).",
+  "sources": [
+    {
+      "type": "file",
+      "filename": "skills/web-accessibility-essentials/SKILL.md",
+      "tile": "tessl-labs/web-accessibility-essentials"
+    }
+  ],
+  "checklist": [
+    {
+      "name": "all-images-have-alt",
+      "rule": "Every thumbnail and full-size image has a descriptive alt attribute. Alt text describes the image content, not just 'image' or 'thumbnail'.",
+      "relevant_when": "Agent creates image elements"
+    },
+    {
+      "name": "thumbnails-are-keyboard-accessible",
+      "rule": "Thumbnail images that open the modal are wrapped in <button> elements (or are keyboard-focusable interactive elements), not just <div onclick> or <img onclick>",
+      "relevant_when": "Agent creates clickable thumbnail images"
+    },
+    {
+      "name": "modal-has-dialog-role",
+      "rule": "The lightbox/modal overlay has role=\"dialog\" and aria-modal=\"true\"",
+      "relevant_when": "Agent creates the lightbox modal"
+    },
+    {
+      "name": "modal-has-label",
+      "rule": "The modal has aria-labelledby pointing to a title element, or aria-label describing its purpose",
+      "relevant_when": "Agent creates the lightbox modal"
+    },
+    {
+      "name": "modal-focus-trap",
+      "rule": "The modal traps focus so Tab does not leave the modal while it is open",
+      "relevant_when": "Agent implements modal behavior"
+    },
+    {
+      "name": "modal-escape-closes",
+      "rule": "Pressing Escape closes the modal",
+      "relevant_when": "Agent implements modal behavior"
+    },
+    {
+      "name": "modal-returns-focus",
+      "rule": "When the modal closes, focus returns to the thumbnail that triggered it",
+      "relevant_when": "Agent implements modal close behavior"
+    },
+    {
+      "name": "close-button-labeled",
+      "rule": "The modal close button has an accessible name via text content or aria-label (e.g., aria-label=\"Close lightbox\")",
+      "relevant_when": "Agent creates a close button for the modal"
+    }
+  ]
+}

@@ -103,11 +103,29 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   DESKTOP LAYOUT (≥960px)
+   SAFE-AREA INSETS — notched phones (env() fallback to 0px)
+   ═══════════════════════════════════════════════════════════════ */
+.site-header {
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+.main {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.site-sidebar {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DESKTOP LAYOUT (lg: ≥960px) — sidebar visible, no layout shift
    ═══════════════════════════════════════════════════════════════ */
 @media (min-width: 960px) {
   .main {
     padding-left: var(--sidebar-w, 260px);
+    /* Prevent layout shift on sidebar collapse/expand */
+    transition: padding-left 0.3s var(--ease, cubic-bezier(.4,0,.2,1));
   }
 
   .site-sidebar {
@@ -124,11 +142,12 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE LAYOUT (<960px) — sidebar off-canvas
+   MOBILE LAYOUT (<960px) — sidebar off-canvas, zero layout shift
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 959.98px) {
   .site-sidebar {
     transform: translateX(-100%);
+    will-change: transform;
   }
 
   .site-sidebar.is-open {
@@ -137,9 +156,46 @@
 
   .main {
     padding-left: 0;
+    /* Sidebar opens as overlay — main stays put, no layout shift */
+    transition: none;
   }
 
   .hamburger {
     display: block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BREAKPOINT REFINEMENTS — 6-breakpoint mobile-first
+   xs(0) sm(480) md(640) lg(960) xl(1280) 2xl(1536)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* xs: base — already mobile-first above */
+
+/* sm: 480px — slightly wider gutter */
+@media (min-width: 480px) {
+  .container {
+    padding: 0 var(--gutter);
+  }
+}
+
+/* md: 640px — relax spacing */
+@media (min-width: 640px) {
+  .container {
+    max-width: 860px;
+  }
+}
+
+/* xl: 1280px — wider container option */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 920px;
+  }
+}
+
+/* 2xl: 1536px — max comfort */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 960px;
   }
 }

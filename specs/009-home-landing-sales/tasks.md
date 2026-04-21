@@ -191,7 +191,7 @@
 
 ### Implementation
 
-- [ ] T071 [US-5] Responsive CSS refinement: 6-breakpoint mobile-first, clamp() typography, safe-area insets, landscape compact hero, sidebar collapse at 960px without layout shift. TDD inner loop: implement one TS at a time, verify E2E per TS before next [TS-033, TS-034, TS-035, TS-036, TS-038, TS-039, TS-040, TS-041, TS-042]
+- [x] T071 [US-5] Responsive CSS refinement: 6-breakpoint mobile-first, clamp() typography, safe-area insets, landscape compact hero, sidebar collapse at 960px without layout shift. TDD inner loop: implement one TS at a time, verify E2E per TS before next [TS-033, TS-034, TS-035, TS-036, TS-038, TS-039, TS-040, TS-041, TS-042]
 - [ ] T072 [US-5] Add `srcset` WebP/AVIF + fallback + `loading="lazy"` + `aspect-ratio` [TS-040, TS-085, TS-086]
 - [ ] T073 [US-5] Touch targets ≥44×44px (xs/sm), ≥48×48px (md+), ≥8px spacing [TS-033, TS-037]
 - [ ] T074 [US-5] Write E2E `tests/e2e/home-i18n.spec.js` — ES↔EN switch, zero raw keys [TS-073, TS-074]
@@ -227,7 +227,7 @@
 
 **Goal**: Premium resource gate + contextual diagnostic invitation
 
-- [ ] T083 [US-2] Implement premium resource email modal in `js/modal-system.js` — lead with fuente `home-resource-premium` [TS-019, TS-020, TS-021]
+- [x] T083 [US-2] Implement premium resource email modal in `js/modal-system.js` — lead with fuente `home-resource-premium` [TS-019, TS-020, TS-021]
 - [ ] T084 [US-2] Add contextual diagnostic invitation in `recursos/index.html` [TS-018]
 - [ ] T085 [US-2] Wire analytics: `resource_open`, `resource_premium_unlock` [TS-017]
 - [ ] T086 [US-2] Write E2E for premium unlock flow [TS-019, TS-020, TS-021]

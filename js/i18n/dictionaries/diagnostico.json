@@ -1,0 +1,216 @@
+{
+  "stepper": {
+    "persona": {
+      "es": {
+        "step_1": "Paso 1 de 6",
+        "step_2": "Paso 2 de 6",
+        "step_3": "Paso 3 de 6",
+        "step_4": "Paso 4 de 6",
+        "step_5": "Paso 5 de 6",
+        "step_6": "Paso 6 de 6",
+        "progress_label": "Progreso del diagnostico"
+      },
+      "en": {
+        "step_1": "Step 1 of 6",
+        "step_2": "Step 2 of 6",
+        "step_3": "Step 3 of 6",
+        "step_4": "Step 4 of 6",
+        "step_5": "Step 5 of 6",
+        "step_6": "Step 6 of 6",
+        "progress_label": "Diagnostic progress"
+      }
+    },
+    "empresa": {
+      "es": {
+        "step_1": "Paso 1 de 6",
+        "step_2": "Paso 2 de 6",
+        "step_3": "Paso 3 de 6",
+        "step_4": "Paso 4 de 6",
+        "step_5": "Paso 5 de 6",
+        "step_6": "Paso 6 de 6",
+        "progress_label": "Progreso del diagnostico"
+      },
+      "en": {
+        "step_1": "Step 1 of 6",
+        "step_2": "Step 2 of 6",
+        "step_3": "Step 3 of 6",
+        "step_4": "Step 4 of 6",
+        "step_5": "Step 5 of 6",
+        "step_6": "Step 6 of 6",
+        "progress_label": "Diagnostic progress"
+      }
+    }
+  },
+  "questions": {
+    "persona": {
+      "es": {
+        "q1_prompt": "Como organizas tu trabajo diario?",
+        "q1_opt_a": "Uso notas sueltas o lo llevo en la cabeza",
+        "q1_opt_b": "Tengo listas de tareas pero no siempre las sigo",
+        "q1_opt_c": "Uso un sistema definido con prioridades y seguimiento",
+        "q2_prompt": "Cuando enfrentas un problema complejo, que haces primero?",
+        "q2_opt_a": "Intento resolverlo directamente",
+        "q2_opt_b": "Lo analizo un poco antes de actuar",
+        "q2_opt_c": "Descompongo el problema y planifico la solucion",
+        "q3_prompt": "Como mides tu progreso en proyectos personales?",
+        "q3_opt_a": "No suelo medirlo",
+        "q3_opt_b": "Reviso de vez en cuando si voy bien",
+        "q3_opt_c": "Defino metricas claras y hago seguimiento regular",
+        "q4_prompt": "Como colaboras con otros en proyectos?",
+        "q4_opt_a": "Cada quien hace su parte y al final juntamos",
+        "q4_opt_b": "Nos comunicamos pero sin un proceso formal",
+        "q4_opt_c": "Usamos ceremonias, roles y herramientas definidas",
+        "q5_prompt": "Que tan frecuente reflexionas sobre tu forma de trabajar?",
+        "q5_opt_a": "Casi nunca",
+        "q5_opt_b": "Cuando algo sale mal",
+        "q5_opt_c": "Regularmente, como parte de mi mejora continua",
+        "q6_prompt": "Como te adaptas cuando cambian las prioridades?",
+        "q6_opt_a": "Me estreso y pierdo el rumbo",
+        "q6_opt_b": "Me ajusto pero me cuesta reorganizar",
+        "q6_opt_c": "Repriorizo con un marco claro y comunico el cambio"
+      },
+      "en": {
+        "q1_prompt": "How do you organize your daily work?",
+        "q1_opt_a": "I use loose notes or keep it in my head",
+        "q1_opt_b": "I have to-do lists but don't always follow them",
+        "q1_opt_c": "I use a defined system with priorities and tracking",
+        "q2_prompt": "When you face a complex problem, what do you do first?",
+        "q2_opt_a": "I try to solve it right away",
+        "q2_opt_b": "I analyze it a bit before acting",
+        "q2_opt_c": "I decompose the problem and plan the solution",
+        "q3_prompt": "How do you measure progress on personal projects?",
+        "q3_opt_a": "I usually don't measure it",
+        "q3_opt_b": "I check from time to time if things are on track",
+        "q3_opt_c": "I define clear metrics and track regularly",
+        "q4_prompt": "How do you collaborate with others on projects?",
+        "q4_opt_a": "Everyone does their part and we put it together at the end",
+        "q4_opt_b": "We communicate but without a formal process",
+        "q4_opt_c": "We use defined ceremonies, roles, and tools",
+        "q5_prompt": "How often do you reflect on your way of working?",
+        "q5_opt_a": "Almost never",
+        "q5_opt_b": "When something goes wrong",
+        "q5_opt_c": "Regularly, as part of my continuous improvement",
+        "q6_prompt": "How do you adapt when priorities change?",
+        "q6_opt_a": "I get stressed and lose direction",
+        "q6_opt_b": "I adjust but struggle to reorganize",
+        "q6_opt_c": "I reprioritize with a clear framework and communicate the change"
+      }
+    },
+    "empresa": {
+      "es": {
+        "q1_prompt": "Como gestiona tu equipo los proyectos actualmente?",
+        "q1_opt_a": "Sin un proceso definido, cada quien a su manera",
+        "q1_opt_b": "Tenemos algunas practicas pero no estandarizadas",
+        "q1_opt_c": "Seguimos un marco metodologico con roles y ceremonias claras",
+        "q2_prompt": "Como se toman las decisiones tecnicas en tu organizacion?",
+        "q2_opt_a": "Las toma quien este disponible en el momento",
+        "q2_opt_b": "Hay lideres tecnicos pero sin un proceso formal",
+        "q2_opt_c": "Existen comites y ADRs documentados",
+        "q3_prompt": "Como miden la productividad de los equipos?",
+        "q3_opt_a": "No tenemos metricas claras",
+        "q3_opt_b": "Usamos algunas metricas basicas como velocity",
+        "q3_opt_c": "Medimos con DORA, lead time y metricas de valor",
+        "q4_prompt": "Como manejan la deuda tecnica?",
+        "q4_opt_a": "No la rastreamos formalmente",
+        "q4_opt_b": "La identificamos pero no tenemos un plan de reduccion",
+        "q4_opt_c": "Clasificamos, priorizamos y asignamos capacity para reducirla",
+        "q5_prompt": "Como es el proceso de mejora continua en la organizacion?",
+        "q5_opt_a": "No tenemos uno formal",
+        "q5_opt_b": "Hacemos retrospectivas ocasionales",
+        "q5_opt_c": "Ciclos regulares de inspeccion, adaptacion y transformacion",
+        "q6_prompt": "Que tan preparados estan para escalar su operacion?",
+        "q6_opt_a": "No hemos pensado en escalabilidad",
+        "q6_opt_b": "Tenemos ideas pero no un plan concreto",
+        "q6_opt_c": "Arquitectura, procesos y talento estan disenados para escalar"
+      },
+      "en": {
+        "q1_prompt": "How does your team currently manage projects?",
+        "q1_opt_a": "No defined process, everyone does their own thing",
+        "q1_opt_b": "We have some practices but they're not standardized",
+        "q1_opt_c": "We follow a methodology framework with clear roles and ceremonies",
+        "q2_prompt": "How are technical decisions made in your organization?",
+        "q2_opt_a": "Whoever is available at the moment decides",
+        "q2_opt_b": "We have tech leads but no formal process",
+        "q2_opt_c": "We have committees and documented ADRs",
+        "q3_prompt": "How do you measure team productivity?",
+        "q3_opt_a": "We don't have clear metrics",
+        "q3_opt_b": "We use some basic metrics like velocity",
+        "q3_opt_c": "We measure with DORA, lead time, and value metrics",
+        "q4_prompt": "How do you handle technical debt?",
+        "q4_opt_a": "We don't formally track it",
+        "q4_opt_b": "We identify it but don't have a reduction plan",
+        "q4_opt_c": "We classify, prioritize, and allocate capacity to reduce it",
+        "q5_prompt": "What does continuous improvement look like in your organization?",
+        "q5_opt_a": "We don't have a formal process",
+        "q5_opt_b": "We do occasional retrospectives",
+        "q5_opt_c": "Regular cycles of inspection, adaptation, and transformation",
+        "q6_prompt": "How prepared are you to scale your operation?",
+        "q6_opt_a": "We haven't thought about scalability",
+        "q6_opt_b": "We have ideas but no concrete plan",
+        "q6_opt_c": "Architecture, processes, and talent are designed to scale"
+      }
+    }
+  },
+  "results": {
+    "persona": {
+      "es": {
+        "explorer_title": "Explorador Metodologico",
+        "explorer_badge": "Explorador",
+        "explorer_description": "Estas dando tus primeros pasos en el mundo de las metodologias. Tienes curiosidad y potencial — lo que necesitas ahora es una base solida para construir habitos efectivos.",
+        "explorer_cta": "Empieza con recursos gratuitos",
+        "builder_title": "Constructor Metodologico",
+        "builder_badge": "Constructor",
+        "builder_description": "Ya tienes fundamentos y experiencia practica. Estas listo para profundizar en frameworks avanzados y consolidar tu enfoque profesional.",
+        "builder_cta": "Conoce nuestros programas",
+        "strategist_title": "Estratega Metodologico",
+        "strategist_badge": "Estratega",
+        "strategist_description": "Dominas las metodologias y buscas optimizar a nivel estrategico. Es momento de llevar tu vision al siguiente nivel con mentoria personalizada.",
+        "strategist_cta": "Agenda una sesion"
+      },
+      "en": {
+        "explorer_title": "Methodology Explorer",
+        "explorer_badge": "Explorer",
+        "explorer_description": "You're taking your first steps in the world of methodologies. You have curiosity and potential — what you need now is a solid foundation to build effective habits.",
+        "explorer_cta": "Start with free resources",
+        "builder_title": "Methodology Builder",
+        "builder_badge": "Builder",
+        "builder_description": "You already have fundamentals and practical experience. You're ready to dive deeper into advanced frameworks and consolidate your professional approach.",
+        "builder_cta": "Explore our programs",
+        "strategist_title": "Methodology Strategist",
+        "strategist_badge": "Strategist",
+        "strategist_description": "You've mastered methodologies and seek to optimize at a strategic level. It's time to take your vision to the next level with personalized mentoring.",
+        "strategist_cta": "Book a strategy session"
+      }
+    },
+    "empresa": {
+      "es": {
+        "explorer_title": "Organizacion Exploradora",
+        "explorer_badge": "Explorador",
+        "explorer_description": "Tu organizacion esta comenzando su viaje metodologico. Hay oportunidad enorme para establecer bases solidas que transformen como trabajan.",
+        "explorer_cta": "Empieza con recursos gratuitos",
+        "builder_title": "Organizacion Constructora",
+        "builder_badge": "Constructor",
+        "builder_description": "Tu equipo ya tiene practicas en marcha pero necesita estandarizacion y profundidad. Los programas estructurados aceleraran su madurez.",
+        "builder_cta": "Conoce nuestros programas",
+        "strategist_title": "Organizacion Estratega",
+        "strategist_badge": "Estratega",
+        "strategist_description": "Tu organizacion opera con madurez metodologica alta. El siguiente paso es optimizacion estrategica, escalabilidad y transformacion continua.",
+        "strategist_cta": "Agenda una sesion"
+      },
+      "en": {
+        "explorer_title": "Explorer Organization",
+        "explorer_badge": "Explorer",
+        "explorer_description": "Your organization is starting its methodology journey. There's enormous opportunity to build solid foundations that transform how you work.",
+        "explorer_cta": "Start with free resources",
+        "builder_title": "Builder Organization",
+        "builder_badge": "Builder",
+        "builder_description": "Your team already has practices in place but needs standardization and depth. Structured programs will accelerate your maturity.",
+        "builder_cta": "Explore our programs",
+        "strategist_title": "Strategist Organization",
+        "strategist_badge": "Strategist",
+        "strategist_description": "Your organization operates with high methodological maturity. The next step is strategic optimization, scalability, and continuous transformation.",
+        "strategist_cta": "Book a strategy session"
+      }
+    }
+  }
+}

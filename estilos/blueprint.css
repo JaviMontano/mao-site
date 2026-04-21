@@ -9,8 +9,47 @@
  */
 
 /* ═══════════════════════════════════════════════════════════════
-   HEADER — fixed top bar
+   BASE — body + html defaults for Neo-Swiss theme
    ═══════════════════════════════════════════════════════════════ */
+body {
+  background-color: var(--ns-bg, #F9FAFB);
+  color: var(--ns-text, #1F2833);
+  font-family: var(--font-body, 'Montserrat', -apple-system, sans-serif);
+  margin: 0;
+  line-height: 1.6;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--ns-bg, #0B2545);
+  color: var(--ns-text, #F0F4F8);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-head, 'Poppins', -apple-system, sans-serif);
+  color: var(--ns-navy, #122562);
+  line-height: 1.2;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+  color: var(--ns-text, #F0F4F8);
+}
+
+a {
+  color: var(--ns-blue, #137DC5);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER — fixed top bar
+   Targets both the custom element tag and inner .site-header class
+   ═══════════════════════════════════════════════════════════════ */
+site-header,
 .site-header {
   position: fixed;
   top: 0;
@@ -18,8 +57,8 @@
   width: 100%;
   height: var(--header-h, 72px);
   z-index: var(--z-nav, 50);
-  background: var(--ns-bg);
-  border-bottom: 1px solid var(--ns-border);
+  background: var(--ns-bg, #F9FAFB);
+  border-bottom: 1px solid var(--ns-border, rgba(18,37,98,0.08));
   display: flex;
   align-items: center;
   padding-inline: var(--gutter);
@@ -28,7 +67,9 @@
 
 /* ═══════════════════════════════════════════════════════════════
    SIDEBAR — fixed left panel (desktop), off-canvas (mobile)
+   Targets both the custom element tag and inner .site-sidebar class
    ═══════════════════════════════════════════════════════════════ */
+site-sidebar,
 .site-sidebar {
   position: fixed;
   top: var(--header-h, 72px);
@@ -37,8 +78,8 @@
   height: calc(100vh - var(--header-h, 72px));
   z-index: 40;
   overflow-y: auto;
-  background: var(--ns-bg-soft);
-  border-right: 1px solid var(--ns-border);
+  background: var(--ns-bg-soft, #F0F0EC);
+  border-right: 1px solid var(--ns-border, rgba(18,37,98,0.08));
   box-sizing: border-box;
   transition: transform var(--ease) 0.3s;
 }
@@ -105,6 +146,7 @@
 /* ═══════════════════════════════════════════════════════════════
    SAFE-AREA INSETS — notched phones (env() fallback to 0px)
    ═══════════════════════════════════════════════════════════════ */
+site-header,
 .site-header {
   padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
   padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
@@ -114,6 +156,7 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+site-sidebar,
 .site-sidebar {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -128,6 +171,7 @@
     transition: padding-left 0.3s var(--ease, cubic-bezier(.4,0,.2,1));
   }
 
+  site-sidebar,
   .site-sidebar {
     transform: translateX(0);
   }
@@ -145,11 +189,13 @@
    MOBILE LAYOUT (<960px) — sidebar off-canvas, zero layout shift
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 959.98px) {
+  site-sidebar,
   .site-sidebar {
     transform: translateX(-100%);
     will-change: transform;
   }
 
+  site-sidebar.is-open,
   .site-sidebar.is-open {
     transform: translateX(0);
   }
@@ -207,7 +253,9 @@
 
 /* Base: buttons, links in nav, interactive controls */
 .hamburger,
+site-sidebar a,
 .site-sidebar a,
+site-sidebar button,
 .site-sidebar button {
   min-height: 44px;
   min-width: 44px;
@@ -216,7 +264,9 @@
 }
 
 /* Sidebar nav links: comfortable spacing */
+site-sidebar nav a,
 .site-sidebar nav a,
+site-sidebar nav button,
 .site-sidebar nav button {
   padding-block: 0.5rem;
   gap: 8px; /* minimum 8px between adjacent targets */
@@ -225,7 +275,9 @@
 /* md+: upgrade global touch targets to 48px */
 @media (min-width: 640px) {
   .hamburger,
+  site-sidebar a,
   .site-sidebar a,
+  site-sidebar button,
   .site-sidebar button {
     min-height: 48px;
     min-width: 48px;

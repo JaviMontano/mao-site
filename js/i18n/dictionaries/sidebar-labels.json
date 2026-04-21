@@ -1,0 +1,112 @@
+{
+  "sidebar": {
+    "home": {
+      "propuesta": { "es": "Propuesta de valor", "en": "Value proposition" },
+      "diagnostico": { "es": "Diagnóstico", "en": "Diagnostic" },
+      "recursos": { "es": "Recursos", "en": "Resources" },
+      "programas": { "es": "Programas", "en": "Programs" },
+      "metodo": { "es": "Método", "en": "Method" },
+      "prueba-social": { "es": "Prueba social", "en": "Social proof" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    },
+    "diagnostico": {
+      "introduccion": { "es": "Introducción", "en": "Introduction" },
+      "segmento": { "es": "Segmento", "en": "Segment" },
+      "madurez": { "es": "Madurez", "en": "Maturity" },
+      "dolor": { "es": "Dolor", "en": "Pain point" },
+      "urgencia": { "es": "Urgencia", "en": "Urgency" },
+      "equipo": { "es": "Equipo", "en": "Team" },
+      "resultado": { "es": "Resultado", "en": "Result" }
+    },
+    "empresas": {
+      "b2b": { "es": "Empresas", "en": "Enterprise" },
+      "programas": { "es": "Programas", "en": "Programs" },
+      "diagnostico": { "es": "Diagnóstico", "en": "Diagnostic" },
+      "recursos": { "es": "Recursos", "en": "Resources" },
+      "casos": { "es": "Casos de éxito", "en": "Case studies" },
+      "metodo": { "es": "Método", "en": "Method" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    },
+    "personas": {
+      "autodiagnostico": { "es": "Autodiagnóstico", "en": "Self-assessment" },
+      "recursos": { "es": "Recursos", "en": "Resources" },
+      "programas": { "es": "Programas", "en": "Programs" },
+      "comunidad": { "es": "Comunidad", "en": "Community" },
+      "metodo": { "es": "Método", "en": "Method" },
+      "casos": { "es": "Casos de éxito", "en": "Case studies" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    },
+    "programas": {
+      "catalogo": { "es": "Catálogo", "en": "Catalog" },
+      "detalle": { "es": "Detalle", "en": "Details" },
+      "audiencia": { "es": "Audiencia", "en": "Audience" },
+      "duracion": { "es": "Duración", "en": "Duration" },
+      "resultado": { "es": "Resultado", "en": "Result" },
+      "testimonios": { "es": "Testimonios", "en": "Testimonials" },
+      "inscripcion": { "es": "Inscripción", "en": "Enrollment" }
+    },
+    "recursos": {
+      "biblioteca": { "es": "Biblioteca", "en": "Library" },
+      "playbooks": { "es": "Playbooks", "en": "Playbooks" },
+      "herramientas": { "es": "Herramientas", "en": "Tools" },
+      "premium": { "es": "Premium", "en": "Premium" },
+      "prompts": { "es": "Prompts", "en": "Prompts" },
+      "automatizacion": { "es": "Automatización", "en": "Automation" },
+      "comunidad": { "es": "Comunidad", "en": "Community" }
+    },
+    "metodo": {
+      "filosofia": { "es": "Filosofía", "en": "Philosophy" },
+      "diagnostico": { "es": "Diagnóstico", "en": "Diagnostic" },
+      "estrategia": { "es": "Estrategia", "en": "Strategy" },
+      "amplificacion": { "es": "Amplificación", "en": "Amplification" },
+      "pivote": { "es": "Pivote", "en": "Pivot" },
+      "evidencia": { "es": "Evidencia", "en": "Evidence" },
+      "siguiente": { "es": "Siguiente paso", "en": "Next step" }
+    },
+    "casos": {
+      "destacados": { "es": "Destacados", "en": "Featured" },
+      "empresa": { "es": "Empresa", "en": "Enterprise" },
+      "persona": { "es": "Persona", "en": "Individual" },
+      "resultados": { "es": "Resultados", "en": "Results" },
+      "metodologia": { "es": "Metodología", "en": "Methodology" },
+      "testimonios": { "es": "Testimonios", "en": "Testimonials" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    },
+    "nosotros": {
+      "vision": { "es": "Visión", "en": "Vision" },
+      "equipo": { "es": "Equipo", "en": "Team" },
+      "ecosistema": { "es": "Ecosistema", "en": "Ecosystem" },
+      "metodologia": { "es": "Metodología", "en": "Methodology" },
+      "valores": { "es": "Valores", "en": "Values" },
+      "comunidad": { "es": "Comunidad", "en": "Community" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    },
+    "insights": {
+      "articulos": { "es": "Artículos", "en": "Articles" },
+      "tendencias": { "es": "Tendencias", "en": "Trends" },
+      "herramientas": { "es": "Herramientas", "en": "Tools" },
+      "investigacion": { "es": "Investigación", "en": "Research" },
+      "comunidad": { "es": "Comunidad", "en": "Community" },
+      "suscripcion": { "es": "Suscripción", "en": "Subscribe" },
+      "archivo": { "es": "Archivo", "en": "Archive" }
+    },
+    "contacto": {
+      "formulario": { "es": "Formulario", "en": "Form" },
+      "servicios": { "es": "Servicios", "en": "Services" },
+      "ubicacion": { "es": "Ubicación", "en": "Location" },
+      "redes": { "es": "Redes sociales", "en": "Social media" },
+      "faq": { "es": "Preguntas frecuentes", "en": "FAQ" },
+      "horario": { "es": "Horario", "en": "Hours" },
+      "mapa": { "es": "Mapa", "en": "Map" }
+    },
+    "legal": {
+      "privacidad": { "es": "Privacidad", "en": "Privacy" },
+      "terminos": { "es": "Términos", "en": "Terms" },
+      "cookies": { "es": "Cookies", "en": "Cookies" },
+      "datos": { "es": "Datos", "en": "Data" },
+      "derechos": { "es": "Derechos", "en": "Rights" },
+      "cambios": { "es": "Cambios", "en": "Changes" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    }
+  }
+}

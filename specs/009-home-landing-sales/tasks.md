@@ -32,13 +32,13 @@
 
 **Purpose**: 7 leaf modules with zero internal dependencies — MUST complete before ANY user story
 
-- [ ] T007 [P] Implement `js/state/bus.js` — pub/sub event bus (pure) + unit test `tests/unit/bus.spec.js` (100%) [TS-062]
-- [ ] T008 [P] Implement `js/diagnostic/logic.js` — scoring + thresholds from `contracts/diagnostic-logic.json` + unit test (100%) [TS-003, TS-004, TS-088, TS-089, TS-090, TS-091, TS-092]
-- [ ] T009 [P] Implement `js/audience/state.js` — AudienceState 6-level provenance cascade + unit test (≥95%) [TS-043, TS-046]
-- [ ] T010 [P] Implement `js/theme/toggle.js` — theme switch + localStorage + `prefers-color-scheme` fallback + unit test (≥95%) [TS-032, TS-049]
-- [ ] T011 [P] Implement `js/redirects/legacy-router.js` — client-side fallback for 17 legacy URLs [TS-053, TS-054, TS-055, TS-056]
-- [ ] T012 [P] Implement `js/sidebar/scroll-spy.js` — IntersectionObserver module (pure, rootMargin '-40% 0px -50% 0px', threshold 0) + unit test `tests/unit/scroll-spy.spec.js` (100%) [TS-094, TS-095]
-- [ ] T013 [P] Implement `js/sidebar/sections-config.js` — per-page 7-section definitions (12 pages × 7 = 84 entries, 404 excluded) with icon + i18nKey per entry [TS-093, TS-098]
+- [x] T007 [P] Implement `js/state/bus.js` — pub/sub event bus (pure) + unit test `tests/unit/bus.spec.js` (100%) [TS-062]
+- [x] T008 [P] Implement `js/diagnostic/logic.js` — scoring + thresholds from `contracts/diagnostic-logic.json` + unit test (100%) [TS-003, TS-004, TS-088, TS-089, TS-090, TS-091, TS-092]
+- [x] T009 [P] Implement `js/audience/state.js` — AudienceState 6-level provenance cascade + unit test (≥95%) [TS-043, TS-046]
+- [x] T010 [P] Implement `js/theme/toggle.js` — theme switch + localStorage + `prefers-color-scheme` fallback + unit test (≥95%) [TS-032, TS-049]
+- [x] T011 [P] Implement `js/redirects/legacy-router.js` — client-side fallback for 17 legacy URLs [TS-053, TS-054, TS-055, TS-056]
+- [x] T012 [P] Implement `js/sidebar/scroll-spy.js` — IntersectionObserver module (pure, rootMargin '-40% 0px -50% 0px', threshold 0) + unit test `tests/unit/scroll-spy.spec.js` (100%) [TS-094, TS-095]
+- [x] T013 [P] Implement `js/sidebar/sections-config.js` — per-page 7-section definitions (12 pages × 7 = 84 entries, 404 excluded) with icon + i18nKey per entry [TS-093, TS-098]
 
 **Checkpoint**: 7 leaf modules + 7 unit test files — all stories can begin
 

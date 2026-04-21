@@ -252,20 +252,22 @@ Un visitante accede al home desde iPhone SE (xs), iPhone 15 (sm), iPad portrait 
 
 *Añadida en v7 robustness pass — ver robustness-v1.md §F.4. Cubre los FR-200..FR-232 y FR-099b que quedaban huérfanos.*
 
-Un visitante llega al sitio en cualquier página de las 13 y ve una experiencia coherente con 3 toggles (locale ES/EN, theme light/dark, audience persona/empresa) en el header. Un click en cualquiera cambia el shell completo en <100ms sin recargar, sin flicker, sin pérdida de contexto. Visitantes que llegan con `?audiencia=X` ven esa audiencia pre-seleccionada antes del primer paint. El contenido de cada slot se adapta a la combinación activa usando cascada de fallback; nunca aparece una key cruda en el DOM.
+Un visitante llega al sitio en cualquier página de las 13 y ve una experiencia coherente con: (a) un sidebar izquierdo fijo con 7 secciones numeradas por página con scroll-spy (inspirado en `Montano_Javier_Canonical.html`), (b) un header simplificado con logo + 3 nav items (Ruta, Servicios, Contacto), y (c) un triple toggle siempre visible en la esquina inferior izquierda para cambiar tema (light/dark), idioma (ES/EN) y audiencia (persona/empresa) a un click, sin recargar, sin flicker, en <100ms. La experiencia de cambiar el tono del contenido, el idioma o el look and feel a un click es requerimiento clave. Cada texto en el sitio existe en 4 variantes (ES×persona, ES×empresa, EN×persona, EN×empresa) gestionables desde un admin Firestore-backed.
 
-**Why this priority**: Sin el blueprint homologado, el sitio es inconsistente, el audience switching no existe, y cada página requiere implementación a medida. Es la base de la experiencia personalizada cross-page.
+**Why this priority**: Sin el blueprint homologado con sidebar + triple toggle, el sitio es inconsistente, la navegación intra-página no existe, y cada cambio de idioma/tono/tema requiere recarga. Es la base de la experiencia personalizada cross-page.
 
-**Independent test**: Recorriendo las 13 páginas × 4 combinaciones (locale × audience), ninguna presenta keys crudas en el DOM, layout roto, o transición >100ms. El test parametrizado `tests/e2e/adaptive-blueprint.spec.js` cubre las 52 validaciones.
+**Independent test**: Recorriendo las 13 páginas × 4 combinaciones (locale × audience), ninguna presenta keys crudas en el DOM, layout roto, sidebar sin secciones, o transición >100ms. El test parametrizado `tests/e2e/adaptive-blueprint.spec.js` cubre las 52 validaciones. El sidebar muestra 7 secciones con scroll-spy activo en 12 páginas (404 excluida).
 
 **Acceptance Scenarios**:
 
-1. **Given** un visitante en `/programas/` con `mdg_audience=persona`, **When** hace click en el toggle de audience a `empresa`, **Then** hero copy, proof section y filtered programs se actualizan en <100ms, `localStorage.mdg_audience='empresa'` y `html[data-audience]='empresa'`.
-2. **Given** un visitante en cualquiera de las 13 páginas en md+, **When** inspecciona el header, **Then** los 3 toggles están visibles; en xs/sm colapsan a un botón "⚙ Preferencias" con `aria-expanded`.
+1. **Given** un visitante en `/programas/` con `mdg_audience=persona`, **When** hace click en el toggle de audience (bottom-left) a `empresa`, **Then** hero copy, proof section y filtered programs se actualizan en <100ms, `localStorage.mdg_audience='empresa'` y `html[data-audience]='empresa'`.
+2. **Given** un visitante en cualquiera de las 12 páginas (excl. 404) en desktop (≥960px), **When** mira la pantalla, **Then** ve un sidebar izquierdo fijo de 260px con 7 secciones numeradas (01–07) con iconos, y el triple toggle siempre visible en la esquina inferior izquierda.
 3. **Given** URL `/metodo/?audiencia=empresa`, **When** la página carga, **Then** `html[data-audience]='empresa'` se setea **antes** del primer paint (inline `<script>` en `<head>`), sin flicker.
-4. **Given** un visitante navega por teclado, **When** tabula al toggle de audience y presiona `Arrow Right`, **Then** la otra opción activa, `aria-live` anuncia "Cambiado a vista empresas" / "Switched to business view".
+4. **Given** un visitante navega por teclado, **When** tabula al triple toggle de audience y presiona `Space`, **Then** el estado cambia, `aria-live` anuncia "Cambiado a vista empresas" / "Switched to business view".
 5. **Given** key i18n `home.hero.empresa.en` ausente, **When** el resolver ejecuta cascada, **Then** cae a `home.hero.unknown.en` y nunca muestra la key cruda.
-6. **Given** un cambio de theme light→dark, **When** se re-pintan los slots, **Then** el contenido (hero, proof, CTA) NO cambia — solo tokens CSS. Ortogonalidad verificada.
+6. **Given** un cambio de theme light→dark via triple toggle, **When** se re-pintan los slots, **Then** el contenido (hero, proof, CTA) NO cambia — solo tokens CSS. Ortogonalidad verificada.
+7. **Given** un visitante en mobile (xs, 360px), **When** el sidebar está cerrado, **Then** el triple toggle sigue visible como floating fixed en la esquina inferior izquierda, accesible sin abrir sidebar.
+8. **Given** un visitante scrollea en `/empresas/`, **When** pasa la sección "casos" (S5), **Then** el sidebar marca "05 · Casos" como activo con scroll-spy.
 
 ---
 
@@ -288,6 +290,26 @@ Un visitante, un crawler o un auditor recorre el sitio completo y encuentra exac
 5. **Given** GET `/nonexistent`, **Then** response es 404 y body renderiza `404.html` shell con botón "Volver al home".
 6. **Given** el nav primario renderizado, **When** inspeccionado, **Then** contiene exactamente 5 nav items + 1 CTA button + 3 toggles.
 7. **Given** el footer renderizado, **When** inspeccionado, **Then** lista las 12 páginas públicas.
+
+---
+
+### US-8 — Admin Content Editor con 4 Variantes por Texto (Priority: P1)
+
+*Añadida en v8 — sidebar architecture. Trae parte del backoffice CMS (antes diferido a 010) al scope de 009 para habilitar mantenimiento de contenido sin redeploy.*
+
+Un administrador (Javier) accede a `/admin/content-editor.html` tras login con Google Auth, ve una grilla de 13 páginas, selecciona una, y edita todos los content slots de esa página en 4 variantes (ES×persona, ES×empresa, EN×persona, EN×empresa). Al guardar, el contenido se persiste en Firestore `slots/{pageSlug}` y el sitio público lo consume via `migration-bridge.js` sin necesidad de redeploy. El editor hace simple el mantenimiento futuro de los textos composables del sitio.
+
+**Why this priority**: Sin el admin editor, cada cambio de copy requiere editar JSON files + git push + deploy SSH. Con el editor, el contenido es gestionable en tiempo real. Es la pieza que hace viable el modelo de 4 variantes por texto.
+
+**Independent test**: Admin login → seleccionar home → editar hero.headline en las 4 variantes → guardar → verificar que el sitio público muestra el nuevo texto en la combinación correcta (locale × audience).
+
+**Acceptance Scenarios**:
+
+1. **Given** un admin autenticado en `/admin/`, **When** navega a content-editor, **Then** ve 13 cards de páginas con nombre y cantidad de slots editables.
+2. **Given** un admin selecciona "Home", **When** el editor carga, **Then** ve todos los content slots (hero, proof, oferta, escape_routes, closing, meta) con 4 textareas por slot (ES×persona, ES×empresa, EN×persona, EN×empresa).
+3. **Given** un admin edita `home.hero.headline` en la variante EN×empresa, **When** guarda, **Then** el documento Firestore `slots/home` se actualiza con la nueva variante.
+4. **Given** un visitante carga el home con `mdg_locale=en` + `mdg_audience=empresa`, **When** el slot-resolver ejecuta, **Then** lee la variante editada desde Firestore (via migration-bridge.js) en lugar del JSON estático.
+5. **Given** Firestore caído, **When** un visitante carga el home, **Then** el fallback a JSON estático funciona sin error visible.
 
 ---
 
@@ -365,7 +387,7 @@ Un visitante, un crawler o un auditor recorre el sitio completo y encuentra exac
 
 - **FR-060**: El home MUST estar 100% traducido ES/EN usando el módulo `js/i18n/` existente y `data-i18n` attributes.
 - **FR-061**: El home MUST cumplir WCAG 2.1 AA mínimo: contrast ≥4.5:1 texto normal, ≥3:1 texto grande, ≥3:1 UI components, focus rings visibles, orden de foco lógico.
-- **FR-062**: El orden de foco por teclado MUST ser: skip-link → nav → CTA primario → CTA secundario → programas → footer.
+- **FR-062**: El orden de foco por teclado MUST ser: skip-link → header nav (Ruta, Servicios, Contacto) → sidebar secciones (7 links) → main content → triple toggle (theme, locale, audience) → footer. *(v8: actualizado para sidebar + triple toggle architecture)*
 - **FR-063**: El home MUST renderizar un estado degradado funcional sin JavaScript (HTML estático navegable a `/diagnostico/`, `/recursos/`, `/empresas/`, `/personas/`).
 - **FR-064**: El home MUST respetar `prefers-reduced-motion` desactivando entrance animations y limitando transiciones a ≤100ms.
 - **FR-065**: Los iconos lucide MUST tener `aria-hidden="true"` cuando sean decorativos y `aria-label` cuando sean funcionales.
@@ -511,7 +533,33 @@ Feature 009 ships with `scripts/seed.js` that populates `programs/`, `resources/
   - `fallback` pill (gray): static fallback served (Firestore gated by flag or unreachable on first load)
 - **FR-098**: A Playwright test in `tests/e2e/offline-pill.spec.js` MUST stub Firestore to fail and assert the `offline` pill appears on the home within 3 seconds.
 - **FR-099**: The pills are `aria-live="polite"` so screen readers announce cache state changes.
-- **FR-099b** *(añadido en v6, derivado de backcasting §3.1 gap A)*: Los 3 toggles globales (locale, theme, audience — FR-200..FR-206) MUST coexistir en el header con las offline/syncing/fallback pills (FR-097..FR-099) sin obstruirlas visualmente ni funcionalmente. Las pills MUST permanecer visibles en el mismo landmark del header independientemente del estado de los toggles, con contraste ≥3:1 en ambos themes (light y dark). *(Deriva de Constitution VIII SWR + Explicit Offline UX.)*
+- **FR-099b** *(v8: reescrito para sidebar architecture)*: Las offline/syncing/fallback pills (FR-097..FR-099) MUST permanecer visibles en el header o al inicio del `<main>` content, sin ser obstruidas por el sidebar ni el triple toggle. Contraste ≥3:1 en ambos themes. *(Deriva de Constitution VIII SWR + Explicit Offline UX.)*
+
+**Sidebar y navegación intra-página** *(v8 — sidebar architecture, inspirado en Montano_Javier_Canonical.html)*
+
+- **FR-240**: Cada una de las 12 páginas (excl. 404) MUST tener un sidebar izquierdo fijo (`components/SiteSidebar.js`) con exactamente 7 secciones numeradas (01–07), cada una con icono SVG, label i18n y link anchor `#section-id`. El sidebar usa scroll-spy (IntersectionObserver) para marcar la sección activa con `is-active` class. En desktop (≥960px): sidebar visible, 260px ancho, `position: fixed`. En mobile (<960px): off-canvas drawer con hamburger toggle, backdrop, Escape para cerrar.
+- **FR-241**: Cada página MUST definir exactamente 7 `<section id="...">` en su `<main>`, correspondientes a las 7 entradas del sidebar. Las secciones son la unidad de navegación intra-página.
+- **FR-242**: El header MUST simplificarse a: logo MetodologIA + 3 nav links ("Ruta" como CTA dorado → `/diagnostico/`, "Servicios" → `/programas/`, "Contacto" → `/contacto/`). NO contiene toggles. En mobile (<960px) incluye hamburger para abrir sidebar.
+- **FR-243**: El scroll-spy MUST usar `rootMargin: '-40% 0px -50% 0px'` con `threshold: 0` para determinar la sección activa. Smooth scroll al hacer click en un link del sidebar con offset de `var(--header-h) + 12px`.
+- **FR-244**: Las 7 secciones por página se definen en `js/sidebar/sections-config.js` y sus labels se resuelven via i18n (`{pageSlug}.sections.{sectionId}` × 2 locales = 168 keys).
+
+**Triple toggle siempre visible** *(v8 — reemplaza FR-200..FR-206)*
+
+- **FR-245**: El sitio MUST presentar un triple toggle (`components/TripleToggle.js`) SIEMPRE visible en la esquina inferior izquierda (`position: fixed; bottom: 1rem; left: 1rem; z-index: 45`), independientemente del estado del sidebar. En desktop se alinea visualmente con el borde inferior del sidebar pero NO está dentro de él.
+- **FR-246**: El triple toggle contiene 3 botones `role="switch"` con `aria-checked`:
+  - **Theme**: ☀️ light / 🌙 dark — flip `html[data-theme]`, persist `localStorage.mdg_theme`
+  - **Locale**: ES / EN — flip `html[lang]`, emit `langchange`, persist `localStorage.mdg_locale`
+  - **Audience**: 👤 persona / 🏢 empresa — flip `html[data-audience]`, emit `mdg:state-changed`, persist `localStorage.mdg_audience`
+- **FR-247**: Cada click en un toggle MUST completar la transición DOM en <100ms sin recarga. El cambio de tema es CSS-only; el cambio de idioma y audiencia re-resuelve todos los content slots via la cascada de fallback. Cambiar el tono del contenido, el idioma o el look and feel a un click es el requerimiento clave de la experiencia.
+- **FR-248**: El triple toggle MUST tener fondo translúcido con shadow sutil, no MUST solapar con el body content scrolleable. En mobile (xs, 360px) los 3 botones se apilan verticalmente con touch target ≥44×44px y spacing ≥8px.
+- **FR-249**: El triple toggle MUST ser navegable por teclado (Tab entre switches, Space/Enter para flip). Cada cambio MUST anunciarse via `aria-live="polite"` con texto descriptivo ("Tema oscuro activado" / "Dark theme enabled").
+
+**Admin content editor** *(v8 — Firestore-backed content management)*
+
+- **FR-250**: El sitio MUST incluir un admin content editor en `/admin/content-editor.html` accesible tras Firebase Auth login (Google Sign-In + custom claim admin). El editor presenta una grilla de 13 page cards; al seleccionar una, muestra todos los content slots de la página con 4 `<textarea>` por slot (ES×persona, ES×empresa, EN×persona, EN×empresa).
+- **FR-251**: El admin editor MUST leer/escribir Firestore `slots/{pageSlug}` documents con schema: `{ slotId, variants: { "persona.es": "...", "persona.en": "...", "empresa.es": "...", "empresa.en": "..." } }`.
+- **FR-252**: El sitio público MUST leer content slots desde Firestore via `migration-bridge.js` con flag `cms-i18n` ON cuando existen documentos en `slots/{pageSlug}`. Fallback: static i18n JSON dictionaries cuando Firestore no disponible o sin documentos.
+- **FR-253**: Las security rules de Firestore MUST permitir write a `slots/{pageSlug}` solo a usuarios con custom claim `admin: true`. Read público permitido para `status == 'published'`.
 
 ### 4.5 Diagnóstico Logic (declarative rules)
 

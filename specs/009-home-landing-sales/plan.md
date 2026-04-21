@@ -109,8 +109,12 @@ js/state/
 js/blueprint/
   shell.js                          # Common page shell bootstrap
   slot-resolver.js                  # ContentSlot → DOM hydration
+  slug-router.js                    # Client-side ?slug=X router for dynamic templates
+js/sidebar/
+  scroll-spy.js                     # IntersectionObserver scroll tracking (pure)
+  sections-config.js                # Per-page 7-section definitions (12 pages × 7 = 84 entries)
 js/redirects/
-  legacy-router.js                  # 301 legacy URL resolution
+  legacy-router.js                  # 301 legacy URL resolution (17 rules)
 
 # ── JavaScript modules (existing, consumed) ───────────────────
 js/cms/
@@ -133,8 +137,10 @@ js/modal-system.js                  # Modal for resource premium gate
 
 # ── Web Components ────────────────────────────────────────────
 components/
-  SiteHeader.js                     # MODIFIED: add 3 toggles + offline pills
+  SiteHeader.js                     # SIMPLIFIED: logo + 3 nav (Ruta/Servicios/Contacto) + hamburger mobile
   SiteFooter.js                     # MODIFIED: 12-page link list
+  SiteSidebar.js                    # NEW: 7-section numbered nav with scroll-spy (per page)
+  TripleToggle.js                   # NEW: always-visible fixed bottom-left (theme/locale/audience)
   DiagnosticStepper.js              # NEW: 6-step wizard component
   OfflinePill.js                    # NEW: cache state indicator
   ConsentBanner.js                  # NEW: LGPD analytics consent
@@ -146,13 +152,24 @@ estilos/
   critical.css                      # NEW: hand-authored fold CSS (FR-092, FR-096)
   home.css                          # MODIFIED: home v2 layout
   diagnostic.css                    # NEW: stepper + result screen
-  blueprint.css                     # NEW: shared page shell layout
+  blueprint.css                     # NEW: sidebar + header + main layout system (260px sidebar, 72px header)
+  sidebar.css                       # NEW: sidebar nav styles, scroll-spy active state
+  triple-toggle.css                 # NEW: fixed bottom-left toggle pill styles
   components.css                    # MODIFIED: new component styles
+
+# ── Admin Content Editor ─────────────────────────────────────
+admin/
+  index.html                        # EXISTING: admin shell with Firebase Auth login
+  content-editor.html               # NEW: 4-variant content editor UI
+  content-editor.js                 # NEW: page picker + slot editor + Firestore CRUD for slots/{pageSlug}
 
 # ── Firebase ──────────────────────────────────────────────────
 firebase/
-  firestore.rules                   # MODIFIED: add leads/ + diagnostics/ rules
+  firestore.rules                   # MODIFIED: add leads/ + diagnostics/ + slots/ rules
   firestore.indexes.json            # MODIFIED: add composite indexes
+
+# ── Infrastructure ───────────────────────────────────────────
+.htaccess                           # NEW: 17 RewriteRule 301 redirects for SEO
 
 # ── Scripts ───────────────────────────────────────────────────
 scripts/
@@ -554,3 +571,13 @@ If the home v2 launch causes conversion drop, critical bug, or visual regression
 - Q: El home (T039/ex-T037) incluye los 3 CTAs + sección de programas desde el inicio, pero US-2 y US-3 están en fases posteriores. ¿Redundancia? → A: No. T039 entrega la estructura HTML completa (3 CTAs + programas con cards estáticas desde i18n). US-2 agrega solo lógica interactiva (premium modal en /recursos/). US-3 reemplaza cards estáticas con ProgramCard WC + Firestore. Cumple FR-005 sin rework. [§Scope Boundary, FR-005, US-1 US-2 US-3]
 - Q: Falta un slug router para los 3 templates dinámicos (programas, recursos, insights). → A: Agregar js/blueprint/slug-router.js — lee ?slug=X, fetch de Firestore o fallback i18n, renderiza en template slots. Pre-render top-5 slugs como HTML estático para SEO. [§Project Structure, §Module Dependency Graph, R12]
 - Q: Open Questions de sitemap.md (OQ1-OQ5). → A: OQ1 resuelto: insights subscription → leads/ con fuente "insights-subscribe" (no new collection, Constitution XXIII). OQ2: /casos/ → testimonials/ con campo type (no new collection). OQ3: /nosotros/ → HTML estático en 009, Firestore en 010. OQ4: dual .htaccess + JS (resuelto arriba). OQ5: script generate-sitemap-xml.js (estático generado). [§Scope Boundary, Constitution XXIII, sitemap.md §5]
+
+### Session 2026-04-21 (v7 — UX architecture redesign: sidebar + triple toggle + admin editor)
+
+- Q: ¿Cómo debe ser la navegación del sitio? → A: Inspirada en `Montano_Javier_Canonical.html`: sidebar izquierdo fijo (260px, 7 secciones numeradas por página con scroll-spy) + header simplificado (logo + 3 nav: Ruta/Servicios/Contacto) + triple toggle siempre visible fixed bottom-left. Los toggles salen del header y van a la esquina inferior izquierda, visibles incluso con sidebar cerrado en mobile. [FR-240..FR-249, §Project Structure, adaptive-blueprint.md]
+- Q: ¿Cuáles son los 3 nav items del header? → A: "Ruta" (CTA dorado → /diagnostico/), "Servicios" (→ /programas/), "Contacto" (→ /contacto/). Naming genérico, no feature-specific. [FR-242, sitemap.md]
+- Q: ¿El triple toggle vive dentro del sidebar o siempre visible? → A: SIEMPRE visible como `position: fixed; bottom: 1rem; left: 1rem; z-index: 45`. En desktop se alinea visualmente con el sidebar bottom pero NO está dentro de él. En mobile con sidebar cerrado, sigue visible. Cambiar tema/idioma/audiencia a un click sin abrir sidebar es requerimiento clave. [FR-245..FR-249]
+- Q: ¿Cómo se mantienen los textos en 4 variantes (2 locales × 2 audiencias)? → A: Admin content editor Firestore-backed en `/admin/content-editor.html`. Grilla de 13 páginas → editor de slots con 4 textareas por slot. Escribe a Firestore `slots/{pageSlug}`. El sitio lee via migration-bridge.js con flag `cms-i18n` ON. Fallback a JSON estático. Security rules: admin write only con custom claim. [FR-250..FR-253, US-8]
+- Q: ¿Esto trae el backoffice CMS al scope de 009? → A: Solo la parte de content editing (slots). El backoffice completo (schema registry, block editor, versioning, audit log, etc.) sigue diferido a 010. Lo que se trae: lectura/escritura de `slots/{pageSlug}` + UI de edición + security rules de admin. [§Scope Boundary, FR-250..FR-253]
+- Q: ¿Cuántas secciones tiene cada página y cuáles son? → A: Exactamente 7 por página (12 páginas, 404 excluida). Definidas en `js/sidebar/sections-config.js`. Total: 84 secciones. Labels i18n: 168 keys (84 × 2 locales). Ver tabla en plan. [FR-241, FR-244]
+- Q: ¿Nuevos leaf modules? → A: `js/sidebar/scroll-spy.js` (pure, IntersectionObserver) y `js/sidebar/sections-config.js` (pure, 84 entries). Se agregan a Phase 2 como parallelizables con bus.js, logic.js, etc. [§Module Dependency Graph]

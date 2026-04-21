@@ -194,6 +194,83 @@ tests/
 
 **Structure Decision**: Single-project flat structure extending the existing repo layout. No monorepo, no bundler. New JS modules organized by domain concern (`diagnostic/`, `audience/`, `analytics/`, `theme/`, `state/`, `blueprint/`) following Constitution XII (business-readable). Tests follow the existing `tests/` hierarchy with unit/integration/e2e/features separation per NFR-007..NFR-013.
 
+### Module Dependency Graph
+
+Import relationships between new modules and existing SDK. Arrows = `import`. Leaf nodes have zero internal dependencies and can be implemented first (task parallelization candidates).
+
+```
+                     ┌─────────────────────────────────────┐
+                     │        Pages (index.html, etc.)      │
+                     └──┬──────┬──────┬──────┬──────┬──────┘
+                        │      │      │      │      │
+                        ▼      ▼      ▼      ▼      ▼
+              ┌─────────┐ ┌────────┐ ┌──────┐ ┌─────────┐ ┌───────────┐
+              │blueprint/│ │diagnos-│ │audi- │ │analytics│ │ redirects/│
+              │shell.js  │ │tic/    │ │ence/ │ │/        │ │legacy-    │
+              │slot-     │ │control-│ │contr-│ │events.js│ │router.js  │
+              │resolver  │ │ler.js  │ │oller │ │consent  │ │           │
+              └──┬───┬───┘ └┬──┬───┘ └┬──┬──┘ └──┬──────┘ └───────────┘
+                 │   │      │  │      │  │       │              ▲
+                 │   │      │  │      │  │       │         (no imports)
+                 │   │      ▼  │      ▼  │       │
+                 │   │  ┌──────┤  ┌──────┤       │
+                 │   │  │diag/ │  │audi/ │       │
+                 │   │  │logic │  │state │       │
+                 │   │  │.js   │  │.js   │       │
+                 │   │  └──────┘  └──────┘       │
+                 │   │   (pure)    (pure)         │
+                 │   │                            │
+                 ▼   ▼                            ▼
+          ┌────────────────┐              ┌──────────────┐
+          │  js/i18n/      │              │  state/      │
+          │  i18n.js       │              │  bus.js      │
+          │  dictionaries/ │              │  (pure)      │
+          └────────────────┘              └──────────────┘
+                 │
+                 ▼
+          ┌────────────────────────────────────────────┐
+          │          js/cms/ (existing SDK)             │
+          │  content-service → cache-manager → IDB     │
+          │  migration-bridge → content-service         │
+          │  auth-service → firebase-config             │
+          │  init.js (bootstrap)                        │
+          └────────────────────────────────────────────┘
+                 │
+                 ▼
+          ┌────────────────┐    ┌──────────────┐
+          │  theme/        │    │ components/  │
+          │  toggle.js     │    │ (Web Comps)  │
+          │  (pure)        │    │ import from  │
+          └────────────────┘    │ all above    │
+                                └──────────────┘
+```
+
+**Leaf modules (zero internal deps — implement first)**:
+- `state/bus.js` — pure event bus
+- `diagnostic/logic.js` — pure scoring
+- `audience/state.js` — pure state machine
+- `theme/toggle.js` — pure theme persistence
+- `redirects/legacy-router.js` — pure URL resolver
+
+**Mid-layer (depend on leaves + existing SDK)**:
+- `analytics/events.js` → `state/bus.js`
+- `analytics/consent.js` → (standalone, cookie-only)
+- `blueprint/slot-resolver.js` → `js/i18n/`, `audience/state.js`
+- `blueprint/shell.js` → `slot-resolver.js`, `theme/toggle.js`, `state/bus.js`
+- `diagnostic/state.js` → `state/bus.js` (localStorage orchestration)
+
+**Top-layer (depend on mid-layer)**:
+- `diagnostic/controller.js` → `diagnostic/logic.js`, `diagnostic/state.js`, `js/cms/auth-service.js`, `analytics/events.js`
+- `audience/controller.js` → `audience/state.js`, `blueprint/slot-resolver.js`, `state/bus.js`
+
+**Web Components (depend on everything above)**:
+- `DiagnosticStepper.js` → `diagnostic/controller.js`
+- `OfflinePill.js` → `js/cms/cache-manager.js`, `state/bus.js`
+- `ConsentBanner.js` → `analytics/consent.js`
+- `ProgramCard.js` → (standalone, template-only)
+- `SiteHeader.js` (modified) → `theme/toggle.js`, `audience/controller.js`, `js/i18n/`
+- `SiteFooter.js` (modified) → `js/i18n/`
+
 ## Architecture
 
 ### System overview (009 scope only)
@@ -362,6 +439,48 @@ npx vitest run --coverage
 | R-05 Visual drift home ↔ cartillas | Single source of truth in `estilos/variables.css` |
 | R-09 Duplicate leads | Accepted in 009; reconciliation = 010; dashboard filters by most-recent |
 
+## Rollback Strategy
+
+If the home v2 launch causes conversion drop, critical bug, or visual regression that cannot be hotfixed within 24h:
+
+### Procedure (3 steps, <15 min)
+
+1. **Revert the merge commit** on `main`:
+   ```bash
+   git revert --no-edit <merge-commit-sha>
+   git push origin main
+   ```
+2. **Deploy the revert** to production:
+   ```bash
+   ssh -p 65002 u363367449@156.67.75.195 \
+     "cd domains/metodologia.info/public_html && git pull origin main"
+   # Purge Hostinger cache + CDN cache
+   ```
+3. **Verify** home v1 is live via Playwright smoke test on production URL.
+
+### Data impact
+
+- **Firestore `leads/` and `diagnostics/`**: No action needed. Documents written during the v2 window are append-only and structurally compatible with v1 (v1 doesn't read these collections). Data is preserved for when v2 relaunches.
+- **`localStorage` keys** (`mdg_theme`, `mdg_locale`, `mdg_audience`, diagnostic progress): v1 ignores these. No conflict. Users who return after revert see v1 without side effects.
+- **Cookie `mdg_returning`**: v1 ignores it. No conflict.
+- **Security rules**: The reverted `firestore.rules` removes `leads/` and `diagnostics/` client-write rules. Existing docs remain readable by admin. No data loss.
+- **Seed data** (`programs/`, `resources/`, `testimonials/`): Firestore docs remain. v1 doesn't read them (uses static HTML). No conflict.
+
+### Decision criteria for rollback
+
+| Signal | Threshold | Action |
+|---|---|---|
+| Conversion drop vs baseline | >50% drop in first 48h | Rollback immediately |
+| Critical JS error on production | Any unhandled exception on load | Hotfix first; rollback if not fixed in 4h |
+| Lighthouse regression | Performance <70 on mobile | Hotfix first; rollback if not fixed in 24h |
+| Visual regression (brand mismatch) | Reported by owner | Hotfix first; rollback if not fixed in 24h |
+
+### Post-rollback
+
+- Open a `hotfix/009-<issue>` branch from the reverted `main`
+- Fix the root cause, re-test against G3 gate
+- Re-merge via staging → main pipeline (Constitution XX)
+
 ## Complexity Tracking
 
 > No Constitution violations requiring justification. All decisions follow Simple First (XIV).
@@ -371,3 +490,10 @@ npx vitest run --coverage
 | 6 breakpoints | LatAm device matrix demands it (R7) | Fewer breakpoints → broken landscape mobile |
 | Separate `js/diagnostic/` module tree | Single file would exceed 500 LOC, violating XII | Inline in controller → unmaintainable |
 | Web Component for DiagnosticStepper | Encapsulates 6-step state machine; reusable | Vanilla DOM manipulation → scattered state |
+
+## Clarifications
+
+### Session 2026-04-21 (v4 — /iikit-clarify score hardening)
+
+- Q: ¿Faltan dependencias explícitas entre módulos JS nuevos? → A: Añadir DAG de dependencias con clasificación leaf/mid/top layer y relaciones import explícitas. Leaf modules (bus.js, logic.js, state.js, toggle.js, legacy-router.js) implementables primero en paralelo. [§Module Dependency Graph, §Structure Decision]
+- Q: ¿Estrategia de rollback si home v2 falla en producción? → A: Git revert del merge commit en main + redeploy. Datos Firestore (leads/, diagnostics/) preservados (append-only, sin conflicto de schema). Criterios: >50% drop conversión = rollback inmediato; bug crítico = hotfix 4h o rollback; Lighthouse <70 = hotfix 24h o rollback. [§Rollback Strategy, R-01, R-04, Constitution XX]

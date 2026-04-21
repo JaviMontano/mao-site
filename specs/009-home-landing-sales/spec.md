@@ -138,7 +138,7 @@ Evidencia en inputs:
 
 **Pregunta**: ¿Cuál es el baseline actual de conversión del home?
 
-**Resolución**: **Marcado como `[BASELINE-TBD]`**. El primer paso de `/iikit-02-plan` debe incluir una tarea T-000 "Capturar baseline GA4 últimos 30 días" antes de medir SC-001, SC-002, SC-009. Los SC se redefinen como "uplift vs baseline capturado" en lugar de valores absolutos.
+**Resolución**: Los SC de conversión (SC-001, SC-002, SC-009) se miden contra un **baseline capturado en T-000** (tarea técnica previa, GA4 últimos 30 días del home actual). Los SC se definen como "uplift vs baseline capturado" en lugar de valores absolutos. Notación en los SC: `[baseline: T-000 GA4 capture, 30-day window]`.
 
 ---
 
@@ -381,33 +381,35 @@ Un visitante, un crawler o un auditor recorre el sitio completo y encuentra exac
 - **FR-080**: El home MUST leer `utm_content` y cuando sea `diagnostico`, `recurso` u `oferta`, destacar visualmente la ruta correspondiente con un halo/glow gold sutil, sin cambiar la jerarquía base.
 - **FR-081**: El home MUST detectar la cookie `mdg_returning` y mutar el CTA primario a "Continuar tu ruta" + link directo al diagnóstico con estado restaurado.
 
-**Backoffice CMS — gestión sin código** *(FR-100..FR-120 movidos a feature `010-backoffice-cms` por decisión v4 clarification Q1. Feature 009 consume `js/cms/` existente en modo read-only sobre colecciones ya seedeadas manualmente. La única escritura de 009 es a `leads/{uid}` y `diagnostics/{uid}` bajo anonymous auth. Los FRs se listan aquí por trazabilidad histórica pero su implementación es scope de 010.)*
+**Backoffice CMS — gestión sin código** *(Scope: feature `010-backoffice-cms`. Decisión: v4 clarification Q1. Feature 009 consume `js/cms/` existente en modo read-only sobre colecciones seedeadas manualmente. La única escritura de 009 es a `leads/{uid}` y `diagnostics/{uid}` bajo anonymous auth.)*
 
-- **FR-100**: El sistema MUST exponer un backoffice en `/admin/` (autenticado con Firebase Auth + custom claim `admin:true`) que permita gestionar sin tocar código: productos, servicios, precios, URLs, traducciones, recursos, testimonios, páginas, bloques de contenido, imágenes, SEO metadata, feature flags, y variantes de experimentos.
-- **FR-101**: El backoffice MUST proveer CRUD completo sobre las colecciones Firestore: `products`, `services`, `programs`, `pricing`, `resources`, `testimonials`, `pages`, `blocks`, `assets`, `seo`, `flags`, `experiments`, `translations`, `leads`, `diagnostics`, `settings`.
-- **FR-102**: Cada entidad editable MUST tener un **schema descriptor** (JSON Schema almacenado en `settings/schemas/{entity}`) que define campos, tipos, validaciones, etiquetas ES/EN y help text — permitiendo que el backoffice renderice formularios dinámicos sin hardcodear UI por entidad (patrón "schema-driven admin").
-- **FR-103**: El backoffice MUST soportar **bloques de contenido reutilizables** (`blocks/{slug}`) tipo WordPress Gutenberg: hero, feature, testimonial, CTA-group, pricing-table, FAQ, image, video, rich-text, HTML raw (sandboxed). Los bloques se componen en páginas vía referencias ordenadas.
-- **FR-104**: Las páginas del sitio (`pages/{slug}`) MUST modelarse como documento con: título, slug, locale, SEO metadata, array ordenado de bloques con overrides, estado (draft/scheduled/published), fecha publicación, autor, versionado.
-- **FR-105**: Las URLs MUST ser editables — cada `pages/{slug}` define su `path` canónico + array de `redirects` (array de paths antiguos). Un router client-side en el home y páginas dinámicas resuelve slug→path usando un índice cacheado.
-- **FR-106**: Los precios MUST vivir en `pricing/{id}` con: moneda, valor base, descuentos, fecha vigencia desde/hasta, multi-moneda (COP/USD/MXN/EUR), estado activo/archivado, producto/servicio asociado.
-- **FR-107** *(movido a feature 010-backoffice-cms; en 009 el flag `cms-i18n` se mantiene OFF por default y las traducciones se sirven exclusivamente desde `js/i18n/dictionaries/*.json`. `migration-bridge.js` conserva el código dual-source pero solo activa lectura desde Firestore cuando 010 habilite el flag.)*
-- **FR-108**: El backoffice MUST soportar **versionado y rollback**: cada escritura a una entidad CMS crea un documento en `{entity}_versions/{id}/{versionId}` con snapshot completo, autor, timestamp y diff resumen. El admin puede ver historial y restaurar.
-- **FR-109**: El backoffice MUST soportar **audit log** inmutable en `audit/{eventId}` con: actor (uid), acción (create/update/delete/publish), entidad, antes/después hash, IP, user-agent, timestamp server.
-- **FR-110**: El backoffice MUST proveer **workflow de publicación**: estados `draft → in-review → scheduled → published → archived` con roles (`editor`, `reviewer`, `publisher`, `admin`) controlados por custom claims.
-- **FR-111**: El backoffice MUST soportar **upload de assets** (imágenes, PDFs) a Firebase Storage en `assets/{uuid}/{filename}`, con transformación client-side (resize, WebP conversion via Canvas API) antes de subir, y URL pública vía Storage rules.
-- **FR-112**: El backoffice MUST soportar **preview** — cada entidad editable tiene un modo "ver como publicado" que renderiza el home/página con el draft sin publicar, usando query param `?preview={token}` firmado.
-- **FR-113**: El backoffice MUST exponer un **dashboard** con métricas live desde Firestore: leads últimos 7/30 días, diagnósticos completados, top recursos, conversion funnel.
-- **FR-114**: El backoffice MUST permitir **export** (JSON, CSV) de `leads/`, `diagnostics/`, `audit/` para uso offline y backup.
-- **FR-115**: El backoffice MUST soportar **feature flags** (`flags/{key}`) con targeting por locale, deviceClass, utm, cohort — consumidos por el home para activar variantes sin redeploy.
-- **FR-116**: El backoffice MUST soportar **experimentos A/B** (`experiments/{id}`) con: nombre, hipótesis, variantes, assignment rule, fecha inicio/fin, métrica de éxito — consumidos por el home para asignar variantes determinísticas por sessionId.
-- **FR-117**: El backoffice MUST soportar **internacionalización del propio admin UI** (ES/EN) usando los mismos tokens i18n que el sitio público.
-- **FR-118**: El backoffice MUST respetar el design system Neo-Swiss Light/Dark, reutilizando los mismos tokens y componentes que el sitio público.
-- **FR-119**: El sistema MUST mantener **schema migrations** declarativas en `settings/migrations/{version}` ejecutadas por script admin-only al boot, para evolucionar entidades sin romper data existente.
-- **FR-120**: El sistema MUST aplicar **security rules** Firestore que:
-  - Permiten lectura pública a `products`, `services`, `programs`, `pricing`, `resources` (status=published), `pages` (status=published), `blocks`, `translations`, `flags`, `experiments`, `seo`, `testimonials`.
-  - Permiten escritura solo a uids con custom claim `admin:true` o `editor:true`.
-  - Permiten escritura propia a `leads/{uid}` y `diagnostics/{uid}` solo desde la sesión que creó el doc.
-  - Niegan todo lo demás por defecto.
+> **FR-100..FR-120 — Traceability index** (implementation deferred to feature 010)
+>
+> | ID | Title | 010 scope |
+> |---|---|---|
+> | FR-100 | Backoffice `/admin/` con Firebase Auth + custom claims | Admin shell |
+> | FR-101 | CRUD completo sobre 16 colecciones Firestore | Entity management |
+> | FR-102 | Schema descriptors (JSON Schema en `settings/schemas/`) | Schema registry |
+> | FR-103 | Bloques de contenido reutilizables (`blocks/{slug}`) | Block editor |
+> | FR-104 | Páginas como composición de bloques con versionado | Page composer |
+> | FR-105 | URLs editables con redirects (`pages/{slug}.path`) | URL router |
+> | FR-106 | Precios multi-moneda (`pricing/{id}`) | Pricing engine |
+> | FR-107 | i18n desde Firestore (flag `cms-i18n`, OFF en 009) | Translation sync |
+> | FR-108 | Versionado y rollback (`{entity}_versions/`) | Version history |
+> | FR-109 | Audit log inmutable (`audit/{eventId}`) | Audit trail |
+> | FR-110 | Workflow de publicación (draft→published) con roles | Publish workflow |
+> | FR-111 | Upload de assets a Firebase Storage | Asset library |
+> | FR-112 | Preview de drafts (`?preview={token}`) | Preview mode |
+> | FR-113 | Dashboard métricas live (leads, diagnostics, funnel) | Admin dashboard |
+> | FR-114 | Export JSON/CSV de leads, diagnostics, audit | Data export |
+> | FR-115 | Feature flags (`flags/{key}`) con targeting | Flag management |
+> | FR-116 | Experimentos A/B (`experiments/{id}`) | A/B framework |
+> | FR-117 | i18n del propio admin UI | Admin i18n |
+> | FR-118 | Design system Neo-Swiss en admin | Admin theming |
+> | FR-119 | Schema migrations declarativas | Migration runner |
+> | FR-120 | Security rules completas (admin write, public read) | Full ruleset |
+>
+> *Note: FR-107 flag `cms-i18n` stays OFF in 009; `migration-bridge.js` retains dual-source code but reads only from `js/i18n/dictionaries/*.json` until 010 enables the flag.*
 
 **Performance**
 
@@ -554,10 +556,10 @@ Feature 009 ships with `scripts/seed.js` that populates `programs/`, `resources/
 
 ### 5.1 Measurable Outcomes (con baselines declarados)
 
-> **Nota**: Los SC marcados `[BASELINE-TBD]` se miden contra un baseline GA4 capturado en la T-000 del plan (últimos 30 días del home actual).
+> **Nota**: Los SC marcados `[baseline: T-000 GA4 capture, 30-day window]` se miden contra un baseline GA4 capturado en la tarea T-000 del plan (últimos 30 días del home actual). El valor numérico se completa post-captura; el target (e.g., +2×) es fijo.
 
-- **SC-001**: **CTR total** — ≥40% de visitas al home hacen clic en uno de los 3 CTAs `[BASELINE-TBD, target +2×]`.
-- **SC-002**: **CTR diagnóstico** — ≥15% de visitas al home inician el diagnóstico `[BASELINE-TBD]`.
+- **SC-001**: **CTR total** — ≥40% de visitas al home hacen clic en uno de los 3 CTAs `[baseline: T-000 GA4 capture, 30-day window, target +2×]`.
+- **SC-002**: **CTR diagnóstico** — ≥15% de visitas al home inician el diagnóstico `[baseline: T-000 GA4 capture, 30-day window]`.
 - **SC-003**: **Completion rate diagnóstico** — ≥60% de los diagnósticos iniciados terminan con lead registrado.
 - **SC-004**: **Tiempo mediano de diagnóstico** — ≤3 minutos (medido desde `diagnostic_start` hasta `diagnostic_completed`).
 - **SC-005**: **LCP** — ≤2.5s en 4G (Lighthouse throttled), ≤1.5s desktop cable, en xs/sm/md/lg/xl/2xl.
@@ -574,13 +576,13 @@ Feature 009 ships with `scripts/seed.js` that populates `programs/`, `resources/
 - **SC-017**: **Lead source traceability** — 100% de los leads escritos a `leads/{uid}` MUST tener un campo `fuente` no vacío mapeable a uno de los 3 CTAs (valores enumerados: `home-diagnostic`, `home-resource-premium`, `contact-form`, `insights-subscribe`, `diagnostic-mailto-fallback`). Verificado en `tests/integration/security-rules.spec.js`.
 - **SC-018**: **Coverage floor** — el pipeline CI MUST enforzar los thresholds de NFR-008. Merge bloqueado si coverage global <85% o si un módulo pure <100%.
 - **SC-019**: **Backcasting closed loop** — cada FR del spec MUST tener trazabilidad explícita a ≥1 US, cada US a ≥1 SC, cada SC a ≥1 Constitution principle. Matriz verificable en robustness-v1.md §F.1-F.3, sin orphans.
-- **SC-009**: **Conversión total leads** — uplift ≥2× vs baseline en los primeros 30 días post-lanzamiento `[BASELINE-TBD]`.
+- **SC-009**: **Conversión total leads** — uplift ≥2× vs baseline en los primeros 30 días post-lanzamiento `[baseline: T-000 GA4 capture, 30-day window]`.
 - **SC-010**: **Cobertura i18n** — 0 cadenas sin traducir en auditoría automática ES y EN.
 - **SC-011**: **Matriz responsive** — 6/6 viewports (xs/sm/md/lg/xl/2xl) pasan el checklist de 12 puntos de US-5.
 - **SC-012**: **Zero scroll horizontal** — test Playwright en los 6 viewports confirma ausencia de scroll horizontal.
-- **SC-013**: **Touch targets** — 100% de elementos interactivos cumplen ≥44×44 px en xs/sm.
-- **SC-014**: **CLS** — <0.1 en xs/sm/md/lg (Core Web Vitals).
-- **SC-015**: **Contrast** — 100% de pares foreground/background pasan WCAG AA (≥4.5:1 normal, ≥3:1 large).
+- **SC-020**: **Touch targets** — 100% de elementos interactivos cumplen ≥44×44 px en xs/sm.
+- **SC-021**: **CLS** — <0.1 en xs/sm/md/lg (Core Web Vitals).
+- **SC-022**: **Contrast** — 100% de pares foreground/background pasan WCAG AA (≥4.5:1 normal, ≥3:1 large).
 
 ---
 
@@ -1095,7 +1097,7 @@ Este es el patrón "single blueprint, adaptive slots": un shell, 8 combinaciones
 - Q: ¿Mocks o emulator en integration tests? → A: **Hybrid declarado**. Security rules + auth = solo emulator. Network failures + analytics = solo mocks. [NFR-011]
 - Q: ¿Cómo prevenir "test theater"? → A: Header de trazabilidad obligatorio en cada `.spec.js` con `@covers`, `@story`, `@success` tags; pre-commit hook rechaza tests sin header. Mutation testing opcional como segunda capa. [NFR-010]
 - Q: ¿Cómo cubrir flujos emergentes que no están en FRs? → A: El asistente aporta **10 flujos black-box** (LinkedIn B2B, mobile flaky, keyboard a11y, SEO crawler, LGPD audit, theme chaos, dev onboarding, content editor, cache poisoning, social share) como QA independiente. Cada flow se materializa como test adicional. [NFR-013, robustness-v1.md §E]
-- Q: ¿Hay FRs huérfanos sin User Story? → A: **Sí — 15 FRs (FR-097..099b, FR-200..FR-232) eran orphans**. Corrección: añadir **US-6** (blueprint adaptativo) y **US-7** (sitemap 13 páginas) para cerrar el loop. Backcasting §F.4 detalla scenarios. [US-6, US-7, SC-013..SC-017]
+- Q: ¿Hay FRs huérfanos sin User Story? → A: **Sí — 15 FRs (FR-097..099b, FR-200..FR-232) eran orphans**. Corrección: añadir **US-6** (blueprint adaptativo) y **US-7** (sitemap 13 páginas) para cerrar el loop. Backcasting §F.4 detalla scenarios. [US-6, US-7, SC-013..SC-019]
 
 ### Session 2026-04-14 (v6 — adaptive blueprint integration)
 
@@ -1152,3 +1154,9 @@ Este es el patrón "single blueprint, adaptive slots": un shell, 8 combinaciones
 ### Session 2026-04-20 (v7 — /iikit-clarify)
 
 - Q: ¿Manejo de baselines marcados como [BASELINE-TBD] en los SC? → A: Opción A. Capturar de GA4 en la Fase 1 como tarea técnica previa (T-000) antes de implementar, para asegurar precisión. [SC-001, SC-002, SC-009, A-001]
+
+### Session 2026-04-21 (v8 — /iikit-clarify score hardening, spec + plan)
+
+- Q: ¿SC-013, SC-014, SC-015 duplicados entre robustness block y bloque original? → A: Renumerar originales a SC-020 (Touch targets), SC-021 (CLS), SC-022 (Contrast). Robustness keeps SC-013..SC-015 (toggle, blueprint, raw keys). [SC-013, SC-014, SC-015, SC-020, SC-021, SC-022]
+- Q: ¿Formalizar `[BASELINE-TBD]` en texto de los SC? → A: Reemplazar con `[baseline: T-000 GA4 capture, 30-day window]` inline en cada SC afectado, documentando la estrategia de resolución dentro del propio criterio. [SC-001, SC-002, SC-009, §1.8, §5.1]
+- Q: ¿FR-100..FR-120 listados en detalle MUST-level pese a ser scope 010? → A: Colapsar a tabla de trazabilidad (ID + título + scope 010), eliminando lenguaje MUST de 009. Preserva linkage cross-feature sin ruido de auditoría. [FR-100..FR-120, §4.1, §7]

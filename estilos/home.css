@@ -1,62 +1,97 @@
 /**
-  @license Copyleft
-  @copyright MetodologIA
-  @author Javier Montaño
-  @technology Antigravity | GoogleAI Studio | Gemini 3 Pro | Gemini 3 Flash
-  @poweredBy Pristino Agent
+ * home.css — Minimal page-specific overrides for index.html
+ *
+ * All base patterns come from neoswiss-system.css (canonical design system).
+ * This file only adds:
+ *   1. CTA button hierarchy (primary/secondary/tertiary)
+ *   2. Hero CTA layout
+ *   3. Reduced motion
+ *
+ * @license Copyleft
+ * @copyright MetodologIA
  */
 
 /* ═══════════════════════════════════════════════════════════════
-   HOME LANDING PAGE — Neo-Swiss Light Sales Landing (009)
-   Tokens: var(--ns-*) from variables.css
-   Breakpoints: xs(0-479) sm(480-639) md(640-959) lg(960-1279) xl(1280-1535) 2xl(1536+)
+   CTA BUTTON HIERARCHY
+   .home-cta--primary   → Gold bg, dark text
+   .home-cta--secondary → Outline, gold border
+   .home-cta--tertiary  → Text link
    ═══════════════════════════════════════════════════════════════ */
 
-/* ───────────────────────────────────────────────────────────────
-   HERO SECTION
-   80vh desktop / 70vh mobile, centered CTA pyramid
-   ─────────────────────────────────────────────────────────────── */
-.home-hero {
-  min-height: 70vh;
-  display: flex;
-  flex-direction: column;
+.home-cta {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 3rem clamp(1rem, 3vw, 2rem);
-  background: var(--brand-dark);
-  position: relative;
-  overflow: hidden;
+  gap: .5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  min-height: 44px;
+  transition: transform .3s var(--ease),
+              box-shadow .3s var(--ease),
+              background .3s var(--ease),
+              color .3s var(--ease);
+  touch-action: manipulation;
 }
 
-@media (min-width: 960px) {
-  .home-hero {
-    min-height: 80vh;
-    padding: 4rem clamp(1rem, 3vw, 2rem);
-  }
+.home-cta--primary {
+  padding: .9rem 1.8rem;
+  font-size: clamp(.95rem, 1.2vw, 1.15rem);
+  color: var(--brand-dark);
+  background: var(--brand-gold);
+  border-color: var(--brand-gold);
+  letter-spacing: .04em;
 }
 
-.home-hero__title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-size: clamp(2rem, 5vw + 0.5rem, 4rem);
-  line-height: 1.1;
+.home-cta--primary:hover,
+.home-cta--primary:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(255, 215, 0, .4);
+  outline: none;
+}
+
+.home-cta--primary:active {
+  transform: translateY(0) scale(.98);
+  transition-duration: .1s;
+}
+
+.home-cta--secondary {
+  padding: .75rem 1.5rem;
+  font-size: clamp(.875rem, 1vw, 1.05rem);
+  color: var(--brand-gold);
+  background: transparent;
+  border-color: var(--brand-gold);
+}
+
+.home-cta--secondary:hover,
+.home-cta--secondary:focus-visible {
+  background: var(--brand-gold);
+  color: var(--brand-dark);
+  outline: none;
+}
+
+.home-cta--tertiary {
+  padding: .5rem .75rem;
+  font-size: clamp(.875rem, 1vw, 1rem);
+  font-weight: 600;
+  color: var(--brand-gold);
+  background: none;
+  border: none;
+}
+
+.home-cta--tertiary:hover,
+.home-cta--tertiary:focus-visible {
   color: var(--brand-text);
-  margin: 0 0 1rem;
-  max-width: 48rem;
+  outline: none;
 }
 
-.home-hero__subtitle {
-  font-family: inherit;
-  font-weight: 400;
-  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.375rem);
-  line-height: 1.6;
-  color: var(--brand-text-soft);
-  margin: 0 0 2rem;
-  max-width: 36rem;
-}
+/* ═══════════════════════════════════════════════════════════════
+   HERO CTA GROUP — vertical on mobile, horizontal on sm+
+   ═══════════════════════════════════════════════════════════════ */
 
-/* CTA Pyramid — P1 gold XL, P2 outline, P3 text link */
 .home-hero__ctas {
   display: flex;
   flex-direction: column;
@@ -72,788 +107,36 @@
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   CTA BUTTON HIERARCHY
-   .cta-primary   → Gold bg, navy text, XL
-   .cta-secondary  → Outline, gold border
-   .cta-tertiary   → Text link with chevron
-   ─────────────────────────────────────────────────────────────── */
-.cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(1rem, 1.2vw + 0.5rem, 1.25rem);
-  font-weight: 700;
-  color: var(--brand-text);
-  background: var(--brand-gold);
-  border: 2px solid var(--brand-gold);
-  border-radius: var(--brand-radius-lg, 24px);
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 300ms cubic-bezier(.4, 0, .2, 1),
-              box-shadow 300ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.cta-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255,215,0,.25);
-}
-
-.cta-primary:active {
-  transform: translateY(0);
-}
-
-.cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(0.875rem, 1vw + 0.4rem, 1.125rem);
-  font-weight: 600;
-  color: var(--brand-gold);
-  background: transparent;
-  border: 2px solid var(--brand-gold);
-  border-radius: var(--brand-radius-lg, 24px);
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 300ms cubic-bezier(.4, 0, .2, 1),
-              color 300ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.cta-secondary:hover {
-  background: var(--brand-gold);
-  color: var(--brand-text);
-}
-
-.cta-tertiary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 0;
-  font-family: inherit;
-  font-size: clamp(0.875rem, 1vw + 0.3rem, 1rem);
-  font-weight: 500;
-  color: #137DC5;
-  background: none;
-  border: none;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 200ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.cta-tertiary::after {
-  content: '\203A';
-  font-size: 1.25em;
-  line-height: 1;
-  transition: transform 200ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.cta-tertiary:hover {
-  color: var(--brand-text);
-}
-
-.cta-tertiary:hover::after {
-  transform: translateX(4px);
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION BASE — shared grid & spacing for 7 home sections
-   ─────────────────────────────────────────────────────────────── */
-.home-section {
-  padding: 4rem clamp(1rem, 3vw, 2rem);
-  background: var(--brand-dark);
-  position: relative;
-}
-
-.home-section--alt {
-  background: var(--brand-surface-alt);
-}
-
-.home-section__inner {
-  max-width: 72rem;
-  margin: 0 auto;
-}
-
-.home-section__header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.home-section__title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
-  line-height: 1.2;
-  color: var(--brand-text);
-  margin: 0 0 0.75rem;
-}
-
-.home-section__subtitle {
-  font-family: inherit;
-  font-weight: 400;
-  font-size: clamp(0.9375rem, 1.2vw + 0.4rem, 1.125rem);
-  line-height: 1.6;
-  color: var(--brand-text-soft);
-  max-width: 40rem;
-  margin: 0 auto;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   RESPONSIVE GRID SYSTEM (6 breakpoints)
-   ─────────────────────────────────────────────────────────────── */
-.home-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
-}
-
-/* sm: 480px */
-@media (min-width: 480px) {
-  .home-grid--2 { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* md: 640px */
-@media (min-width: 640px) {
-  .home-grid--3 { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* lg: 960px */
-@media (min-width: 960px) {
-  .home-grid--3 { grid-template-columns: repeat(3, 1fr); }
-  .home-grid--4 { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* xl: 1280px */
-@media (min-width: 1280px) {
-  .home-grid--4 { grid-template-columns: repeat(4, 1fr); }
-  .home-grid { gap: 2rem; }
-}
-
-/* 2xl: 1536px */
-@media (min-width: 1536px) {
-  .home-section__inner { max-width: 80rem; }
-}
-
-/* ───────────────────────────────────────────────────────────────
-   CARD SYSTEM — Neo-Swiss tokens
-   ─────────────────────────────────────────────────────────────── */
-.home-card {
-  background: var(--brand-surface);
-  border: 1px solid var(--brand-border);
-  border-radius: var(--brand-radius, 16px);
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  transition: transform 300ms cubic-bezier(.4, 0, .2, 1),
-              box-shadow 300ms cubic-bezier(.4, 0, .2, 1);
-}
-
-.home-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(255,215,0,.25);
-}
-
-.home-card__icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 1rem;
-  color: var(--brand-gold);
-}
-
-.home-card__title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: clamp(1rem, 1.2vw + 0.3rem, 1.25rem);
-  color: var(--brand-text);
-  margin: 0 0 0.5rem;
-}
-
-.home-card__text {
-  font-family: inherit;
-  font-size: clamp(0.875rem, 0.9vw + 0.3rem, 1rem);
-  line-height: 1.6;
-  color: var(--brand-text-soft);
-  margin: 0;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: PROPUESTA (Value Proposition)
-   ─────────────────────────────────────────────────────────────── */
-.home-propuesta {
-  /* Uses home-section + home-section--alt */
-}
-
-.home-propuesta .home-card {
-  text-align: center;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: DIAGNOSTICO
-   ─────────────────────────────────────────────────────────────── */
-.home-diagnostico {
-  /* Uses home-section base */
-}
-
-.home-diagnostico__embed {
-  max-width: 48rem;
-  margin: 0 auto;
-  border-radius: var(--brand-radius-lg, 24px);
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: RECURSOS
-   ─────────────────────────────────────────────────────────────── */
-.home-recursos {
-  /* Uses home-section + home-section--alt */
-}
-
-.home-recursos .home-card__tag {
-  display: inline-block;
-  font-family: var(--font-note);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #137DC5;
-  background: rgba(19, 125, 197, 0.08);
-  border-radius: var(--brand-radius, 16px);
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: PROGRAMAS
-   ─────────────────────────────────────────────────────────────── */
-.home-programas {
-  /* Uses home-section base */
-}
-
-.home-programas .home-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.home-programas .home-card__badge {
-  display: inline-block;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--brand-text);
-  background: var(--brand-gold);
-  border-radius: var(--radius-full);
-  padding: 0.25rem 0.75rem;
-  margin-bottom: 1rem;
-  align-self: flex-start;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: METODO
-   ─────────────────────────────────────────────────────────────── */
-.home-metodo {
-  /* Uses home-section + home-section--alt */
-}
-
-.home-metodo__steps {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
-  counter-reset: step;
-}
-
-@media (min-width: 640px) {
-  .home-metodo__steps { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 960px) {
-  .home-metodo__steps { grid-template-columns: repeat(4, 1fr); }
-}
-
-.home-metodo__step {
-  counter-increment: step;
-  position: relative;
-  padding-left: 3rem;
-}
-
-.home-metodo__step::before {
-  content: counter(step);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-size: var(--text-lg);
-  color: var(--brand-text);
-  background: var(--brand-gold);
-  border-radius: var(--radius-full);
-}
-
-.home-metodo__step-title {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: var(--text-lg);
-  color: var(--brand-text);
-  margin: 0 0 0.5rem;
-}
-
-.home-metodo__step-text {
-  font-family: inherit;
-  font-size: var(--text-sm);
-  line-height: 1.6;
-  color: var(--brand-text-soft);
-  margin: 0;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: PRUEBA SOCIAL (Testimonials)
-   ─────────────────────────────────────────────────────────────── */
-.home-prueba-social {
-  /* Uses home-section base */
-}
-
-.home-testimonial {
-  background: var(--brand-surface);
-  border: 1px solid var(--brand-border);
-  border-radius: var(--brand-radius, 16px);
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.home-testimonial__quote {
-  font-family: inherit;
-  font-size: clamp(0.9375rem, 1vw + 0.3rem, 1.0625rem);
-  font-style: italic;
-  line-height: 1.7;
-  color: var(--brand-text);
-  margin: 0;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.home-testimonial__quote::before {
-  content: '\201C';
-  position: absolute;
-  left: 0;
-  top: -0.25rem;
-  font-family: "Poppins", sans-serif;
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--brand-gold);
-}
-
-.home-testimonial__author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.home-testimonial__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  object-fit: cover;
-  border: 2px solid var(--brand-gold);
-}
-
-.home-testimonial__name {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: var(--text-sm);
-  color: var(--brand-text);
-  margin: 0;
-}
-
-.home-testimonial__role {
-  font-family: inherit;
-  font-size: 0.75rem;
-  color: var(--brand-muted);
-  margin: 0;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   SECTION: CONTACTO (CTA)
-   ─────────────────────────────────────────────────────────────── */
-.home-contacto {
-  background: var(--brand-text);
-  text-align: center;
-}
-
-.home-contacto .home-section__title {
-  color: #FFFFFF;
-}
-
-.home-contacto .home-section__subtitle {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.home-contacto .cta-primary {
-  color: var(--brand-text);
-  background: var(--brand-gold);
-  border-color: var(--brand-gold);
-}
-
-.home-contacto .cta-secondary {
-  color: var(--brand-gold);
-  border-color: var(--brand-gold);
-}
-
-.home-contacto .cta-secondary:hover {
-  background: var(--brand-gold);
-  color: var(--brand-text);
-}
-
-/* ───────────────────────────────────────────────────────────────
-   KPI CARDS — Updated to Neo-Swiss tokens
-   ─────────────────────────────────────────────────────────────── */
-.kpi-card {
-  background: var(--brand-surface);
-  border: 1px solid var(--brand-border);
-  border-radius: var(--brand-radius, 16px);
-  padding: 1.25rem 1.5rem;
-  transition: transform 300ms cubic-bezier(.4, 0, .2, 1);
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.kpi-card > * {
-  position: relative;
-  z-index: 2;
-}
-
-.kpi-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 300ms cubic-bezier(.4, 0, .2, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.kpi-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  box-shadow: 0 0 20px rgba(255,215,0,.25);
-  opacity: 0;
-  transition: opacity 300ms cubic-bezier(.4, 0, .2, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.kpi-card:hover {
-  transform: translateY(-4px) scale(1.02);
-}
-
-.kpi-card:hover::before,
-.kpi-card:hover::after {
-  opacity: 1;
-}
-
-.kpi-value {
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(1.5rem, 2vw + 0.5rem, 2.25rem);
-  font-weight: 800;
-  line-height: 1;
-  background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-gold) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.kpi-label {
-  font-family: var(--font-note);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--brand-muted);
-  margin-top: 0.25rem;
-}
-
-.kpi-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 480px) {
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 960px) {
-  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* Staggered Reveal for KPI Cards */
-.kpi-card:nth-child(1) { animation-delay: 0.1s; }
-.kpi-card:nth-child(2) { animation-delay: 0.25s; }
-.kpi-card:nth-child(3) { animation-delay: 0.4s; }
-
-/* ───────────────────────────────────────────────────────────────
-   ANIMATION KEYFRAMES (preserved)
-   ─────────────────────────────────────────────────────────────── */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes float-gentle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.animate-float-gentle { animation: float-gentle 2s ease-in-out infinite; }
-.animate-float { animation: float 6s ease-in-out infinite; }
-
-/* Section Reveal */
-.section-reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all var(--duration-slower) cubic-bezier(.4, 0, .2, 1);
-}
-
-.section-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Data Pulse (KPI animation — colors updated) */
-@keyframes data-pulse {
-  0%, 100% {
-    opacity: 0.5;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 20px rgba(255,215,0,.25);
-  }
-}
-
-.animate-data-pulse {
-  animation: data-pulse 3s ease-in-out infinite;
-}
-
-/* Counter Glow (KPI number shimmer — colors updated) */
-@keyframes counter-glow {
-  0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
-  50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-}
-
-.animate-counter-glow {
-  animation: counter-glow 2s ease-in-out infinite;
-}
-
-/* ───────────────────────────────────────────────────────────────
-   LANDSCAPE COMPACT HERO — shorter on landscape mobile
-   ─────────────────────────────────────────────────────────────── */
-@media (orientation: landscape) and (max-height: 500px) {
-  .home-hero {
-    min-height: 50vh;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .home-hero__title {
-    font-size: clamp(1.5rem, 4vw + 0.3rem, 2.5rem);
-  }
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+   ═══════════════════════════════════════════════════════════════ */
 
-  .home-hero__subtitle {
-    font-size: clamp(0.875rem, 1.2vw + 0.4rem, 1.125rem);
-    margin-bottom: 1rem;
-  }
+html[data-theme="light"] .home-cta--primary {
+  background: #b88700;
+  border-color: #b88700;
+  color: #fff;
 }
 
-/* Broader landscape tablet/compact */
-@media (orientation: landscape) and (max-height: 700px) and (max-width: 959.98px) {
-  .home-hero {
-    min-height: 60vh;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+html[data-theme="light"] .home-cta--secondary {
+  color: #b88700;
+  border-color: #b88700;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   SAFE-AREA INSETS — notched phone content protection
-   ─────────────────────────────────────────────────────────────── */
-.home-section {
-  padding-left: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-left, 0px));
-  padding-right: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-right, 0px));
+html[data-theme="light"] .home-cta--secondary:hover {
+  background: #b88700;
+  color: #fff;
 }
 
-.home-contacto__actions {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+html[data-theme="light"] .home-cta--tertiary {
+  color: #b88700;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════
    REDUCED MOTION
-   ─────────────────────────────────────────────────────────────── */
+   ═══════════════════════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-data-pulse,
-  .animate-counter-glow,
-  .animate-float,
-  .animate-float-gentle,
-  .section-reveal {
-    animation: none;
+  .home-cta {
     transition: none;
-  }
-
-  .section-reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* ───────────────────────────────────────────────────────────────
-   DARK THEME OVERRIDES [data-theme="dark"]
-   ─────────────────────────────────────────────────────────────── */
-[data-theme="dark"] .home-hero {
-  background: var(--brand-dark);
-}
-
-[data-theme="dark"] .home-hero__title {
-  color: #FFFFFF;
-}
-
-[data-theme="dark"] .home-hero__subtitle {
-  color: var(--brand-text-soft);
-}
-
-[data-theme="dark"] .home-section {
-  background: var(--brand-dark);
-}
-
-[data-theme="dark"] .home-section--alt {
-  background: var(--brand-surface-alt);
-}
-
-[data-theme="dark"] .home-section__title {
-  color: #FFFFFF;
-}
-
-[data-theme="dark"] .home-card__title {
-  color: #FFFFFF;
-}
-
-[data-theme="dark"] .home-card__text {
-  color: var(--brand-text-soft);
-}
-
-[data-theme="dark"] .home-testimonial__name {
-  color: #FFFFFF;
-}
-
-[data-theme="dark"] .home-testimonial__quote {
-  color: var(--brand-text);
-}
-
-[data-theme="dark"] .home-metodo__step::before {
-  color: var(--brand-dark);
-}
-
-[data-theme="dark"] .home-metodo__step-title {
-  color: #FFFFFF;
-}
-
-[data-theme="dark"] .cta-secondary {
-  color: var(--brand-gold);
-}
-
-[data-theme="dark"] .cta-tertiary {
-  color: var(--brand-gold);
-}
-
-[data-theme="dark"] .kpi-label {
-  color: var(--brand-muted);
-}
-
-/* ───────────────────────────────────────────────────────────────
-   TOUCH TARGETS — WCAG 2.5.8 Target Size (T073)
-   xs/sm: ≥44x44px | md+: ≥48x48px | ≥8px spacing between targets
-   ─────────────────────────────────────────────────────────────── */
-
-/* Base: all interactive elements get minimum 44x44 touch target */
-.home-hero__cta,
-.home-section__cta,
-.home-contacto__cta,
-.home-recursos__card a,
-.home-programas__card a {
-  min-height: 44px;
-  min-width: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* CTA groups: ensure ≥8px spacing between adjacent touch targets */
-.home-hero__cta-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px; /* >8px minimum spacing */
-}
-
-.home-contacto__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-/* sm: horizontal CTA layout */
-@media (min-width: 480px) {
-  .home-hero__cta-group {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-/* md+: upgrade to 48x48 touch targets */
-@media (min-width: 640px) {
-  .home-hero__cta,
-  .home-section__cta,
-  .home-contacto__cta {
-    min-height: 48px;
-    min-width: 48px;
-  }
-
-  .home-hero__cta-group,
-  .home-contacto__actions {
-    gap: 16px;
-  }
-}
-
-/* Inline links inside content sections: pad to reach 44px target */
-.home-section a:not(.home-section__cta):not(.home-hero__cta):not(.home-contacto__cta) {
-  padding-block: 0.25rem;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .home-section a:not(.home-section__cta):not(.home-hero__cta):not(.home-contacto__cta) {
-    min-height: 48px;
   }
 }

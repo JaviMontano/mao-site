@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-page-slug="personas" data-audience-lock="persona">
+<html lang="es" data-page-slug="personas">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A122A">
+  <meta name="color-scheme" content="dark">
   <title>IA para Profesionales | MetodologIA</title>
   <meta name="description" content="Formacion en IA para profesionales. Bootcamps tacticos y Programas Elite para alcanzar la soberania digital, profesional y estrategica.">
   <link rel="canonical" href="https://metodologia.info/personas/">
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#ffffff">
   <meta name="robots" content="index, follow">
   <link rel="alternate" hreflang="es" href="https://metodologia.info/personas/">
   <link rel="alternate" hreflang="en" href="https://metodologia.info/personas/">
@@ -37,7 +38,6 @@
   }
   </script>
 
-  
   <!-- Import map: resolve bare specifiers for browser (no bundler) -->
   <script type="importmap">
     {
@@ -54,109 +54,263 @@
     }
   </script>
 
-  <!-- Anti-FOUC inline theme restore -->
-  <script>const t=localStorage.getItem('mdg_theme');if(t==='dark')document.documentElement.dataset.theme='dark';</script>
+  <!-- Anti-FOUC theme restore (dark default) -->
+  <script>
+    const t = localStorage.getItem('mdg_theme');
+    if (t === 'light') document.documentElement.dataset.theme = 'light';
+  </script>
 
-  <link rel="stylesheet" href="../dist/output.css">
-  <link rel="stylesheet" href="../estilos/variables.css">
-  <link rel="stylesheet" href="../estilos/blueprint.css">
-  <link rel="stylesheet" href="../estilos/sidebar.css">
-  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+  <!-- Fonts (same as canonical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 
-  <!-- Favicon -->
+  <!-- Design system (canonical patterns) + minimal page overrides -->
+  <link rel="stylesheet" href="../estilos/neoswiss-system.css">
+  <link rel="stylesheet" href="../estilos/home.css">
+
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
-  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="personas"></site-sidebar>
 
   <main id="main" class="main">
-    <div class="container">
 
-      <!-- Section 1: Autodiagnostico -->
-      <section id="autodiagnostico" class="home-section home-hero" aria-labelledby="autodiagnostico-heading">
-        <h1 id="autodiagnostico-heading" data-slot="personas.autodiagnostico.title" data-i18n="personas.autodiagnostico.title">
-          Construya su Soberania Digital, Profesional y Estrategica
+    <!-- ══════ 01 · HERO AUTODIAGNOSTICO ══════ -->
+    <section class="section" id="autodiagnostico">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="personas.hero.badge">Autodiagnostico · 01</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="personas.hero.title">
+          Construya su <span class="gradient-text">Soberania Digital, Profesional y Estrategica</span>
         </h1>
-        <p data-slot="personas.autodiagnostico.body" data-i18n="personas.autodiagnostico.body">
-          La IA no es el destino, es el vehiculo. Defina su estrategia y tome el control de su relevancia profesional. Comience con un diagnostico estrategico gratuito.
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="personas.hero.subtitle">
+          La IA no es el destino, es el vehiculo. Defina su estrategia y tome el control de su
+          <strong>relevancia profesional</strong>. Comience con un diagnostico estrategico gratuito.
         </p>
-        <div class="home-hero__cta-group">
-          <a href="../diagnostico/?audiencia=persona" class="home-hero__cta home-hero__cta--p1" data-i18n="personas.autodiagnostico.cta_diagnostico">Diagnostico Gratuito</a>
-          <a href="../ruta/cotizador.html" class="home-hero__cta home-hero__cta--p2" data-i18n="personas.autodiagnostico.cta_cotizador">Disenar mi Inversion</a>
-          <a href="#programas" class="home-hero__cta home-hero__cta--p3" data-i18n="personas.autodiagnostico.cta_programas">Ver Programas</a>
-        </div>
-      </section>
 
-      <!-- Section 2: Recursos -->
-      <section id="recursos" class="home-section" aria-labelledby="recursos-heading">
-        <h2 id="recursos-heading" data-slot="personas.recursos.title" data-i18n="personas.recursos.title">
-          Recursos para Profesionales
-        </h2>
-        <p data-slot="personas.recursos.body" data-i18n="personas.recursos.body">
-          Catalogo de recursos premium, recursos a medida y servicios de alto nivel. Desde asistentes IA personalizados hasta arquitectura de sistemas 100% personalizada.
-        </p>
-      </section>
-
-      <!-- Section 3: Programas -->
-      <section id="programas" class="home-section home-section--alt" aria-labelledby="programas-heading">
-        <h2 id="programas-heading" data-slot="personas.programas.title" data-i18n="personas.programas.title">
-          Elige tu Camino
-        </h2>
-        <p data-slot="personas.programas.body" data-i18n="personas.programas.body">
-          6 Bootcamps tacticos y 2 Programas Elite. Cada programa te acerca a la soberania digital, profesional y estrategica. Desde el Taller EstrategIA Personal hasta Digital Champions.
-        </p>
-      </section>
-
-      <!-- Section 4: Comunidad -->
-      <section id="comunidad" class="home-section" aria-labelledby="comunidad-heading">
-        <h2 id="comunidad-heading" data-slot="personas.comunidad.title" data-i18n="personas.comunidad.title">
-          Comunidad de Practica
-        </h2>
-        <p data-slot="personas.comunidad.body" data-i18n="personas.comunidad.body">
-          Acceso anticipado a recursos, beta testing y conexion con otros profesionales en (r)evolucion. Unete a quienes ya estan transformando su forma de trabajar.
-        </p>
-      </section>
-
-      <!-- Section 5: Metodo -->
-      <section id="metodo" class="home-section home-section--alt" aria-labelledby="metodo-heading">
-        <h2 id="metodo-heading" data-slot="personas.metodo.title" data-i18n="personas.metodo.title">
-          El Metodo
-        </h2>
-        <p data-slot="personas.metodo.body" data-i18n="personas.metodo.body">
-          Primero evolucionar con metodo, luego revolucionar con tecnologia. 18 horas por programa, certificacion oficial y acompanamiento continuo para lograr tu soberania estrategica.
-        </p>
-      </section>
-
-      <!-- Section 6: Casos -->
-      <section id="casos" class="home-section" aria-labelledby="casos-heading">
-        <h2 id="casos-heading" data-slot="personas.casos.title" data-i18n="personas.casos.title">
-          Resultados Reales
-        </h2>
-        <p data-slot="personas.casos.body" data-i18n="personas.casos.body">
-          El mejor momento para tomar el control de su carrera tecnologica fue hace 5 anos. El segundo mejor momento es hoy. Descubre lo que dicen quienes ya transformaron su forma de trabajar.
-        </p>
-      </section>
-
-      <!-- Section 7: Contacto -->
-      <section id="contacto" class="home-section home-section--alt" aria-labelledby="contacto-heading">
-        <h2 id="contacto-heading" data-slot="personas.contacto.title" data-i18n="personas.contacto.title">
-          Su Futuro No Espera
-        </h2>
-        <p data-slot="personas.contacto.body" data-i18n="personas.contacto.body">
-          Sin compromiso. Solo claridad radical. Agende su diagnostico gratuito y comience su ruta de (R)Evolucion.
-        </p>
-        <div class="home-contacto__actions">
-          <a href="https://calendar.app.google/NjLeBD2S4dryzVkQ6" target="_blank" rel="noopener noreferrer" class="home-contacto__cta home-contacto__cta--primary" data-i18n="personas.contacto.cta">
-            Agendar Diagnostico Gratuito
+        <div class="home-hero__ctas">
+          <a href="../diagnostico/?audiencia=persona" class="home-cta home-cta--primary" data-cms="personas.hero.cta_diagnostico">
+            Diagnostico Gratuito →
+          </a>
+          <a href="../ruta/cotizador.html" class="home-cta home-cta--secondary" data-cms="personas.hero.cta_cotizador">
+            Disenar mi Inversion
+          </a>
+          <a href="#programas" class="home-cta home-cta--tertiary" data-cms="personas.hero.cta_programas">
+            Ver Programas ↓
           </a>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </div>
+    <!-- ══════ 02 · RECURSOS ══════ -->
+    <section class="section" id="recursos">
+      <div class="container">
+        <span class="eyebrow" data-cms="personas.recursos.badge">Recursos · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="personas.recursos.title">
+          Recursos para <span class="gradient-text">Profesionales</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="personas.recursos.lead">
+          Desde asistentes IA personalizados hasta arquitectura de sistemas 100% personalizada.
+        </p>
+
+        <div class="accel-trio">
+          <div class="accel-tile x-card" role="button" tabindex="0">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">IA</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="personas.recursos.c1_title">Asistentes IA</h4>
+            <p class="accel-tile__desc" data-cms="personas.recursos.c1_desc">Prompts, agentes y flujos automatizados para potenciar tu productividad personal.</p>
+            <span class="accel-tile__foot">Explorar →</span>
+          </div>
+          <div class="accel-tile x-card" role="button" tabindex="0">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Arquitectura</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="personas.recursos.c2_title">Arquitectura de Sistemas</h4>
+            <p class="accel-tile__desc" data-cms="personas.recursos.c2_desc">Frameworks y plantillas para disenar tu sistema operativo profesional.</p>
+            <span class="accel-tile__foot">Ver plantillas →</span>
+          </div>
+          <div class="accel-tile x-card" role="button" tabindex="0">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Premium</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="personas.recursos.c3_title">Contenido Premium</h4>
+            <p class="accel-tile__desc" data-cms="personas.recursos.c3_desc">Recursos de alto nivel, guias avanzadas y acceso anticipado a nuevas herramientas.</p>
+            <span class="accel-tile__foot">Acceder →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 03 · PROGRAMAS ══════ -->
+    <section class="section" id="programas">
+      <div class="container">
+        <span class="eyebrow" data-cms="personas.programas.badge">Programas · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="personas.programas.title">
+          Elige tu <span class="gradient-text">Camino</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="personas.programas.lead">
+          6 Bootcamps tacticos y 2 Programas Elite. Cada programa te acerca a la soberania digital, profesional y estrategica.
+        </p>
+
+        <div class="timeline">
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp 01</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.b1_title">Taller EstrategIA Personal</h3>
+            <span class="tl-item__org">Tactico · 18h</span>
+            <p class="tl-item__impact" data-cms="personas.programas.b1_desc">Define tu <strong>estrategia personal</strong> con IA como vehiculo.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp 02</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.b2_title">Productividad con IA</h3>
+            <span class="tl-item__org">Tactico · 18h</span>
+            <p class="tl-item__impact" data-cms="personas.programas.b2_desc">Automatiza tareas repetitivas y <strong>recupera horas</strong> cada semana.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp 03</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.b3_title">Comunicacion Amplificada</h3>
+            <span class="tl-item__org">Tactico · 18h</span>
+            <p class="tl-item__impact" data-cms="personas.programas.b3_desc">Domina la <strong>comunicacion asistida por IA</strong> en todos los canales.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp 04</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.b4_title">Datos para Decisiones</h3>
+            <span class="tl-item__org">Tactico · 18h</span>
+            <p class="tl-item__impact" data-cms="personas.programas.b4_desc">Aprende a tomar decisiones con <strong>datos y analisis IA</strong>.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp 05</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.b5_title">Marca Personal Digital</h3>
+            <span class="tl-item__org">Tactico · 18h</span>
+            <p class="tl-item__impact" data-cms="personas.programas.b5_desc">Construye tu <strong>presencia digital</strong> con estrategia y herramientas IA.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp 06</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.b6_title">Automatizacion Profesional</h3>
+            <span class="tl-item__org">Tactico · 18h</span>
+            <p class="tl-item__impact" data-cms="personas.programas.b6_desc">Disena flujos de trabajo <strong>automatizados</strong> para tu practica profesional.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Elite 01</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.e1_title">Digital Sovereignty Program</h3>
+            <span class="tl-item__org">Elite · Programa completo</span>
+            <p class="tl-item__impact" data-cms="personas.programas.e1_desc">Programa integral de <strong>soberania digital</strong>. Certificacion oficial y acompanamiento continuo.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Elite 02</span>
+            <h3 class="tl-item__role" data-cms="personas.programas.e2_title">Digital Champions</h3>
+            <span class="tl-item__org">Elite · Programa avanzado</span>
+            <p class="tl-item__impact" data-cms="personas.programas.e2_desc">Para lideres que buscan <strong>transformar organizaciones</strong> desde la excelencia individual.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 04 · COMUNIDAD ══════ -->
+    <section class="section" id="comunidad">
+      <div class="container">
+        <span class="eyebrow" data-cms="personas.comunidad.badge">Comunidad · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="personas.comunidad.title">
+          Comunidad de <span class="gradient-text">Practica</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="personas.comunidad.lead">
+          Unete a quienes ya estan transformando su forma de trabajar.
+        </p>
+
+        <div class="principle">
+          <span class="principle__num">Beta Access</span>
+          <h3 class="principle__title" data-cms="personas.comunidad.card_title">Acceso Anticipado</h3>
+          <p class="principle__body" data-cms="personas.comunidad.card_desc">Acceso anticipado a recursos, beta testing y conexion con otros profesionales en (r)evolucion. Se parte de la comunidad que esta redefiniendo la relevancia profesional con IA.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 05 · METODO ══════ -->
+    <section class="section" id="metodo">
+      <div class="container">
+        <span class="eyebrow" data-cms="personas.metodo.badge">El Metodo · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="personas.metodo.title">
+          Tres ejes de <span class="gradient-text">Soberania</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="personas.metodo.lead">
+          Primero evolucionar con metodo, luego revolucionar con tecnologia. 18 horas por programa, certificacion oficial y acompanamiento continuo.
+        </p>
+
+        <div class="axes">
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label" data-cms="personas.metodo.a1_label">Eje 01</span>
+            <h3 class="axis__title" data-cms="personas.metodo.a1_title">Soberania Digital</h3>
+            <p class="axis__body" data-cms="personas.metodo.a1_desc">Control total de tus herramientas, datos y presencia digital. Sin dependencias innecesarias.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label" data-cms="personas.metodo.a2_label">Eje 02</span>
+            <h3 class="axis__title" data-cms="personas.metodo.a2_title">Soberania Profesional</h3>
+            <p class="axis__body" data-cms="personas.metodo.a2_desc">Relevancia en el mercado laboral. Habilidades de alto valor que no se automatizan facilmente.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label" data-cms="personas.metodo.a3_label">Eje 03</span>
+            <h3 class="axis__title" data-cms="personas.metodo.a3_title">Soberania Estrategica</h3>
+            <p class="axis__body" data-cms="personas.metodo.a3_desc">Vision de largo plazo. Capacidad de disenar tu propia ruta y adaptarte a cambios del entorno.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 06 · CASOS ══════ -->
+    <section class="section" id="casos">
+      <div class="container">
+        <span class="eyebrow" data-cms="personas.casos.badge">Resultados · 06</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="personas.casos.title">
+          Resultados <span class="gradient-text">Reales</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="personas.casos.lead">
+          El mejor momento para tomar el control de su carrera tecnologica fue hace 5 anos. El segundo mejor momento es hoy.
+        </p>
+
+        <div class="refs">
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="personas.casos.t1_quote">
+              "El diagnostico me mostro exactamente donde estaba perdiendo tiempo. En 4 semanas reduje fricciones un 60%."
+            </p>
+            <h3 class="ref__who" data-cms="personas.casos.t1_author">Profesional independiente</h3>
+            <span class="ref__link">Bogota, Colombia</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="personas.casos.t2_quote">
+              "Los bootcamps me dieron estructura. Pase de experimentar con IA a tener un sistema profesional completo."
+            </p>
+            <h3 class="ref__who" data-cms="personas.casos.t2_author">Consultor de Tecnologia</h3>
+            <span class="ref__link">Mexico, CDMX</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 07 · CONTACTO ══════ -->
+    <section class="section" id="contacto">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="personas.contacto.badge">Siguiente paso · 07</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="personas.contacto.title">
+          Su Futuro <span class="gradient-text">No Espera</span>
+        </h2>
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="personas.contacto.lead">
+          Sin compromiso. Solo claridad radical. Agende su diagnostico gratuito y comience su ruta de (R)Evolucion.
+        </p>
+        <div class="home-hero__ctas">
+          <a href="https://calendar.app.google/NjLeBD2S4dryzVkQ6" target="_blank" rel="noopener noreferrer" class="home-cta home-cta--primary" data-cms="personas.contacto.cta">
+            Agendar Diagnostico Gratuito →
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <triple-toggle></triple-toggle>
@@ -166,7 +320,10 @@
 
   <script type="module">
     import { initShell } from '../js/blueprint/shell.js';
+    import { hydratePage } from '../js/cms/hydrate-page.js';
+
     initShell({ pageSlug: 'personas' });
+    hydratePage('personas');
   </script>
 </body>
 </html>

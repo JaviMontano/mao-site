@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-page-slug="nosotros">
+<html lang="es" data-page-slug="nosotros">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A122A">
+  <meta name="color-scheme" content="dark">
   <title>Nosotros | MetodologIA</title>
   <meta name="description" content="Conoce al equipo de MetodologIA. Estrategas dedicados a cocrear entornos de abundancia y cerrar la brecha entre intenciones y resultados.">
   <link rel="canonical" href="https://metodologia.info/nosotros/">
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#ffffff">
   <meta name="robots" content="index, follow">
   <link rel="alternate" hreflang="es" href="https://metodologia.info/nosotros/">
   <link rel="alternate" hreflang="en" href="https://metodologia.info/nosotros/">
@@ -76,8 +77,7 @@
   ]
   </script>
 
-  
-  <!-- Import map: resolve bare specifiers for browser (no bundler) -->
+  <!-- Import map -->
   <script type="importmap">
     {
       "imports": {
@@ -93,104 +93,197 @@
     }
   </script>
 
-  <!-- Anti-FOUC inline theme restore -->
-  <script>const t=localStorage.getItem('mdg_theme');if(t==='dark')document.documentElement.dataset.theme='dark';</script>
+  <!-- Anti-FOUC theme restore -->
+  <script>const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';</script>
 
-  <link rel="stylesheet" href="../dist/output.css">
-  <link rel="stylesheet" href="../estilos/variables.css">
-  <link rel="stylesheet" href="../estilos/blueprint.css">
-  <link rel="stylesheet" href="../estilos/sidebar.css">
-  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 
-  <!-- Favicon -->
+  <!-- Design system -->
+  <link rel="stylesheet" href="../estilos/neoswiss-system.css">
+  <link rel="stylesheet" href="../estilos/home.css">
+
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
-  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="nosotros"></site-sidebar>
 
   <main id="main" class="main">
-    <div class="container">
 
-      <!-- Section 1: Vision -->
-      <section id="vision" class="home-section home-hero" aria-labelledby="vision-heading">
-        <h1 id="vision-heading" data-slot="nosotros.vision.title" data-i18n="nosotros.vision.title">
-          Quienes Somos
+    <!-- 01 · VISION / HERO -->
+    <section class="section" id="vision">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="nosotros.vision.badge">Vision · 01</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="nosotros.vision.title">
+          Quienes <span class="gradient-text">Somos</span>
         </h1>
-        <p data-slot="nosotros.vision.body" data-i18n="nosotros.vision.body">
-          Estrategas para cocrear entornos de abundancia. Cerramos la brecha entre intenciones y resultados disenando sistemas que trabajan para ti. MetodologIA nace de la vision compartida de cuatro estrategas comprometidos con empoderar a profesionales y organizaciones mediante la integracion estrategica de Inteligencia Artificial y metodologias de alto rendimiento.
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="nosotros.vision.lead">
+          Estrategas para cocrear entornos de abundancia. Cerramos la brecha entre intenciones y resultados
+          disenando sistemas que trabajan para ti. MetodologIA nace de la vision compartida de cuatro estrategas
+          comprometidos con empoderar a profesionales y organizaciones mediante la integracion estrategica de
+          Inteligencia Artificial y metodologias de alto rendimiento.
         </p>
-      </section>
+      </div>
+    </section>
 
-      <!-- Section 2: Equipo -->
-      <section id="equipo" class="home-section" aria-labelledby="equipo-heading">
-        <h2 id="equipo-heading" data-slot="nosotros.equipo.title" data-i18n="nosotros.equipo.title">
-          Nuestro Equipo
+    <!-- 02 · EQUIPO -->
+    <section class="section" id="equipo">
+      <div class="container">
+        <span class="eyebrow" data-cms="nosotros.equipo.badge">Equipo · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="nosotros.equipo.title">
+          Nuestro <span class="gradient-text">Equipo</span>
         </h2>
-        <p data-slot="nosotros.equipo.body" data-i18n="nosotros.equipo.body">
-          Un equipo de estrategas dedicados a cocrear entornos donde la excelencia y la innovacion se encuentran. Daniel Zuluaga (Chief Efficiency Officer), German Eliecer Sepulveda (Chief Ecosystem Officer), Javier Montano (Chief Empowerment Officer) y Katherine Oquendo (Chief Enablement Officer).
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="nosotros.equipo.lead">
+          Un equipo de estrategas dedicados a cocrear entornos donde la excelencia y la innovacion se encuentran.
         </p>
-      </section>
 
-      <!-- Section 3: Ecosistema (absorbed from ecosistema.html) -->
-      <section id="ecosistema" class="home-section home-section--alt" aria-labelledby="ecosistema-heading">
-        <h2 id="ecosistema-heading" data-slot="nosotros.ecosistema.title" data-i18n="nosotros.ecosistema.title">
-          Ecosistema de Valor
-        </h2>
-        <p data-slot="nosotros.ecosistema.body" data-i18n="nosotros.ecosistema.body">
-          La Red Neural de Valor. Conectamos tecnologia, academia y empresa. Partners autorizados, resellers y una comunidad de elite para potenciar la (r)evolucion. Actuamos como Customer Success para nuestros aliados.
-        </p>
-      </section>
+        <div class="refs">
+          <article class="ref x-card" role="button" tabindex="0">
+            <h3 class="ref__who" data-cms="nosotros.equipo.m1_name">Daniel Zuluaga</h3>
+            <p class="ref__role" data-cms="nosotros.equipo.m1_role">Chief Efficiency Officer</p>
+            <span class="ref__link" data-cms="nosotros.equipo.m1_desc">Optimizacion y Eficiencia Operativa</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <h3 class="ref__who" data-cms="nosotros.equipo.m2_name">German Sepulveda</h3>
+            <p class="ref__role" data-cms="nosotros.equipo.m2_role">Chief Ecosystem Officer</p>
+            <span class="ref__link" data-cms="nosotros.equipo.m2_desc">Ecosistemas Digitales</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <h3 class="ref__who" data-cms="nosotros.equipo.m3_name">Javier Montano</h3>
+            <p class="ref__role" data-cms="nosotros.equipo.m3_role">Chief Empowerment Officer</p>
+            <span class="ref__link" data-cms="nosotros.equipo.m3_desc">Diseno Estrategico e IA</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <h3 class="ref__who" data-cms="nosotros.equipo.m4_name">Katherine Oquendo</h3>
+            <p class="ref__role" data-cms="nosotros.equipo.m4_role">Chief Enablement Officer</p>
+            <span class="ref__link" data-cms="nosotros.equipo.m4_desc">Habilitacion y Cultura</span>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      <!-- Section 4: Metodologia (absorbed from mision.html) -->
-      <section id="metodologia" class="home-section" aria-labelledby="metodologia-heading">
-        <h2 id="metodologia-heading" data-slot="nosotros.metodologia.title" data-i18n="nosotros.metodologia.title">
-          Mision y Proposito
+    <!-- 03 · ECOSISTEMA -->
+    <section class="section" id="ecosistema">
+      <div class="container">
+        <span class="eyebrow" data-cms="nosotros.ecosistema.badge">Ecosistema · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="nosotros.ecosistema.title">
+          Red Neural de <span class="gradient-text">Valor</span>
         </h2>
-        <p data-slot="nosotros.metodologia.body" data-i18n="nosotros.metodologia.body">
-          Nuestro proposito colectivo es cerrar la brecha entre el potencial infinito que ofrece la tecnologia y la capacidad limitada de energia y recursos de las personas. No creemos en la magia de la IA; creemos en el diseno sistematico de sistemas operativos que (r)evolucionan la forma de trabajar. Deontologia, Ikigai y la busqueda incansable de la excelencia.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="nosotros.ecosistema.lead">
+          Conectamos tecnologia, academia y empresa.
         </p>
-      </section>
 
-      <!-- Section 5: Valores -->
-      <section id="valores" class="home-section home-section--alt" aria-labelledby="valores-heading">
-        <h2 id="valores-heading" data-slot="nosotros.valores.title" data-i18n="nosotros.valores.title">
-          Transparencia Radical
-        </h2>
-        <p data-slot="nosotros.valores.body" data-i18n="nosotros.valores.body">
-          Toda nuestra metodologia interna es Open Source / Copyleft. Puedes usarla, estudiarla y replicarla. Cobramos por lo que realmente aporta valor diferencial: Bootcamps, Consultoria, Recursos Premium y colaboraciones. No somos proveedores, somos socios de crecimiento.
-        </p>
-      </section>
+        <div class="principle x-card">
+          <p data-cms="nosotros.ecosistema.body">
+            Partners autorizados, resellers y una comunidad de elite para potenciar la (r)evolucion.
+            Actuamos como Customer Success para nuestros aliados. Cada nodo de la red amplifica el impacto
+            del ecosistema completo.
+          </p>
+        </div>
+      </div>
+    </section>
 
-      <!-- Section 6: Comunidad -->
-      <section id="comunidad" class="home-section" aria-labelledby="comunidad-heading">
-        <h2 id="comunidad-heading" data-slot="nosotros.comunidad.title" data-i18n="nosotros.comunidad.title">
-          Modelo de Servicio y Embajadores
+    <!-- 04 · MISION -->
+    <section class="section" id="mision">
+      <div class="container">
+        <span class="eyebrow" data-cms="nosotros.mision.badge">Mision · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="nosotros.mision.title">
+          Proposito y <span class="gradient-text">PIVOTE</span>
         </h2>
-        <p data-slot="nosotros.comunidad.body" data-i18n="nosotros.comunidad.body">
-          Nuestra metodologia es abierta porque nuestro negocio no es el secreto, es la excelencia en la ejecucion. Programa de certificacion exclusivo para egresados: 3 semanas, 20 horas sincronas, licencia para usar la marca. Sin costo adicional para alumni.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="nosotros.mision.lead">
+          Cerrar la brecha entre el potencial infinito de la tecnologia y la capacidad limitada de las personas.
         </p>
-      </section>
 
-      <!-- Section 7: Contacto -->
-      <section id="contacto" class="home-section home-section--alt" aria-labelledby="contacto-heading">
-        <h2 id="contacto-heading" data-slot="nosotros.contacto.title" data-i18n="nosotros.contacto.title">
-          Primera Conversacion
+        <div class="principle x-card">
+          <p data-cms="nosotros.mision.body">
+            No creemos en la magia de la IA; creemos en el diseno sistematico de sistemas operativos
+            que (r)evolucionan la forma de trabajar. Deontologia, Ikigai y la busqueda incansable de la
+            excelencia guian cada decision. El framework PIVOTE estructura nuestra ejecucion: Proposito,
+            Investigacion, Validacion, Operacion, Transformacion, Evolucion.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · VALORES -->
+    <section class="section" id="valores">
+      <div class="container">
+        <span class="eyebrow" data-cms="nosotros.valores.badge">Valores · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="nosotros.valores.title">
+          Transparencia <span class="gradient-text">Radical</span>
         </h2>
-        <p data-slot="nosotros.contacto.body" data-i18n="nosotros.contacto.body">
-          Nuestro exito se mide unicamente por tu capacidad de lograr soberania estrategica. Conversemos sobre como acelerar tus resultados.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="nosotros.valores.lead">
+          Nuestra metodologia interna es Open Source / Copyleft.
         </p>
-        <div class="home-contacto__actions">
-          <a href="../contacto/" class="home-contacto__cta home-contacto__cta--primary" data-i18n="nosotros.contacto.cta">
-            Primera Conversacion
+
+        <div class="axes">
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">01</span>
+            <h3 class="axis__title" data-cms="nosotros.valores.v1_title">Transparencia</h3>
+            <p class="axis__body" data-cms="nosotros.valores.v1_desc">Puedes usar, estudiar y replicar toda nuestra metodologia. Sin secretos, sin muros.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">02</span>
+            <h3 class="axis__title" data-cms="nosotros.valores.v2_title">Open Source</h3>
+            <p class="axis__body" data-cms="nosotros.valores.v2_desc">Cobramos por lo que aporta valor diferencial: Bootcamps, Consultoria, Recursos Premium y colaboraciones.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">03</span>
+            <h3 class="axis__title" data-cms="nosotros.valores.v3_title">Excelencia</h3>
+            <p class="axis__body" data-cms="nosotros.valores.v3_desc">No somos proveedores, somos socios de crecimiento. La excelencia en la ejecucion es nuestro diferencial.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · COMUNIDAD -->
+    <section class="section" id="comunidad">
+      <div class="container">
+        <span class="eyebrow" data-cms="nosotros.comunidad.badge">Comunidad · 06</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="nosotros.comunidad.title">
+          Programa de <span class="gradient-text">Embajadores</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="nosotros.comunidad.lead">
+          Nuestra metodologia es abierta porque nuestro negocio no es el secreto, es la excelencia en la ejecucion.
+        </p>
+
+        <div class="principle x-card">
+          <p data-cms="nosotros.comunidad.body">
+            Programa de certificacion exclusivo para egresados: 3 semanas, 20 horas sincronas, licencia para
+            usar la marca. Sin costo adicional para alumni. Conviertete en embajador y multiplica el impacto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · CONTACTO -->
+    <section class="section" id="contacto">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="nosotros.contacto.badge">Siguiente paso · 07</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="nosotros.contacto.title">
+          Primera <span class="gradient-text">Conversacion</span>
+        </h2>
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="nosotros.contacto.lead">
+          Nuestro exito se mide unicamente por tu capacidad de lograr soberania estrategica.
+          Conversemos sobre como acelerar tus resultados.
+        </p>
+        <div class="home-hero__ctas">
+          <a href="../contacto/" class="home-cta home-cta--primary" data-cms="nosotros.contacto.cta">
+            Primera Conversacion →
           </a>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <triple-toggle></triple-toggle>
@@ -200,7 +293,10 @@
 
   <script type="module">
     import { initShell } from '../js/blueprint/shell.js';
+    import { hydratePage } from '../js/cms/hydrate-page.js';
+
     initShell({ pageSlug: 'nosotros' });
+    hydratePage('nosotros');
   </script>
 </body>
 </html>

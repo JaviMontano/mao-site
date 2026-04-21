@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-page-slug="contacto">
+<html lang="es" data-page-slug="contacto">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A122A">
+  <meta name="color-scheme" content="dark">
   <title>Contacto y Agenda | MetodologIA</title>
   <meta name="description" content="Agenda tu primera conversacion estrategica de (R)Evolucion sin costo. Videoconferencia de 60 min para definir tu roadmap de exito con IA.">
   <link rel="canonical" href="https://metodologia.info/contacto/">
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#ffffff">
   <meta name="robots" content="index, follow">
   <link rel="alternate" hreflang="es" href="https://metodologia.info/contacto/">
   <link rel="alternate" hreflang="en" href="https://metodologia.info/contacto/">
@@ -26,7 +27,7 @@
   <meta property="twitter:description" content="60 minutos para definir tu roadmap de exito con IA. Sesion estrategica sin costo.">
   <meta property="twitter:image" content="https://metodologia.info/recursos/og-image.png">
 
-  <!-- JSON-LD: ContactPage + BreadcrumbList (preserved) -->
+  <!-- JSON-LD: ContactPage + BreadcrumbList -->
   <script type="application/ld+json">
   [
     {
@@ -71,8 +72,7 @@
   ]
   </script>
 
-  
-  <!-- Import map: resolve bare specifiers for browser (no bundler) -->
+  <!-- Import map -->
   <script type="importmap">
     {
       "imports": {
@@ -88,110 +88,209 @@
     }
   </script>
 
-  <!-- Anti-FOUC inline theme restore -->
-  <script>const t=localStorage.getItem('mdg_theme');if(t==='dark')document.documentElement.dataset.theme='dark';</script>
+  <!-- Anti-FOUC theme restore -->
+  <script>const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';</script>
 
-  <link rel="stylesheet" href="../dist/output.css">
-  <link rel="stylesheet" href="../estilos/variables.css">
-  <link rel="stylesheet" href="../estilos/blueprint.css">
-  <link rel="stylesheet" href="../estilos/sidebar.css">
-  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 
-  <!-- Favicon -->
+  <!-- Design system -->
+  <link rel="stylesheet" href="../estilos/neoswiss-system.css">
+  <link rel="stylesheet" href="../estilos/home.css">
+
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
-  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="contacto"></site-sidebar>
 
   <main id="main" class="main">
-    <div class="container">
 
-      <!-- Section 1: Formulario -->
-      <section id="formulario" class="home-section home-hero" aria-labelledby="formulario-heading">
-        <h1 id="formulario-heading" data-slot="contacto.formulario.title" data-i18n="contacto.formulario.title">
-          Conversemos de Oportunidades
+    <!-- 01 · FORMULARIO / HERO -->
+    <section class="section" id="formulario">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="contacto.formulario.badge">Formulario · 01</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="contacto.formulario.title">
+          Conversemos de <span class="gradient-text">Oportunidades</span>
         </h1>
-        <p data-slot="contacto.formulario.body" data-i18n="contacto.formulario.body">
-          Videoconferencia de Google Meet. Primera conversacion estrategica de (R)Evolucion — sin costo. 60 minutos para conectar tus dolores y objetivos con las posibilidades reales de nuestro portafolio.
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="contacto.formulario.lead">
+          Videoconferencia de Google Meet. Primera conversacion estrategica de (R)Evolucion — sin costo.
+          60 minutos para conectar tus dolores y objetivos con las posibilidades reales de nuestro portafolio.
         </p>
-        <div class="home-hero__cta-group">
-          <a href="https://calendar.app.google/c8g8uWnxZT7SeM1T9" target="_blank" rel="noopener noreferrer" class="home-hero__cta home-hero__cta--p1" data-i18n="contacto.formulario.cta">
-            Agendar Ahora
+
+        <div class="home-hero__ctas">
+          <a href="https://calendar.app.google/c8g8uWnxZT7SeM1T9" target="_blank" rel="noopener noreferrer" class="home-cta home-cta--primary" data-cms="contacto.formulario.cta">
+            Agendar Ahora →
           </a>
-          <a href="mailto:contacto@metodologia.info" class="home-hero__cta home-hero__cta--p2" data-i18n="contacto.formulario.cta_email">
+          <a href="mailto:contacto@metodologia.info" class="home-cta home-cta--secondary" data-cms="contacto.formulario.cta_email">
             Escribenos
           </a>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Section 2: Servicios -->
-      <section id="servicios" class="home-section" aria-labelledby="servicios-heading">
-        <h2 id="servicios-heading" data-slot="contacto.servicios.title" data-i18n="contacto.servicios.title">
-          Que Logramos en 60 Minutos
+    <!-- 02 · SERVICIOS -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <span class="eyebrow" data-cms="contacto.servicios.badge">Servicios · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="contacto.servicios.title">
+          Que logramos en <span class="gradient-text">60 minutos</span>
         </h2>
-        <p data-slot="contacto.servicios.body" data-i18n="contacto.servicios.body">
-          Conectamos tus dolores y objetivos actuales con las posibilidades reales de nuestro portafolio de servicios: bootcamps, rutas de (R)Evolucion digital y proyectos con inteligencia artificial aplicada. Al finalizar, recibes un Documento de Entendimiento con el mapa y las prioridades.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="contacto.servicios.lead">
+          Conectamos tus dolores y objetivos actuales con las posibilidades reales de nuestro portafolio.
         </p>
-      </section>
 
-      <!-- Section 3: Ubicacion -->
-      <section id="ubicacion" class="home-section home-section--alt" aria-labelledby="ubicacion-heading">
-        <h2 id="ubicacion-heading" data-slot="contacto.ubicacion.title" data-i18n="contacto.ubicacion.title">
-          Modalidad y Disponibilidad
+        <div class="axes">
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">01</span>
+            <h3 class="axis__title" data-cms="contacto.servicios.s1_title">Diagnostico</h3>
+            <p class="axis__body" data-cms="contacto.servicios.s1_desc">Mapeamos tus dolores, objetivos y contexto actual para entender tu punto de partida.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">02</span>
+            <h3 class="axis__title" data-cms="contacto.servicios.s2_title">Roadmap</h3>
+            <p class="axis__body" data-cms="contacto.servicios.s2_desc">Definimos prioridades y un plan de ruta alineado con bootcamps, rutas y proyectos con IA.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">03</span>
+            <h3 class="axis__title" data-cms="contacto.servicios.s3_title">Documento</h3>
+            <p class="axis__body" data-cms="contacto.servicios.s3_desc">Recibes un Documento de Entendimiento con el mapa y las prioridades al finalizar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · UBICACION -->
+    <section class="section" id="ubicacion">
+      <div class="container">
+        <span class="eyebrow" data-cms="contacto.ubicacion.badge">Ubicacion · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="contacto.ubicacion.title">
+          Modalidad y <span class="gradient-text">Disponibilidad</span>
         </h2>
-        <p data-slot="contacto.ubicacion.body" data-i18n="contacto.ubicacion.body">
-          100% remoto via Google Meet. Disponibilidad semanal: Todos los Lunes (9:00 AM - 3:30 PM COT). Siempre ofrecemos la primera fecha disponible dentro de los siguientes 3 dias habiles.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="contacto.ubicacion.lead">
+          100% remoto via Google Meet.
         </p>
-      </section>
 
-      <!-- Section 4: Redes -->
-      <section id="redes" class="home-section" aria-labelledby="redes-heading">
-        <h2 id="redes-heading" data-slot="contacto.redes.title" data-i18n="contacto.redes.title">
-          Conecta con Nosotros
+        <div class="principle x-card">
+          <p data-cms="contacto.ubicacion.body">
+            Disponibilidad semanal: Todos los Lunes (9:00 AM - 3:30 PM COT). Siempre ofrecemos la primera
+            fecha disponible dentro de los siguientes 3 dias habiles. Agenda directamente desde el boton
+            "Agendar Ahora" en la parte superior.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · REDES -->
+    <section class="section" id="redes">
+      <div class="container">
+        <span class="eyebrow" data-cms="contacto.redes.badge">Redes · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="contacto.redes.title">
+          Conecta con <span class="gradient-text">Nosotros</span>
         </h2>
-        <p data-slot="contacto.redes.body" data-i18n="contacto.redes.body">
-          Email: contacto@metodologia.info. LinkedIn: linkedin.com/company/metodologia-info. Instagram: @metodologia.info. Respuesta en menos de 24 horas.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="contacto.redes.lead">
+          Respuesta en menos de 24 horas.
         </p>
-      </section>
 
-      <!-- Section 5: FAQ -->
-      <section id="faq" class="home-section home-section--alt" aria-labelledby="faq-heading">
-        <h2 id="faq-heading" data-slot="contacto.faq.title" data-i18n="contacto.faq.title">
-          Politicas de Agendamiento
+        <div class="accel-trio">
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='mailto:contacto@metodologia.info'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Email</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="contacto.redes.r1_title">contacto@metodologia.info</h4>
+            <p class="accel-tile__desc" data-cms="contacto.redes.r1_desc">Correo directo para consultas, propuestas y colaboraciones.</p>
+            <span class="accel-tile__foot">Escribir →</span>
+          </div>
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="window.open('https://www.linkedin.com/company/metodologia-info','_blank')">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">LinkedIn</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="contacto.redes.r2_title">MetodologIA</h4>
+            <p class="accel-tile__desc" data-cms="contacto.redes.r2_desc">Contenido profesional, casos de exito y actualizaciones.</p>
+            <span class="accel-tile__foot">Conectar →</span>
+          </div>
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="window.open('https://www.instagram.com/metodologia.info','_blank')">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Instagram</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="contacto.redes.r3_title">@metodologia.info</h4>
+            <p class="accel-tile__desc" data-cms="contacto.redes.r3_desc">Detras de escenas, tips rapidos y comunidad.</p>
+            <span class="accel-tile__foot">Seguir →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <span class="eyebrow" data-cms="contacto.faq.badge">FAQ · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="contacto.faq.title">
+          Politicas de <span class="gradient-text">Agendamiento</span>
         </h2>
-        <p data-slot="contacto.faq.body" data-i18n="contacto.faq.body">
-          Primera reprogramacion con justa causa: sin costo. Segunda reprogramacion: fee de COP 200.000. No-Show sin aviso: al retomar se toma como segunda consulta y aplica fee. Puedes mover la cita desde el mismo enlace del calendario.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="contacto.faq.lead">
+          Reglas claras para una experiencia fluida.
         </p>
-      </section>
 
-      <!-- Section 6: Horario -->
-      <section id="horario" class="home-section" aria-labelledby="horario-heading">
-        <h2 id="horario-heading" data-slot="contacto.horario.title" data-i18n="contacto.horario.title">
-          Horario de Atencion
+        <div class="principle x-card">
+          <p data-cms="contacto.faq.body">
+            Primera reprogramacion con justa causa: sin costo. Segunda reprogramacion: fee de COP 200.000.
+            No-Show sin aviso: al retomar se toma como segunda consulta y aplica fee. Puedes mover la cita
+            desde el mismo enlace del calendario.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · HORARIO -->
+    <section class="section" id="horario">
+      <div class="container">
+        <span class="eyebrow" data-cms="contacto.horario.badge">Horario · 06</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="contacto.horario.title">
+          Horario de <span class="gradient-text">Atencion</span>
         </h2>
-        <p data-slot="contacto.horario.body" data-i18n="contacto.horario.body">
-          Lunes a Viernes. Sesiones de diagnostico: Lunes 9:00 AM - 3:30 PM (hora Colombia, UTC-5). Correo electronico: respuesta en menos de 24 horas habiles.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="contacto.horario.lead">
+          Lunes a Viernes.
         </p>
-      </section>
 
-      <!-- Section 7: Mapa -->
-      <section id="mapa" class="home-section home-section--alt" aria-labelledby="mapa-heading">
-        <h2 id="mapa-heading" data-slot="contacto.mapa.title" data-i18n="contacto.mapa.title">
-          Cobertura Global
+        <div class="principle x-card">
+          <p data-cms="contacto.horario.body">
+            Sesiones de diagnostico: Lunes 9:00 AM - 3:30 PM (hora Colombia, UTC-5).
+            Correo electronico: respuesta en menos de 24 horas habiles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · MAPA -->
+    <section class="section" id="mapa">
+      <div class="container">
+        <span class="eyebrow" data-cms="contacto.mapa.badge">Cobertura · 07</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="contacto.mapa.title">
+          Cobertura <span class="gradient-text">Global</span>
         </h2>
-        <p data-slot="contacto.mapa.body" data-i18n="contacto.mapa.body">
-          Operamos 100% remoto con foco en LatAm. Idiomas disponibles: Espanol e Ingles. Zona horaria base: Colombia (UTC-5). Adaptamos horarios para clientes en otras zonas.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="contacto.mapa.lead">
+          Operamos 100% remoto con foco en LatAm.
         </p>
-        <p class="home-contacto__note" data-i18n="contacto.mapa.note">
-          Necesitas reprogramar? Envianos un email. La primera vez por justa causa es sin costo.
-        </p>
-      </section>
 
-    </div>
+        <div class="principle x-card">
+          <p data-cms="contacto.mapa.body">
+            Idiomas disponibles: Espanol e Ingles. Zona horaria base: Colombia (UTC-5).
+            Adaptamos horarios para clientes en otras zonas. Necesitas reprogramar? Envianos un email.
+            La primera vez por justa causa es sin costo.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <triple-toggle></triple-toggle>
@@ -201,7 +300,10 @@
 
   <script type="module">
     import { initShell } from '../js/blueprint/shell.js';
+    import { hydratePage } from '../js/cms/hydrate-page.js';
+
     initShell({ pageSlug: 'contacto' });
+    hydratePage('contacto');
   </script>
 </body>
 </html>

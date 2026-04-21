@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-page-slug="programas">
+<html lang="es" data-page-slug="programas">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A122A">
+  <meta name="color-scheme" content="dark">
   <title>Programas | MetodologIA</title>
   <meta name="description" content="Catalogo de programas de formacion metodologica para personas y empresas. Elige tu ruta de aprendizaje.">
   <link rel="canonical" href="https://metodologia.info/programas/">
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="index, follow">
+  <link rel="alternate" hreflang="es" href="https://metodologia.info/programas/">
+  <link rel="alternate" hreflang="en" href="https://metodologia.info/programas/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -16,8 +20,13 @@
   <meta property="og:description" content="Catalogo de programas de formacion metodologica para personas y empresas. Elige tu ruta de aprendizaje.">
   <meta property="og:image" content="https://metodologia.info/og-image.png">
 
-  
-  <!-- Import map: resolve bare specifiers for browser (no bundler) -->
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://metodologia.info/programas/">
+  <meta property="twitter:title" content="Programas | MetodologIA">
+  <meta property="twitter:description" content="Catalogo de programas de formacion metodologica para personas y empresas.">
+
+  <!-- Import map -->
   <script type="importmap">
     {
       "imports": {
@@ -33,110 +42,216 @@
     }
   </script>
 
-  <!-- Anti-FOUC inline theme restore -->
+  <!-- Anti-FOUC theme restore (dark default) -->
   <script>
     const t = localStorage.getItem('mdg_theme');
-    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+    if (t === 'light') document.documentElement.dataset.theme = 'light';
   </script>
 
-  <style>/* inline critical.css content placeholder */</style>
+  <!-- Fonts (same as canonical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 
-  <link rel="stylesheet" href="../dist/output.css">
-  <link rel="stylesheet" href="../estilos/variables.css">
-  <link rel="stylesheet" href="../estilos/blueprint.css">
-  <link rel="stylesheet" href="../estilos/sidebar.css">
-  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+  <!-- Design system (canonical patterns) + minimal page overrides -->
+  <link rel="stylesheet" href="../estilos/neoswiss-system.css">
+  <link rel="stylesheet" href="../estilos/home.css">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
-  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="programas"></site-sidebar>
 
   <main id="main" class="main">
-    <div class="container">
 
-      <!-- Section 1: Catalogo -->
-      <section id="catalogo" class="section" aria-labelledby="catalogo-heading">
-        <h1 id="catalogo-heading" class="section__title" data-i18n="programas.catalogo.title">
-          Catalogo de Programas
+    <!-- ══════ 01 · CATALOGO / HERO ══════ -->
+    <section class="section" id="catalogo">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="programas.catalogo.badge">Catalogo · 01</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="programas.catalogo.title">
+          Catalogo de <span class="gradient-text">Programas</span>
         </h1>
-        <p class="section__lead" data-i18n="programas.catalogo.lead">
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="programas.catalogo.lead">
           Explora nuestra oferta formativa en metodologias agiles, datos e IA.
+          <strong>Formacion estructurada con resultados medibles.</strong>
         </p>
-        <div data-slug-listing class="programas-listing">
-          <!-- Program cards injected dynamically -->
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Section 2: Detalle -->
-      <section id="detalle" class="section" aria-labelledby="detalle-heading">
-        <h2 id="detalle-heading" class="section__title" data-i18n="programas.detalle.title">
-          Detalle del Programa
+    <!-- ══════ 02 · DETALLE ══════ -->
+    <section class="section" id="detalle">
+      <div class="container">
+        <span class="eyebrow">Detalle · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="programas.detalle.title">
+          Descripcion del <span class="gradient-text">programa</span>
         </h2>
-        <p class="section__body" data-i18n="programas.detalle.body">
-          Descripcion completa, temario y objetivos de aprendizaje.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="programas.detalle.lead">
+          Cada programa esta disenado con objetivos claros, temario detallado y entregables concretos.
         </p>
-        <div data-slug-content class="programas-content">
-          <!-- Single program detail injected dynamically -->
-        </div>
-      </section>
 
-      <!-- Section 3: Audiencia -->
-      <section id="audiencia" class="section" aria-labelledby="audiencia-heading">
-        <h2 id="audiencia-heading" class="section__title" data-i18n="programas.audiencia.title">
-          Para Quien Es
+        <div class="principle x-card">
+          <h3 data-cms="programas.detalle.card_title">Estructura del Programa</h3>
+          <p data-cms="programas.detalle.card_body">
+            Todos nuestros programas siguen el mismo marco: diagnostico inicial, plan de ruta personalizado,
+            sesiones practicas con acompanamiento, y evaluacion de resultados con metricas verificables.
+            Cada modulo incluye recursos descargables y ejercicios aplicables desde el dia uno.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 03 · AUDIENCIA ══════ -->
+    <section class="section" id="audiencia">
+      <div class="container">
+        <span class="eyebrow">Audiencia · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="programas.audiencia.title">
+          Para <span class="gradient-text">quien</span> es
         </h2>
-        <p class="section__body" data-i18n="programas.audiencia.body">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="programas.audiencia.lead">
           Perfiles ideales, prerequisitos y nivel de experiencia recomendado.
         </p>
-      </section>
 
-      <!-- Section 4: Duracion -->
-      <section id="duracion" class="section" aria-labelledby="duracion-heading">
-        <h2 id="duracion-heading" class="section__title" data-i18n="programas.duracion.title">
-          Duracion y Modalidad
+        <div class="axes">
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">Persona</span>
+            <h3 class="axis__title" data-cms="programas.audiencia.a1_title">Bootcamp Individual</h3>
+            <p class="axis__body" data-cms="programas.audiencia.a1_desc">Profesionales que buscan dominar su metodologia personal con IA. 8 semanas de formacion intensiva.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">Empresa</span>
+            <h3 class="axis__title" data-cms="programas.audiencia.a2_title">Workshop Empresarial</h3>
+            <p class="axis__body" data-cms="programas.audiencia.a2_desc">Equipos que necesitan alinearse en formas de trabajo de alto rendimiento. 2 dias de inmersion practica.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">Ambos</span>
+            <h3 class="axis__title" data-cms="programas.audiencia.a3_title">Mentoria Continua</h3>
+            <p class="axis__body" data-cms="programas.audiencia.a3_desc">Personas y equipos que quieren metricas de progreso y ajuste de ruta continuo. Formato mensual.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 04 · DURACION ══════ -->
+    <section class="section" id="duracion">
+      <div class="container">
+        <span class="eyebrow">Duracion · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="programas.duracion.title">
+          Formato y <span class="gradient-text">duracion</span>
         </h2>
-        <p class="section__body" data-i18n="programas.duracion.body">
-          Horas de dedicacion, formato (en vivo, asincrono, hibrido) y calendario.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="programas.duracion.lead">
+          Horas de dedicacion, formato y calendario de cada programa.
         </p>
-      </section>
 
-      <!-- Section 5: Resultado -->
-      <section id="resultado" class="section" aria-labelledby="resultado-heading">
-        <h2 id="resultado-heading" class="section__title" data-i18n="programas.resultado.title">
-          Resultados Esperados
+        <div class="timeline">
+          <article class="tl-item">
+            <span class="tl-item__meta">Bootcamp</span>
+            <h3 class="tl-item__role" data-cms="programas.duracion.t1_title">8 semanas · 40 horas</h3>
+            <p class="tl-item__impact" data-cms="programas.duracion.t1_desc">Formato hibrido: sesiones en vivo + trabajo asincrono. <strong>5 horas semanales</strong> de dedicacion.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Workshop</span>
+            <h3 class="tl-item__role" data-cms="programas.duracion.t2_title">2 dias · 16 horas</h3>
+            <p class="tl-item__impact" data-cms="programas.duracion.t2_desc">Inmersion presencial o virtual. <strong>Intensivo</strong> con ejercicios practicos y entregables.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Mentoria</span>
+            <h3 class="tl-item__role" data-cms="programas.duracion.t3_title">Mensual · 4 horas</h3>
+            <p class="tl-item__impact" data-cms="programas.duracion.t3_desc">Sesiones mensuales de seguimiento con <strong>metricas de progreso</strong> y ajuste de ruta.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 05 · RESULTADO ══════ -->
+    <section class="section" id="resultado">
+      <div class="container">
+        <span class="eyebrow">Resultado · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="programas.resultado.title">
+          Competencias y <span class="gradient-text">certificacion</span>
         </h2>
-        <p class="section__body" data-i18n="programas.resultado.body">
-          Competencias adquiridas, certificacion y aplicabilidad inmediata.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="programas.resultado.lead">
+          Al completar cada programa obtendras competencias verificables y aplicabilidad inmediata.
         </p>
-      </section>
 
-      <!-- Section 6: Testimonios -->
-      <section id="testimonios" class="section" aria-labelledby="testimonios-heading">
-        <h2 id="testimonios-heading" class="section__title" data-i18n="programas.testimonios.title">
-          Testimonios
+        <div class="principle x-card">
+          <h3 data-cms="programas.resultado.card_title">Resultados Esperados</h3>
+          <p data-cms="programas.resultado.card_body">
+            Cada programa culmina con un entregable concreto: tu sistema metodologico personal,
+            el playbook de equipo, o un dashboard de metricas operativas. Incluye certificacion
+            MetodologIA y acceso permanente a la comunidad de egresados y recursos actualizados.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 06 · TESTIMONIOS ══════ -->
+    <section class="section" id="testimonios">
+      <div class="container">
+        <span class="eyebrow">Testimonios · 06</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="programas.testimonios.title">
+          Lo que dicen nuestros <span class="gradient-text">egresados</span>
         </h2>
-        <p class="section__body" data-i18n="programas.testimonios.body">
-          Lo que dicen quienes ya completaron nuestros programas.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="programas.testimonios.lead">
+          Voces reales de quienes completaron nuestros programas.
         </p>
-      </section>
 
-      <!-- Section 7: Inscripcion -->
-      <section id="inscripcion" class="section" aria-labelledby="inscripcion-heading">
-        <h2 id="inscripcion-heading" class="section__title" data-i18n="programas.inscripcion.title">
-          Inscripcion
+        <div class="refs">
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="programas.testimonios.t1_quote">
+              "El bootcamp me dio un sistema claro. Ahora tengo metodologia propia y resultados medibles."
+            </p>
+            <h3 class="ref__who" data-cms="programas.testimonios.t1_author">Profesional independiente</h3>
+            <span class="ref__link">Bootcamp Individual</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="programas.testimonios.t2_quote">
+              "El workshop alineo a todo el equipo en 2 dias. La productividad mejoro desde la primera semana."
+            </p>
+            <h3 class="ref__who" data-cms="programas.testimonios.t2_author">Director de Operaciones</h3>
+            <span class="ref__link">Workshop Empresarial</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="programas.testimonios.t3_quote">
+              "La mentoria continua nos da visibilidad total. Sabemos donde estamos y hacia donde vamos."
+            </p>
+            <h3 class="ref__who" data-cms="programas.testimonios.t3_author">Gerente de Proyectos</h3>
+            <span class="ref__link">Mentoria Continua</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 07 · INSCRIPCION ══════ -->
+    <section class="section" id="inscripcion">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow">Inscripcion · 07</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="programas.inscripcion.title">
+          Reserva tu <span class="gradient-text">lugar</span>
         </h2>
-        <p class="section__body" data-i18n="programas.inscripcion.body">
-          Reserva tu lugar, consulta disponibilidad y opciones de pago.
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="programas.inscripcion.lead">
+          Consulta disponibilidad, opciones de pago y proximas fechas de inicio.
         </p>
-      </section>
+        <div class="home-hero__ctas">
+          <a href="../diagnostico/" class="home-cta home-cta--primary" data-cms="programas.inscripcion.cta_diagnostico">
+            Comenzar con diagnostico →
+          </a>
+          <a href="mailto:contacto@metodologia.info" class="home-cta home-cta--secondary" data-cms="programas.inscripcion.cta_email">
+            Consultar disponibilidad
+          </a>
+        </div>
+        <p class="muted" style="font-size:.85rem;margin-top:1rem;" data-cms="programas.inscripcion.note">
+          Cupos limitados. Respuesta en menos de 24 horas.
+        </p>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <triple-toggle></triple-toggle>
@@ -146,7 +261,10 @@
 
   <script type="module">
     import { initShell } from '../js/blueprint/shell.js';
+    import { hydratePage } from '../js/cms/hydrate-page.js';
+
     initShell({ pageSlug: 'programas' });
+    hydratePage('programas');
   </script>
 </body>
 </html>

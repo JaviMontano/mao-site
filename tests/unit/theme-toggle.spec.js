@@ -43,9 +43,9 @@ beforeEach(async () => {
 
 describe('theme/toggle', () => {
   describe('getTheme', () => {
-    it('defaults to "light" when no storage and no prefers-color-scheme', () => {
+    it('defaults to "dark" when no storage and no prefers-color-scheme', () => {
       mod.initTheme();
-      expect(mod.getTheme()).toBe('light');
+      expect(mod.getTheme()).toBe('dark');
     });
 
     it('reads from localStorage if present', () => {
@@ -113,23 +113,23 @@ describe('theme/toggle', () => {
   });
 
   describe('toggleTheme', () => {
-    it('flips light to dark', () => {
-      mod.initTheme(); // defaults to light
-      mod.toggleTheme();
-      expect(mod.getTheme()).toBe('dark');
-    });
-
-    it('flips dark to light', () => {
-      store.mdg_theme = 'dark';
-      mod.initTheme();
+    it('flips dark to light (default)', () => {
+      mod.initTheme(); // defaults to dark
       mod.toggleTheme();
       expect(mod.getTheme()).toBe('light');
+    });
+
+    it('flips light to dark (stored light)', () => {
+      store.mdg_theme = 'light';
+      mod.initTheme();
+      mod.toggleTheme();
+      expect(mod.getTheme()).toBe('dark');
     });
 
     it('persists the toggled theme', () => {
       mod.initTheme();
       mod.toggleTheme();
-      expect(store.mdg_theme).toBe('dark');
+      expect(store.mdg_theme).toBe('light');
     });
   });
 
@@ -140,9 +140,9 @@ describe('theme/toggle', () => {
       expect(documentMock.documentElement.dataset.theme).toBe('dark');
     });
 
-    it('applies "light" by default', () => {
+    it('applies "dark" by default', () => {
       mod.initTheme();
-      expect(documentMock.documentElement.dataset.theme).toBe('light');
+      expect(documentMock.documentElement.dataset.theme).toBe('dark');
     });
   });
 
@@ -161,7 +161,7 @@ describe('theme/toggle', () => {
       const calls = [];
       mod.subscribe((theme) => calls.push(theme));
       mod.toggleTheme();
-      expect(calls).toEqual(['dark']);
+      expect(calls).toEqual(['light']);
     });
 
     it('unsubscribe stops notifications', () => {

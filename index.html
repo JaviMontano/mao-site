@@ -1,52 +1,47 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-page-slug="home">
+<html lang="es" data-page-slug="home">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MetodologIA -- Success as a Service</title>
-  <meta name="description" content="Metodologia probada para personas y equipos. Diagnostico gratuito, recursos y programas de excelencia.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A122A">
+  <meta name="color-scheme" content="dark">
+  <title>MetodologIA — Success as a Service</title>
+  <meta name="description" content="Metodología probada para personas y equipos. Diagnóstico gratuito, recursos y programas de excelencia.">
   <link rel="canonical" href="https://metodologia.info/">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffffff">
   <meta name="robots" content="index, follow">
   <link rel="alternate" hreflang="es" href="https://metodologia.info/">
   <link rel="alternate" hreflang="en" href="https://metodologia.info/">
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://metodologia.info/">
-  <meta property="og:title" content="MetodologIA -- Success as a Service">
-  <meta property="og:description" content="Metodologia probada para personas y equipos. Diagnostico gratuito, recursos y programas de excelencia.">
+  <meta property="og:title" content="MetodologIA — Success as a Service">
+  <meta property="og:description" content="Metodología probada para personas y equipos. Diagnóstico gratuito, recursos y programas de excelencia.">
   <meta property="og:image" content="https://metodologia.info/og-image.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://metodologia.info/">
-  <meta property="twitter:title" content="MetodologIA -- Success as a Service">
-  <meta property="twitter:description" content="Metodologia probada para personas y equipos. Diagnostico gratuito, recursos y programas de excelencia.">
-  <meta property="twitter:image" content="https://metodologia.info/og-image.png">
+  <meta property="twitter:title" content="MetodologIA — Success as a Service">
+  <meta property="twitter:description" content="Metodología probada para personas y equipos.">
 
-  <!-- JSON-LD for AEO -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "MetodologIA",
-    "alternateName": "Metodologia.info",
     "url": "https://metodologia.info",
     "logo": "https://metodologia.info/favicon.svg",
     "slogan": "Success as a Service",
-    "description": "Metodologia probada para personas y equipos. Diagnostico gratuito, recursos y programas de excelencia.",
+    "description": "Metodología probada para personas y equipos.",
     "founder": {
       "@type": "Person",
-      "name": "Javier Montano",
-      "jobTitle": "Strategic Architect",
+      "name": "Javier Montaño",
+      "jobTitle": "Founder & Chief Empowerment Officer",
       "url": "https://metodologia.info/nosotros/"
     },
-    "sameAs": [
-      "https://www.linkedin.com/company/metodologia-info",
-      "https://www.instagram.com/metodologia.info"
-    ],
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
@@ -55,21 +50,8 @@
     }
   }
   </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://metodologia.info/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://metodologia.info/recursos/index.html?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
 
-
-  <!-- Import map: resolve bare specifiers for browser (no bundler) -->
+  <!-- Import map -->
   <script type="importmap">
     {
       "imports": {
@@ -85,286 +67,319 @@
     }
   </script>
 
-  <!-- Anti-FOUC inline theme restore -->
+  <!-- Anti-FOUC theme restore (dark default) -->
   <script>
     const t = localStorage.getItem('mdg_theme');
-    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+    if (t === 'light') document.documentElement.dataset.theme = 'light';
+    // Dark is default — no attribute needed (CSS :root is dark)
   </script>
 
+  <!-- Fonts (same as canonical) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
+
+  <!-- Design system (canonical patterns) + minimal page overrides -->
   <link rel="stylesheet" href="estilos/neoswiss-system.css">
-  <link rel="stylesheet" href="estilos/triple-toggle.css">
   <link rel="stylesheet" href="estilos/home.css">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
 </head>
 <body>
   <div class="bg-mesh" aria-hidden="true"></div>
-  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="home"></site-sidebar>
 
   <main id="main" class="main">
-    <div class="container">
 
-      <!-- Section 1: Propuesta de Valor / Hero -->
-      <section id="propuesta" class="home-section home-hero" aria-labelledby="propuesta-heading">
-        <div class="home-hero__content">
-          <span class="home-hero__badge" data-i18n="home.hero.badge">
-            Edicion 2026
-          </span>
-          <h1 id="propuesta-heading" class="home-hero__title" data-slot="hero.title">
-            <span data-i18n="home.hero.title_line1">Success as a</span>
-            <span class="home-hero__title--accent" data-i18n="home.hero.title_line2">Service</span>
-          </h1>
-          <p class="home-hero__subtitle" data-slot="hero.subtitle" data-i18n="home.hero.subtitle">
-            Metodologia probada para alcanzar la
-            <strong>Soberania Digital, Profesional y Estrategica</strong>.
-          </p>
-
-          <!-- CTA Pyramid: P1 gold, P2 outline, P3 link -->
-          <div class="home-hero__ctas">
-            <a href="diagnostico/" class="cta-primary" data-slot="hero.cta" data-i18n="home.hero.cta_diagnostico">
-              Diagnostico Gratuito
-            </a>
-            <a href="recursos/" class="cta-secondary" data-i18n="home.hero.cta_ruta">
-              Explorar la Ruta
-            </a>
-            <a href="#metodo" class="cta-tertiary" data-i18n="home.hero.cta_metodo">
-              Conocer el metodo
-            </a>
-          </div>
-        </div>
-
-        <!--
-          RESPONSIVE IMAGE PATTERN (T072)
-          When hero image is added, use this pattern:
-
-          <picture>
-            <source
-              type="image/avif"
-              srcset="img/hero-400.avif 400w, img/hero-800.avif 800w, img/hero-1200.avif 1200w"
-              sizes="(max-width: 480px) 100vw, (max-width: 960px) 80vw, 860px"
-            >
-            <source
-              type="image/webp"
-              srcset="img/hero-400.webp 400w, img/hero-800.webp 800w, img/hero-1200.webp 1200w"
-              sizes="(max-width: 480px) 100vw, (max-width: 960px) 80vw, 860px"
-            >
-            <img
-              src="img/hero-800.jpg"
-              srcset="img/hero-400.jpg 400w, img/hero-800.jpg 800w, img/hero-1200.jpg 1200w"
-              sizes="(max-width: 480px) 100vw, (max-width: 960px) 80vw, 860px"
-              alt="[descriptive alt text]"
-              width="1200"
-              height="630"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              style="aspect-ratio: 1200/630;"
-            >
-          </picture>
-
-          For below-fold images (sections 2-7), use loading="lazy":
-
-          <picture>
-            <source type="image/avif" srcset="img/[name]-400.avif 400w, img/[name]-800.avif 800w" sizes="(max-width: 640px) 100vw, 50vw">
-            <source type="image/webp" srcset="img/[name]-400.webp 400w, img/[name]-800.webp 800w" sizes="(max-width: 640px) 100vw, 50vw">
-            <img src="img/[name]-800.jpg" alt="[alt]" width="800" height="450" loading="lazy" decoding="async" style="aspect-ratio: 16/9;">
-          </picture>
-        -->
-
-      </section>
-
-      <!-- Section 2: Diagnostico -->
-      <section id="diagnostico" class="home-section" aria-labelledby="diagnostico-heading">
-        <h2 id="diagnostico-heading" class="home-section__title" data-i18n="home.diagnostico.title">
-          Diagnostico de Madurez
-        </h2>
-        <p class="home-section__lead" data-i18n="home.diagnostico.lead">
-          Descubre tu nivel metodologico en minutos. Recibe un plan personalizado con pasos concretos.
+    <!-- ══════ 01 · PROPUESTA DE VALOR / HERO ══════ -->
+    <section class="section" id="propuesta">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="home.hero.badge">Edición 2026</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="home.hero.title">
+          Success as a <span class="gradient-text">Service</span>
+        </h1>
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="home.hero.subtitle">
+          Metodología probada para alcanzar la
+          <strong>Soberanía Digital, Profesional y Estratégica</strong>.
         </p>
-        <div class="home-diagnostico__features">
-          <div class="home-diagnostico__feature" data-slot="diagnostico.title">
-            <span class="home-diagnostico__icon" aria-hidden="true">1</span>
-            <h3 data-i18n="home.diagnostico.f1_title">Responde 5 dimensiones</h3>
-            <p data-i18n="home.diagnostico.f1_desc">Madurez, dolor, urgencia, equipo y segmento.</p>
+
+        <div class="home-hero__ctas">
+          <a href="diagnostico/" class="home-cta home-cta--primary" data-cms="home.hero.cta_diagnostico">
+            Diagnóstico Gratuito →
+          </a>
+          <a href="recursos/" class="home-cta home-cta--secondary" data-cms="home.hero.cta_ruta">
+            Explorar la Ruta
+          </a>
+          <a href="#metodo" class="home-cta home-cta--tertiary" data-cms="home.hero.cta_metodo">
+            Conocer el método ↓
+          </a>
+        </div>
+
+        <!-- Stats bar — same pattern as canonical -->
+        <div class="stats" style="margin-top:2.5rem;" aria-label="Métricas clave">
+          <div class="stats__cell">
+            <span class="stats__num" data-cms="home.stats.n1">+13</span>
+            <span class="stats__label" data-cms="home.stats.l1">Años</span>
           </div>
-          <div class="home-diagnostico__feature" data-slot="diagnostico.subtitle">
-            <span class="home-diagnostico__icon" aria-hidden="true">2</span>
-            <h3 data-i18n="home.diagnostico.f2_title">Obtiene tu perfil</h3>
-            <p data-i18n="home.diagnostico.f2_desc">Radar de competencias con nivel detallado.</p>
+          <div class="stats__cell">
+            <span class="stats__num" data-cms="home.stats.n2">6</span>
+            <span class="stats__label" data-cms="home.stats.l2">Países</span>
           </div>
-          <div class="home-diagnostico__feature" data-slot="diagnostico.cta">
-            <span class="home-diagnostico__icon" aria-hidden="true">3</span>
-            <h3 data-i18n="home.diagnostico.f3_title">Recibe recomendaciones</h3>
-            <p data-i18n="home.diagnostico.f3_desc">Plan de accion priorizado y siguiente paso sugerido.</p>
+          <div class="stats__cell">
+            <span class="stats__num" data-cms="home.stats.n3">110+</span>
+            <span class="stats__label" data-cms="home.stats.l3">Equipo formado</span>
+          </div>
+          <div class="stats__cell">
+            <span class="stats__num" data-cms="home.stats.n4">+40k</span>
+            <span class="stats__label" data-cms="home.stats.l4">Horas oficio</span>
           </div>
         </div>
-        <a href="diagnostico/" class="home-section__cta" data-i18n="home.diagnostico.cta">
-          Iniciar diagnostico gratuito
+      </div>
+    </section>
+
+    <!-- ══════ 02 · DIAGNÓSTICO ══════ -->
+    <section class="section" id="diagnostico">
+      <div class="container">
+        <span class="eyebrow">Diagnóstico · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="home.diagnostico.title">
+          Diagnóstico de <span class="gradient-text">Madurez</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="home.diagnostico.lead">
+          Descubre tu nivel metodológico en minutos. Recibe un plan personalizado con pasos concretos.
+        </p>
+
+        <div class="axes">
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">Paso 01</span>
+            <h3 class="axis__title" data-cms="home.diagnostico.f1_title">Responde 5 dimensiones</h3>
+            <p class="axis__body" data-cms="home.diagnostico.f1_desc">Madurez, dolor, urgencia, equipo y segmento.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">Paso 02</span>
+            <h3 class="axis__title" data-cms="home.diagnostico.f2_title">Obtén tu perfil</h3>
+            <p class="axis__body" data-cms="home.diagnostico.f2_desc">Radar de competencias con nivel detallado.</p>
+          </div>
+          <div class="axis x-card" role="button" tabindex="0">
+            <span class="axis__label">Paso 03</span>
+            <h3 class="axis__title" data-cms="home.diagnostico.f3_title">Recibe recomendaciones</h3>
+            <p class="axis__body" data-cms="home.diagnostico.f3_desc">Plan de acción priorizado y siguiente paso sugerido.</p>
+          </div>
+        </div>
+
+        <a href="diagnostico/" class="home-cta home-cta--primary" style="margin-top:1.5rem;display:inline-flex;" data-cms="home.diagnostico.cta">
+          Iniciar diagnóstico gratuito →
         </a>
-      </section>
+      </div>
+    </section>
 
-      <!-- Section 3: Recursos -->
-      <section id="recursos" class="home-section home-section--alt" aria-labelledby="recursos-heading">
-        <h2 id="recursos-heading" class="home-section__title" data-i18n="home.recursos.title">
-          Recursos
+    <!-- ══════ 03 · RECURSOS ══════ -->
+    <section class="section" id="recursos">
+      <div class="container">
+        <span class="eyebrow">Recursos · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="home.recursos.title">
+          Recursos <span class="gradient-text">abiertos</span>
         </h2>
-        <p class="home-section__lead" data-i18n="home.recursos.lead">
-          Guias, plantillas, herramientas y frameworks listos para usar.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="home.recursos.lead">
+          Guías, plantillas, herramientas y frameworks listos para usar.
+          <strong>Sin costo, sin fricción, sin riesgo.</strong>
         </p>
-        <div class="home-recursos__grid">
-          <div class="home-recursos__card" data-slot="recursos.title">
-            <h3 data-i18n="home.recursos.c1_title">Guias Practicas</h3>
-            <p data-i18n="home.recursos.c1_desc">Paso a paso para implementar metodologias de alto rendimiento.</p>
+
+        <div class="accel-trio">
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='recursos/index.html'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__logo" aria-hidden="true">
+                <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/metodologia_logo_primary.png?raw=true" alt="" width="36" height="36" loading="lazy">
+              </span>
+              <span class="accel-tile__label">★ Guías</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="home.recursos.c1_title">Guías Prácticas</h4>
+            <p class="accel-tile__desc" data-cms="home.recursos.c1_desc">Paso a paso para implementar metodologías de alto rendimiento.</p>
+            <span class="accel-tile__foot">Ver guías →</span>
           </div>
-          <div class="home-recursos__card" data-slot="recursos.subtitle">
-            <h3 data-i18n="home.recursos.c2_title">Plantillas</h3>
-            <p data-i18n="home.recursos.c2_desc">Documentos listos para adaptar a tu contexto.</p>
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='recursos/index.html'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__logo" aria-hidden="true">
+                <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/metodologia_logo_companion.png?raw=true" alt="" width="36" height="36" loading="lazy">
+              </span>
+              <span class="accel-tile__label">★ Plantillas</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="home.recursos.c2_title">Plantillas listas</h4>
+            <p class="accel-tile__desc" data-cms="home.recursos.c2_desc">Documentos listos para adaptar a tu contexto.</p>
+            <span class="accel-tile__foot">Ver plantillas →</span>
           </div>
-          <div class="home-recursos__card" data-slot="recursos.cta">
-            <h3 data-i18n="home.recursos.c3_title">Herramientas IA</h3>
-            <p data-i18n="home.recursos.c3_desc">Prompts, agentes y flujos automatizados.</p>
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='recursos/index.html'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__logo" aria-hidden="true">
+                <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/pristino_logo_primary.png?raw=true" alt="" width="36" height="36" loading="lazy">
+              </span>
+              <span class="accel-tile__label">★ IA</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="home.recursos.c3_title">Herramientas IA</h4>
+            <p class="accel-tile__desc" data-cms="home.recursos.c3_desc">Prompts, agentes y flujos automatizados.</p>
+            <span class="accel-tile__foot">Ver herramientas →</span>
           </div>
         </div>
-        <a href="recursos/index.html" class="home-section__cta" data-i18n="home.recursos.cta">
-          Ver todos los recursos
-        </a>
-      </section>
 
-      <!-- Section 4: Programas -->
-      <section id="programas" class="home-section" aria-labelledby="programas-heading">
-        <h2 id="programas-heading" class="home-section__title" data-i18n="home.programas.title">
-          Programas
-        </h2>
-        <p class="home-section__lead" data-i18n="home.programas.lead">
-          Formacion estructurada para personas y equipos que buscan resultados medibles.
+        <p class="lead" style="font-size:0.85rem;text-align:center;margin-top:1.5rem;color:var(--brand-muted);">
+          Todo abierto · Licencia CC BY-NC-SA 4.0
         </p>
-        <!-- Dynamic ProgramCard WC — Firestore programs/ binding (US-3 T088) -->
-        <div class="home-programas__grid" id="programas-grid">
-          <program-card
-            name-es="Bootcamp Individual" name-en="Individual Bootcamp"
-            audiencia="persona" duracion="8 semanas"
-            resultado-es="Domina tu metodologia personal con IA."
-            resultado-en="Master your personal methodology with AI."
-            cta-href="ruta/index.html"
-            cta-text-es="Saber mas" cta-text-en="Learn more">
-          </program-card>
-          <program-card
-            name-es="Workshop Empresarial" name-en="Enterprise Workshop"
-            audiencia="empresa" duracion="2 dias"
-            resultado-es="Alinea equipos en formas de trabajo de alto rendimiento."
-            resultado-en="Align teams around high-performance work methods."
-            cta-href="ruta/index.html"
-            cta-text-es="Saber mas" cta-text-en="Learn more">
-          </program-card>
-          <program-card
-            name-es="Mentoria Continua" name-en="Ongoing Mentorship"
-            audiencia="ambos" duracion="Mensual"
-            resultado-es="Metricas de progreso y ajuste de ruta continuo."
-            resultado-en="Progress metrics and continuous route adjustment."
-            cta-href="ruta/index.html"
-            cta-text-es="Saber mas" cta-text-en="Learn more">
-          </program-card>
+      </div>
+    </section>
+
+    <!-- ══════ 04 · PROGRAMAS ══════ -->
+    <section class="section" id="programas">
+      <div class="container">
+        <span class="eyebrow">Programas · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="home.programas.title">
+          Formación <span class="gradient-text">estructurada</span>
+        </h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="home.programas.lead">
+          Para personas y equipos que buscan resultados medibles.
+        </p>
+
+        <div class="accel-trio" id="programas-grid">
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='ruta/index.html'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Persona</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="home.programas.p1_name">Bootcamp Individual</h4>
+            <p class="accel-tile__desc" data-cms="home.programas.p1_desc">Domina tu metodología personal con IA.</p>
+            <span class="accel-tile__foot">8 semanas · Saber más →</span>
+          </div>
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='ruta/index.html'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Empresa</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="home.programas.p2_name">Workshop Empresarial</h4>
+            <p class="accel-tile__desc" data-cms="home.programas.p2_desc">Alinea equipos en formas de trabajo de alto rendimiento.</p>
+            <span class="accel-tile__foot">2 días · Saber más →</span>
+          </div>
+          <div class="accel-tile x-card" role="button" tabindex="0" onclick="location.href='ruta/index.html'">
+            <div class="accel-tile__head">
+              <span class="accel-tile__label">Ambos</span>
+            </div>
+            <h4 class="accel-tile__title" data-cms="home.programas.p3_name">Mentoría Continua</h4>
+            <p class="accel-tile__desc" data-cms="home.programas.p3_desc">Métricas de progreso y ajuste de ruta continuo.</p>
+            <span class="accel-tile__foot">Mensual · Saber más →</span>
+          </div>
         </div>
-        <a href="ruta/index.html" class="home-section__cta" data-i18n="home.programas.cta">
-          Explorar programas
+
+        <a href="ruta/index.html" class="home-cta home-cta--secondary" style="margin-top:1.5rem;display:inline-flex;" data-cms="home.programas.cta">
+          Explorar programas →
         </a>
-      </section>
+      </div>
+    </section>
 
-      <!-- Section 5: Metodo -->
-      <section id="metodo" class="home-section home-section--alt" aria-labelledby="metodo-heading">
-        <h2 id="metodo-heading" class="home-section__title" data-i18n="home.metodo.title">
-          El Metodo
+    <!-- ══════ 05 · MÉTODO ══════ -->
+    <section class="section" id="metodo">
+      <div class="container">
+        <span class="eyebrow">El Método · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="home.metodo.title">
+          Cuatro fases para <span class="gradient-text">transformar</span>
         </h2>
-        <p class="home-section__lead" data-i18n="home.metodo.lead">
-          Cuatro fases para transformar tu forma de trabajar de manera sostenible.
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="home.metodo.lead">
+          Tu forma de trabajar de manera sostenible.
         </p>
-        <ol class="home-metodo__steps">
-          <li class="home-metodo__step" data-slot="metodo.title">
-            <span class="home-metodo__step-num" aria-hidden="true">01</span>
-            <h3 data-i18n="home.metodo.s1_title">Diagnosticar</h3>
-            <p data-i18n="home.metodo.s1_desc">Medir tu punto de partida con precision.</p>
-          </li>
-          <li class="home-metodo__step" data-slot="metodo.subtitle">
-            <span class="home-metodo__step-num" aria-hidden="true">02</span>
-            <h3 data-i18n="home.metodo.s2_title">Disenar</h3>
-            <p data-i18n="home.metodo.s2_desc">Crear tu plan de ruta personalizado.</p>
-          </li>
-          <li class="home-metodo__step" data-slot="metodo.cta">
-            <span class="home-metodo__step-num" aria-hidden="true">03</span>
-            <h3 data-i18n="home.metodo.s3_title">Implementar</h3>
-            <p data-i18n="home.metodo.s3_desc">Ejecutar con acompanamiento y metricas.</p>
-          </li>
-          <li class="home-metodo__step" data-slot="metodo.cta">
-            <span class="home-metodo__step-num" aria-hidden="true">04</span>
-            <h3 data-i18n="home.metodo.s4_title">Optimizar</h3>
-            <p data-i18n="home.metodo.s4_desc">Iterar y escalar lo que funciona.</p>
-          </li>
-        </ol>
-      </section>
 
-      <!-- Section 6: Prueba Social -->
-      <section id="prueba-social" class="home-section" aria-labelledby="prueba-social-heading">
-        <h2 id="prueba-social-heading" class="home-section__title" data-i18n="home.social.title">
-          Resultados Reales
+        <div class="timeline">
+          <article class="tl-item">
+            <span class="tl-item__meta">Fase 01</span>
+            <h3 class="tl-item__role" data-cms="home.metodo.s1_title">Diagnosticar</h3>
+            <p class="tl-item__impact" data-cms="home.metodo.s1_desc">Medir tu punto de partida con <strong>precisión</strong>.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Fase 02</span>
+            <h3 class="tl-item__role" data-cms="home.metodo.s2_title">Diseñar</h3>
+            <p class="tl-item__impact" data-cms="home.metodo.s2_desc">Crear tu <strong>plan de ruta</strong> personalizado.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Fase 03</span>
+            <h3 class="tl-item__role" data-cms="home.metodo.s3_title">Implementar</h3>
+            <p class="tl-item__impact" data-cms="home.metodo.s3_desc">Ejecutar con <strong>acompañamiento</strong> y métricas.</p>
+          </article>
+          <article class="tl-item">
+            <span class="tl-item__meta">Fase 04</span>
+            <h3 class="tl-item__role" data-cms="home.metodo.s4_title">Optimizar</h3>
+            <p class="tl-item__impact" data-cms="home.metodo.s4_desc">Iterar y escalar <strong>lo que funciona</strong>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 06 · PRUEBA SOCIAL ══════ -->
+    <section class="section" id="prueba-social">
+      <div class="container">
+        <span class="eyebrow">Resultados · 06</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="home.social.title">
+          Resultados <span class="gradient-text">reales</span>
         </h2>
-        <p class="home-section__lead" data-i18n="home.social.lead">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="home.social.lead">
           Lo que dicen quienes ya transformaron su forma de trabajar.
         </p>
-        <div class="home-social__grid">
-          <blockquote class="home-social__testimonial" data-slot="prueba-social.title">
-            <p data-i18n="home.social.t1_quote">
-              "El diagnostico me mostro exactamente donde estaba perdiendo tiempo. En 4 semanas reduje fricciones un 60%."
-            </p>
-            <footer>
-              <cite data-i18n="home.social.t1_author">-- Profesional independiente, Bogota</cite>
-            </footer>
-          </blockquote>
-          <blockquote class="home-social__testimonial" data-slot="prueba-social.subtitle">
-            <p data-i18n="home.social.t2_quote">
-              "Implementamos el metodo en 3 equipos. La alineacion mejoro desde la primera semana."
-            </p>
-            <footer>
-              <cite data-i18n="home.social.t2_author">-- Director de Operaciones, empresa SaaS</cite>
-            </footer>
-          </blockquote>
-          <blockquote class="home-social__testimonial" data-slot="prueba-social.cta">
-            <p data-i18n="home.social.t3_quote">
-              "Los recursos y plantillas nos ahorraron meses de trabajo. Calidad desde el dia uno."
-            </p>
-            <footer>
-              <cite data-i18n="home.social.t3_author">-- Lider de equipo, consultora LatAm</cite>
-            </footer>
-          </blockquote>
-        </div>
-      </section>
 
-      <!-- Section 7: Contacto -->
-      <section id="contacto" class="home-section home-section--alt" aria-labelledby="contacto-heading">
-        <h2 id="contacto-heading" class="home-section__title" data-i18n="home.contacto.title">
-          Da el Primer Paso
+        <div class="refs">
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="home.social.t1_quote">
+              "El diagnóstico me mostró exactamente dónde estaba perdiendo tiempo. En 4 semanas reduje fricciones un 60%."
+            </p>
+            <h3 class="ref__who" data-cms="home.social.t1_author">Profesional independiente</h3>
+            <span class="ref__link">Bogotá, Colombia</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="home.social.t2_quote">
+              "Implementamos el método en 3 equipos. La alineación mejoró desde la primera semana."
+            </p>
+            <h3 class="ref__who" data-cms="home.social.t2_author">Director de Operaciones</h3>
+            <span class="ref__link">Empresa SaaS, LatAm</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="home.social.t3_quote">
+              "Los recursos y plantillas nos ahorraron meses de trabajo. Calidad desde el día uno."
+            </p>
+            <h3 class="ref__who" data-cms="home.social.t3_author">Líder de equipo</h3>
+            <span class="ref__link">Consultora, LatAm</span>
+          </article>
+          <article class="ref x-card" role="button" tabindex="0">
+            <p class="ref__role" data-cms="home.social.t4_quote">
+              "La mentoría continua nos dio métricas claras. Sabemos exactamente dónde estamos y hacia dónde vamos."
+            </p>
+            <h3 class="ref__who" data-cms="home.social.t4_author">Gerente de Proyectos</h3>
+            <span class="ref__link">BFSI, Medellín</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════ 07 · CONTACTO ══════ -->
+    <section class="section" id="contacto">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow">Siguiente paso · 07</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="home.contacto.title">
+          Da el <span class="gradient-text">primer paso</span>
         </h2>
-        <p class="home-section__lead" data-i18n="home.contacto.lead">
-          Conversemos sobre como acelerar tus resultados con metodologia e IA.
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="home.contacto.lead">
+          Conversemos sobre cómo acelerar tus resultados con metodología e IA.
         </p>
-        <div class="home-contacto__actions">
-          <a href="diagnostico/" class="home-contacto__cta home-contacto__cta--primary" data-slot="contacto.cta" data-i18n="home.contacto.cta_diagnostico">
-            Comenzar Diagnostico
+        <div class="home-hero__ctas">
+          <a href="diagnostico/" class="home-cta home-cta--primary" data-cms="home.contacto.cta_diagnostico">
+            Comenzar Diagnóstico →
           </a>
-          <a href="mailto:contacto@metodologia.info" class="home-contacto__cta home-contacto__cta--secondary" data-slot="contacto.subtitle" data-i18n="home.contacto.cta_email">
-            Escribenos
+          <a href="mailto:contacto@metodologia.info" class="home-cta home-cta--secondary" data-cms="home.contacto.cta_email">
+            Escríbenos
           </a>
         </div>
-        <p class="home-contacto__note" data-i18n="home.contacto.note">
+        <p class="muted" style="font-size:.85rem;margin-top:1rem;" data-cms="home.contacto.note">
           Sin compromiso. Respuesta en menos de 24 horas.
         </p>
-      </section>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <triple-toggle></triple-toggle>
@@ -374,41 +389,10 @@
 
   <script type="module">
     import { initShell } from './js/blueprint/shell.js';
-    import './components/ProgramCard.js';
+    import { hydratePage } from './js/cms/hydrate-page.js';
 
     initShell({ pageSlug: 'home' });
-
-    // --- Firestore programs/ binding (US-3 T088) ---
-    // Attempt to hydrate program cards from Firestore; static fallback stays if unavailable.
-    (async () => {
-      try {
-        if (!window.firebase || !window.firebase.firestore) return;
-        const db = window.firebase.firestore();
-        const snap = await db.collection('programs').where('active', '==', true).orderBy('order').get();
-        if (snap.empty) return;
-
-        const grid = document.getElementById('programas-grid');
-        if (!grid) return;
-        grid.innerHTML = '';
-
-        snap.forEach(doc => {
-          const d = doc.data();
-          const card = document.createElement('program-card');
-          card.setAttribute('name-es', d.name_es || '');
-          card.setAttribute('name-en', d.name_en || '');
-          card.setAttribute('audiencia', d.audiencia || 'ambos');
-          card.setAttribute('duracion', d.duracion || '');
-          card.setAttribute('resultado-es', d.resultado_es || '');
-          card.setAttribute('resultado-en', d.resultado_en || '');
-          card.setAttribute('cta-href', d.cta_href || 'ruta/index.html');
-          card.setAttribute('cta-text-es', d.cta_text_es || 'Saber mas');
-          card.setAttribute('cta-text-en', d.cta_text_en || 'Learn more');
-          grid.appendChild(card);
-        });
-      } catch (err) {
-        console.debug('[home] programs/ Firestore hydration skipped:', err.message);
-      }
-    })();
+    hydratePage('home');
   </script>
 </body>
 </html>

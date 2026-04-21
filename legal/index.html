@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light" data-page-slug="legal">
+<html lang="es" data-page-slug="legal">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0A122A">
+  <meta name="color-scheme" content="dark">
   <title>Legal — Privacidad, Terminos y Cookies | MetodologIA</title>
   <meta name="description" content="Politica de privacidad, terminos de servicio y cookies de MetodologIA. Transparencia total, arquitectura Local-First, soberania de datos.">
   <link rel="canonical" href="https://metodologia.info/legal/">
@@ -30,8 +32,7 @@
   }
   </script>
 
-  
-  <!-- Import map: resolve bare specifiers for browser (no bundler) -->
+  <!-- Import map -->
   <script type="importmap">
     {
       "imports": {
@@ -47,169 +48,176 @@
     }
   </script>
 
-  <!-- Anti-FOUC inline theme restore -->
+  <!-- Anti-FOUC theme restore (dark default) -->
   <script>
-    const t = localStorage.getItem('mdg_theme');
-    if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+    const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';
   </script>
 
-  <style>/* inline critical.css content placeholder */</style>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 
-  <link rel="stylesheet" href="../dist/output.css">
-  <link rel="stylesheet" href="../estilos/variables.css">
-  <link rel="stylesheet" href="../estilos/blueprint.css">
-  <link rel="stylesheet" href="../estilos/sidebar.css">
-  <link rel="stylesheet" href="../estilos/triple-toggle.css">
+  <!-- Design system + page CSS -->
+  <link rel="stylesheet" href="../estilos/neoswiss-system.css">
+  <link rel="stylesheet" href="../estilos/home.css">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
-  <a href="#main" class="skip-link" data-i18n="skip_link">Saltar al contenido</a>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="legal"></site-sidebar>
 
   <main id="main" class="main">
-    <div class="container">
 
-      <!-- Section 1: Privacidad -->
-      <section id="privacidad" class="section" aria-labelledby="privacidad-heading">
-        <h1 id="privacidad-heading" class="section__title" data-i18n="legal.privacidad.title">
-          Politica de Privacidad
+    <!-- ══════ 01 · PRIVACIDAD / HERO ══════ -->
+    <section class="section" id="privacidad">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="legal.privacidad.badge">Privacidad · 01</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="legal.privacidad.title">
+          Politica de <span class="gradient-text">Privacidad</span>
         </h1>
-        <p class="section__lead" data-i18n="legal.privacidad.subtitle">
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="legal.privacidad.subtitle">
           Arquitectura Local-First, soberania de datos, transparencia total.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.privacidad.body">
+        <div style="max-width:40rem;margin:0 auto;text-align:left;">
+          <p data-cms="legal.privacidad.body">
             Nuestras herramientas y recursos operan bajo una arquitectura Local-First.
             Tus datos se guardan en tu navegador (localStorage / IndexedDB) y no en nuestros servidores.
             Tu tienes el control total. No tenemos base de datos central de usuarios,
             no vendemos tus datos, no usamos cookies de seguimiento, y no entrenamos modelos con tus datos.
           </p>
-          <p class="mt-4 text-sm" data-i18n="legal.privacidad.last_updated">
+          <p class="muted" style="font-size:.85rem;margin-top:1rem;" data-cms="legal.privacidad.last_updated">
             Ultima actualizacion: 28 de enero de 2026
           </p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Section 2: Terminos -->
-      <section id="terminos" class="section" aria-labelledby="terminos-heading">
-        <h2 id="terminos-heading" class="section__title" data-i18n="legal.terminos.title">
-          Terminos de Servicio
+    <!-- ══════ 02 · TERMINOS ══════ -->
+    <section class="section" id="terminos">
+      <div class="container">
+        <span class="eyebrow" data-cms="legal.terminos.badge">Terminos · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="legal.terminos.title">
+          Terminos de <span class="gradient-text">Servicio</span>
         </h2>
-        <p class="section__lead" data-i18n="legal.terminos.subtitle">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="legal.terminos.subtitle">
           Condiciones de uso de la plataforma MetodologIA.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.terminos.body">
-            Al acceder y utilizar metodologia.info, aceptas estos terminos. El contenido educativo,
-            herramientas de diagnostico y recursos disponibles en la plataforma se proporcionan con
-            fines informativos y formativos. MetodologIA se reserva el derecho de modificar o
-            discontinuar cualquier servicio sin previo aviso. Todo el contenido, marcas, logotipos
-            y material original estan protegidos bajo la ley colombiana de propiedad intelectual.
-          </p>
-        </div>
-      </section>
+        <p data-cms="legal.terminos.body">
+          Al acceder y utilizar metodologia.info, aceptas estos terminos. El contenido educativo,
+          herramientas de diagnostico y recursos disponibles en la plataforma se proporcionan con
+          fines informativos y formativos. MetodologIA se reserva el derecho de modificar o
+          discontinuar cualquier servicio sin previo aviso. Todo el contenido, marcas, logotipos
+          y material original estan protegidos bajo la ley colombiana de propiedad intelectual.
+        </p>
+      </div>
+    </section>
 
-      <!-- Section 3: Cookies -->
-      <section id="cookies" class="section" aria-labelledby="cookies-heading">
-        <h2 id="cookies-heading" class="section__title" data-i18n="legal.cookies.title">
-          Politica de Cookies
+    <!-- ══════ 03 · COOKIES ══════ -->
+    <section class="section" id="cookies">
+      <div class="container">
+        <span class="eyebrow" data-cms="legal.cookies.badge">Cookies · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="legal.cookies.title">
+          Politica de <span class="gradient-text">Cookies</span>
         </h2>
-        <p class="section__lead" data-i18n="legal.cookies.subtitle">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="legal.cookies.subtitle">
           Como usamos cookies y almacenamiento local.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.cookies.body">
-            Utilizamos cookies esenciales para el funcionamiento del sitio: mdg_consent (consentimiento
-            de analitica, 180 dias), mdg_returning (SHA-256 del email tras diagnostico, 180 dias),
-            y almacenamiento local para preferencias de tema, idioma y audiencia (mdg_theme, mdg_locale,
-            mdg_audience). Google Analytics 4 solo se activa si das consentimiento explicito.
-            Puedes usar bloqueadores de rastreo o modo incognito sin afectar tu experiencia.
-          </p>
-        </div>
-      </section>
+        <p data-cms="legal.cookies.body">
+          Utilizamos cookies esenciales para el funcionamiento del sitio: mdg_consent (consentimiento
+          de analitica, 180 dias), mdg_returning (SHA-256 del email tras diagnostico, 180 dias),
+          y almacenamiento local para preferencias de tema, idioma y audiencia (mdg_theme, mdg_locale,
+          mdg_audience). Google Analytics 4 solo se activa si das consentimiento explicito.
+          Puedes usar bloqueadores de rastreo o modo incognito sin afectar tu experiencia.
+        </p>
+      </div>
+    </section>
 
-      <!-- Section 4: Datos -->
-      <section id="datos" class="section" aria-labelledby="datos-heading">
-        <h2 id="datos-heading" class="section__title" data-i18n="legal.datos.title">
-          Tratamiento de Datos
+    <!-- ══════ 04 · DATOS ══════ -->
+    <section class="section" id="datos">
+      <div class="container">
+        <span class="eyebrow" data-cms="legal.datos.badge">Datos · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="legal.datos.title">
+          Tratamiento de <span class="gradient-text">Datos</span>
         </h2>
-        <p class="section__lead" data-i18n="legal.datos.subtitle">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="legal.datos.subtitle">
           Que datos recopilamos y por que.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.datos.body">
-            Recopilamos datos voluntarios: nombre, email y mensaje si decides contactarnos;
-            datos de diagnostico (respuestas y resultado) con consentimiento explicito;
-            y metricas anonimizadas de GA4 (pais, paginas visitadas, rendimiento del sitio).
-            Los datos del diagnostico se almacenan en Firebase Firestore con autenticacion
-            anonima y reglas de seguridad append-only. Jamas almacenamos datos de tarjeta
-            ni compartimos informacion con terceros para fines comerciales.
-          </p>
-        </div>
-      </section>
+        <p data-cms="legal.datos.body">
+          Recopilamos datos voluntarios: nombre, email y mensaje si decides contactarnos;
+          datos de diagnostico (respuestas y resultado) con consentimiento explicito;
+          y metricas anonimizadas de GA4 (pais, paginas visitadas, rendimiento del sitio).
+          Los datos del diagnostico se almacenan en Firebase Firestore con autenticacion
+          anonima y reglas de seguridad append-only. Jamas almacenamos datos de tarjeta
+          ni compartimos informacion con terceros para fines comerciales.
+        </p>
+      </div>
+    </section>
 
-      <!-- Section 5: Derechos -->
-      <section id="derechos" class="section" aria-labelledby="derechos-heading">
-        <h2 id="derechos-heading" class="section__title" data-i18n="legal.derechos.title">
-          Tus Derechos (Habeas Data)
+    <!-- ══════ 05 · DERECHOS ══════ -->
+    <section class="section" id="derechos">
+      <div class="container">
+        <span class="eyebrow" data-cms="legal.derechos.badge">Derechos · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="legal.derechos.title">
+          Tus <span class="gradient-text">Derechos</span> (Habeas Data)
         </h2>
-        <p class="section__lead" data-i18n="legal.derechos.subtitle">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="legal.derechos.subtitle">
           Derechos bajo la Ley 1581 de 2012 de Colombia.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.derechos.body">
-            Tienes derecho a conocer, actualizar, rectificar, suprimir y revocar tus datos personales.
-            El acceso a tus datos es gratuito. Para ejercer estos derechos, escribe a
-            contacto@metodologia.info. Tiempo maximo de respuesta: 10 dias habiles (consultas)
-            o 15 dias habiles (reclamos). Responsable: MetodologIA / Javier Montano.
-          </p>
-        </div>
-      </section>
+        <p data-cms="legal.derechos.body">
+          Tienes derecho a conocer, actualizar, rectificar, suprimir y revocar tus datos personales.
+          El acceso a tus datos es gratuito. Para ejercer estos derechos, escribe a
+          contacto@metodologia.info. Tiempo maximo de respuesta: 10 dias habiles (consultas)
+          o 15 dias habiles (reclamos). Responsable: MetodologIA / Javier Montano.
+        </p>
+      </div>
+    </section>
 
-      <!-- Section 6: Cambios -->
-      <section id="cambios" class="section" aria-labelledby="cambios-heading">
-        <h2 id="cambios-heading" class="section__title" data-i18n="legal.cambios.title">
-          Cambios a estas Politicas
+    <!-- ══════ 06 · CAMBIOS ══════ -->
+    <section class="section" id="cambios">
+      <div class="container">
+        <span class="eyebrow" data-cms="legal.cambios.badge">Cambios · 06</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="legal.cambios.title">
+          <span class="gradient-text">Cambios</span> a estas Politicas
         </h2>
-        <p class="section__lead" data-i18n="legal.cambios.subtitle">
+        <p class="lead" style="margin-bottom:1.5rem;" data-cms="legal.cambios.subtitle">
           Como te informamos de actualizaciones.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.cambios.body">
-            Podemos actualizar estas politicas periodicamente. Los cambios seran publicados
-            en esta pagina con la fecha de actualizacion correspondiente. Te recomendamos
-            revisar esta pagina ocasionalmente para estar informado.
-          </p>
-        </div>
-      </section>
+        <p data-cms="legal.cambios.body">
+          Podemos actualizar estas politicas periodicamente. Los cambios seran publicados
+          en esta pagina con la fecha de actualizacion correspondiente. Te recomendamos
+          revisar esta pagina ocasionalmente para estar informado.
+        </p>
+      </div>
+    </section>
 
-      <!-- Section 7: Contacto -->
-      <section id="contacto" class="section" aria-labelledby="contacto-legal-heading">
-        <h2 id="contacto-legal-heading" class="section__title" data-i18n="legal.contacto.title">
-          Contacto Legal
+    <!-- ══════ 07 · CONTACTO ══════ -->
+    <section class="section" id="contacto">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-cms="legal.contacto.badge">Contacto · 07</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="legal.contacto.title">
+          Contacto <span class="gradient-text">Legal</span>
         </h2>
-        <p class="section__lead" data-i18n="legal.contacto.subtitle">
+        <p class="lead" style="max-width:36rem;margin:0 auto 1.5rem;" data-cms="legal.contacto.subtitle">
           Canal oficial para consultas de privacidad y datos.
         </p>
-        <div class="section__body">
-          <p data-i18n="legal.contacto.body">
-            Para cualquier consulta sobre privacidad, tratamiento de datos o ejercicio de derechos,
-            contacta al Oficial de Privacidad:
-          </p>
-          <p class="mt-4">
-            <a href="mailto:contacto@metodologia.info" class="cta-link" data-i18n="legal.contacto.email">
-              contacto@metodologia.info
-            </a>
-          </p>
-        </div>
-      </section>
+        <p data-cms="legal.contacto.body" style="margin-bottom:1.5rem;">
+          Para cualquier consulta sobre privacidad, tratamiento de datos o ejercicio de derechos,
+          contacta al Oficial de Privacidad:
+        </p>
+        <a href="mailto:contacto@metodologia.info" class="home-cta home-cta--secondary" data-cms="legal.contacto.email">
+          contacto@metodologia.info
+        </a>
+      </div>
+    </section>
 
-    </div>
   </main>
 
   <triple-toggle></triple-toggle>
@@ -217,7 +225,12 @@
   <consent-banner></consent-banner>
   <site-footer></site-footer>
 
-  <!-- Shell bootstrap -->
-  <script type="module" src="../js/blueprint/shell.js"></script>
+  <script type="module">
+    import { initShell } from '../js/blueprint/shell.js';
+    import { hydratePage } from '../js/cms/hydrate-page.js';
+
+    initShell({ pageSlug: 'legal' });
+    hydratePage('legal');
+  </script>
 </body>
 </html>

@@ -187,7 +187,7 @@
 
 ### Tests
 
-- [ ] T070 [P] [US-5] Write E2E `tests/e2e/home-a11y.spec.js` — axe-core + keyboard tab order (skip-link → header → sidebar → main → toggles → footer) [TS-037, TS-067, TS-068]
+- [x] T070 [P] [US-5] Write E2E `tests/e2e/home-a11y.spec.js` — axe-core + keyboard tab order (skip-link → header → sidebar → main → toggles → footer) [TS-037, TS-067, TS-068]
 
 ### Implementation
 

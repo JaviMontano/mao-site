@@ -54,6 +54,9 @@ export function getState() {
 }
 
 export function startDiagnostic() {
+  state = load();
+  if (state.status === 'in_progress') return getState();
+
   state = {
     ...INITIAL_STATE,
     status: 'in_progress',

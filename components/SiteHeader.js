@@ -1,15 +1,13 @@
 /**
- * SiteHeader — Canonical NeoSwiss header
+ * SiteHeader — Global site navigation bar
  *
- * Mobile (≤640px): hamburger + brand + theme-toggle (CTA moves to sidebar)
- * Desktop (>640px): hamburger(hidden) + brand + theme-toggle + CTA
- * Ecosystem hover-reveal on brand (desktop only)
+ * Layout: hamburger(mobile) | logo + brand | nav links(desktop) | CTA
+ * Nav links: Inicio, Rutas, Servicios, Contacto
+ * Theme toggle lives in TripleToggle (bottom-right)
  *
  * @license Copyleft
  * @copyright MetodologIA
  */
-
-import { getTheme, toggleTheme } from '../js/theme/toggle.js?v=3';
 
 const LOGO_SVG = `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MetodologIA">
   <defs><linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0A122A"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs>
@@ -18,15 +16,11 @@ const LOGO_SVG = `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/
   <circle cx="18" cy="8" r="2" fill="#FFD700"/>
 </svg>`;
 
-const SUN_SVG = `<svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
-
-const MOON_SVG = `<svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-
 const I18N = {
-  es: { cta: 'Primera Conversación', ctaShort: 'Contacto', role: 'Success', roleBrand: '· as a Service',
-        eco: '<strong>4</strong> Founders · <strong>10+</strong> Embajadores · <strong>50+</strong> Nodos' },
-  en: { cta: 'First Conversation', ctaShort: 'Contact', role: 'Success', roleBrand: '· as a Service',
-        eco: '<strong>4</strong> Founders · <strong>10+</strong> Ambassadors · <strong>50+</strong> Nodes' },
+  es: { cta: 'Primera Conversación', ctaShort: 'Contacto',
+        nav_inicio: 'Inicio', nav_rutas: 'Rutas', nav_servicios: 'Servicios', nav_contacto: 'Contacto' },
+  en: { cta: 'First Conversation', ctaShort: 'Contact',
+        nav_inicio: 'Home', nav_rutas: 'Routes', nav_servicios: 'Services', nav_contacto: 'Contact' },
 };
 
 class SiteHeader extends HTMLElement {
@@ -44,6 +38,19 @@ class SiteHeader extends HTMLElement {
 
   _render() {
     const t = I18N[this.lang];
+    const path = window.location.pathname;
+
+    // Determine active nav item
+    const isActive = (href) => {
+      if (href === '/') return path === '/' || path === '/index.html';
+      return path.startsWith(href);
+    };
+
+    const navLink = (href, label) => {
+      const active = isActive(href) ? ' site-header__nav-link--active' : '';
+      return `<a class="site-header__nav-link${active}" href="${href}">${label}</a>`;
+    };
+
     this.innerHTML = `
       <button class="menu-toggle" id="menuToggle" type="button"
               aria-expanded="false" aria-controls="sidebar" aria-label="Abrir navegación">
@@ -54,16 +61,17 @@ class SiteHeader extends HTMLElement {
         <span class="site-header__logo-wrap" aria-hidden="true">${LOGO_SVG}</span>
         <span class="site-header__text">
           <span class="site-header__name">MetodologIA</span>
-          <span class="site-header__role">${t.role} <span class="site-header__role-brand">${t.roleBrand}</span></span>
-          <span class="site-header__ecosystem" data-cms="ecosystem.header">${t.eco}</span>
         </span>
       </a>
 
-      <button class="theme-toggle" type="button" aria-label="Cambiar tema">
-        ${MOON_SVG}${SUN_SVG}
-      </button>
+      <nav class="site-header__nav" aria-label="Navegación principal">
+        ${navLink('/', t.nav_inicio)}
+        ${navLink('/diagnostico/', t.nav_rutas)}
+        ${navLink('/programas/', t.nav_servicios)}
+        ${navLink('/contacto/', t.nav_contacto)}
+      </nav>
 
-      <a class="site-header__cta" href="/diagnostico/">
+      <a class="site-header__cta" href="/contacto/">
         <span class="site-header__cta-long">${t.cta}</span>
         <span class="site-header__cta-short">${t.ctaShort}</span>
       </a>
@@ -77,13 +85,6 @@ class SiteHeader extends HTMLElement {
         const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
         menuBtn.setAttribute('aria-expanded', String(!expanded));
         this.dispatchEvent(new CustomEvent('mdg:sidebar-toggle', { bubbles: true, composed: true }));
-      });
-    }
-
-    const themeBtn = this.querySelector('.theme-toggle');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', () => {
-        toggleTheme();
       });
     }
   }

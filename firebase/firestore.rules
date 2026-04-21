@@ -143,6 +143,15 @@ service cloud.firestore {
       allow delete: if hasAdminAccess();
     }
 
+    // === Feature 009: Content Slots (US-8 admin content editor) ===
+
+    // slots/{pageSlug} — public read, admin+ write (T078, TS-105, TS-106)
+    match /slots/{pageSlug} {
+      allow read: if true;
+      allow create, update: if hasAdminAccess();
+      allow delete: if hasAdminAccess();
+    }
+
     // === Feature 009: Public Content (read-only published) ===
 
     match /resources/{resourceId} {

@@ -59,37 +59,50 @@ class SiteSidebar extends HTMLElement {
     const sections = getSections(this._pageSlug);
     const pageLabels = this._labels?.sidebar?.[this._pageSlug] ?? {};
 
+    // Sidebar head (canonical: .sidebar__head)
+    const head = document.createElement('div');
+    head.className = 'sidebar__head';
+    head.textContent = 'Índice';
+    this.appendChild(head);
+
+    // Nav wrapper (canonical: .sidebar__nav)
+    const nav = document.createElement('nav');
+    nav.className = 'sidebar__nav';
+
     sections.forEach((sec, idx) => {
       const a = document.createElement('a');
-      a.className = 'sidebar-link';
+      a.className = 'sidebar__link';
       a.href = `#${sec.id}`;
       a.dataset.section = sec.id;
       a.addEventListener('click', (e) => this._handleLinkClick(e, sec.id));
 
+      // Label text directly in the link
+      const labelText = pageLabels[sec.id]?.[this._lang] ?? sec.id;
+      a.textContent = labelText;
+
+      // Number at the end (canonical: .sidebar__link-num)
       const num = document.createElement('span');
-      num.className = 'sidebar-number';
+      num.className = 'sidebar__link-num';
       num.textContent = String(idx + 1).padStart(2, '0');
       a.appendChild(num);
 
-      const icon = document.createElement('span');
-      icon.className = 'sidebar-icon';
-      icon.dataset.icon = sec.icon;
-      a.appendChild(icon);
-
-      const label = document.createElement('span');
-      label.className = 'sidebar-label';
-      label.textContent = pageLabels[sec.id]?.[this._lang] ?? sec.id;
-      a.appendChild(label);
-
-      this.appendChild(a);
+      nav.appendChild(a);
       this._links.push(a);
     });
+
+    this.appendChild(nav);
+
+    // Sidebar footer
+    const footer = document.createElement('div');
+    footer.className = 'sidebar__footer';
+    footer.innerHTML = '<a href="/">metodologia.info</a>';
+    this.appendChild(footer);
 
     // Backdrop for mobile drawer
     this._backdrop = document.createElement('div');
     this._backdrop.className = 'sidebar-backdrop';
     this._backdrop.addEventListener('click', () => this.close());
-    this.appendChild(this._backdrop);
+    document.body.appendChild(this._backdrop);
   }
 
   /* ------------------------------------------------------------------ */

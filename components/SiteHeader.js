@@ -1,91 +1,90 @@
 /**
- * SiteHeader — Simplified NeoSwiss header (T035)
- * Logo + 3 nav items (Ruta gold CTA, Servicios, Contacto) + hamburger (mobile)
- * No toggles, no floating nav, no segment switcher.
- * Styles: estilos/neoswiss-system.css (.site-header)
- * i18n: data-i18n attributes, reads document.documentElement.lang
+ * SiteHeader — Canonical NeoSwiss header matching Montano_Javier_Canonical.html
+ * Uses exact class names from neoswiss-system.css:
+ *   .site-header, .menu-toggle, .site-header__brand, .site-header__logo-wrap,
+ *   .site-header__text, .site-header__name, .site-header__role,
+ *   .theme-toggle, .site-header__cta
  *
  * @license Copyleft
  * @copyright MetodologIA
  */
 
-const HEADER_I18N = {
-  es: { ruta: 'Ruta', servicios: 'Servicios', contacto: 'Contacto' },
-  en: { ruta: 'Path', servicios: 'Services', contacto: 'Contact' }
+import { getTheme, toggleTheme } from '../js/theme/toggle.js';
+
+const LOGO_SVG = `<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MetodologIA">
+  <defs><linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0A122A"/><stop offset="100%" stop-color="#1e293b"/></linearGradient></defs>
+  <rect width="36" height="36" rx="10" fill="url(#hdrGrad)"/>
+  <path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="white"/>
+  <circle cx="18" cy="8" r="2" fill="#FFD700"/>
+</svg>`;
+
+const SUN_SVG = `<svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+const MOON_SVG = `<svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+
+const I18N = {
+  es: { cta: 'Primera Conversación', ctaShort: 'Contacto', role: 'Success', roleBrand: '· as a Service' },
+  en: { cta: 'First Conversation', ctaShort: 'Contact', role: 'Success', roleBrand: '· as a Service' },
 };
 
 class SiteHeader extends HTMLElement {
   connectedCallback() {
-    // Apply .site-header on the custom element so neoswiss-system.css
-    // targets a single node (no doubled position:fixed from tag + class).
     this.classList.add('site-header');
-    this.render();
-    this.setupHamburger();
+    this.setAttribute('role', 'banner');
+    this._render();
+    this._setupEvents();
   }
 
-  /** Resolve current language from <html lang="..."> or default to 'es' */
   get lang() {
     const l = (document.documentElement.lang || 'es').slice(0, 2).toLowerCase();
-    return HEADER_I18N[l] ? l : 'es';
+    return I18N[l] ? l : 'es';
   }
 
-  render() {
-    const t = HEADER_I18N[this.lang];
+  _render() {
+    const t = I18N[this.lang];
+    this.innerHTML = `
+      <button class="menu-toggle" id="menuToggle" type="button"
+              aria-expanded="false" aria-controls="sidebar" aria-label="Abrir navegación">
+        <span></span><span></span><span></span>
+      </button>
 
-    this.innerHTML = /* html */ `
-      <header role="banner">
-        <nav class="site-header__nav" aria-label="Principal">
-          <!-- Logo -->
-          <a href="/" class="site-header__logo" aria-label="MetodologIA — Inicio">
-            <span class="site-header__logo-text">
-              <span class="site-header__logo-metodolog">Metodolog</span><span class="site-header__logo-ia">IA</span>
-            </span>
-          </a>
+      <a href="/" class="site-header__brand" aria-label="MetodologIA — Inicio">
+        <span class="site-header__logo-wrap" aria-hidden="true">${LOGO_SVG}</span>
+        <span class="site-header__text">
+          <span class="site-header__name">MetodologIA</span>
+          <span class="site-header__role">${t.role} <span class="site-header__role-brand">${t.roleBrand}</span></span>
+        </span>
+      </a>
 
-          <!-- Desktop nav links -->
-          <ul class="site-header__links" role="list">
-            <li>
-              <a href="/diagnostico/" class="site-header__cta-gold" data-i18n="nav.ruta">${t.ruta}</a>
-            </li>
-            <li>
-              <a href="/programas/" class="site-header__link" data-i18n="nav.servicios">${t.servicios}</a>
-            </li>
-            <li>
-              <a href="/contacto/" class="site-header__link" data-i18n="nav.contacto">${t.contacto}</a>
-            </li>
-          </ul>
+      <button class="theme-toggle" type="button" aria-label="Cambiar tema">
+        ${MOON_SVG}${SUN_SVG}
+      </button>
 
-          <!-- Hamburger (mobile <960px) -->
-          <button
-            class="site-header__hamburger"
-            type="button"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                 stroke-linejoin="round" aria-hidden="true">
-              <line x1="4" x2="20" y1="6"  y2="6"/>
-              <line x1="4" x2="20" y1="12" y2="12"/>
-              <line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
-          </button>
-        </nav>
-      </header>
+      <a class="site-header__cta" href="/diagnostico/">
+        <span class="site-header__cta-long">${t.cta}</span>
+        <span class="site-header__cta-short">${t.ctaShort}</span>
+      </a>
     `;
   }
 
-  setupHamburger() {
-    const btn = this.querySelector('.site-header__hamburger');
-    if (!btn) return;
+  _setupEvents() {
+    // Menu toggle → sidebar
+    const menuBtn = this.querySelector('.menu-toggle');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        this.dispatchEvent(new CustomEvent('mdg:sidebar-toggle', { bubbles: true, composed: true }));
+      });
+    }
 
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      this.dispatchEvent(
-        new CustomEvent('mdg:sidebar-toggle', { bubbles: true, composed: true })
-      );
-    });
+    // Theme toggle
+    const themeBtn = this.querySelector('.theme-toggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        toggleTheme();
+      });
+    }
   }
 }
 

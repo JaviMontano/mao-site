@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--spacing-12) var(--gutter);
+  padding: 3rem clamp(1rem, 3vw, 2rem);
   background: var(--brand-dark);
   position: relative;
   overflow: hidden;
@@ -32,17 +32,17 @@
 @media (min-width: 960px) {
   .home-hero {
     min-height: 80vh;
-    padding: var(--spacing-16) var(--gutter);
+    padding: 4rem clamp(1rem, 3vw, 2rem);
   }
 }
 
 .home-hero__title {
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-weight: 800;
   font-size: clamp(2rem, 5vw + 0.5rem, 4rem);
   line-height: 1.1;
   color: var(--brand-text);
-  margin: 0 0 var(--spacing-4);
+  margin: 0 0 1rem;
   max-width: 48rem;
 }
 
@@ -52,7 +52,7 @@
   font-size: clamp(1rem, 1.5vw + 0.5rem, 1.375rem);
   line-height: 1.6;
   color: var(--brand-text-soft);
-  margin: 0 0 var(--spacing-8);
+  margin: 0 0 2rem;
   max-width: 36rem;
 }
 
@@ -61,7 +61,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-4);
+  gap: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -82,9 +82,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-4) var(--spacing-8);
-  font-family: var(--font-head);
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.25rem);
   font-weight: 700;
   color: var(--brand-text);
@@ -93,8 +93,8 @@
   border-radius: var(--brand-radius-lg, 24px);
   text-decoration: none;
   cursor: pointer;
-  transition: transform 300ms var(--ease),
-              box-shadow 300ms var(--ease);
+  transition: transform 300ms cubic-bezier(.4, 0, .2, 1),
+              box-shadow 300ms cubic-bezier(.4, 0, .2, 1);
 }
 
 .cta-primary:hover {
@@ -110,9 +110,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-3) var(--spacing-6);
-  font-family: var(--font-head);
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(0.875rem, 1vw + 0.4rem, 1.125rem);
   font-weight: 600;
   color: var(--brand-gold);
@@ -121,8 +121,8 @@
   border-radius: var(--brand-radius-lg, 24px);
   text-decoration: none;
   cursor: pointer;
-  transition: background 300ms var(--ease),
-              color 300ms var(--ease);
+  transition: background 300ms cubic-bezier(.4, 0, .2, 1),
+              color 300ms cubic-bezier(.4, 0, .2, 1);
 }
 
 .cta-secondary:hover {
@@ -133,8 +133,8 @@
 .cta-tertiary {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-1);
-  padding: var(--spacing-2) 0;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
   font-family: inherit;
   font-size: clamp(0.875rem, 1vw + 0.3rem, 1rem);
   font-weight: 500;
@@ -143,14 +143,14 @@
   border: none;
   text-decoration: none;
   cursor: pointer;
-  transition: color 200ms var(--ease);
+  transition: color 200ms cubic-bezier(.4, 0, .2, 1);
 }
 
 .cta-tertiary::after {
   content: '\203A';
   font-size: 1.25em;
   line-height: 1;
-  transition: transform 200ms var(--ease);
+  transition: transform 200ms cubic-bezier(.4, 0, .2, 1);
 }
 
 .cta-tertiary:hover {
@@ -165,7 +165,7 @@
    SECTION BASE — shared grid & spacing for 7 home sections
    ─────────────────────────────────────────────────────────────── */
 .home-section {
-  padding: var(--spacing-16) var(--gutter);
+  padding: 4rem clamp(1rem, 3vw, 2rem);
   background: var(--brand-dark);
   position: relative;
 }
@@ -181,16 +181,16 @@
 
 .home-section__header {
   text-align: center;
-  margin-bottom: var(--spacing-12);
+  margin-bottom: 3rem;
 }
 
 .home-section__title {
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
   line-height: 1.2;
   color: var(--brand-text);
-  margin: 0 0 var(--spacing-3);
+  margin: 0 0 0.75rem;
 }
 
 .home-section__subtitle {
@@ -208,7 +208,7 @@
    ─────────────────────────────────────────────────────────────── */
 .home-grid {
   display: grid;
-  gap: var(--spacing-6);
+  gap: 1.5rem;
   grid-template-columns: 1fr;
 }
 
@@ -231,7 +231,7 @@
 /* xl: 1280px */
 @media (min-width: 1280px) {
   .home-grid--4 { grid-template-columns: repeat(4, 1fr); }
-  .home-grid { gap: var(--spacing-8); }
+  .home-grid { gap: 2rem; }
 }
 
 /* 2xl: 1536px */
@@ -246,10 +246,10 @@
   background: var(--brand-surface);
   border: 1px solid var(--brand-border);
   border-radius: var(--brand-radius, 16px);
-  padding: var(--spacing-6);
+  padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
-  transition: transform 300ms var(--ease),
-              box-shadow 300ms var(--ease);
+  transition: transform 300ms cubic-bezier(.4, 0, .2, 1),
+              box-shadow 300ms cubic-bezier(.4, 0, .2, 1);
 }
 
 .home-card:hover {
@@ -260,16 +260,16 @@
 .home-card__icon {
   width: 48px;
   height: 48px;
-  margin-bottom: var(--spacing-4);
+  margin-bottom: 1rem;
   color: var(--brand-gold);
 }
 
 .home-card__title {
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: clamp(1rem, 1.2vw + 0.3rem, 1.25rem);
   color: var(--brand-text);
-  margin: 0 0 var(--spacing-2);
+  margin: 0 0 0.5rem;
 }
 
 .home-card__text {
@@ -316,15 +316,15 @@
 .home-recursos .home-card__tag {
   display: inline-block;
   font-family: var(--font-note);
-  font-size: var(--text-xs);
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #137DC5;
   background: rgba(19, 125, 197, 0.08);
   border-radius: var(--brand-radius, 16px);
-  padding: var(--spacing-1) var(--spacing-2);
-  margin-bottom: var(--spacing-3);
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -342,16 +342,16 @@
 
 .home-programas .home-card__badge {
   display: inline-block;
-  font-family: var(--font-head);
-  font-size: var(--text-xs);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--brand-text);
   background: var(--brand-gold);
   border-radius: var(--radius-full);
-  padding: var(--spacing-1) var(--spacing-3);
-  margin-bottom: var(--spacing-4);
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1rem;
   align-self: flex-start;
 }
 
@@ -364,7 +364,7 @@
 
 .home-metodo__steps {
   display: grid;
-  gap: var(--spacing-6);
+  gap: 1.5rem;
   grid-template-columns: 1fr;
   counter-reset: step;
 }
@@ -380,7 +380,7 @@
 .home-metodo__step {
   counter-increment: step;
   position: relative;
-  padding-left: var(--spacing-12);
+  padding-left: 3rem;
 }
 
 .home-metodo__step::before {
@@ -393,7 +393,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-weight: 800;
   font-size: var(--text-lg);
   color: var(--brand-text);
@@ -402,11 +402,11 @@
 }
 
 .home-metodo__step-title {
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: var(--text-lg);
   color: var(--brand-text);
-  margin: 0 0 var(--spacing-2);
+  margin: 0 0 0.5rem;
 }
 
 .home-metodo__step-text {
@@ -428,11 +428,11 @@
   background: var(--brand-surface);
   border: 1px solid var(--brand-border);
   border-radius: var(--brand-radius, 16px);
-  padding: var(--spacing-6);
+  padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: 1rem;
 }
 
 .home-testimonial__quote {
@@ -443,7 +443,7 @@
   color: var(--brand-text);
   margin: 0;
   position: relative;
-  padding-left: var(--spacing-6);
+  padding-left: 1.5rem;
 }
 
 .home-testimonial__quote::before {
@@ -451,7 +451,7 @@
   position: absolute;
   left: 0;
   top: -0.25rem;
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-size: 2.5rem;
   line-height: 1;
   color: var(--brand-gold);
@@ -460,7 +460,7 @@
 .home-testimonial__author {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: 0.75rem;
 }
 
 .home-testimonial__avatar {
@@ -472,7 +472,7 @@
 }
 
 .home-testimonial__name {
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: var(--text-sm);
   color: var(--brand-text);
@@ -481,7 +481,7 @@
 
 .home-testimonial__role {
   font-family: inherit;
-  font-size: var(--text-xs);
+  font-size: 0.75rem;
   color: var(--brand-muted);
   margin: 0;
 }
@@ -525,8 +525,8 @@
   background: var(--brand-surface);
   border: 1px solid var(--brand-border);
   border-radius: var(--brand-radius, 16px);
-  padding: var(--spacing-5) var(--spacing-6);
-  transition: transform 300ms var(--ease);
+  padding: 1.25rem 1.5rem;
+  transition: transform 300ms cubic-bezier(.4, 0, .2, 1);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -543,7 +543,7 @@
   inset: 0;
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.06) 0%, transparent 60%);
   opacity: 0;
-  transition: opacity 300ms var(--ease);
+  transition: opacity 300ms cubic-bezier(.4, 0, .2, 1);
   z-index: 1;
   pointer-events: none;
 }
@@ -556,7 +556,7 @@
   border: 1px solid rgba(255, 215, 0, 0.15);
   box-shadow: 0 0 20px rgba(255,215,0,.25);
   opacity: 0;
-  transition: opacity 300ms var(--ease);
+  transition: opacity 300ms cubic-bezier(.4, 0, .2, 1);
   z-index: 1;
   pointer-events: none;
 }
@@ -571,7 +571,7 @@
 }
 
 .kpi-value {
-  font-family: var(--font-head);
+  font-family: "Poppins", sans-serif;
   font-size: clamp(1.5rem, 2vw + 0.5rem, 2.25rem);
   font-weight: 800;
   line-height: 1;
@@ -583,17 +583,17 @@
 
 .kpi-label {
   font-family: var(--font-note);
-  font-size: var(--text-xs);
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--brand-muted);
-  margin-top: var(--spacing-1);
+  margin-top: 0.25rem;
 }
 
 .kpi-grid {
   display: grid;
-  gap: var(--spacing-4);
+  gap: 1rem;
   grid-template-columns: 1fr;
 }
 
@@ -630,7 +630,7 @@
 .section-reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: all var(--duration-slower) var(--ease);
+  transition: all var(--duration-slower) cubic-bezier(.4, 0, .2, 1);
 }
 
 .section-reveal.visible {
@@ -670,8 +670,8 @@
 @media (orientation: landscape) and (max-height: 500px) {
   .home-hero {
     min-height: 50vh;
-    padding-top: var(--spacing-6);
-    padding-bottom: var(--spacing-6);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .home-hero__title {
@@ -680,7 +680,7 @@
 
   .home-hero__subtitle {
     font-size: clamp(0.875rem, 1.2vw + 0.4rem, 1.125rem);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: 1rem;
   }
 }
 
@@ -688,8 +688,8 @@
 @media (orientation: landscape) and (max-height: 700px) and (max-width: 959.98px) {
   .home-hero {
     min-height: 60vh;
-    padding-top: var(--spacing-8);
-    padding-bottom: var(--spacing-8);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -697,8 +697,8 @@
    SAFE-AREA INSETS — notched phone content protection
    ─────────────────────────────────────────────────────────────── */
 .home-section {
-  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
-  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+  padding-left: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(1rem, 3vw, 2rem), env(safe-area-inset-right, 0px));
 }
 
 .home-contacto__actions {

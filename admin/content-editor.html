@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Editor — MetodologIA CMS</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../estilos/variables.css">
+  <link rel="stylesheet" href="../dist/output.css">
+  <style>
+    .page-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .page-card {
+      background: var(--color-slate-800, #1e293b);
+      border: 1px solid var(--color-slate-700, #334155);
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .page-card:hover,
+    .page-card:focus-visible {
+      border-color: var(--color-brand-gold, #f5a623);
+      transform: translateY(-2px);
+    }
+    .page-card h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+    .page-card .slot-count { font-size: 0.8rem; color: var(--color-slate-400, #94a3b8); }
+
+    .slot-editor { max-width: 860px; margin: 0 auto; }
+    .slot-block {
+      background: var(--color-slate-800, #1e293b);
+      border: 1px solid var(--color-slate-700, #334155);
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .slot-block h4 { margin: 0 0 0.75rem; font-size: 0.95rem; }
+    .variant-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .variant-field label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--color-slate-400, #94a3b8);
+      margin-bottom: 0.25rem;
+    }
+    .variant-field textarea {
+      width: 100%;
+      min-height: 80px;
+      background: var(--color-slate-900, #0f172a);
+      border: 1px solid var(--color-slate-600, #475569);
+      border-radius: 0.375rem;
+      color: white;
+      padding: 0.5rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      resize: vertical;
+    }
+    .variant-field textarea:focus {
+      outline: 2px solid var(--color-brand-gold, #f5a623);
+      outline-offset: -1px;
+    }
+    .slot-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .btn-save {
+      padding: 0.4rem 1rem;
+      background: var(--color-brand-gold, #f5a623);
+      color: var(--color-slate-900, #0f172a);
+      border: none;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-back {
+      padding: 0.4rem 1rem;
+      background: var(--color-slate-700, #334155);
+      color: white;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+    }
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+    .toast--success { background: #16a34a; color: white; }
+    .toast--error { background: #dc2626; color: white; }
+    .toast--hidden { opacity: 0; pointer-events: none; }
+
+    @media (max-width: 640px) {
+      .variant-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 min-h-screen text-white">
+  <header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="/admin/" class="text-sm text-slate-400 hover:text-white">&larr; CMS</a>
+      <h1 class="text-lg font-bold">Content Editor</h1>
+    </div>
+    <div id="user-info" class="text-sm text-slate-400"></div>
+  </header>
+
+  <!-- Login Screen -->
+  <div id="login-screen" class="flex items-center justify-center min-h-[80vh]" data-login>
+    <div class="text-center">
+      <h2 class="text-2xl font-bold mb-4">Admin Access Required</h2>
+      <p class="text-slate-400 mb-6">Sign in with your Google account to manage content.</p>
+      <button id="login-btn" class="px-6 py-3 bg-brand-gold text-slate-900 rounded-lg font-semibold hover:bg-brand-gold/90">
+        Sign in with Google
+      </button>
+    </div>
+  </div>
+
+  <!-- Access Denied -->
+  <div id="denied-screen" class="hidden flex items-center justify-center min-h-[80vh]">
+    <div class="text-center">
+      <h2 class="text-2xl font-bold text-red-400 mb-4">Access Denied</h2>
+      <p class="text-slate-400 mb-6">Your account does not have admin access. Contact a super admin.</p>
+      <button id="logout-btn-denied" class="px-4 py-2 bg-slate-700 text-white rounded">Sign Out</button>
+    </div>
+  </div>
+
+  <!-- Page Picker Grid (13 cards) -->
+  <div id="page-picker" class="hidden p-6 max-w-5xl mx-auto" data-page-picker>
+    <h2 class="text-xl font-bold mb-4">Select a page to edit</h2>
+    <div id="page-grid" class="page-grid" role="list" aria-label="Page list">
+      <!-- Cards rendered by content-editor.js -->
+    </div>
+  </div>
+
+  <!-- Slot Editor UI -->
+  <div id="slot-editor" class="hidden p-6" data-slot-editor>
+    <div class="slot-editor">
+      <div class="flex items-center justify-between mb-4">
+        <h2 id="editor-title" class="text-xl font-bold"></h2>
+        <button id="back-btn" class="btn-back">Back to pages</button>
+      </div>
+      <div id="slots-container">
+        <!-- Slot blocks rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast toast--hidden" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/content-editor.js"></script>
+</body>
+</html>

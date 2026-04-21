@@ -103,9 +103,12 @@ Created once per completion. Same anonymous auth model.
 idle → in_progress (step 1 answered)
 in_progress → in_progress (steps 2..5 answered; state persisted to localStorage with 24h TTL)
 in_progress → captured (step 6 email + consent submitted)
-captured → persisted (write to Firestore succeeds; App Check token valid)
-captured → degraded (Firestore unavailable → mailto fallback per FR-015)
-persisted → done (UI shows resultado screen; localStorage cleared)
+captured → persisted (write to Firestore succeeds in background; App Check token valid)
+captured → pending_sync (Firestore write fails → localStorage backup, deferred retry per plan R14)
+pending_sync → persisted (retry succeeds on next page load; max 3 attempts, exponential backoff)
+pending_sync → sync_failed (3 retries exhausted → sync pill shown, data preserved locally)
+persisted → done (localStorage sync flag cleared)
+captured → done (UI shows resultado screen IMMEDIATELY regardless of Firestore write status — pure function)
 ```
 
 No intermediate writes to Firestore. No `"in_progress"` doc ever created — privacy by design.
@@ -129,12 +132,13 @@ Drives the audience axis of the 3-toggle adaptive blueprint. Never written to Fi
 | `theme` | `"light" \| "dark"` | localStorage `mdg_theme` | Default: `prefers-color-scheme` or `"light"` |
 | `locked` | boolean | in-memory only | `true` on `/empresas/` and `/personas/` (intrinsic audience pages) |
 
-**Provenance cascade** (spec FR-200, adaptive-blueprint.md §3.1):
-1. URL path (`/empresas/` → `empresa`, `/personas/` → `persona`)
-2. Diagnostic result (`segmento` → mapped)
-3. Explicit toggle (header affordance)
-4. `localStorage` persist
-5. Default `"unknown"`
+**Provenance cascade** (spec FR-200, adaptive-blueprint.md §3.1 — canonical order):
+1. URL param: `?audiencia=empresa` or `?audiencia=persona` — overrides all, persists
+2. localStorage: `mdg_audience` — from previous toggle or param
+3. Landing page inference: `/empresas/` → `empresa`, `/personas/` → `persona`
+4. Diagnostic inference: `q_segmento in {directivo, fundador, lider_equipo}` → `empresa`; `persona` → `persona`
+5. UTM content: `?utm_content=empresas` → `empresa`
+6. Default: `"unknown"` (hero uses audience-neutral copy from fallback cascade)
 
 ### `ContentSlot` (DOM attributes — declarative)
 

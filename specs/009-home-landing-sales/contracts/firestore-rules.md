@@ -94,6 +94,15 @@ match /pages/{pageSlug} {
 }
 ```
 
+### `blocks/{blockId}` (optional, referenced by pages/home blocks[])
+
+```javascript
+match /blocks/{blockId} {
+  allow read: if resource.data.status == 'published';
+  allow write: if false;  // managed by feature 010 backoffice
+}
+```
+
 ## Deny-all fallback
 
 ```javascript

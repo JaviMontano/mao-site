@@ -1,6 +1,7 @@
 # Spec Quality Checklist — 009-home-landing-sales (v7 re-specify)
 
 **Generated**: 2026-04-14
+**Extended**: 2026-04-21 (plan v5 + cross-artifact consistency)
 **Constitution**: v7.0.0 (synchronized)
 **Spec Version**: v7 (post-robustness consolidation)
 
@@ -74,13 +75,33 @@
 - [x] **FR-06**: Phase separation: PASS (file refs are domain constraints)
 - [x] **FR-07**: Constitution version synced: v7.0.0 footer matches content
 
-## F. Readiness Verdict
+## F. Plan-Level Requirements Quality (v5)
+
+- [x] **PL-01**: Are failure mode requirements specified for all write paths with distinct handling per error class? [Completeness, Plan §Data flow — Write path, R14] — Happy path + 4 error classes (network, auth, App Check, quota) with Optimistic Result + Deferred Sync
+- [x] **PL-02**: Are retry strategies quantified with specific thresholds (max attempts, backoff schedule)? [Clarity, Plan R14] — Max 3 attempts, exponential backoff 1s → 4s → 16s
+- [x] **PL-03**: Are shell page content requirements defined with measurable criteria (which slots, how many i18n keys)? [Completeness, Plan §Shell Contract, R15] — 3 required slots (hero, escape_routes, closing), 132 i18n keys quantified
+- [x] **PL-04**: Is the deferred sync UX consistent with the existing offline pill requirements (FR-097..FR-099)? [Consistency, Plan R14, Spec FR-097..FR-099] — Sync pill reuses OfflinePill.js, same aria-live, same landmark
+- [x] **PL-05**: Are all 15 research decisions (R1–R15) traceable to constitutional principles? [Traceability, Plan §Key design decisions] — Each row has constitutional anchor column
+- [x] **PL-06**: Is the module dependency graph complete — do all import relationships match the file list in §Project Structure? [Consistency, Plan §Module Dependency Graph] — All 12 new modules present with leaf/mid/top classification
+- [x] **PL-07**: Are rollback criteria quantified with specific thresholds and timeframes? [Clarity, Plan §Rollback Strategy] �� 4 signals with thresholds (>50% drop/48h, exception/4h, <70 Lighthouse/24h, brand mismatch/24h)
+- [x] **PL-08**: Is the testing pyramid allocation consistent with the spec's NFR coverage requirements (NFR-007..NFR-013)? [Consistency, Plan §Testing Strategy, Spec NFR-007..NFR-013] — Unit/Integration/E2E/BDD with 85% weighted target matching NFR-008
+
+## G. Cross-Artifact Consistency
+
+- [x] **XA-01**: Does data-model.md state transition `captured → degraded` align with plan R14 (Optimistic Result + Deferred Sync)? [Conflict, data-model.md §State transitions vs Plan §Write path] — **FIXED**: Updated state transitions to include `pending_sync`, `sync_failed` states + immediate result display per R14
+- [x] **XA-02**: Does AudienceState provenance cascade in data-model.md match adaptive-blueprint.md §3.1 precedence order? [Conflict, data-model.md §Provenance vs adaptive-blueprint.md §3.1] — **FIXED**: Aligned to 6-step cascade (URL param > localStorage > landing > diagnostic > UTM > default)
+- [x] **XA-03**: Are the Firestore collections in data-model.md consistent with the collections in firestore-rules.md? [Consistency, data-model.md vs contracts/firestore-rules.md] — **FIXED**: Added `blocks/{blockId}` read rule (was missing; deny-all fallback would block reads referenced by pages/home)
+- [x] **XA-04**: Does the plan's 13-page list match sitemap.md's canonical page list? [Consistency, Plan §Project Structure vs sitemap.md §2] — Identical 13 pages
+- [x] **XA-05**: Are the diagnostic scoring thresholds in spec §4.5 consistent with the diagnostic-logic.json contract? [Consistency, Spec §4.5 vs contracts/diagnostic-logic.json] — Identical questions, weights, thresholds (0-4/5-9/10-15), recommendations
+- [x] **XA-06**: Do the plan's Web Component names match the spec §9.4 component diagram? [Consistency, Plan §Web Components vs Spec §9.4] — Plan adds OfflinePill, ConsentBanner, ProgramCard (009-scope concretizations). Spec §9.4 includes 010-scope components (BlockRenderer). No conflict.
+
+## H. Readiness Verdict
 
 | Gate | Status | Notes |
 |------|--------|-------|
 | G0 — Spec exists | ✅ PASS | 1,151 lines, v7 consolidated |
 | G1 — Constitution aligned | ✅ PASS | §4.4 + backcasting.md |
 | G2 — Phase separation clean | ✅ PASS | Exemptions justified |
-| G3 — Ready for next phase | ✅ PASS | Ready for `/iikit-04-testify` |
+| G3 — Ready for next phase | ✅ PASS | All 54 items checked, 3 cross-artifact fixes applied |
 
-**Overall**: ✅ **READY** — Proceed to `/iikit-04-testify` (generate `.feature` BDD files from acceptance scenarios)
+**Overall**: ✅ **READY** — Proceed to `/iikit-04-testify`

@@ -13,15 +13,16 @@
  */
 
 // --- Component imports (self-register on import) ---
-// ?v=3 cache-bust ensures fresh components after design system migration
-import '../../components/SiteHeader.js?v=3';
-import '../../components/SiteSidebar.js?v=3';
-import '../../components/TripleToggle.js?v=3';
-import '../../components/OfflinePill.js?v=3';
-import '../../components/ConsentBanner.js?v=3';
+// ?v=4 cache-bust ensures fresh components
+import '../../components/SiteHeader.js?v=4';
+import '../../components/SiteSidebar.js?v=4';
+import '../../components/SiteFooter.js?v=4';
+import '../../components/TripleToggle.js?v=4';
+import '../../components/OfflinePill.js?v=4';
+import '../../components/ConsentBanner.js?v=4';
 
 // --- Module imports ---
-import { initTheme } from '../theme/toggle.js';
+import { initTheme } from '../theme/toggle.js?v=4';
 import { initAudienceController, hydrateSlots } from '../audience/controller.js';
 import { getAudience } from '../audience/state.js';
 import { on } from '../state/bus.js';

@@ -280,55 +280,17 @@
   <consent-banner></consent-banner>
   <site-footer></site-footer>
 
-  <!-- ════ MODAL: Estándar 100 ✓ ════ -->
-  <dialog class="info-dialog" id="std100Dialog" aria-labelledby="std100Title">
+  <!-- ════ MODAL ÚNICO (contenido dinámico) ════ -->
+  <dialog class="info-dialog" id="infoDialog" aria-labelledby="infoDialogTitle">
     <div class="info-dialog__inner">
       <div class="info-dialog__head">
         <div>
-          <span class="info-dialog__term">Estándar de Calidad</span>
-          <h3 class="info-dialog__title" id="std100Title">100 ✓ — Calidad Entrusted</h3>
+          <span class="info-dialog__term" id="infoDialogTerm"></span>
+          <h3 class="info-dialog__title" id="infoDialogTitle"></h3>
         </div>
         <button class="info-dialog__close" type="button" aria-label="Cerrar" onclick="this.closest('dialog').close()">✕</button>
       </div>
-      <div class="info-dialog__body">
-        <p><em>100 ✓ es el estándar de calidad <strong>Entrusted</strong> de MetodologIA — calidad definida y asegurada en cada entregable.</em></p>
-
-        <h4>La promesa: 1 Prompt = Task-to-Value</h4>
-        <p>Cada recurso, asistente y entregable está diseñado para que <strong>un solo prompt</strong> te lleve directamente del problema al resultado de valor. Sin pasos intermedios innecesarios, sin iteraciones de prueba y error.</p>
-
-        <h4>Los 3 compromisos del estándar</h4>
-        <ul>
-          <li><strong>0 Fricción</strong> — El camino del input al output es directo. Sin configuración, sin curva de aprendizaje, sin dependencias ocultas. Abrir y usar.</li>
-          <li><strong>0 Delay de Feedback</strong> — Resultado inmediato y verificable. No promesas futuras, no "depende del contexto". El entregable habla por sí mismo en el primer uso.</li>
-          <li><strong>Calidad Entrusted</strong> — Definida: cada entregable cumple criterios explícitos de precisión, trazabilidad y reproducibilidad. Asegurada: protocolo Zero-Hallucination + Quality Gates G0→G3 antes de publicación.</li>
-        </ul>
-
-        <h4>Qué significa Entrusted</h4>
-        <p>No es un label decorativo. Es un <strong>protocolo verificable</strong>:</p>
-        <ul>
-          <li>Cada claim lleva etiqueta de evidencia: <em>[CÓDIGO]</em> <em>[DOC]</em> <em>[INFERENCIA]</em> <em>[SUPUESTO]</em></li>
-          <li>Cada prompt pasa por validación de calidad antes de ser publicado</li>
-          <li>Cada asistente tiene Knowledge Base curada y versionada</li>
-          <li>Cada entregable es reproducible: el mismo input produce el mismo resultado</li>
-        </ul>
-
-        <h4>Dónde se aplica</h4>
-        <ul>
-          <li>32 Custom GPTs + 31 Gemini Gems del ecosistema</li>
-          <li>180+ prompts de las bibliotecas curadas</li>
-          <li>Entregables de Workshops, Bootcamps y Programas Élite</li>
-          <li>El agente Pristino (OSS + GPT)</li>
-        </ul>
-
-        <dl class="kv">
-          <dt>Promesa</dt><dd>1 prompt = task-to-value</dd>
-          <dt>Fricción</dt><dd>0</dd>
-          <dt>Delay</dt><dd>0</dd>
-          <dt>Protocolo</dt><dd>Zero-Hallucination</dd>
-          <dt>Quality Gates</dt><dd>G0 → G1 → G2 → G3</dd>
-          <dt>Cobertura</dt><dd>100% de entregables públicos y premium</dd>
-        </dl>
-      </div>
+      <p class="info-dialog__body" id="infoDialogBody"></p>
     </div>
   </dialog>
 
@@ -338,19 +300,104 @@
     initShell({ pageSlug: 'home' });
     hydratePage('home');
 
-    // Micro-interacción: 100 ✓ Estándar → modal
-    const trigger = document.getElementById('std100-trigger');
-    const dialog = document.getElementById('std100Dialog');
-    if (trigger && dialog) {
-      const open = () => dialog.showModal();
-      trigger.addEventListener('click', open);
-      trigger.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-      // Hover pulse
-      trigger.addEventListener('mouseenter', () => { trigger.style.transform = 'scale(1.05)'; });
-      trigger.addEventListener('mouseleave', () => { trigger.style.transform = 'scale(1)'; });
-      // Close on backdrop click
-      dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    // ═══ GLOSSARY: contenido de todos los modales ═══
+    const GLOSSARY = {
+      'std100': {
+        term: 'Estándar',
+        title: '100 ✓ Calidad Entrusted',
+        body: `<p><strong style="color:var(--brand-gold);font-size:2rem;">100 ✓</strong></p>
+<p><em>1 prompt = task-to-value. 0 fricción. 0 delay.</em></p>
+<dl class="kv">
+<dt>Promesa</dt><dd>1 prompt → resultado de valor</dd>
+<dt>Fricción</dt><dd>0 — abrir y usar</dd>
+<dt>Feedback</dt><dd>0 delay — resultado inmediato</dd>
+<dt>Protocolo</dt><dd>Zero-Hallucination</dd>
+<dt>Gates</dt><dd>G0 → G1 → G2 → G3</dd>
+</dl>`
+      },
+      'ws01': { term: 'Workshop · 1-3h', title: 'WS-01 · Intro IA',
+        body: '<p>Superar la <em>Falacia de la Herramienta</em>: la IA es amplificador, no sustituto del método.</p><h4>Entregable</h4><p>Mapeo de ecosistema y diagnóstico "Caos vs IA".</p><h4>Evolución</h4><p>Del automatismo ciego a la <strong>curiosidad estratégica</strong> con propósito.</p>' },
+      'ws02': { term: 'Workshop · 1-3h', title: 'WS-02 · Prompting Avanzado',
+        body: '<p>Protocolos de interacción de alto rendimiento. Calidad <strong style="color:var(--brand-gold)">100 ✓</strong> desde el primer prompt.</p><h4>Entregable</h4><p>Biblioteca de prompts maestros.</p><h4>Evolución</h4><p>Dejarás de "chatear" con la IA para <strong>programar impacto</strong>.</p>' },
+      'ws03': { term: 'Workshop · 1-3h', title: 'WS-03 · Segundo Cerebro',
+        body: '<p>PKM con Obsidian/Notion. Nada se olvida, todo se conecta.</p><h4>Entregable</h4><p>Arquitectura PARA/Zettelkasten operativa.</p><h4>Impacto</h4><p>Recupera hasta <strong>5 horas semanales</strong> de búsqueda de información.</p>' },
+      'ws04': { term: 'Workshop · 1-3h', title: 'WS-04 · Productividad Personal',
+        body: '<p>GTD + Kanban para dominar el flujo, no la lista.</p><h4>Entregable</h4><p>Tablero de control y sistema "Mente como el Agua".</p><h4>Evolución</h4><p>De vivir reaccionando a <strong>pilotar tu jornada</strong> con intención.</p>' },
+      'bc01': { term: 'Bootcamp · 18h', title: 'BC-01 · Ofimática con IA',
+        body: '<p>M365 + Copilot. Automatizar la burocracia para liberar talento.</p><h4>Entregable</h4><p>Automatización de reportes, presentaciones y flujos.</p><h4>Impacto</h4><p>Recupera <strong>2 horas diarias</strong> de trabajo administrativo.</p>' },
+      'bc02': { term: 'Bootcamp · 18h', title: 'BC-02 · Ventas con IA',
+        body: '<p>Prospección híbrida y personalización a escala para equipos comerciales.</p><h4>Entregable</h4><p>Pipeline comercial automatizado. Calidad <strong style="color:var(--brand-gold)">100 ✓</strong>.</p><h4>Evolución</h4><p>Del spam ineficiente a la <strong>conexión genuina</strong> y estratégica.</p>' },
+      'bc03': { term: 'Bootcamp · 18h', title: 'BC-03 · Formas de Trabajo',
+        body: '<p>Agile + GTD + 2º Cerebro integrados con IA.</p><h4>Entregable</h4><p>Tu propio sistema operativo sin fricción.</p><h4>Impacto</h4><p><strong>Paz mental operativa</strong> permanente.</p>' },
+      'bc04': { term: 'Bootcamp · 18h', title: 'BC-04 · Trabajo Amplificado',
+        body: '<p>Ingeniería de agentes: crea tus propios GPTs y asistentes autónomos.</p><h4>Entregable</h4><p><strong>3 agentes operativos</strong> atendiendo procesos de negocio.</p><h4>Evolución</h4><p>De ejecutor del proceso a <strong>jefe de tus propios robots</strong>.</p>' },
+      'bc05': { term: 'Bootcamp · 18h', title: 'BC-05 · Vibe Coding',
+        body: '<p>Construir software y aplicaciones sin saber programar.</p><h4>Entregable</h4><p>Una web app funcional lista para producción.</p><h4>Impacto</h4><p><strong>Independencia total</strong> de TI para soluciones ágiles internas.</p>' },
+      'elite01': { term: 'Élite · 16 semanas · 48h+48h', title: 'Programa de Empoderamiento',
+        body: '<p>14 módulos en 2 fases para lograr más y mejor, en menos tiempo.</p><h4>Entregable</h4><p>Plan Maestro de Carrera con IA y sistemas operativos vitales.</p><h4>Evolución</h4><p>De ejecutante agotado a <strong>estratega de impacto</strong> con soberanía absoluta.</p><dl class="kv"><dt>Nivel</dt><dd>7</dd><dt>Duración</dt><dd>16 semanas</dd></dl>' },
+      'elite02': { term: 'Élite · 16 semanas · 48h+48h', title: 'Digital Champions',
+        body: '<p>Formación avanzada para agentes de cambio dentro de tu organización.</p><h4>Entregable</h4><p>Marco de transformación organizacional. Estándar <strong style="color:var(--brand-gold)">100 ✓</strong>.</p><h4>Evolución</h4><p>El <strong>referente digital</strong> que une cultura y eficiencia.</p><dl class="kv"><dt>Nivel</dt><dd>9</dd><dt>Duración</dt><dd>16 semanas</dd></dl>' },
+    };
+
+    // ═══ DIALOG ENGINE ═══
+    const dialog = document.getElementById('infoDialog');
+    function openInfo(key) {
+      const d = GLOSSARY[key];
+      if (!d || !dialog) return;
+      document.getElementById('infoDialogTerm').textContent = d.term;
+      document.getElementById('infoDialogTitle').textContent = d.title;
+      document.getElementById('infoDialogBody').innerHTML = d.body;
+      dialog.showModal();
     }
+    // Close on backdrop
+    dialog?.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+
+    // ═══ WIRE ALL CLICKABLE CARDS ═══
+    // 100 ✓ trigger
+    const std = document.getElementById('std100-trigger');
+    if (std) {
+      std.addEventListener('click', () => openInfo('std100'));
+      std.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInfo('std100'); }});
+      std.addEventListener('mouseenter', () => { std.style.transform = 'scale(1.05)'; });
+      std.addEventListener('mouseleave', () => { std.style.transform = 'scale(1)'; });
+    }
+
+    // Workshops (WS-01 to WS-04)
+    document.querySelectorAll('.principle.x-card').forEach(card => {
+      const num = card.querySelector('.principle__num')?.textContent?.trim();
+      if (!num) return;
+      const key = num.toLowerCase().replace('-','');
+      if (GLOSSARY[key]) {
+        card.addEventListener('click', () => openInfo(key));
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openInfo(key); }});
+      }
+    });
+
+    // Bootcamps (BC-01 to BC-05)
+    document.querySelectorAll('.tl-item.x-card').forEach(card => {
+      const meta = card.querySelector('.tl-item__meta')?.textContent?.trim();
+      if (!meta) return;
+      const key = meta.toLowerCase().replace('-','');
+      if (GLOSSARY[key]) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => openInfo(key));
+      }
+    });
+
+    // Élite programs
+    document.querySelectorAll('.ref.x-card').forEach((card, idx) => {
+      const key = `elite0${idx + 1}`;
+      if (GLOSSARY[key]) {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => openInfo(key));
+      }
+    });
+
+    // Diagnóstico cards → navigate to diagnóstico page
+    document.querySelectorAll('#diagnostico .axis.x-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => { location.href = 'diagnostico/'; });
+    });
   </script>
 </body>
 </html>

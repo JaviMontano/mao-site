@@ -83,8 +83,8 @@ class SiteSidebar extends HTMLElement {
       a.dataset.section = sec.id;
       a.addEventListener('click', (e) => this._handleLinkClick(e, sec.id));
 
-      // Label text directly in the link
-      const labelText = pageLabels[sec.id]?.[this._lang] ?? sec.id;
+      // Label: use label from config, fallback to i18n, fallback to id
+      const labelText = sec.label || pageLabels[sec.id]?.[this._lang] || sec.id;
       a.textContent = labelText;
 
       // Number at the end (canonical: .sidebar__link-num)

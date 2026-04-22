@@ -11,22 +11,16 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-
-const CANONICAL_PAGES = [
-  'index.html',
-  'diagnostico/index.html',
-  'empresas/index.html',
-  'personas/index.html',
-  'programas/index.html',
-  'recursos/index.html',
-  'metodo/index.html',
-  'casos/index.html',
-  'nosotros/index.html',
-  'insights/index.html',
-  'contacto/index.html',
-  'legal/index.html',
-  '404.html',
-];
+const inventory = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'data/site-inventory.json'), 'utf8')
+);
+const CANONICAL_PAGES = inventory.canonicalPages.map((page) => page.file);
+const LEGACY_REDIRECT_PAGES = inventory.legacyRedirectPages.map((page) => page.file);
+const ARCHIVED_HTML_PAGES = inventory.archivedHtmlPages.map((page) => page.file);
+const KNOWN_NON_CANONICAL = new Set([
+  ...LEGACY_REDIRECT_PAGES,
+  ...ARCHIVED_HTML_PAGES
+]);
 
 const EXCLUDED_DIRS = new Set([
   'admin',
@@ -71,6 +65,8 @@ if (missing.length > 0) {
 
 const canonicalSet = new Set(CANONICAL_PAGES);
 const unexpected = [];
+const legacyRedirects = [];
+const archived = [];
 
 /**
  * Scan for .html files at the repo root and one level deep (dir/index.html).
@@ -89,7 +85,13 @@ function scanForHtml() {
 
     if (entry.isFile() && name.endsWith('.html')) {
       // Top-level HTML file
-      if (!canonicalSet.has(name)) {
+      if (canonicalSet.has(name)) {
+        continue;
+      }
+      if (KNOWN_NON_CANONICAL.has(name)) {
+        if (LEGACY_REDIRECT_PAGES.includes(name)) legacyRedirects.push(name);
+        else archived.push(name);
+      } else {
         unexpected.push(name);
       }
     } else if (entry.isDirectory()) {
@@ -104,7 +106,13 @@ function scanForHtml() {
       for (const sub of subEntries) {
         if (sub.isFile() && sub.name.endsWith('.html')) {
           const rel = `${name}/${sub.name}`;
-          if (!canonicalSet.has(rel)) {
+          if (canonicalSet.has(rel)) {
+            continue;
+          }
+          if (KNOWN_NON_CANONICAL.has(rel)) {
+            if (LEGACY_REDIRECT_PAGES.includes(rel)) legacyRedirects.push(rel);
+            else archived.push(rel);
+          } else {
             unexpected.push(rel);
           }
         }
@@ -115,13 +123,27 @@ function scanForHtml() {
 
 scanForHtml();
 
+if (legacyRedirects.length > 0) {
+  console.log(`\n  ↪ Legacy redirect HTML tracked explicitly (${legacyRedirects.length}):`);
+  for (const page of legacyRedirects) {
+    console.log(`     • ${page}`);
+  }
+}
+
+if (archived.length > 0) {
+  console.log(`\n  🗃 Archived or non-public HTML tracked explicitly (${archived.length}):`);
+  for (const page of archived) {
+    console.log(`     • ${page}`);
+  }
+}
+
 if (unexpected.length > 0) {
   console.log(`\n  ❌ Unexpected HTML pages found (${unexpected.length}):`);
   for (const u of unexpected) {
     console.log(`     • ${u}`);
   }
-  console.log('\n  These pages are outside the 13 canonical set.');
-  console.log('  Remove them or add them to CANONICAL_PAGES in scripts/count-pages.js.\n');
+  console.log('\n  These pages are outside the canonical, legacy-redirect, and archived inventories.');
+  console.log('  Reclassify them in data/site-inventory.json or remove them.\n');
   process.exit(1);
 }
 

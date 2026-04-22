@@ -19,6 +19,7 @@
   "toggle": {
     "label": "Idioma / Language"
   },
+  "skip_link": "Saltar al contenido principal",
   "footer": {
     "quote": "\"La excelencia no se compra, se diseña. Se cocrea y se comparte.\"",
     "servicios": "Servicios",
@@ -1525,6 +1526,14 @@
         "primary": "Primera Conversación",
         "secondary": "Iniciar como Alumno"
       }
+    }
+  },
+  "insights": {
+    "suscripcion": {
+      "email_placeholder": "tu@correo.com",
+      "name_placeholder": "Tu nombre",
+      "success": "Gracias por suscribirte. Te avisaremos cuando publiquemos nuevos insights.",
+      "error": "No pudimos completar tu suscripción. Inténtalo de nuevo."
     }
   },
   "common": {

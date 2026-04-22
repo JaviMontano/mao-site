@@ -288,7 +288,7 @@ describe('SiteSidebar', () => {
     });
 
     it('only one link should be active at a time', () => {
-      sidebar.setActive('programas');
+      sidebar.setActive('metodo');
       const links = sidebar.el.querySelectorAll('.sidebar-link');
       const activeCount = links.filter((l) => l.classList.contains('is-active')).length;
       expect(activeCount).toBe(1);

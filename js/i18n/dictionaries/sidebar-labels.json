@@ -2,12 +2,12 @@
   "sidebar": {
     "home": {
       "propuesta": { "es": "Propuesta de valor", "en": "Value proposition" },
+      "aceleradores": { "es": "Aceleradores", "en": "Accelerators" },
       "diagnostico": { "es": "Diagnóstico", "en": "Diagnostic" },
       "recursos": { "es": "Recursos", "en": "Resources" },
-      "programas": { "es": "Programas", "en": "Programs" },
       "metodo": { "es": "Método", "en": "Method" },
-      "prueba-social": { "es": "Prueba social", "en": "Social proof" },
-      "contacto": { "es": "Contacto", "en": "Contact" }
+      "proposito": { "es": "Propósito", "en": "Purpose" },
+      "formacion": { "es": "Formación", "en": "Learning" }
     },
     "diagnostico": {
       "introduccion": { "es": "Introducción", "en": "Introduction" },
@@ -76,7 +76,7 @@
       "vision": { "es": "Visión", "en": "Vision" },
       "equipo": { "es": "Equipo", "en": "Team" },
       "ecosistema": { "es": "Ecosistema", "en": "Ecosystem" },
-      "metodologia": { "es": "Metodología", "en": "Methodology" },
+      "mision": { "es": "Misión", "en": "Mission" },
       "valores": { "es": "Valores", "en": "Values" },
       "comunidad": { "es": "Comunidad", "en": "Community" },
       "contacto": { "es": "Contacto", "en": "Contact" }

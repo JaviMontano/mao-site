@@ -1,0 +1,49 @@
+{
+  "canonicalPages": [
+    { "slug": "home", "file": "index.html", "path": "/", "includeInSitemap": true, "changefreq": "weekly", "priority": 1.0 },
+    { "slug": "diagnostico", "file": "diagnostico/index.html", "path": "/diagnostico/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.8 },
+    { "slug": "empresas", "file": "empresas/index.html", "path": "/empresas/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "personas", "file": "personas/index.html", "path": "/personas/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "programas", "file": "programas/index.html", "path": "/programas/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "recursos", "file": "recursos/index.html", "path": "/recursos/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "metodo", "file": "metodo/index.html", "path": "/metodo/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "casos", "file": "casos/index.html", "path": "/casos/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "nosotros", "file": "nosotros/index.html", "path": "/nosotros/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "insights", "file": "insights/index.html", "path": "/insights/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "contacto", "file": "contacto/index.html", "path": "/contacto/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "legal", "file": "legal/index.html", "path": "/legal/", "includeInSitemap": true, "changefreq": "monthly", "priority": 0.6 },
+    { "slug": "404", "file": "404.html", "path": null, "includeInSitemap": false, "changefreq": null, "priority": null }
+  ],
+  "legacyRedirectPages": [
+    { "file": "vision.html", "redirectTo": "/metodo/" },
+    { "file": "vision/index.html", "redirectTo": "/metodo/" },
+    { "file": "metodologia.html", "redirectTo": "/metodo/" },
+    { "file": "servicios/index.html", "redirectTo": "/programas/" },
+    { "file": "sitemap.html", "redirectTo": "/sitemap.xml" },
+    { "file": "empresas/diagnostico-gratuito.html", "redirectTo": "/diagnostico/?audiencia=empresa" },
+    { "file": "empresas/bootcamp-ventas-ia.html", "redirectTo": "/programas/" },
+    { "file": "empresas/workshop-venta-amplificada.html", "redirectTo": "/programas/" },
+    { "file": "personas/autodiagnostico.html", "redirectTo": "/diagnostico/?audiencia=persona" },
+    { "file": "personas/bootcamp-amplificacion-profesional.html", "redirectTo": "/programas/" },
+    { "file": "personas/consultive-workshops-estrategia-personal.html", "redirectTo": "/programas/" },
+    { "file": "legal/privacidad.html", "redirectTo": "/legal/#privacidad" },
+    { "file": "legal/terminos.html", "redirectTo": "/legal/#terminos" },
+    { "file": "nosotros/ecosistema.html", "redirectTo": "/nosotros/" },
+    { "file": "nosotros/mision.html", "redirectTo": "/nosotros/" },
+    { "file": "ruta/index.html", "redirectTo": "/diagnostico/" },
+    { "file": "ruta/cotizador.html", "redirectTo": "/diagnostico/" },
+    { "file": "ruta/cotizador-personas.html", "redirectTo": "/diagnostico/?audiencia=persona" },
+    { "file": "ruta/cotizador-empresas.html", "redirectTo": "/diagnostico/?audiencia=empresa" },
+    { "file": "ruta/levels_grid.html", "redirectTo": "/programas/" },
+    { "file": "ruta/service_blueprint.html", "redirectTo": "/programas/" },
+    { "file": "ruta/a-medida.html", "redirectTo": "/contacto/" }
+  ],
+  "archivedHtmlPages": [
+    { "file": "Montano_Javier_Canonical.html", "reason": "archived-reference" }
+  ],
+  "detailDynamicPatterns": [
+    "recursos/asistentes/**",
+    "recursos/asistentes-gpt/index.html",
+    "recursos/asistentes-gemini/index.html"
+  ]
+}

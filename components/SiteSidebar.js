@@ -17,6 +17,16 @@ function slugFromURL() {
   return segment || 'home';
 }
 
+function getNestedValue(obj, key) {
+  return key.split('.').reduce((value, part) => value?.[part], obj);
+}
+
+function humanizeKey(key) {
+  return key
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 class SiteSidebar extends HTMLElement {
   constructor() {
     super();
@@ -33,6 +43,7 @@ class SiteSidebar extends HTMLElement {
 
   connectedCallback() {
     this._pageSlug = this.dataset.page || slugFromURL();
+    this.classList.add('sidebar');
     this.setAttribute('role', 'navigation');
     this._loadLabels().then(() => {
       this.render();
@@ -56,39 +67,59 @@ class SiteSidebar extends HTMLElement {
     this._links = [];
 
     const sections = getSections(this._pageSlug);
-    const pageLabels = this._labels?.sidebar?.[this._pageSlug] ?? {};
+
+    // Mobile CTA (visible only ≤640px via CSS)
+    const cta = document.createElement('a');
+    cta.className = 'sidebar__cta';
+    cta.href = '/contacto/';
+    cta.textContent = this._lang === 'en' ? "Let's Talk →" : 'Conversemos →';
+    this.appendChild(cta);
+
+    // Sidebar head (canonical: .sidebar__head)
+    const head = document.createElement('div');
+    head.className = 'sidebar__head';
+    head.textContent = 'Índice';
+    this.appendChild(head);
+
+    // Nav wrapper (canonical: .sidebar__nav)
+    const nav = document.createElement('nav');
+    nav.className = 'sidebar__nav';
 
     sections.forEach((sec, idx) => {
       const a = document.createElement('a');
-      a.className = 'sidebar-link';
+      a.className = 'sidebar__link';
       a.href = `#${sec.id}`;
       a.dataset.section = sec.id;
       a.addEventListener('click', (e) => this._handleLinkClick(e, sec.id));
 
+      const labelText =
+        getNestedValue(this._labels, sec.i18nKey)?.[this._lang] ||
+        humanizeKey(sec.id);
+      a.textContent = labelText;
+
+      // Number at the end (canonical: .sidebar__link-num)
       const num = document.createElement('span');
-      num.className = 'sidebar-number';
+      num.className = 'sidebar__link-num';
       num.textContent = String(idx + 1).padStart(2, '0');
       a.appendChild(num);
 
-      const icon = document.createElement('span');
-      icon.className = 'sidebar-icon';
-      icon.dataset.icon = sec.icon;
-      a.appendChild(icon);
-
-      const label = document.createElement('span');
-      label.className = 'sidebar-label';
-      label.textContent = pageLabels[sec.id]?.[this._lang] ?? sec.id;
-      a.appendChild(label);
-
-      this.appendChild(a);
+      nav.appendChild(a);
       this._links.push(a);
     });
+
+    this.appendChild(nav);
+
+    // Sidebar footer
+    const footer = document.createElement('div');
+    footer.className = 'sidebar__footer';
+    footer.innerHTML = '<a href="/">metodologia.info</a>';
+    this.appendChild(footer);
 
     // Backdrop for mobile drawer
     this._backdrop = document.createElement('div');
     this._backdrop.className = 'sidebar-backdrop';
     this._backdrop.addEventListener('click', () => this.close());
-    this.appendChild(this._backdrop);
+    document.body.appendChild(this._backdrop);
   }
 
   /* ------------------------------------------------------------------ */

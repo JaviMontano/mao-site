@@ -113,17 +113,17 @@ describe('theme/toggle', () => {
   });
 
   describe('toggleTheme', () => {
-    it('flips light to dark', () => {
+    it('flips light to dark (default)', () => {
       mod.initTheme(); // defaults to light
       mod.toggleTheme();
       expect(mod.getTheme()).toBe('dark');
     });
 
-    it('flips dark to light', () => {
-      store.mdg_theme = 'dark';
+    it('flips light to dark (stored light)', () => {
+      store.mdg_theme = 'light';
       mod.initTheme();
       mod.toggleTheme();
-      expect(mod.getTheme()).toBe('light');
+      expect(mod.getTheme()).toBe('dark');
     });
 
     it('persists the toggled theme', () => {

@@ -49,6 +49,12 @@ function resolveFirestoreVariant(fsSlot, audience, locale) {
   return undefined;
 }
 
+function shouldUseFirestore(cmsEnabled) {
+  if (cmsEnabled === true) return true;
+  if (cmsEnabled === false) return false;
+  return MigrationBridge.isEnabled('cms-i18n');
+}
+
 /**
  * Resolve a single content slot through the 5-level fallback cascade.
  *
@@ -63,10 +69,10 @@ function resolveFirestoreVariant(fsSlot, audience, locale) {
  * @returns {string}
  */
 export function resolveSlot(pageSlug, slotId, audience, locale, options = {}) {
-  const { dictionaries = {}, firestoreSlots = {}, cmsEnabled = false } = options;
+  const { dictionaries = {}, firestoreSlots = {}, cmsEnabled } = options;
 
   // Level 1: Firestore override (via migration-bridge cms-i18n flag or explicit cmsEnabled)
-  const useFirestore = cmsEnabled || MigrationBridge.isEnabled('cms-i18n');
+  const useFirestore = shouldUseFirestore(cmsEnabled);
   if (useFirestore) {
     const fsPage = firestoreSlots[pageSlug];
     if (fsPage) {
@@ -121,7 +127,7 @@ export function resolveSlot(pageSlug, slotId, audience, locale, options = {}) {
  * @returns {Promise<Object>} { slotId: { slotId, variants } } or {}
  */
 export async function loadFirestoreSlots(pageSlug, firestoreFetcher) {
-  if (!MigrationBridge.isEnabled('cms-i18n')) {
+  if (!shouldUseFirestore(undefined)) {
     return {};
   }
 

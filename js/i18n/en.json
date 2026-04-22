@@ -19,6 +19,7 @@
   "toggle": {
     "label": "Idioma / Language"
   },
+  "skip_link": "Skip to main content",
   "footer": {
     "quote": "\"Excellence is not bought, it is designed. Co-created and shared.\"",
     "servicios": "Services",
@@ -1525,6 +1526,14 @@
         "primary": "Primera Conversación",
         "secondary": "Iniciar como Alumno"
       }
+    }
+  },
+  "insights": {
+    "suscripcion": {
+      "email_placeholder": "your@email.com",
+      "name_placeholder": "Your name",
+      "success": "Thanks for subscribing. We will notify you when new insights are published.",
+      "error": "We could not complete your subscription. Please try again."
     }
   },
   "common": {

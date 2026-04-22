@@ -7,15 +7,14 @@
 - **Domain**: metodologia.info (EdTech, LatAm)
 - **Brand**: MetodologIA — "Success as a Service"
 - **Stack**: Vanilla JS + Web Components + Tailwind CSS + Firebase BaaS
-- **Constitution**: CONSTITUTION.md (v6.0.0, 20 principles)
+- **Constitution**: CONSTITUTION.md (governance source of truth)
 
 ## Repo Topology
 
 ```
-Local repo     → GitHub (origin)  → Hostinger (production)
-/Users/deonto/   github.com/        156.67.75.195:65002
-claude-code/     JaviMontano/       ~/domains/metodologia.info/
-site-metodologia site-metodologia   public_html/
+Local repo                     → Local upstream (origin)           → GitHub mirror (github)        → Hostinger (production)
+/Users/deonto/claude-code/     /Users/deonto/claude-code/          github.com/JaviMontano/         156.67.75.195:65002
+site-metodologia-agentic       site-metodologia                    mao-site.git                     ~/domains/metodologia.info/public_html/
 ```
 
 ## Branch Strategy (Constitution XX)
@@ -75,7 +74,7 @@ ssh -p 65002 u363367449@156.67.75.195 \
 | ID | Status | Summary |
 |----|--------|---------|
 | BUG-001 | CDN propagating | SiteHeader.js stale on Cloudflare — correct on origin, CDN dev mode ON |
-| BUG-002 | Open | `ruta-mode.js` fetches non-existent `data/business-logic.json` (404) |
+| BUG-002 | Fixed locally | `ruta-mode.js` now has a committed `data/business-logic.json` contract artifact |
 
 ## Test Commands
 
@@ -89,6 +88,6 @@ npx playwright test tests/e2e/ruta-i18n.spec.js  # BUG-001 regression
 ## Session Quick Start
 
 1. Check `git branch` — you should be on a feature branch from `staging`
-2. Read `CONSTITUTION.md` (v6.0.0) for governance
+2. Read `CONSTITUTION.md` for governance
 3. Check this file's Active Bugs before starting work
 4. Run `npx vitest run` to verify baseline is green

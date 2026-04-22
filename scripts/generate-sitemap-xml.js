@@ -19,7 +19,7 @@
  */
 
 import { execSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,24 +27,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const DOMAIN = 'https://metodologia.info';
 
-// ---------------------------------------------------------------------------
-// Page definitions — 12 canonical pages (no 404)
-// ---------------------------------------------------------------------------
-
-const PAGES = [
-  { slug: 'home',        path: '/',              changefreq: 'weekly',  priority: 1.0  },
-  { slug: 'diagnostico', path: '/diagnostico/',   changefreq: 'monthly', priority: 0.8  },
-  { slug: 'empresas',    path: '/empresas/',      changefreq: 'monthly', priority: 0.6  },
-  { slug: 'personas',    path: '/personas/',      changefreq: 'monthly', priority: 0.6  },
-  { slug: 'programas',   path: '/programas/',     changefreq: 'monthly', priority: 0.6  },
-  { slug: 'recursos',    path: '/recursos/',      changefreq: 'monthly', priority: 0.6  },
-  { slug: 'metodo',      path: '/metodo/',        changefreq: 'monthly', priority: 0.6  },
-  { slug: 'casos',       path: '/casos/',         changefreq: 'monthly', priority: 0.6  },
-  { slug: 'nosotros',    path: '/nosotros/',      changefreq: 'monthly', priority: 0.6  },
-  { slug: 'insights',    path: '/insights/',      changefreq: 'monthly', priority: 0.6  },
-  { slug: 'contacto',    path: '/contacto/',      changefreq: 'monthly', priority: 0.6  },
-  { slug: 'legal',       path: '/legal/',         changefreq: 'monthly', priority: 0.6  },
-];
+const inventory = JSON.parse(
+  readFileSync(resolve(ROOT, 'data/site-inventory.json'), 'utf8')
+);
+const PAGES = inventory.canonicalPages.filter((page) => page.includeInSitemap);
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -77,8 +63,7 @@ function getLastmod(filePath) {
  * @returns {string} relative file path from repo root
  */
 function resolveFilePath(page) {
-  if (page.slug === 'home') return 'index.html';
-  return `${page.slug}/index.html`;
+  return page.file;
 }
 
 /**

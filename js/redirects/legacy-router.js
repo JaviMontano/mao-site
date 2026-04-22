@@ -10,6 +10,7 @@
 /** @type {Array<[string, string]>} Specific path → target pairs (checked before catch-all) */
 const REDIRECT_MAP = [
   ['/vision.html', '/metodo/'],
+  ['/vision/', '/metodo/'],
   ['/servicios/', '/programas/'],
   ['/metodologia.html', '/metodo/'],
   ['/empresas/diagnostico-gratuito.html', '/diagnostico/?audiencia=empresa'],
@@ -24,7 +25,7 @@ const REDIRECT_MAP = [
   ['/ruta/levels_grid.html', '/programas/'],
   ['/ruta/service_blueprint.html', '/programas/'],
   ['/ruta/a-medida.html', '/contacto/'],
-  ['/sitemap.html', '/'],
+  ['/sitemap.html', '/sitemap.xml'],
 ];
 
 /** Catch-all prefix — any /ruta/* not matched above */

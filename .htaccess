@@ -8,14 +8,19 @@
     # ── Legacy 301 Redirects (T005 / plan.md v6 §3) ──────────────
     # Specific page redirects (must precede catch-all rules)
     RewriteRule ^vision\.html$                          /metodo/  [R=301,L]
+    RewriteRule ^vision/?$                              /metodo/  [R=301,L]
     RewriteRule ^metodologia\.html$                     /metodo/  [R=301,L]
     RewriteRule ^empresas/diagnostico-gratuito\.html$   /diagnostico/?audiencia=empresa  [R=301,L]
+    RewriteRule ^empresas/bootcamp-ventas-ia\.html$    /programas/  [R=301,L]
+    RewriteRule ^empresas/workshop-venta-amplificada\.html$ /programas/  [R=301,L]
     RewriteRule ^personas/autodiagnostico\.html$        /diagnostico/?audiencia=persona  [R=301,L]
+    RewriteRule ^personas/bootcamp-amplificacion-profesional\.html$ /programas/  [R=301,L]
+    RewriteRule ^personas/consultive-workshops-estrategia-personal\.html$ /programas/  [R=301,L]
     RewriteRule ^legal/privacidad\.html$                /legal/#privacidad  [R=301,NE,L]
     RewriteRule ^legal/terminos\.html$                  /legal/#terminos    [R=301,NE,L]
     RewriteRule ^nosotros/ecosistema\.html$             /nosotros/  [R=301,L]
     RewriteRule ^nosotros/mision\.html$                 /nosotros/  [R=301,L]
-    RewriteRule ^sitemap\.html$                         /  [R=301,L]
+    RewriteRule ^sitemap\.html$                         /sitemap.xml  [R=301,L]
 
     # /ruta/ specific pages (before catch-all)
     RewriteRule ^ruta/cotizador.*\.html$                /diagnostico/  [R=301,L]
@@ -72,7 +77,7 @@
     # script-src: Allows self, inline (needed for hydration), and trusted CDNs.
     # object-src: 'none' blocks plugins (Flash/Java).
     # base-uri: 'self' prevents base tag hijacking.
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.metodologia.info; object-src 'none'; media-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://www.googletagmanager.com https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.metodologia.info https://firestore.googleapis.com https://www.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; object-src 'none'; media-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';"
     
     # Permissions Policy (FKA Feature Policy)
     Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"

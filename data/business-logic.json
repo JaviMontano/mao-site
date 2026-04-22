@@ -1,0 +1,22 @@
+{
+  "personas": {
+    "heroTitle": "Tu Ruta Personal hacia la Soberanía Digital, Profesional y Estratégica",
+    "heroSubtitle": "Descubre el <strong>High Performance Consultive Workshop</strong>. Toma el control de tu productividad con IA.",
+    "headCountLabel": "Head Count",
+    "payrollLabel": "Costo Nómina Mensual",
+    "ingresosLabel": "Ingresos mensuales aproximados (COP)",
+    "horasLabel": "Horas generación de ingresos",
+    "estudioLabel": "Horas dedicadas a estudio",
+    "showCompanyInputs": false
+  },
+  "empresas": {
+    "heroTitle": "Tu Ruta Empresarial hacia la Soberanía Digital, Operativa y Estratégica",
+    "heroSubtitle": "Descubre el <strong>Sistema B2B MetodologIA</strong>. Diseña una operación aumentada con IA para tu equipo.",
+    "headCountLabel": "Head Count",
+    "payrollLabel": "Costo Nómina Mensual",
+    "ingresosLabel": "Ingresos mensuales aproximados (COP)",
+    "horasLabel": "Horas de trabajo productivo del equipo",
+    "estudioLabel": "Horas dedicadas a habilitación",
+    "showCompanyInputs": true
+  }
+}

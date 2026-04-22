@@ -119,26 +119,6 @@ class SiteFooter extends HTMLElement {
           ])}
         </div>
 
-        <!-- Ecosystem stats bar -->
-        <div class="site-footer__ecosystem" data-cms="ecosystem.footer">
-          <div class="site-footer__stat">
-            <span class="site-footer__stat-num">4</span>
-            <span class="site-footer__stat-label">${t.eco_founders}</span>
-          </div>
-          <div class="site-footer__stat">
-            <span class="site-footer__stat-num">+10</span>
-            <span class="site-footer__stat-label">${t.eco_ambassadors}</span>
-          </div>
-          <div class="site-footer__stat">
-            <span class="site-footer__stat-num">+50</span>
-            <span class="site-footer__stat-label">${t.eco_nodes}</span>
-          </div>
-          <div class="site-footer__stat">
-            <span class="site-footer__stat-num">6</span>
-            <span class="site-footer__stat-label">${t.eco_countries}</span>
-          </div>
-        </div>
-
         <!-- Bottom -->
         <div class="site-footer__bottom">
           <span data-cms="footer.copyright">${t.copyright}</span>

@@ -99,13 +99,6 @@ class SiteSidebar extends HTMLElement {
 
     this.appendChild(nav);
 
-    // Ecosystem stats
-    const eco = document.createElement('div');
-    eco.className = 'sidebar__ecosystem';
-    eco.setAttribute('data-cms', 'ecosystem.sidebar');
-    eco.innerHTML = '<strong>4</strong> Founders · <strong>10+</strong> Embajadores · <strong>50+</strong> Nodos';
-    this.appendChild(eco);
-
     // Sidebar footer
     const footer = document.createElement('div');
     footer.className = 'sidebar__footer';

@@ -3,14 +3,24 @@
  * and prefers-color-scheme fallback.
  *
  * Storage key: mdg_theme
- * Default: "light" (Brand decision — light mode default)
+ * Default: "dark" (CSS default — no data-theme attribute = dark)
  */
 
 const STORAGE_KEY = 'mdg_theme';
 const LIGHT = 'light';
 const DARK = 'dark';
 
-let currentTheme = LIGHT;
+// Eagerly resolve theme at module load time (before initTheme) so that
+// getTheme()/toggleTheme() return the correct value even if called
+// before initShell() runs (e.g. from TripleToggle.connectedCallback).
+// Default is DARK to match the CSS baseline (no data-theme attr = dark).
+let currentTheme = (() => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === LIGHT || stored === DARK) return stored;
+  } catch { /* localStorage disabled */ }
+  return DARK;
+})();
 const subscribers = new Set();
 
 /**
@@ -22,13 +32,7 @@ const subscribers = new Set();
 function resolveTheme() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === LIGHT || stored === DARK) return stored;
-
-  if (typeof matchMedia === 'function') {
-    const mq = matchMedia('(prefers-color-scheme: dark)');
-    if (mq.matches) return DARK;
-  }
-
-  return LIGHT;
+  return DARK;
 }
 
 function applyTheme(theme) {

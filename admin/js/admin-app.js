@@ -24,17 +24,16 @@ const tabBar = document.getElementById('tab-bar');
 const ROLE_LEVELS = { super_admin: 4, admin: 3, editor: 2, viewer: 1 };
 
 /**
- * Tab definitions with role requirements.
- * minRole = minimum role to see the tab.
+ * Tab definitions with role requirements and Lucide icon names.
  */
 const TAB_DEFS = [
-  { id: 'programs', label: 'Programs', minRole: 'viewer' },
-  { id: 'prices', label: 'Prices', minRole: 'viewer' },
-  { id: 'translations', label: 'Translations', minRole: 'viewer' },
-  { id: 'pages', label: 'Pages', minRole: 'editor' },
-  { id: 'users', label: 'Users', minRole: 'super_admin' },
-  { id: 'audit', label: 'Audit', minRole: 'admin' },
-  { id: 'profile', label: 'Profile', minRole: 'viewer' },
+  { id: 'programs', label: 'Programs', icon: 'layout-grid', minRole: 'viewer' },
+  { id: 'prices', label: 'Prices', icon: 'badge-dollar-sign', minRole: 'viewer' },
+  { id: 'translations', label: 'Translations', icon: 'languages', minRole: 'viewer' },
+  { id: 'pages', label: 'Pages', icon: 'file-text', minRole: 'editor' },
+  { id: 'users', label: 'Users', icon: 'users', minRole: 'super_admin' },
+  { id: 'audit', label: 'Audit', icon: 'scroll-text', minRole: 'admin' },
+  { id: 'profile', label: 'Profile', icon: 'user-circle', minRole: 'viewer' },
 ];
 
 let currentRole = null;
@@ -43,6 +42,7 @@ let currentRole = null;
 AuthService.onAuthStateChanged(async (user) => {
   if (!user) {
     showScreen('login');
+    initIcons();
     return;
   }
 
@@ -65,13 +65,13 @@ AuthService.onAuthStateChanged(async (user) => {
   if (!role) {
     showScreen('denied');
     userInfo.textContent = user.email;
+    initIcons();
     return;
   }
 
   showScreen('editor');
   renderTabs(role);
-  userInfo.innerHTML = `<span class="text-slate-500 text-xs mr-2">${role}</span>${user.email} <button id="logout-btn" class="ml-2 text-slate-500 hover:text-white text-xs">[Sign Out]</button>`;
-  document.getElementById('logout-btn')?.addEventListener('click', () => AuthService.signOut());
+  renderUserInfo(user, role);
 
   // Initialize content service for admin
   await ContentService.init({ app });
@@ -97,8 +97,24 @@ function showScreen(screen) {
 }
 
 /**
- * Render tabs based on user role.
- * @param {string} role
+ * Render user info in header with role badge.
+ */
+function renderUserInfo(user, role) {
+  const roleClass = `admin-role-badge admin-role-badge--${role}`;
+  userInfo.innerHTML = `
+    <span class="${roleClass}">${role.replace('_', ' ')}</span>
+    <span>${user.email}</span>
+    <button id="logout-btn" class="admin-header__signout">
+      <i data-lucide="log-out" style="width:14px;height:14px;"></i>
+      Sign Out
+    </button>
+  `;
+  document.getElementById('logout-btn')?.addEventListener('click', () => AuthService.signOut());
+  initIcons();
+}
+
+/**
+ * Render tabs based on user role with icons.
  */
 function renderTabs(role) {
   const roleLevel = ROLE_LEVELS[role] || 0;
@@ -115,10 +131,8 @@ function renderTabs(role) {
     btn.setAttribute('aria-controls', `panel-${tabDef.id}`);
     btn.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
     btn.dataset.tab = tabDef.id;
-    btn.textContent = tabDef.label;
-    btn.className = idx === 0
-      ? 'px-4 py-3 text-sm font-semibold border-b-2 border-brand-gold text-brand-gold'
-      : 'px-4 py-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-white';
+    btn.className = 'admin-tab';
+    btn.innerHTML = `<i data-lucide="${tabDef.icon}" class="admin-tab__icon"></i>${tabDef.label}`;
     btn.setAttribute('tabindex', idx === 0 ? '0' : '-1');
     tabBar.appendChild(btn);
   });
@@ -152,22 +166,32 @@ function renderTabs(role) {
       activateTab(tabArray[newIdx], tabs, panels);
     });
   });
+
+  initIcons();
 }
 
 function activateTab(selectedTab, tabs, panels) {
   tabs.forEach((t) => {
-    const isSelected = t === selectedTab;
-    t.setAttribute('aria-selected', String(isSelected));
-    t.classList.toggle('border-brand-gold', isSelected);
-    t.classList.toggle('text-brand-gold', isSelected);
-    t.classList.toggle('border-transparent', !isSelected);
-    t.classList.toggle('text-slate-400', !isSelected);
-    t.setAttribute('tabindex', isSelected ? '0' : '-1');
+    t.setAttribute('aria-selected', String(t === selectedTab));
+    t.setAttribute('tabindex', t === selectedTab ? '0' : '-1');
   });
 
   panels.forEach((p) => {
     p.classList.toggle('hidden', p.id !== `panel-${selectedTab.dataset.tab}`);
   });
+}
+
+/**
+ * Initialize Lucide icons in the DOM.
+ */
+function initIcons() {
+  if (typeof window.lucide !== 'undefined') {
+    window.lucide.createIcons();
+  } else {
+    setTimeout(() => {
+      if (typeof window.lucide !== 'undefined') window.lucide.createIcons();
+    }, 300);
+  }
 }
 
 // Load content into editors

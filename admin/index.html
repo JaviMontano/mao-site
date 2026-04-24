@@ -5,46 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin — MetodologIA CMS</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="../estilos/variables.css">
-  <link rel="stylesheet" href="../dist/output.css">
-</head>
-<body class="bg-slate-900 min-h-screen text-white">
-  <header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center justify-between">
-    <h1 class="text-lg font-bold">MetodologIA CMS</h1>
-    <div id="user-info" class="text-sm text-slate-400"></div>
-  </header>
 
+  <!-- Design System: same tokens as public site -->
+  <link rel="stylesheet" href="../estilos/variables.css">
+  <link rel="stylesheet" href="../estilos/base.css">
+  <link rel="stylesheet" href="../estilos/components.css">
+  <link rel="stylesheet" href="../dist/output.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <!-- Typography: same fonts as public site -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Montserrat:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Montserrat:wght@400;500;600&display=swap"></noscript>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
   <!-- Login Screen -->
-  <div id="login-screen" class="flex items-center justify-center min-h-[80vh]" data-login>
-    <div class="text-center">
-      <h2 class="text-2xl font-bold mb-4">Admin Access Required</h2>
-      <p class="text-slate-400 mb-6">Sign in with your Google account to manage content.</p>
-      <button id="login-btn" class="px-6 py-3 bg-brand-gold text-slate-900 rounded-lg font-semibold hover:bg-brand-gold/90">
+  <div id="login-screen" class="admin-login">
+    <div class="admin-login__card">
+      <div class="admin-login__logo">
+        <svg width="48" height="48" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--bg-primary)" />
+              <stop offset="100%" stop-color="var(--bg-surface)" />
+            </linearGradient>
+          </defs>
+          <rect width="36" height="36" rx="10" fill="url(#logoGrad)"/>
+          <path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="white"/>
+          <circle cx="18" cy="8" r="2" fill="var(--brand-gold)"/>
+        </svg>
+        <div>
+          <h1 class="admin-login__title"><span class="highlight-metodologia">Metodolog</span><span class="highlight-ia-premium">IA</span></h1>
+          <p class="admin-login__subtitle">Content Management System</p>
+        </div>
+      </div>
+      <p class="admin-login__desc">Sign in with your Google account to manage content.</p>
+      <button id="login-btn" class="btn-gold admin-login__btn">
+        <i data-lucide="log-in"></i>
         Sign in with Google
       </button>
     </div>
   </div>
 
   <!-- Access Denied -->
-  <div id="denied-screen" class="hidden flex items-center justify-center min-h-[80vh]">
-    <div class="text-center">
-      <h2 class="text-2xl font-bold text-red-400 mb-4">Access Denied</h2>
-      <p class="text-slate-400 mb-6">Your account does not have CMS access. Contact a super admin to request access.</p>
-      <button id="logout-btn-denied" class="px-4 py-2 bg-slate-700 text-white rounded">Sign Out</button>
+  <div id="denied-screen" class="admin-login hidden">
+    <div class="admin-login__card">
+      <div class="admin-login__logo">
+        <i data-lucide="shield-x" class="admin-denied__icon"></i>
+        <div>
+          <h2 class="admin-login__title" style="color: var(--brand-red);">Access Denied</h2>
+          <p class="admin-login__subtitle">Contact a super admin to request access.</p>
+        </div>
+      </div>
+      <button id="logout-btn-denied" class="admin-btn admin-btn--secondary">Sign Out</button>
     </div>
   </div>
 
-  <!-- Admin Editor -->
-  <div id="admin-editor" class="hidden" data-admin-editor>
-    <!-- Tab Navigation -->
-    <nav class="bg-slate-800 border-b border-slate-700 px-6">
-      <div role="tablist" aria-label="Content editors" id="tab-bar" class="flex gap-1 overflow-x-auto">
-        <!-- Tabs are rendered dynamically by admin-app.js based on user role -->
+  <!-- Admin Shell -->
+  <div id="admin-editor" class="hidden">
+    <!-- Admin Header -->
+    <header class="admin-header">
+      <div class="admin-header__brand">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <rect width="36" height="36" rx="10" fill="url(#logoGrad)"/>
+          <path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="white"/>
+          <circle cx="18" cy="8" r="2" fill="var(--brand-gold)"/>
+        </svg>
+        <span class="admin-header__wordmark"><span class="highlight-metodologia">Metodolog</span><span class="highlight-ia-premium">IA</span></span>
+        <span class="admin-header__badge">CMS</span>
       </div>
+      <div id="user-info" class="admin-header__user"></div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="admin-tabs">
+      <div role="tablist" aria-label="Content editors" id="tab-bar" class="admin-tabs__bar">
+        <!-- Tabs rendered dynamically by admin-app.js -->
+      </div>
+      <div class="admin-tabs__glow"></div>
     </nav>
 
     <!-- Tab Panels -->
-    <main class="p-6 max-w-5xl mx-auto">
+    <main class="admin-main">
       <div role="tabpanel" id="panel-programs" aria-labelledby="tab-programs" class="hidden"></div>
       <div role="tabpanel" id="panel-prices" aria-labelledby="tab-prices" class="hidden"></div>
       <div role="tabpanel" id="panel-translations" aria-labelledby="tab-translations" class="hidden"></div>
@@ -56,5 +100,6 @@
   </div>
 
   <script type="module" src="js/admin-bundle.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

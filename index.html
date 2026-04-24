@@ -143,12 +143,12 @@
         <h2 class="h2" style="margin:1rem 0 .5rem;" data-i18n-html="home.diag.title">Diagnóstico <span class="gradient-text">Sin Riesgo</span></h2>
         <p class="lead" style="margin-bottom:1.5rem;" data-i18n="home.diag.lead">Para personas: 4 formularios en ~20 min. Para empresas: reunión de evaluación profunda.</p>
         <div class="refs" style="gap:1rem;">
-          <div class="ref x-card" role="button" tabindex="0" style="cursor:pointer;flex:1;" onclick="location.href='diagnostico/#segmento'">
+          <div class="ref x-card" id="diag-card-personas" role="button" tabindex="0" style="cursor:pointer;flex:1;">
             <h3 class="ref__who" data-i18n="home.diag.personas_title">Personas</h3>
             <p class="ref__role" data-i18n="home.diag.personas_desc">4 formularios que miden madurez en IA, método, capacidades digitales y perfil profesional.</p>
             <span class="ref__link" data-i18n="home.diag.personas_link">~20 min · Sin costo</span>
           </div>
-          <div class="ref x-card" role="button" tabindex="0" style="cursor:pointer;flex:1;border-color:rgba(255,215,0,.3);" onclick="location.href='diagnostico/#madurez'">
+          <div class="ref x-card" id="diag-card-empresas" role="button" tabindex="0" style="cursor:pointer;flex:1;border-color:rgba(255,215,0,.3);">
             <h3 class="ref__who" style="color:var(--brand-gold);" data-i18n="home.diag.empresas_title">Empresas</h3>
             <p class="ref__role" data-i18n="home.diag.empresas_desc">Evaluación profunda con entrevistas focalizadas. Radar organizacional + roadmap priorizado.</p>
             <span class="ref__link" data-i18n="home.diag.empresas_link">Por reunión · Agendar</span>
@@ -330,6 +330,7 @@
         <button class="info-dialog__close" type="button" data-i18n-aria-label="home.modal.close" aria-label="Cerrar" onclick="this.closest('dialog').close()">✕</button>
       </div>
       <p class="info-dialog__body" id="infoDialogBody"></p>
+      <a id="infoDialogCTA" href="#" class="home-cta home-cta--primary" style="margin-top:1.25rem;display:none;"></a>
     </div>
   </dialog>
 
@@ -348,6 +349,14 @@
       document.getElementById('infoDialogTerm').textContent = d.term;
       document.getElementById('infoDialogTitle').textContent = d.title;
       document.getElementById('infoDialogBody').innerHTML = d.body;
+      const ctaEl = document.getElementById('infoDialogCTA');
+      if (d.cta && d.ctaHref) {
+        ctaEl.textContent = d.cta;
+        ctaEl.href = d.ctaHref;
+        ctaEl.style.display = 'inline-flex';
+      } else {
+        ctaEl.style.display = 'none';
+      }
       dialog.showModal();
     }
     function wireCard(el, key) {
@@ -369,10 +378,9 @@
       std.addEventListener('mouseleave', () => { std.style.transform = 'scale(1)'; });
     }
 
-    // Diagnóstico (3 pasos)
-    document.querySelectorAll('#diagnostico .axis.x-card').forEach((card, idx) => {
-      wireCard(card, `diag0${idx + 1}`);
-    });
+    // Diagnóstico cards (personas / empresas)
+    wireCard(document.getElementById('diag-card-personas'), 'diag_personas');
+    wireCard(document.getElementById('diag-card-empresas'), 'diag_empresas');
 
     // Recursos (3 tiles)
     const recKeys = ['rec_asist', 'rec_prompts', 'rec_tools'];
@@ -415,8 +423,8 @@
       wireCard(card, key);
     });
 
-    // Élite programs
-    document.querySelectorAll('.ref.x-card').forEach((card, idx) => {
+    // Élite programs (only in formacion section)
+    document.querySelectorAll('#formacion .ref.x-card').forEach((card, idx) => {
       wireCard(card, `elite0${idx + 1}`);
     });
   </script>

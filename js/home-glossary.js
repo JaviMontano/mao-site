@@ -35,6 +35,24 @@ export const GLOSSARY = {
     }
   },
 
+  // ── Diagnóstico (cards home) ──
+  diag_personas: {
+    es: { term: 'Diagnóstico para Personas', title: 'Autodiagnóstico Profesional',
+      body: '<p>4 formularios que miden tu nivel real en <strong>4 dimensiones</strong>:</p><ul><li><strong>Ficha Personal</strong> — contexto, rol, motivaciones (3-4 min)</li><li><strong>Madurez en IA</strong> — adopción real, no teórica (4-5 min)</li><li><strong>Método y Formas de Trabajo</strong> — cómo organizas y produces (4-5 min)</li><li><strong>Capacidades Digitales</strong> — competencias en 5 áreas (8-9 min)</li></ul><p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Total: ~20 minutos. Sin costo. Resultados personalizados con IA.</p>',
+      cta: 'Ir al diagnóstico →', ctaHref: 'diagnostico/#segmento' },
+    en: { term: 'Diagnosis for Individuals', title: 'Professional Self-Assessment',
+      body: '<p>4 forms that measure your real level across <strong>4 dimensions</strong>:</p><ul><li><strong>Personal Profile</strong> — context, role, motivations (3-4 min)</li><li><strong>AI Maturity</strong> — real adoption, not theoretical (4-5 min)</li><li><strong>Methodology & Ways of Working</strong> — how you organize and produce (4-5 min)</li><li><strong>Digital Capabilities</strong> — skills across 5 areas (8-9 min)</li></ul><p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Total: ~20 minutes. No cost. AI-personalized results.</p>',
+      cta: 'Go to diagnosis →', ctaHref: 'diagnostico/#segmento' }
+  },
+  diag_empresas: {
+    es: { term: 'Diagnóstico para Empresas', title: 'Evaluación Organizacional',
+      body: '<p>Evaluación profunda con <strong>entrevistas focalizadas</strong> a líderes clave de tu organización.</p><h4>Qué incluye</h4><ul><li><strong>Radar organizacional</strong> — madurez digital, metodológica y cultural</li><li><strong>Mapa de dolores</strong> — fricciones operativas priorizadas por impacto</li><li><strong>Roadmap priorizado</strong> — plan de acción con quick wins y estrategia a 90 días</li></ul><p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Por reunión. Entregable: Documento de Entendimiento con diagnóstico + ruta.</p>',
+      cta: 'Agendar evaluación →', ctaHref: 'diagnostico/#madurez' },
+    en: { term: 'Diagnosis for Companies', title: 'Organizational Assessment',
+      body: '<p>Deep evaluation with <strong>focused interviews</strong> with key leaders in your organization.</p><h4>What it includes</h4><ul><li><strong>Organizational radar</strong> — digital, methodological and cultural maturity</li><li><strong>Pain map</strong> — operational frictions prioritized by impact</li><li><strong>Prioritized roadmap</strong> — action plan with quick wins and 90-day strategy</li></ul><p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">By meeting. Deliverable: Understanding Document with diagnosis + route.</p>',
+      cta: 'Schedule assessment →', ctaHref: 'diagnostico/#madurez' }
+  },
+
   // ── Diagnóstico (3 pasos) ──
   diag01: {
     es: { term: 'Diagnóstico · Paso 1', title: '5 Dimensiones',

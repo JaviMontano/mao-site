@@ -41,6 +41,8 @@
   <script>
     const t = localStorage.getItem('mdg_theme');
     if (t === 'dark') document.documentElement.dataset.theme = 'dark';
+    const l = localStorage.getItem('mdg_locale') || localStorage.getItem('lang');
+    if (l === 'en') document.documentElement.lang = 'en';
     else document.documentElement.dataset.theme = 'light';
   </script>
 

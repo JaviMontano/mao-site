@@ -27,6 +27,7 @@
   <script>
     const t = localStorage.getItem('mdg_theme');
     if (t === 'light') document.documentElement.dataset.theme = 'light';
+    const l=localStorage.getItem('mdg_locale')||localStorage.getItem('lang');if(l==='en')document.documentElement.lang='en';
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">

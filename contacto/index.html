@@ -89,7 +89,7 @@
   </script>
 
   <!-- Anti-FOUC theme restore -->
-  <script>const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';</script>
+  <script>const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';const l=localStorage.getItem('mdg_locale')||localStorage.getItem('lang');if(l==='en')document.documentElement.lang='en';</script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

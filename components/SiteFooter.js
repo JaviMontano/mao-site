@@ -70,6 +70,7 @@ function col(title, links) {
 class SiteFooter extends HTMLElement {
   connectedCallback() {
     this.render();
+    document.addEventListener('langchange', () => this.render());
   }
 
   get lang() {

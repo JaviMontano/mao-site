@@ -22,12 +22,18 @@ const I18N = {
     nav_metodo: 'Método', nav_recursos: 'Recursos',
     nav_programas: 'Programas', nav_campus: 'Campus',
     nav_contacto: 'Contacto',
+    tagline: 'Aceleremos su Estrateg<span style="color:var(--brand-gold);font-weight:900">IA</span>',
+    nav_label: 'Navegación principal',
+    menu_label: 'Abrir navegación',
   },
   en: {
     cta: "Let's Talk", ctaShort: "Let's Talk",
     nav_metodo: 'Method', nav_recursos: 'Resources',
     nav_programas: 'Programs', nav_campus: 'Campus',
     nav_contacto: 'Contact',
+    tagline: "Let's Accelerate your Strateg<span style=\"color:var(--brand-gold);font-weight:900\">yIA</span>",
+    nav_label: 'Main navigation',
+    menu_label: 'Open navigation',
   },
 };
 
@@ -60,7 +66,7 @@ class SiteHeader extends HTMLElement {
 
     this.innerHTML = `
       <button class="menu-toggle" id="menuToggle" type="button"
-              aria-expanded="false" aria-controls="sidebar" aria-label="Abrir navegación">
+              aria-expanded="false" aria-controls="sidebar" aria-label="${t.menu_label}">
         <span></span><span></span><span></span>
       </button>
 
@@ -68,11 +74,11 @@ class SiteHeader extends HTMLElement {
         <span class="site-header__logo-wrap" aria-hidden="true">${LOGO_SVG}</span>
         <span class="site-header__text">
           <span class="site-header__name">Metodolog<span style="color:var(--brand-gold)">IA</span></span>
-          <span class="site-header__role">Aceleremos su Estrateg<span style="color:var(--brand-gold);font-weight:900">IA</span></span>
+          <span class="site-header__role">${t.tagline}</span>
         </span>
       </a>
 
-      <nav class="site-header__nav" aria-label="Navegación principal">
+      <nav class="site-header__nav" aria-label="${t.nav_label}">
         ${navLink('/metodo/', t.nav_metodo)}
         ${navLink('/recursos/', t.nav_recursos)}
         ${navLink('/programas/', t.nav_programas)}
@@ -95,6 +101,12 @@ class SiteHeader extends HTMLElement {
         this.dispatchEvent(new CustomEvent('mdg:sidebar-toggle', { bubbles: true, composed: true }));
       });
     }
+
+    // Re-render on language change
+    document.addEventListener('langchange', () => {
+      this._render();
+      this._setupEvents();
+    });
   }
 }
 

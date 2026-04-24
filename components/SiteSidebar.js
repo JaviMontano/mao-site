@@ -78,7 +78,7 @@ class SiteSidebar extends HTMLElement {
     // Sidebar head (canonical: .sidebar__head)
     const head = document.createElement('div');
     head.className = 'sidebar__head';
-    head.textContent = 'Índice';
+    head.textContent = this._lang === 'en' ? 'Index' : 'Índice';
     this.appendChild(head);
 
     // Nav wrapper (canonical: .sidebar__nav)
@@ -215,9 +215,9 @@ class SiteSidebar extends HTMLElement {
     if (this.classList.contains('is-open')) this.close();
   }
 
-  _handleLangChange(lang) {
-    this._lang = lang || 'es';
-    this.render();
+  _handleLangChange(data) {
+    this._lang = (data && data.locale) || data || 'es';
+    this._loadLabels().then(() => this.render());
   }
 }
 

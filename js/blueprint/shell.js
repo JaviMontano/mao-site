@@ -49,7 +49,7 @@ async function fetchJSON(url) {
  */
 function dictBasePath() {
   const depth = window.location.pathname.replace(/\/+$/, '').split('/').length - 1;
-  return depth > 1 ? '../' : './';
+  return depth >= 1 ? '../' : './';
 }
 
 /**
@@ -81,9 +81,20 @@ export async function initShell(options = {}) {
   initTheme();
 
   // ------------------------------------------------------------------
-  // 4. Load i18n dictionaries for this page
+  // 4. Load i18n module (classic script) + dictionaries for this page
   // ------------------------------------------------------------------
   const base = dictBasePath();
+
+  // Dynamically load the legacy i18n module if not already present
+  if (!window.i18n) {
+    await new Promise((resolve) => {
+      const s = document.createElement('script');
+      s.src = `${base}js/i18n/i18n.js?v=4`;
+      s.onload = resolve;
+      s.onerror = resolve; // proceed even if it fails
+      document.head.appendChild(s);
+    });
+  }
   const [pageDict, commonDict] = await Promise.all([
     fetchJSON(`${base}js/i18n/dictionaries/${pageSlug}.json`),
     fetchJSON(`${base}js/i18n/dictionaries/common.json`),
@@ -118,15 +129,29 @@ export async function initShell(options = {}) {
     }
   });
 
-  // Language change → re-hydrate all slots with new locale
-  on('langchange', (data) => {
+  // Language change → reload dictionaries + re-hydrate all slots
+  on('langchange', async (data) => {
     const newLocale = (data && data.locale) || locale;
     const audience = getAudience();
+
+    // Reload dictionaries for the new locale
+    const [newPageDict, newCommonDict] = await Promise.all([
+      fetchJSON(`${base}js/i18n/dictionaries/${pageSlug}.json`),
+      fetchJSON(`${base}js/i18n/dictionaries/common.json`),
+    ]);
+    dictionaries[pageSlug] = newPageDict;
+    dictionaries.common = newCommonDict;
+
     hydrateSlots(pageSlug, audience, newLocale, {
       dictionaries,
       firestoreSlots: {},
       cmsEnabled: false,
     });
+
+    // Also translate data-i18n elements via the legacy i18n module
+    if (window.i18n && typeof window.i18n.setLang === 'function') {
+      window.i18n.setLang(newLocale);
+    }
   });
 
   // ------------------------------------------------------------------

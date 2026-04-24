@@ -42,7 +42,8 @@ export function initAudienceController(options) {
 
   // Subscribe to future audience changes
   subscribe((newAudience) => {
-    scheduleHydration(pageSlug, newAudience, locale, currentOptions);
+    const currentLocale = document.documentElement.lang || 'es';
+    scheduleHydration(pageSlug, newAudience, currentLocale, currentOptions);
   });
 
   // Initial hydration with current audience

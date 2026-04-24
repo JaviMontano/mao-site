@@ -4,179 +4,180 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0A122A">
-  <meta name="color-scheme" content="dark">
-  <title>Diagnostico Metodologico | MetodologIA</title>
-  <meta name="description" content="Diagnóstico Sin Riesgo de madurez metodologica. Descubre tu nivel y recibe recomendaciones personalizadas.">
+  <title>Diagnostico Sin Riesgo | MetodologIA</title>
+  <meta name="description" content="5 diagnósticos para medir tu madurez digital, metodológica y estratégica. Sin costo, sin fricción.">
   <link rel="canonical" href="https://metodologia.info/diagnostico/">
   <link rel="manifest" href="../manifest.json">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://metodologia.info/diagnostico/">
-  <meta property="og:title" content="Diagnostico Metodologico | MetodologIA">
-  <meta property="og:description" content="Diagnóstico Sin Riesgo de madurez metodologica. Descubre tu nivel y recibe recomendaciones personalizadas.">
+  <meta property="og:title" content="Diagnostico Sin Riesgo | MetodologIA">
+  <meta property="og:description" content="5 diagnósticos para medir tu madurez digital, metodológica y estratégica.">
   <meta property="og:image" content="https://metodologia.info/og-image.png">
 
-  <!-- Import map -->
   <script type="importmap">
     {
       "imports": {
         "idb": "https://cdn.jsdelivr.net/npm/idb/build/index.js",
         "firebase/app": "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js",
-        "firebase/auth": "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js",
-        "firebase/firestore": "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js",
-        "firebase/analytics": "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js",
-        "firebase/app-check": "https://www.gstatic.com/firebasejs/10.14.0/firebase-app-check.js",
-        "firebase/functions": "https://www.gstatic.com/firebasejs/10.14.0/firebase-functions.js",
-        "firebase/storage": "https://www.gstatic.com/firebasejs/10.14.0/firebase-storage.js"
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"
       }
     }
   </script>
 
-  <!-- Anti-FOUC theme restore (dark default) -->
-  <script>
-    const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';
-  </script>
+  <script>const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';</script>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Montserrat:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Montserrat:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Montserrat:wght@400;600;700&display=swap"></noscript>
 
-  <!-- Design system + page CSS -->
   <link rel="stylesheet" href="../estilos/neoswiss-system.css?v=4">
   <link rel="stylesheet" href="../estilos/home.css?v=4">
   <link rel="stylesheet" href="../estilos/triple-toggle.css?v=4">
-  <link rel="stylesheet" href="../estilos/diagnostic.css">
-
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="apple-touch-icon" href="../favicon.svg">
 </head>
 <body>
   <div class="bg-mesh" aria-hidden="true"></div>
-  <a href="#main" class="sr-only" data-i18n="skip_link">Saltar al contenido</a>
+  <a href="#main" class="sr-only">Saltar al contenido</a>
 
   <site-header></site-header>
   <site-sidebar data-page="diagnostico"></site-sidebar>
 
   <main id="main" class="main">
 
-    <!-- ══════ 01 · INTRODUCCION / HERO ══════ -->
+    <!-- ══════ 01 · HERO ══════ -->
     <section class="section" id="introduccion">
       <div class="container" style="text-align:center;">
-        <span class="eyebrow" data-cms="diagnostico.intro.badge">Diagnostico · 01</span>
-        <h1 class="h1" style="margin:1rem auto;max-width:48rem;" data-cms="diagnostico.intro.title">
-          Diagnostico <span class="gradient-text">Metodologico</span>
+        <span class="eyebrow" data-i18n="diag.hero.eyebrow">Diagnostico · 01</span>
+        <h1 class="h1" style="margin:1rem auto;max-width:48rem;">
+          Diagnostico <span class="gradient-text">Sin Riesgo</span>
         </h1>
-        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-cms="diagnostico.intro.lead">
-          Descubre en minutos tu nivel de madurez metodologica y recibe un plan de accion personalizado.
+        <p class="lead" style="max-width:36rem;margin:0 auto 1.5rem;" data-i18n="diag.hero.lead">
+          4 formularios que miden tu madurez digital, metodologica y estrategica.
+          Resultados inmediatos. Sin costo.
         </p>
-        <p class="muted" style="font-size:.85rem;" data-cms="diagnostico.intro.body">
-          Este diagnóstico sin riesgo evalua cinco dimensiones clave de tu forma de trabajar.
-          Al finalizar, obtendras un perfil detallado con recomendaciones priorizadas.
-        </p>
+        <div class="stats" style="margin-top:1.5rem;" aria-label="Diagnosticos disponibles">
+          <div class="stats__cell"><span class="stats__num">4</span><span class="stats__label" data-i18n="diag.hero.stat1_label">Formularios</span></div>
+          <div class="stats__cell"><span class="stats__num">~20</span><span class="stats__label" data-i18n="diag.hero.stat2_label">Minutos total</span></div>
+          <div class="stats__cell"><span class="stats__num" style="color:var(--brand-gold);">0</span><span class="stats__label" data-i18n="diag.hero.stat3_label">Costo</span></div>
+        </div>
+        <div style="margin-top:1.5rem;padding:1rem 1.5rem;border-radius:var(--brand-radius);border:1px solid rgba(255,215,0,.15);background:rgba(255,215,0,.04);max-width:36rem;margin-left:auto;margin-right:auto;text-align:left;">
+          <p style="font-size:.85rem;color:var(--brand-text-soft);line-height:1.6;margin:0;">
+            <strong style="color:var(--brand-gold);" data-i18n="diag.hero.agent_bold">Nuestros agentes estan atentos.</strong>
+            <span data-i18n="diag.hero.agent_body">Al completar tu Ficha Personal, activamos el seguimiento para que, al terminar los demas formularios,
+            puedas recibir un diagnostico personalizado a tu medida.</span>
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ══════ 02 · SEGMENTO ══════ -->
+    <!-- ══════ 02 · PERSONAS — 5 formularios ══════ -->
     <section class="section" id="segmento">
       <div class="container">
-        <span class="eyebrow" data-cms="diagnostico.segmento.badge">Segmento · 02</span>
-        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="diagnostico.segmento.title">
-          Tu <span class="gradient-text">Segmento</span>
-        </h2>
-        <p class="lead" style="margin-bottom:1.5rem;" data-cms="diagnostico.segmento.lead">
-          Selecciona tu perfil para personalizar las preguntas y recomendaciones.
+        <span class="eyebrow" data-i18n="diag.personal.eyebrow">Personas · 02</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;">Diagnostico <span class="gradient-text">Personal</span></h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-i18n="diag.personal.lead">Completa los 4 formularios en orden. Cada uno mide una dimension diferente.</p>
+
+        <div class="timeline">
+          <article class="tl-item x-card" role="button" tabindex="0" style="cursor:pointer;" data-diag="ficha">
+            <span class="tl-item__meta" data-i18n="diag.personal.card1_meta">Paso 01 · 3-4 min</span>
+            <h3 class="tl-item__role" data-i18n="diag.personal.card1_title">Ficha Personal</h3>
+            <p class="tl-item__impact">Tu contexto, rol, industria y objetivos. <strong>Punto de partida</strong>.</p>
+          </article>
+          <article class="tl-item x-card" role="button" tabindex="0" style="cursor:pointer;" data-diag="ia">
+            <span class="tl-item__meta" data-i18n="diag.personal.card2_meta">Paso 02 · 4-5 min</span>
+            <h3 class="tl-item__role" data-i18n="diag.personal.card2_title">Madurez en IA</h3>
+            <p class="tl-item__impact">Nivel de adopcion, herramientas y <strong>confianza con IA</strong>.</p>
+          </article>
+          <article class="tl-item x-card" role="button" tabindex="0" style="cursor:pointer;" data-diag="metodo">
+            <span class="tl-item__meta" data-i18n="diag.personal.card3_meta">Paso 03 · 4-5 min</span>
+            <h3 class="tl-item__role" data-i18n="diag.personal.card3_title">Madurez en Metodo y FdT</h3>
+            <p class="tl-item__impact">Formas de trabajo, sistemas personales y <strong>nivel de sistematizacion</strong>.</p>
+          </article>
+          <article class="tl-item x-card" role="button" tabindex="0" style="cursor:pointer;" data-diag="digital">
+            <span class="tl-item__meta" data-i18n="diag.personal.card4_meta">Paso 04 · 8-9 min</span>
+            <h3 class="tl-item__role" data-i18n="diag.personal.card4_title">Capacidades Digitales</h3>
+            <p class="tl-item__impact">Evaluacion profunda de <strong>competencias digitales</strong> por area.</p>
+          </article>
+        </div>
+
+        <p class="muted" style="font-size:.85rem;margin-top:1rem;text-align:center;" data-i18n="diag.personal.muted">
+          Cada formulario abre en nueva pestaña (Google Forms). Tus respuestas son confidenciales.
         </p>
-        <div class="axes" role="radiogroup" aria-label="Tipo de audiencia">
-          <button class="diag-segment-btn" data-audience="persona" aria-pressed="false" data-cms="diagnostico.segmento.persona">
-            Persona
-          </button>
-          <button class="diag-segment-btn" data-audience="empresa" aria-pressed="false" data-cms="diagnostico.segmento.empresa">
-            Empresa
-          </button>
+
+        <div style="margin-top:1.5rem;padding:1rem 1.5rem;border-radius:var(--brand-radius);border:1px solid var(--brand-border);max-width:36rem;text-align:left;">
+          <p style="font-size:.85rem;color:var(--brand-text-soft);line-height:1.6;margin:0;">
+            Si te interesa profundizar en los resultados, puedes explorar nuestro
+            <a href="/personas/consultive-workshops-estrategia-personal.html" style="color:var(--brand-gold);text-decoration:underline;">Workshop de Estrategia Personal</a>
+            — una sesion individual donde convertimos tu diagnostico en un plan de accion concreto.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ══════ 03 · MADUREZ ══════ -->
+    <!-- ══════ 03 · EMPRESAS — Por reunión ══════ -->
     <section class="section" id="madurez">
       <div class="container">
-        <span class="eyebrow" data-cms="diagnostico.madurez.badge">Madurez · 03</span>
-        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="diagnostico.madurez.title">
-          Nivel de <span class="gradient-text">Madurez</span>
-        </h2>
-        <p class="lead" style="margin-bottom:1.5rem;" data-cms="diagnostico.madurez.lead">
-          Evalua tus procesos actuales, herramientas y nivel de sistematizacion.
-        </p>
-        <div class="diag-question-group" data-dimension="madurez">
-          <!-- Questions injected by diagnostic-stepper WC -->
+        <span class="eyebrow" data-i18n="diag.empresas.eyebrow">Empresas · 03</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;">Diagnostico <span class="gradient-text">Empresarial</span></h2>
+        <p class="lead" style="margin-bottom:1.5rem;" data-i18n="diag.empresas.lead">Evaluacion de madurez organizacional con entrevistas focalizadas.</p>
+
+        <div style="padding:2rem;border-radius:var(--brand-radius);border:1px solid rgba(255,215,0,.2);background:rgba(255,215,0,.03);text-align:center;">
+          <h3 style="font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;margin:.5rem 0;" data-i18n="diag.empresas.card_title">Diagnostico por reunion</h3>
+          <p style="color:var(--brand-text-soft);font-size:.9rem;max-width:30rem;margin:0 auto 1rem;" data-i18n="diag.empresas.card_body">
+            2 semanas de evaluacion profunda con hasta 4 horas de entrevistas. Radar de madurez organizacional + roadmap priorizado. Agenda una primera conversacion para disenar el alcance.
+          </p>
+          <a href="https://calendar.app.google/NjLeBD2S4dryzVkQ6" target="_blank" rel="noopener noreferrer" class="home-cta home-cta--primary" style="display:inline-flex;" data-i18n="diag.empresas.cta">Agendar reunion →</a>
         </div>
       </div>
     </section>
 
-    <!-- ══════ 04 · DOLOR ══════ -->
+    <!-- ══════ 04 · COMO FUNCIONA ══════ -->
     <section class="section" id="dolor">
       <div class="container">
-        <span class="eyebrow" data-cms="diagnostico.dolor.badge">Dolor · 04</span>
-        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="diagnostico.dolor.title">
-          Puntos de <span class="gradient-text">Dolor</span>
-        </h2>
-        <p class="lead" style="margin-bottom:1.5rem;" data-cms="diagnostico.dolor.lead">
-          Identifica los principales obstaculos que frenan tu rendimiento.
-        </p>
-        <div class="diag-question-group" data-dimension="dolor">
-          <!-- Questions injected by diagnostic-stepper WC -->
+        <span class="eyebrow" data-i18n="diag.proceso.eyebrow">Proceso · 04</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;">Como <span class="gradient-text">funciona</span></h2>
+        <div class="principles">
+          <div class="principle x-card">
+            <span class="principle__num">01</span>
+            <h3 class="principle__title" data-i18n="diag.proceso.step1_title">Completa</h3>
+            <p class="principle__body" data-i18n="diag.proceso.step1_body">4 formularios en tu tiempo, desde cualquier dispositivo.</p>
+          </div>
+          <div class="principle x-card">
+            <span class="principle__num">02</span>
+            <h3 class="principle__title" data-i18n="diag.proceso.step2_title">Recibe</h3>
+            <p class="principle__body" data-i18n="diag.proceso.step2_body">Perfil de madurez con nivel detallado por dimension.</p>
+          </div>
+          <div class="principle x-card">
+            <span class="principle__num">03</span>
+            <h3 class="principle__title" data-i18n="diag.proceso.step3_title">Actua</h3>
+            <p class="principle__body" data-i18n="diag.proceso.step3_body">Roadmap personalizado con siguiente paso concreto.</p>
+          </div>
+          <div class="principle x-card">
+            <span class="principle__num" style="color:var(--brand-gold);">→</span>
+            <h3 class="principle__title" data-i18n="diag.proceso.step4_title">Acelera</h3>
+            <p class="principle__body" data-i18n="diag.proceso.step4_body">Conversacion opcional para profundizar tus resultados.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ══════ 05 · URGENCIA ══════ -->
-    <section class="section" id="urgencia">
-      <div class="container">
-        <span class="eyebrow" data-cms="diagnostico.urgencia.badge">Urgencia · 05</span>
-        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="diagnostico.urgencia.title">
-          Nivel de <span class="gradient-text">Urgencia</span>
-        </h2>
-        <p class="lead" style="margin-bottom:1.5rem;" data-cms="diagnostico.urgencia.lead">
-          Determina que tan critico es resolver tus desafios metodologicos ahora.
-        </p>
-        <div class="diag-question-group" data-dimension="urgencia">
-          <!-- Questions injected by diagnostic-stepper WC -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════ 06 · EQUIPO ══════ -->
-    <section class="section" id="equipo">
-      <div class="container">
-        <span class="eyebrow" data-cms="diagnostico.equipo.badge">Equipo · 06</span>
-        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="diagnostico.equipo.title">
-          Tu <span class="gradient-text">Equipo</span>
-        </h2>
-        <p class="lead" style="margin-bottom:1.5rem;" data-cms="diagnostico.equipo.lead">
-          Describe el contexto de tu equipo para afinar las recomendaciones.
-        </p>
-        <div class="diag-question-group" data-dimension="equipo">
-          <!-- Questions injected by diagnostic-stepper WC -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════ 07 · RESULTADO ══════ -->
+    <!-- ══════ 05 · CTA ══════ -->
     <section class="section" id="resultado">
-      <div class="container">
-        <span class="eyebrow" data-cms="diagnostico.resultado.badge">Resultado · 07</span>
-        <h2 class="h2" style="margin:1rem 0 .5rem;" data-cms="diagnostico.resultado.title">
-          Tu <span class="gradient-text">Resultado</span>
-        </h2>
-        <p class="lead" style="margin-bottom:1.5rem;" data-cms="diagnostico.resultado.lead">
-          Perfil de madurez, recomendaciones priorizadas y siguiente paso sugerido.
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow" data-i18n="diag.cta.eyebrow">Siguiente paso · 05</span>
+        <h2 class="h2" style="margin:1rem 0 .5rem;">Empieza <span class="gradient-text">ahora</span></h2>
+        <p class="lead" style="max-width:36rem;margin:0 auto 2rem;" data-i18n="diag.cta.lead">
+          El primer formulario toma 3 minutos. Sin costo, sin friccion.
         </p>
-        <diagnostic-stepper></diagnostic-stepper>
+        <div class="home-hero__ctas">
+          <a href="https://forms.gle/C3NRx4ZmFmkymsgu5" target="_blank" rel="noopener noreferrer" class="home-cta home-cta--primary" data-i18n="diag.cta.primary">Iniciar Ficha Personal →</a>
+          <a href="/contacto/" class="home-cta home-cta--secondary" data-i18n="diag.cta.secondary">Prefiero conversar</a>
+        </div>
+        <p class="muted" style="font-size:.85rem;margin-top:1rem;" data-i18n="diag.cta.muted">Respuesta en 2 dias habiles.</p>
       </div>
     </section>
 
@@ -187,33 +188,109 @@
   <consent-banner></consent-banner>
   <site-footer></site-footer>
 
+  <!-- ════ MODAL: Pre-formulario ════ -->
+  <dialog class="info-dialog" id="diagDialog" aria-labelledby="diagDialogTitle">
+    <div class="info-dialog__inner">
+      <div class="info-dialog__head">
+        <div>
+          <span class="info-dialog__term" id="diagDialogTerm"></span>
+          <h3 class="info-dialog__title" id="diagDialogTitle"></h3>
+        </div>
+        <button class="info-dialog__close" type="button" aria-label="Cerrar" onclick="this.closest('dialog').close()">✕</button>
+      </div>
+      <div class="info-dialog__body" id="diagDialogBody"></div>
+      <div style="margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap;">
+        <a id="diagDialogCTA" href="#" target="_blank" rel="noopener noreferrer" class="home-cta home-cta--primary" style="display:inline-flex;">Iniciar formulario →</a>
+        <button type="button" class="home-cta home-cta--tertiary" onclick="this.closest('dialog').close()">Cancelar</button>
+      </div>
+    </div>
+  </dialog>
+
   <script type="module">
     import { initShell } from '../js/blueprint/shell.js?v=4';
     import { hydratePage } from '../js/cms/hydrate-page.js?v=4';
-
-    // Accept ?audiencia= param for pre-set audience context
-    const params = new URLSearchParams(window.location.search);
-    const audiencia = params.get('audiencia');
-
     initShell({ pageSlug: 'diagnostico' });
     hydratePage('diagnostico');
 
-    // Pre-select audience segment if provided via URL param
-    if (audiencia && ['persona', 'empresa'].includes(audiencia)) {
-      document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.querySelector(
-          `.diag-segment-btn[data-audience="${audiencia}"]`
-        );
-        if (btn) {
-          btn.setAttribute('aria-pressed', 'true');
-          btn.classList.add('diag-segment-btn--active');
-          // Dispatch custom event for diagnostic-stepper to consume
-          document.dispatchEvent(
-            new CustomEvent('audiencia-selected', { detail: { audiencia } })
-          );
+    // ═══ DIAGNOSTICO MODALS ═══
+    const DIAG = {
+      ficha: {
+        term: 'Paso 01 · 3-4 min',
+        title: 'Ficha Personal',
+        url: 'https://forms.gle/C3NRx4ZmFmkymsgu5',
+        body: `<p>Este formulario recoge tu <strong>contexto profesional</strong> para personalizar todo el diagnostico.</p>
+<h4>Que te vamos a preguntar</h4>
+<ul>
+<li><strong>Identificacion:</strong> nombre, contacto, ciudad</li>
+<li><strong>Perfil profesional:</strong> empresa, cargo, experiencia, nivel educativo</li>
+<li><strong>Motivacion:</strong> tus 3 motivadores principales, como aprendes mejor, que esperas lograr</li>
+<li><strong>Autorizaciones:</strong> tratamiento de datos y comunicaciones</li>
+</ul>
+<p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Al completar esta ficha, nuestros agentes activan tu perfil para que, al terminar los demas formularios, puedas recibir un diagnostico a tu medida.</p>`
+      },
+      ia: {
+        term: 'Paso 02 · 4-5 min',
+        title: 'Madurez en IA',
+        url: 'https://forms.gle/HumRZT2soF7XqKav6',
+        body: `<p>Medimos tu <strong>nivel real de adopcion de IA</strong> — no lo que sabes, sino lo que haces con ella.</p>
+<h4>Que te vamos a preguntar</h4>
+<ul>
+<li><strong>Conocimiento:</strong> diferencia entre IA tradicional y generativa, que es un prompt, herramientas usadas</li>
+<li><strong>Practica:</strong> frecuencia de uso, escenarios reales, actitud hacia la IA</li>
+<li><strong>Evidencia:</strong> artefactos construidos con IA, feedback recibido, nivel de confianza</li>
+</ul>
+<p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Incluye escenarios practicos como: "Tienes 2 horas para un informe sobre un tema que no dominas. Que harias con IA?"</p>`
+      },
+      metodo: {
+        term: 'Paso 03 · 4-5 min',
+        title: 'Madurez en Metodo y FdT',
+        url: 'https://forms.gle/4D7YysEcJtgeH6iVA',
+        body: `<p>Evaluamos tus <strong>formas de trabajo</strong>: como organizas, priorizas y produces resultados.</p>
+<h4>Que te vamos a preguntar</h4>
+<ul>
+<li><strong>Contexto:</strong> equipo vs individual, rol principal, herramientas de organizacion</li>
+<li><strong>Metodo:</strong> marcos aplicados (Agile, GTD, etc.), ciclos de planificacion, retrospectivas</li>
+<li><strong>Capacidades:</strong> power skills, dolor principal, disposicion al cambio</li>
+</ul>
+<p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Incluye escenarios como: "Informe urgente en 3 horas, sin plantilla, 3 tareas pendientes. Que haces primero?"</p>`
+      },
+      digital: {
+        term: 'Paso 04 · 8-9 min',
+        title: 'Capacidades Digitales',
+        url: 'https://forms.gle/Dwq6u5QaUCGoksiq8',
+        body: `<p>El mas completo: mide tus <strong>competencias digitales reales</strong> en 5 areas.</p>
+<h4>Que te vamos a preguntar</h4>
+<ul>
+<li><strong>Base digital:</strong> manejo de computador, busqueda en internet, seguridad digital</li>
+<li><strong>Ofimatica:</strong> correo, calendario, hojas de calculo, archivos en la nube</li>
+<li><strong>Segundo Cerebro:</strong> captura de notas, organizacion de ideas y aprendizajes</li>
+<li><strong>Multimedia:</strong> video, audio/podcast, edicion basica, herramientas multimedia</li>
+<li><strong>Reflexion:</strong> que habilidad digital mejorar as primero</li>
+</ul>
+<p style="margin-top:.75rem;font-size:.85rem;color:var(--brand-text-soft);">Incluye escenarios practicos con Excel, Google Drive, correo y grabacion de video.</p>`
+      }
+    };
+
+    const dialog = document.getElementById('diagDialog');
+    dialog?.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+
+    document.querySelectorAll('[data-diag]').forEach(card => {
+      card.addEventListener('click', () => {
+        const d = DIAG[card.dataset.diag];
+        if (!d || !dialog) return;
+        document.getElementById('diagDialogTerm').textContent = d.term;
+        document.getElementById('diagDialogTitle').textContent = d.title;
+        document.getElementById('diagDialogBody').innerHTML = d.body;
+        document.getElementById('diagDialogCTA').href = d.url;
+        dialog.showModal();
+      });
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
         }
       });
-    }
+    });
   </script>
 </body>
 </html>

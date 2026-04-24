@@ -53,7 +53,10 @@
       "title_line2": "Service",
       "subtitle": "Aceleremos su EstrategIA. Metodologías de alto rendimiento para alcanzar la Soberanía Digital, Profesional y Estratégica.",
       "cta_vision": "Descubrir Visión",
-      "cta_levels": "Ver Niveles"
+      "cta_levels": "Ver Niveles",
+      "cta1": "Diagnóstico Sin Riesgo →",
+      "cta2": "Explorar Recursos",
+      "cta3": "Conocer el Método ↓"
     },
     "dashboard": {
       "eyebrow": "Así definimos el éxito operativo",
@@ -90,6 +93,124 @@
       "line3": "Tus Resultados son la Obra Maestra.",
       "headline": "El Método es el camino\npara cerrar la brecha.",
       "subheadline": "Entre lo que tienes ahora y lo que quieres lograr."
+    },
+    "stats": {
+      "founders": "Founders",
+      "ambassadors": "Embajadores",
+      "nodes": "Nodos",
+      "standard": "Estándar"
+    },
+    "accel": {
+      "eyebrow": "Aceleradores · 02",
+      "lead": "32 GPTs · 31 Gems · 180+ prompts · Playbooks · Agente Open Source.",
+      "kicker": "Abiertos · Patrón MOAT",
+      "pristino_label": "★ Pristino · GPT",
+      "pristino_title": "Comité en 1 chat",
+      "prompting_label": "★ GPT Prompting",
+      "prompting_title": "Prompts profesionales",
+      "research_label": "★ GPT Investigaciones",
+      "research_title": "Research con método",
+      "oss_label": "★ Pristino · OSS",
+      "oss_title": "Agente en tu infra",
+      "cta": "Ver todos los recursos →"
+    },
+    "diag": {
+      "eyebrow": "Diagnóstico · 03",
+      "lead": "Para personas: 4 formularios en ~20 min. Para empresas: reunión de evaluación profunda.",
+      "personas_title": "Personas",
+      "personas_desc": "4 formularios que miden madurez en IA, método, capacidades digitales y perfil profesional.",
+      "personas_link": "~20 min · Sin costo",
+      "empresas_title": "Empresas",
+      "empresas_desc": "Evaluación profunda con entrevistas focalizadas. Radar organizacional + roadmap priorizado.",
+      "empresas_link": "Por reunión · Agendar",
+      "cta": "Ver diagnósticos →"
+    },
+    "recursos": {
+      "eyebrow": "Recursos · 04",
+      "tile1_label": "★ Asistentes",
+      "tile1_title": "GPTs + Gems",
+      "tile1_desc": "18 Custom GPTs y 5 Gemini Gems especializados.",
+      "tile_foot": "Más info →",
+      "tile2_label": "★ Prompts",
+      "tile2_title": "180+ Prompts",
+      "tile2_desc": "Bibliotecas curadas: ventas, desarrollo, estrategia.",
+      "tile2_foot": "Más info →",
+      "tile3_label": "★ Herramientas",
+      "tile3_title": "Playbooks + n8n",
+      "tile3_desc": "Guías operativas, automatizaciones y flujos.",
+      "tile3_foot": "Más info →"
+    },
+    "metodo": {
+      "eyebrow": "El Método · 05",
+      "lead": "Del caos reactivo al diseño estratégico.",
+      "fase1_meta": "Fase 01",
+      "fase1_title": "Fundamentar",
+      "fase2_meta": "Fase 02",
+      "fase2_title": "Acelerar",
+      "fase3_meta": "Fase 03",
+      "fase3_title": "Catalizar",
+      "fase4_meta": "Fase 04",
+      "fase4_title": "Amplificar",
+      "cta": "Ver Visión completa →"
+    },
+    "proposito": {
+      "eyebrow": "Propósito · 06",
+      "lead": "La intersección entre lo que amamos, lo que hacemos bien, lo que el mundo necesita y por lo que nos pagan.",
+      "love_title": "Lo que amamos",
+      "love_body": "Idear estrategia, diseñar sistemas, enseñar y ordenar caos en claridad.",
+      "good_title": "Lo que hacemos bien",
+      "good_body": "Convertir problemas en operación estable. IA aplicada con método.",
+      "need_title": "Lo que el mundo necesita",
+      "need_body": "Adopción segura de IA, competitividad real, reducir trabajo invisible.",
+      "paid_title": "Por lo que nos pagan",
+      "paid_body": "Bootcamps, diagnósticos, pilotos y activos digitales reutilizables.",
+      "cta": "Ver Misión completa →"
+    },
+    "formacion": {
+      "eyebrow": "Formación · 07",
+      "lead": "Recorrido completo: desde 1 hora hasta 16 semanas de transformación.",
+      "ws_label": "12 Workshops · 1 a 3 horas",
+      "ws01_title": "Intro IA",
+      "ws01_body": "Superar la Falacia de la Herramienta.",
+      "ws02_title": "Prompting Avanzado",
+      "ws02_body": "Protocolos de ejecución de alto rendimiento.",
+      "ws03_title": "Segundo Cerebro",
+      "ws03_body": "PKM con Obsidian/Notion. Recupera 5h semanales.",
+      "ws04_title": "Productividad",
+      "ws04_body": "GTD + Kanban. De reaccionar a pilotar.",
+      "ws_more": "+ 8 workshops más ▾",
+      "ws05_chip": "WS-05 · Moving Motivators",
+      "ws06_chip": "WS-06 · Happiness Canvas",
+      "ws07_chip": "WS-07 · Team Canvas",
+      "ws08_chip": "WS-08 · De Ocupado a Productivo",
+      "ws09_chip": "WS-09 · ¿Qué pasa con la IA?",
+      "ws10_chip": "WS-10 · Ideación con IA",
+      "ws11_chip": "WS-11 · Ética y Gobernanza",
+      "ws12_chip": "WS-12 · Liderazgo Exponencial",
+      "bc_label": "5 Bootcamps · 18h + 2 sesiones opcionales",
+      "bc01_title": "Ofimática con IA",
+      "bc02_title": "Ventas con IA",
+      "bc03_title": "Formas de Trabajo",
+      "bc04_title": "Trabajo Amplificado",
+      "bc05_title": "Vibe Coding",
+      "elite_label": "2 Programas Élite · 16 semanas · 48h + 48h",
+      "elite1_title": "Programa de Empoderamiento",
+      "elite1_desc": "14 módulos, 2 fases. De ejecutante agotado a estratega de impacto.",
+      "elite1_link": "Nivel 7 · 16 semanas",
+      "elite2_title": "Digital Champions",
+      "elite2_desc": "Agentes de cambio internos. Estándar operativo 100.",
+      "elite2_link": "Nivel 9 · 16 semanas",
+      "campus_label": "Campus Virtual",
+      "campus_desc": "Accede a materiales, grabaciones, ejercicios y tu progreso desde cualquier dispositivo.",
+      "campus_cta": "Ir al Campus →",
+      "cta": "Ver catálogo completo →"
+    },
+    "contacto": {
+      "eyebrow": "Siguiente paso · 08",
+      "lead": "Sin riesgo, sin fricción. Conversemos sobre cómo acelerar tus resultados con método e IA.",
+      "cta1": "Conversemos →",
+      "cta2": "Diagnóstico Sin Riesgo",
+      "response_time": "Respuesta en 2 días hábiles."
     }
   },
   "ruta": {
@@ -1279,6 +1400,55 @@
     "close_title": "Cerrar modal",
     "section_benefits_transform": "Beneficios y Transformaciones"
   },
+  "diag": {
+    "hero": {
+      "eyebrow": "Diagnostico · 01",
+      "lead": "4 formularios que miden tu madurez digital, metodologica y estrategica. Resultados inmediatos. Sin costo.",
+      "stat1_label": "Formularios",
+      "stat2_label": "Minutos total",
+      "stat3_label": "Costo",
+      "agent_bold": "Nuestros agentes estan atentos.",
+      "agent_body": "Al completar tu Ficha Personal, activamos el seguimiento para que, al terminar los demas formularios, puedas recibir un diagnostico personalizado a tu medida."
+    },
+    "personal": {
+      "eyebrow": "Personas · 02",
+      "lead": "Completa los 4 formularios en orden. Cada uno mide una dimension diferente.",
+      "card1_meta": "Paso 01 · 3-4 min",
+      "card1_title": "Ficha Personal",
+      "card2_meta": "Paso 02 · 4-5 min",
+      "card2_title": "Madurez en IA",
+      "card3_meta": "Paso 03 · 4-5 min",
+      "card3_title": "Madurez en Metodo y FdT",
+      "card4_meta": "Paso 04 · 8-9 min",
+      "card4_title": "Capacidades Digitales",
+      "muted": "Cada formulario abre en nueva pestaña (Google Forms). Tus respuestas son confidenciales."
+    },
+    "empresas": {
+      "eyebrow": "Empresas · 03",
+      "lead": "Evaluacion de madurez organizacional con entrevistas focalizadas.",
+      "card_title": "Diagnostico por reunion",
+      "card_body": "2 semanas de evaluacion profunda con hasta 4 horas de entrevistas. Radar de madurez organizacional + roadmap priorizado. Agenda una primera conversacion para disenar el alcance.",
+      "cta": "Agendar reunion →"
+    },
+    "proceso": {
+      "eyebrow": "Proceso · 04",
+      "step1_title": "Completa",
+      "step1_body": "4 formularios en tu tiempo, desde cualquier dispositivo.",
+      "step2_title": "Recibe",
+      "step2_body": "Perfil de madurez con nivel detallado por dimension.",
+      "step3_title": "Actua",
+      "step3_body": "Roadmap personalizado con siguiente paso concreto.",
+      "step4_title": "Acelera",
+      "step4_body": "Conversacion opcional para profundizar tus resultados."
+    },
+    "cta": {
+      "eyebrow": "Siguiente paso · 05",
+      "lead": "El primer formulario toma 3 minutos. Sin costo, sin friccion.",
+      "primary": "Iniciar Ficha Personal →",
+      "secondary": "Prefiero conversar",
+      "muted": "Respuesta en 2 dias habiles."
+    }
+  },
   "cta": {},
   "premium": {
     "breadcrumb": {
@@ -1541,5 +1711,652 @@
       "home": "Inicio",
       "resources": "Recursos"
     }
+  },
+  "rec": {
+    "hero": {
+      "eyebrow": "Biblioteca · 01",
+      "lead": "Dos universos de recursos para tu (r)evolucion: infraestructura externa publica y versiones avanzadas premium. CustomGPTs, Gems, Apps de AI Studio y mas.",
+      "cta_catalogo": "Ver Catalogo Publico →",
+      "cta_premium": "Ver Premium"
+    },
+    "tools": {
+      "eyebrow": "Herramientas · 02",
+      "lead": "32 GPTs · 31 Gems · 9 Bibliotecas · Playbooks · Workflows · E-books.",
+      "search_placeholder": "Buscar recurso...",
+      "gpts_label": "Custom GPTs · 32",
+      "gpts_cta": "Ver los 32 GPTs + 31 Gems →",
+      "prompts_label": "Bibliotecas de Prompts · 9",
+      "chip_universal": "Universal",
+      "chip_ventas": "Ventas",
+      "chip_estrategia": "Estrategia",
+      "chip_consulting": "Consulting",
+      "prompts_cta": "Ver las 9 bibliotecas →",
+      "tools_label": "Herramientas y Recursos",
+      "tile_playbooks_title": "Playbooks",
+      "tile_playbooks_desc": "Guias paso a paso para implementar metodologias.",
+      "tile_ebooks_title": "E-books",
+      "tile_ebooks_desc": "Literatura de profundidad sobre IA y metodo.",
+      "tile_miniapps_title": "Mini Apps",
+      "tile_miniapps_desc": "Herramientas tacticas en Google AI Studio.",
+      "tile_workflows_title": "Workflows",
+      "tile_workflows_desc": "4 flujos de automatizacion listos para importar.",
+      "catalog_cta": "Ver catalogo completo →"
+    },
+    "coming": {
+      "label": "Coming Soon",
+      "chip_plugins": "Plugins Claude Code",
+      "chip_skills": "Skills Claude Code",
+      "chip_antigravity": "Skills Antigravity",
+      "note": "Repos GitHub proximamente."
+    },
+    "premium": {
+      "eyebrow": "Premium · 04",
+      "lead": "Soporte prioritario, actualizaciones garantizadas y contexto B2B/Enterprise.",
+      "card_title": "Acceso Premium",
+      "card_desc": "Recursos avanzados con acompanamiento. Versiones empresariales de todos nuestros assets, soporte dedicado y actualizaciones continuas.",
+      "cta": "Explorar Premium →"
+    },
+    "comunidad": {
+      "eyebrow": "Comunidad · 07",
+      "lead": "Se el primero en acceder a nuevos recursos. Agenda una conversacion o postulate como Beta Tester.",
+      "cta_agendar": "Agendar Conversacion →",
+      "cta_github": "Ver en GitHub"
+    },
+    "modal": {
+      "term": "Inventario Canónico",
+      "title": "Todos los Recursos",
+      "filter_placeholder": "Filtrar...",
+      "h_gpts": "32 Custom GPTs",
+      "h_gems": "31 Gems · Gemini",
+      "h_prompts": "9 Bibliotecas de Prompts",
+      "h_tools": "Herramientas",
+      "h_coming": "Coming Soon",
+      "coming1": "Plugins Claude Code — Repos GitHub proximamente",
+      "coming2": "Skills Claude Code — 142+ skills invocables",
+      "coming3": "Skills Antigravity — Motor de sitios y design system"
+    }
+  },
+  "cont": {
+    "formulario": {
+      "badge": "Formulario · 01",
+      "lead": "Videoconferencia de Google Meet. Primera conversacion estrategica de (R)Evolucion — sin costo. 60 minutos para conectar tus dolores y objetivos con las posibilidades reales de nuestro portafolio.",
+      "cta": "Agendar Ahora →",
+      "cta_email": "Escribenos"
+    },
+    "servicios": {
+      "badge": "Servicios · 02",
+      "lead": "Conectamos tus dolores y objetivos actuales con las posibilidades reales de nuestro portafolio.",
+      "s1_title": "Diagnostico",
+      "s1_desc": "Mapeamos tus dolores, objetivos y contexto actual para entender tu punto de partida.",
+      "s2_title": "Roadmap",
+      "s2_desc": "Definimos prioridades y un plan de ruta alineado con bootcamps, rutas y proyectos con IA.",
+      "s3_title": "Documento",
+      "s3_desc": "Recibes un Documento de Entendimiento con el mapa y las prioridades al finalizar."
+    },
+    "ubicacion": {
+      "badge": "Ubicacion · 03",
+      "lead": "100% remoto via Google Meet.",
+      "body": "Disponibilidad semanal: Todos los Lunes (9:00 AM - 3:30 PM COT). Siempre ofrecemos la primera fecha disponible dentro de los siguientes 3 dias habiles. Agenda directamente desde el boton \"Agendar Ahora\" en la parte superior."
+    },
+    "redes": {
+      "badge": "Redes · 04",
+      "lead": "Respuesta en menos de 2 dias habiles.",
+      "r1_title": "contacto@metodologia.info",
+      "r1_desc": "Correo directo para consultas, propuestas y colaboraciones.",
+      "r1_foot": "Escribir →",
+      "r2_title": "MetodologIA",
+      "r2_desc": "Contenido profesional, casos de exito y actualizaciones.",
+      "r2_foot": "Conectar →",
+      "r3_title": "@metodologia.info",
+      "r3_desc": "Detras de escenas, tips rapidos y comunidad.",
+      "r3_foot": "Seguir →"
+    },
+    "faq": {
+      "badge": "FAQ · 05",
+      "lead": "Reglas claras para una experiencia fluida.",
+      "body": "Primera reprogramacion con justa causa: sin costo. Segunda reprogramacion: fee de COP 200.000. No-Show sin aviso: al retomar se toma como segunda consulta y aplica fee. Puedes mover la cita desde el mismo enlace del calendario."
+    },
+    "horario": {
+      "badge": "Horario · 06",
+      "lead": "Lunes a Viernes.",
+      "body": "Sesiones de diagnostico: Lunes 9:00 AM - 3:30 PM (hora Colombia, UTC-5). Correo electronico: respuesta en menos de 2 dias habiles."
+    },
+    "mapa": {
+      "badge": "Cobertura · 07",
+      "lead": "Operamos 100% remoto con foco en LatAm.",
+      "body": "Idiomas disponibles: Espanol e Ingles. Zona horaria base: Colombia (UTC-5). Adaptamos horarios para clientes en otras zonas. Necesitas reprogramar? Envianos un email. La primera vez por justa causa es sin costo."
+    }
+  },
+  "prog": {
+    "hero": {
+      "badge": "Catalogo Completo",
+      "kpi1_label": "Workshops",
+      "kpi2_label": "Bootcamps",
+      "kpi3_label": "Elite",
+      "kpi4_label": "Consultoria"
+    },
+    "masterclass": {
+      "badge": "Masterclasses · 02",
+      "lead": "De 30 a 90 minutos de alto impacto. Ideales para primeros acercamientos, eventos corporativos y foros ejecutivos. Incluida de forma estandar (1 hora) en programas mas grandes.",
+      "c1_label": "Apertura",
+      "c1_title": "¿Que esta pasando con la IA?",
+      "c1_desc": "Foresight estrategico: curva de adopcion y riesgos de obsolescencia.",
+      "c2_label": "Estrategia",
+      "c2_title": "Metodo + IA = Soberania",
+      "c2_desc": "Framework P.I.V.O.T.E. aplicado a la toma de decisiones ejecutivas.",
+      "c3_label": "Cultura",
+      "c3_title": "Liderazgo Exponencial",
+      "c3_desc": "El rol del lider como orquestador de inteligencia humana y artificial."
+    },
+    "workshops": {
+      "badge": "Workshops · 03",
+      "lead": "De 1 a 3 horas segun tema y alcance. Entregables accionables desde el dia uno.",
+      "pyme_note": "Organizaciones <= 10 empleados / <= 3 anos pueden aspirar a Tarifa Persona (validacion requerida).",
+      "ws01_title": "Intro IA",
+      "ws01_desc": "Superar la Falacia de la Herramienta",
+      "ws02_title": "Prompting Avanzado",
+      "ws02_desc": "Protocolos de ejecucion de alto rendimiento",
+      "ws03_title": "Segundo Cerebro",
+      "ws03_desc": "PKM con Obsidian/Notion",
+      "ws04_title": "Productividad",
+      "ws04_desc": "GTD + Kanban personal",
+      "ws05_title": "Moving Motivators",
+      "ws05_desc": "Palancas de compromiso M3.0",
+      "ws06_title": "Happiness Canvas",
+      "ws06_desc": "Satisfaccion laboral con proposito",
+      "ws07_title": "Team Canvas",
+      "ws07_desc": "Alineacion de equipos hibridos",
+      "ws08_title": "De Ocupado a Productivo",
+      "ws08_desc": "Actividad vs. valor",
+      "ws09_title": "¿Que pasa con la IA?",
+      "ws09_desc": "Foresight y oportunidades 2026",
+      "ws10_title": "Ideacion con IA",
+      "ws10_desc": "Design Thinking amplificado",
+      "ws11_title": "Etica y Gobernanza",
+      "ws11_desc": "Seguridad, sesgos y marco legal",
+      "ws12_title": "Liderazgo Exponencial",
+      "ws12_desc": "De Command & Control a Vision & Flow"
+    },
+    "diagnosticos": {
+      "badge": "Diagnosticos · 04",
+      "lead": "2 semanas de evaluacion profunda con hasta 4 horas de entrevistas focalizadas. Para empresas sin riesgo; para personas, segun disponibilidad.",
+      "d1_title": "Diagnostico Empresarial",
+      "d1_desc": "Identificamos brechas, fricciones manuales y perdidas de tiempo en 1 hora. Mapa de prioridades con impacto real.",
+      "d1_link": "Sin riesgo · 2 semanas · hasta 4h entrevistas",
+      "d2_title": "Autodiagnostico Profesional",
+      "d2_desc": "Mide tu nivel de madurez metodologica en 5 dimensiones. Recibe un plan de accion personalizado.",
+      "d2_link": "Sin friccion · 15 min",
+      "cta": "Iniciar Diagnostico →"
+    },
+    "bootcamps": {
+      "badge": "Bootcamps · 05",
+      "lead": "18 horas de inmersion total + 2 sesiones opcionales de lenguaje comun y nivelacion. Resultados a corto plazo e impacto medible.",
+      "pyme_note": "Misma tarifa en USD. Organizaciones <= 10 empleados pueden aspirar a Tarifa Persona.",
+      "bc01_meta": "BC-01 · M365 + Copilot",
+      "bc01_title": "Ofimatica con IA",
+      "bc02_meta": "BC-02 · Comercial B2B",
+      "bc02_title": "Ventas con IA",
+      "bc03_meta": "BC-03 · Agile + GTD",
+      "bc03_title": "Formas de Trabajo",
+      "bc04_meta": "BC-04 · GPTs + Agentes",
+      "bc04_title": "Trabajo Amplificado",
+      "bc05_meta": "BC-05 · v0 + Stitch",
+      "bc05_title": "Vibe Coding"
+    },
+    "elite": {
+      "badge": "Elite · 06",
+      "lead": "16 semanas · 48 horas sincronicas + 48 horas de trabajo independiente. No es un curso, es un rediseno radical de tu identidad operativa.",
+      "e1_title": "Programa de Empoderamiento",
+      "e1_desc": "14 modulos en 2 fases. Plan Maestro de Carrera reforzado con IA y sistemas operativos vitales. De ejecutante agotado a estratega de impacto.",
+      "e1_link": "Nivel 7 · 16 semanas",
+      "e2_title": "Digital Champions",
+      "e2_desc": "Formacion avanzada para agentes de cambio. Marco de transformacion organizacional con estandar operativo 100. El referente digital de tu organizacion.",
+      "e2_link": "Nivel 9 · 16 semanas"
+    },
+    "cta": {
+      "badge": "Siguiente paso · 07",
+      "lead": "Sin riesgo. Conversemos sobre tu contexto y disenemos tu ruta personalizada.",
+      "cta1": "Conversemos →",
+      "cta2": "Diagnostico Sin Riesgo",
+      "muted": "Respuesta en 2 dias habiles."
+    }
+  },
+  "emp": {
+    "hero": {
+      "badge": "B2B · 01",
+      "cta_diagnostico": "Diagnostico Sin Riesgo →",
+      "cta_cotizador": "Simular Inversion",
+      "cta_programas": "Ver Programas ↓"
+    },
+    "stats": {
+      "n1": "+127%",
+      "l1": "Pipeline",
+      "n2": "18h",
+      "l2": "Inmersion",
+      "n3": "3",
+      "l3": "Pasos",
+      "n4": "100",
+      "l4": "Calidad"
+    },
+    "programas": {
+      "badge": "Programas · 02",
+      "lead": "Un camino de 3 pasos disenado para mitigar riesgo y maximizar retorno.",
+      "s1_meta": "Paso 01",
+      "s1_title": "Diagnostico",
+      "s1_org": "Sin Riesgo · 1 hora",
+      "s2_meta": "Paso 02",
+      "s2_title": "Workshop de Venta Amplificada",
+      "s2_org": "Intensivo · 6 horas",
+      "s3_meta": "Paso 03",
+      "s3_title": "Bootcamp de Gestion Comercial con IA",
+      "s3_org": "Inmersion · 18 horas"
+    },
+    "diagnostico": {
+      "badge": "Diagnostico · 03",
+      "lead": "Identificamos brechas y fricciones manuales en 1 hora. Sin costo, sin friccion.",
+      "a1_label": "Paso 01",
+      "a1_title": "Identificar",
+      "a1_desc": "Mapa de perdidas de tiempo y fricciones manuales en su operacion comercial.",
+      "a2_label": "Paso 02",
+      "a2_title": "Priorizar",
+      "a2_desc": "Priorizacion basada en impacto real y esfuerzo de implementacion.",
+      "a3_label": "Paso 03",
+      "a3_title": "Actuar",
+      "a3_desc": "Plan de accion inmediato con roadmap personalizado para su organizacion.",
+      "cta": "Iniciar diagnostico sin riesgo →"
+    },
+    "recursos": {
+      "badge": "Recursos · 04",
+      "lead": "Disenamos el sistema operativo que su organizacion necesita para escalar sin friccion.",
+      "c1_title": "Catalogo Premium",
+      "c1_desc": "Recursos de alto nivel para equipos corporativos exigentes.",
+      "c1_foot": "Ver catalogo →",
+      "c2_title": "Recursos a Medida",
+      "c2_desc": "Contenido personalizado segun las necesidades especificas de su organizacion.",
+      "c2_foot": "Solicitar →",
+      "c3_title": "Servicios Boutique",
+      "c3_desc": "Acompanamiento exclusivo y servicios de implementacion de alto valor.",
+      "c3_foot": "Agendar →"
+    },
+    "casos": {
+      "badge": "Resultados · 05",
+      "lead": "La diferencia entre un trimestre predecible y uno incierto esta en la adopcion estrategica de IA.",
+      "t1_quote": "\"+127% Pipeline Velocity en el primer trimestre. El sistema comercial con IA cambio la forma en que gestionamos oportunidades.\"",
+      "t1_author": "Director Comercial",
+      "t1_org": "Empresa SaaS, LatAm",
+      "t2_quote": "\"18 horas de inmersion total transformaron a nuestro equipo. Estandar de calidad 100 desde la primera implementacion.\"",
+      "t2_author": "Gerente de Operaciones",
+      "t2_org": "Consultora, Colombia"
+    },
+    "metodo": {
+      "badge": "El Metodo · 06",
+      "lead": "Luego revolucionar con tecnologia. Un sistema comercial replicable y escalable asistido por IA.",
+      "p1_title": "Diagnosticar",
+      "p1_desc": "Medir el punto de partida con precision. Identificar brechas y oportunidades reales.",
+      "p2_title": "Disenar",
+      "p2_desc": "Crear un plan de ruta personalizado basado en datos y prioridades del negocio.",
+      "p3_title": "Implementar",
+      "p3_desc": "Ejecutar con acompanamiento continuo, metricas y ajustes en tiempo real.",
+      "p4_title": "Optimizar",
+      "p4_desc": "Iterar y escalar lo que funciona. Mejora continua del sistema comercial."
+    },
+    "contacto": {
+      "badge": "Siguiente paso · 07",
+      "lead": "Sin friccion. Solo claridad estrategica. Agende su diagnostico sin riesgo y reciba un roadmap personalizado.",
+      "cta": "Agendar Diagnostico Sin Riesgo →"
+    }
+  },
+  "pers": {
+    "hero": {
+      "badge": "Autodiagnostico · 01",
+      "cta_diagnostico": "Diagnostico Sin Riesgo →",
+      "cta_cotizador": "Disenar mi Inversion",
+      "cta_programas": "Ver Programas ↓"
+    },
+    "recursos": {
+      "badge": "Recursos · 02",
+      "lead": "Desde asistentes IA personalizados hasta arquitectura de sistemas 100% personalizada.",
+      "c1_title": "Asistentes IA",
+      "c1_desc": "Prompts, agentes y flujos automatizados para potenciar tu productividad personal.",
+      "c1_foot": "Explorar →",
+      "c2_title": "Arquitectura de Sistemas",
+      "c2_desc": "Frameworks y plantillas para disenar tu sistema operativo profesional.",
+      "c2_foot": "Ver plantillas →",
+      "c3_title": "Contenido Premium",
+      "c3_desc": "Recursos de alto nivel, guias avanzadas y acceso anticipado a nuevas herramientas.",
+      "c3_foot": "Acceder →"
+    },
+    "programas": {
+      "badge": "Programas · 03",
+      "lead": "6 Bootcamps tacticos y 2 Programas Elite. Cada programa te acerca a la soberania digital, profesional y estrategica.",
+      "b1_meta": "Bootcamp 01",
+      "b1_title": "Taller EstrategIA Personal",
+      "b2_meta": "Bootcamp 02",
+      "b2_title": "Productividad con IA",
+      "b3_meta": "Bootcamp 03",
+      "b3_title": "Comunicacion Amplificada",
+      "b4_meta": "Bootcamp 04",
+      "b4_title": "Datos para Decisiones",
+      "b5_meta": "Bootcamp 05",
+      "b5_title": "Marca Personal Digital",
+      "b6_meta": "Bootcamp 06",
+      "b6_title": "Automatizacion Profesional",
+      "org_tactico": "Tactico · 18h",
+      "e1_meta": "Elite 01",
+      "e1_title": "Digital Sovereignty Program",
+      "e1_org": "Elite · Programa completo",
+      "e2_meta": "Elite 02",
+      "e2_title": "Digital Champions",
+      "e2_org": "Elite · Programa avanzado"
+    },
+    "comunidad": {
+      "badge": "Comunidad · 04",
+      "lead": "Unete a quienes ya estan transformando su forma de trabajar.",
+      "card_title": "Acceso Anticipado",
+      "card_desc": "Acceso anticipado a recursos, beta testing y conexion con otros profesionales en (r)evolucion. Se parte de la comunidad que esta redefiniendo la relevancia profesional con IA."
+    },
+    "metodo": {
+      "badge": "El Metodo · 05",
+      "lead": "Primero evolucionar con metodo, luego revolucionar con tecnologia. 18 horas por programa, certificacion oficial y acompanamiento continuo.",
+      "a1_label": "Eje 01",
+      "a1_title": "Soberania Digital",
+      "a1_desc": "Control total de tus herramientas, datos y presencia digital. Sin dependencias innecesarias.",
+      "a2_label": "Eje 02",
+      "a2_title": "Soberania Profesional",
+      "a2_desc": "Relevancia en el mercado laboral. Habilidades de alto valor que no se automatizan facilmente.",
+      "a3_label": "Eje 03",
+      "a3_title": "Soberania Estrategica",
+      "a3_desc": "Vision de largo plazo. Capacidad de disenar tu propia ruta y adaptarte a cambios del entorno."
+    },
+    "casos": {
+      "badge": "Resultados · 06",
+      "lead": "El mejor momento para tomar el control de su carrera tecnologica fue hace 5 anos. El segundo mejor momento es hoy.",
+      "t1_quote": "\"El diagnostico me mostro exactamente donde estaba perdiendo tiempo. En 4 semanas reduje fricciones un 60%.\"",
+      "t1_author": "Profesional independiente",
+      "t1_org": "Bogota, Colombia",
+      "t2_quote": "\"Los bootcamps me dieron estructura. Pase de experimentar con IA a tener un sistema profesional completo.\"",
+      "t2_author": "Consultor de Tecnologia",
+      "t2_org": "Mexico, CDMX"
+    },
+    "contacto": {
+      "badge": "Siguiente paso · 07",
+      "lead": "Sin friccion. Solo claridad radical. Agende su diagnostico sin riesgo y comience su ruta de (R)Evolucion.",
+      "cta": "Agendar Diagnostico Sin Riesgo →"
+    }
+  },
+  "met": {
+    "filosofia": {
+      "badge": "Filosofia · 01",
+      "lead": "MetodologIA nace de la premisa de que toda persona y organizacion puede sistematizar su exito con las herramientas adecuadas y un proceso basado en evidencia."
+    },
+    "diagnostico": {
+      "badge": "Diagnostico · 02",
+      "lead": "El primer paso es medir. Nuestro diagnostico evalua madurez, dolor y urgencia para generar un perfil accionable.",
+      "card_title": "Diagnostico de Madurez",
+      "card_body": "Evaluamos cinco dimensiones clave: madurez metodologica, nivel de dolor operativo, urgencia del cambio, composicion del equipo y segmento de mercado. El resultado es un perfil radar con recomendaciones priorizadas."
+    },
+    "estrategia": {
+      "badge": "Estrategia · 03",
+      "lead": "Diseno de ruta con prioridades claras, hitos medibles y recursos asignados.",
+      "card_title": "Diseno de Ruta",
+      "card_body": "Con el diagnostico en mano, creamos un plan de accion personalizado. Prioridades claras, hitos medibles y recursos asignados para que cada paso te acerque a la soberania digital, profesional y estrategica."
+    },
+    "amplificacion": {
+      "badge": "Amplificacion · 04",
+      "lead": "Automatizacion, IA aplicada y transferencia de conocimiento al equipo.",
+      "card_title": "Amplificacion con IA",
+      "card_body": "Escalamos lo que funciona: automatizacion de tareas repetitivas, IA aplicada a la toma de decisiones y transferencia de conocimiento para que el equipo sea autonomo y sostenible."
+    },
+    "pivote": {
+      "badge": "Pivote · 05",
+      "lead": "Cuando los datos indican cambio de rumbo, pivotamos sin perder lo construido.",
+      "card_title": "Pivote Agil",
+      "card_body": "Los datos mandan. Cuando las metricas indican cambio de rumbo, pivotamos con agilidad sin perder lo construido. Cada iteracion conserva los aprendizajes y redirige la energia hacia lo que genera mayor impacto."
+    },
+    "evidencia": {
+      "badge": "Evidencia · 06",
+      "lead": "Cada decision se respalda con metricas reales. Mostramos resultados, no promesas.",
+      "card_title": "Cultura de Evidencia",
+      "card_body": "Nuestro compromiso es con los hechos. Cada recomendacion esta respaldada por metricas verificables, benchmarks del sector y resultados de casos reales. Transparencia total en cada paso del proceso."
+    },
+    "siguiente": {
+      "badge": "Siguiente paso · 07",
+      "lead": "Listo para empezar? Realiza tu diagnostico sin riesgo y recibe un plan de accion personalizado.",
+      "cta_diagnostico": "Iniciar diagnostico sin riesgo →",
+      "cta_home": "Volver al inicio"
+    }
+  },
+  "nos": {
+    "vision": {
+      "badge": "Vision · 01",
+      "title": "Quienes <span class=\"gradient-text\">Somos</span>",
+      "lead": "Estrategas para cocrear entornos de abundancia. Cerramos la brecha entre intenciones y resultados diseñando sistemas que trabajan para ti. MetodologIA nace de la vision compartida de cuatro estrategas comprometidos con empoderar a profesionales y organizaciones mediante la integración estratégica de Inteligencia Artificial y metodologías de alto rendimiento."
+    },
+    "equipo": {
+      "badge": "Equipo · 02",
+      "title": "Nuestro <span class=\"gradient-text\">Equipo</span>",
+      "lead": "Un equipo de estrategas dedicados a cocrear entornos donde la excelencia y la innovación se encuentran.",
+      "m1_role": "Chief Efficiency Officer",
+      "m1_desc": "Optimización y Eficiencia Operativa",
+      "m2_role": "Chief Ecosystem Officer",
+      "m2_desc": "Ecosistemas Digitales",
+      "m3_role": "Chief Empowerment Officer",
+      "m3_desc": "Diseño Estratégico e IA",
+      "m4_role": "Chief Enablement Officer",
+      "m4_desc": "Habilitación y Cultura"
+    },
+    "ecosistema": {
+      "badge": "Ecosistema · 03",
+      "title": "Red Neural de <span class=\"gradient-text\">Valor</span>",
+      "lead": "Conectamos tecnología, academia y empresa.",
+      "body": "Partners autorizados, resellers y una comunidad de élite para potenciar la (r)evolución. Actuamos como Customer Success para nuestros aliados. Cada nodo de la red amplifica el impacto del ecosistema completo."
+    },
+    "mision": {
+      "badge": "Misión · 04",
+      "title": "Propósito y <span class=\"gradient-text\">PIVOTE</span>",
+      "lead": "Cerrar la brecha entre el potencial infinito de la tecnología y la capacidad limitada de las personas.",
+      "body": "No creemos en la magia de la IA; creemos en el diseño sistemático de sistemas operativos que (r)evolucionan la forma de trabajar. Deontología, Ikigai y la búsqueda incansable de la excelencia guían cada decisión. El framework PIVOTE estructura nuestra ejecución: Propósito, Investigación, Validación, Operación, Transformación, Evolución."
+    },
+    "valores": {
+      "badge": "Valores · 05",
+      "title": "Transparencia <span class=\"gradient-text\">Radical</span>",
+      "lead": "Nuestra metodología interna es Open Source / Copyleft.",
+      "v1_title": "Transparencia",
+      "v1_desc": "Puedes usar, estudiar y replicar toda nuestra metodología. Sin secretos, sin muros.",
+      "v2_title": "Open Source",
+      "v2_desc": "Cobramos por lo que aporta valor diferencial: Bootcamps, Consultoría, Recursos Premium y colaboraciones.",
+      "v3_title": "Excelencia",
+      "v3_desc": "No somos proveedores, somos socios de crecimiento. La excelencia en la ejecución es nuestro diferencial."
+    },
+    "comunidad": {
+      "badge": "Comunidad · 06",
+      "title": "Programa de <span class=\"gradient-text\">Embajadores</span>",
+      "lead": "Nuestra metodología es abierta porque nuestro negocio no es el secreto, es la excelencia en la ejecución.",
+      "body": "Programa de certificación exclusivo para egresados: 3 semanas, 20 horas síncronas, licencia para usar la marca. Sin costo adicional para alumni. Conviértete en embajador y multiplica el impacto."
+    },
+    "contacto": {
+      "badge": "Siguiente paso · 07",
+      "title": "Primera <span class=\"gradient-text\">Conversación</span>",
+      "lead": "Nuestro éxito se mide únicamente por tu capacidad de lograr soberanía estratégica. Conversemos sobre cómo acelerar tus resultados.",
+      "cta": "Primera Conversación →"
+    }
+  },
+  "cas": {
+    "destacados": {
+      "badge": "Destacados · 01",
+      "title": "Casos <span class=\"gradient-text\">Destacados</span>",
+      "lead": "Historias reales de transformación metodológica con <strong>resultados medibles</strong>."
+    },
+    "empresa": {
+      "badge": "Empresa · 02",
+      "title": "Casos <span class=\"gradient-text\">Empresariales</span>",
+      "lead": "Organizaciones que sistematizaron sus procesos y escalaron su impacto.",
+      "c1_label": "SaaS",
+      "c1_title": "Empresa SaaS LatAm",
+      "c1_desc": "Alineación de 3 equipos en la primera semana. Reducción de fricciones operativas del 45%.",
+      "c2_label": "BFSI",
+      "c2_title": "Financiera Regional",
+      "c2_desc": "Implementación del método en operaciones. Métricas claras de progreso desde el día uno.",
+      "c3_label": "Consultora",
+      "c3_title": "Consultora LatAm",
+      "c3_desc": "Plantillas y recursos ahorraron meses de trabajo. Calidad desde el día uno.",
+      "cta": "Ver caso completo →"
+    },
+    "persona": {
+      "badge": "Persona · 03",
+      "title": "Casos <span class=\"gradient-text\">Individuales</span>",
+      "lead": "Profesionales que aceleraron su carrera con metodologías aplicadas.",
+      "c1_label": "Freelancer",
+      "c1_title": "Consultor Independiente",
+      "c1_desc": "De freelancer desorganizado a consultor con sistema propio en 3 meses.",
+      "c2_title": "Líder Técnico",
+      "c2_desc": "Redujo fricciones un 60% en 4 semanas con el diagnóstico y plan personalizado.",
+      "c3_title": "Gerente de Proyectos",
+      "c3_desc": "Mentoría continua con métricas claras. Sabe exactamente dónde está y hacia dónde va.",
+      "cta": "Ver caso completo →"
+    },
+    "resultados": {
+      "badge": "Resultados · 04",
+      "title": "Resultados en <span class=\"gradient-text\">números</span>",
+      "lead": "Métricas agregadas de todos los casos de transformación.",
+      "l1": "Tiempo de entrega",
+      "l2": "Productividad",
+      "l3": "ROI medido",
+      "l4": "Primeros resultados"
+    },
+    "metodologia": {
+      "badge": "Metodología · 05",
+      "title": "Cómo se aplicó el <span class=\"gradient-text\">método</span>",
+      "lead": "Tres ejes que se repiten en cada caso de éxito.",
+      "a1_label": "Eje 01",
+      "a1_title": "Diagnóstico",
+      "a1_desc": "Identificación precisa del punto de partida y los cuellos de botella críticos.",
+      "a2_label": "Eje 02",
+      "a2_title": "Estrategia",
+      "a2_desc": "Plan de ruta personalizado con hitos medibles y recursos asignados.",
+      "a3_label": "Eje 03",
+      "a3_title": "Amplificación",
+      "a3_desc": "Escalamiento con IA, automatización y transferencia de conocimiento."
+    },
+    "testimonios": {
+      "badge": "Testimonios · 06",
+      "title": "Voces <span class=\"gradient-text\">reales</span>",
+      "lead": "Lo que dicen quienes vivieron la transformación.",
+      "t1_quote": "\"MetodologIA nos ayudó a reducir el tiempo de entrega en un 40%.\"",
+      "t1_author": "Ana García, CTO @ TechCo",
+      "t1_org": "Empresa SaaS, LatAm",
+      "t2_quote": "\"Pasé de freelancer desorganizado a consultor con sistema propio en 3 meses.\"",
+      "t2_author": "Carlos Ruiz, Consultor Independiente",
+      "t2_org": "Bogotá, Colombia",
+      "t3_quote": "\"El diagnóstico reveló cuellos de botella que no veíamos. El ROI fue inmediato.\"",
+      "t3_author": "María López, VP Operaciones @ DataOrg",
+      "t3_org": "BFSI, Medellín"
+    },
+    "contacto": {
+      "badge": "Contacto · 07",
+      "title": "¿Quieres ser el <span class=\"gradient-text\">próximo</span>?",
+      "lead": "Agenda una sesión exploratoria y descubre cómo podemos ayudarte a transformar tus resultados.",
+      "cta_diagnostico": "Comenzar diagnóstico →",
+      "cta_email": "Escríbenos",
+      "note": "Sin fricción. Respuesta en menos de 2 días hábiles."
+    }
+  },
+  "ins": {
+    "articulos": {
+      "badge": "Artículos · 01",
+      "early_access": "Acceso anticipado — contenido en construcción. Suscríbete para ser el primero en enterarte.",
+      "title": "<span class=\"gradient-text\">Insights</span>",
+      "lead": "Análisis profundos sobre metodologías, productividad y transformación digital."
+    },
+    "tendencias": {
+      "badge": "Tendencias · 02",
+      "title": "<span class=\"gradient-text\">Tendencias</span>",
+      "lead": "Lo que viene en el mundo de las metodologías ágiles, IA y datos.",
+      "body": "Contenido de tendencias en construcción. Suscríbete para acceso anticipado."
+    },
+    "herramientas": {
+      "badge": "Herramientas · 03",
+      "title": "<span class=\"gradient-text\">Herramientas</span>",
+      "lead": "Reviews, comparativas y guías prácticas de herramientas metodológicas.",
+      "body": "Contenido de herramientas en construcción. Suscríbete para acceso anticipado."
+    },
+    "investigacion": {
+      "badge": "Investigación · 04",
+      "title": "<span class=\"gradient-text\">Investigación</span>",
+      "lead": "Estudios propios y curados sobre efectividad metodológica con datos reales.",
+      "body": "Contenido de investigación en construcción. Suscríbete para acceso anticipado."
+    },
+    "comunidad": {
+      "badge": "Comunidad · 05",
+      "title": "<span class=\"gradient-text\">Comunidad</span>",
+      "lead": "Discusiones, preguntas y aportes de la comunidad MetodologIA.",
+      "body": "Espacio de comunidad en construcción. Suscríbete para acceso anticipado."
+    },
+    "suscripcion": {
+      "badge": "Suscripción · 06",
+      "title": "<span class=\"gradient-text\">Suscríbete</span>",
+      "lead": "Recibe insights exclusivos, acceso anticipado a herramientas y contenido premium.",
+      "email_label": "Correo electrónico",
+      "name_label": "Nombre (opcional)",
+      "submit": "Suscribirme"
+    },
+    "archivo": {
+      "badge": "Archivo · 07",
+      "title": "<span class=\"gradient-text\">Archivo</span>",
+      "lead": "Todos los insights publicados, organizados por fecha y categoría.",
+      "body": "Archivo en construcción. Los primeros artículos están en camino."
+    }
+  },
+  "leg": {
+    "privacidad": {
+      "badge": "Privacidad · 01",
+      "title": "Política de <span class=\"gradient-text\">Privacidad</span>",
+      "subtitle": "Arquitectura Local-First, soberanía de datos, transparencia total.",
+      "body": "Nuestras herramientas y recursos operan bajo una arquitectura Local-First. Tus datos se guardan en tu navegador (localStorage / IndexedDB) y no en nuestros servidores. Tú tienes el control total. No tenemos base de datos central de usuarios, no vendemos tus datos, no usamos cookies de seguimiento, y no entrenamos modelos con tus datos.",
+      "last_updated": "Última actualización: 28 de enero de 2026"
+    },
+    "terminos": {
+      "badge": "Términos · 02",
+      "title": "Términos de <span class=\"gradient-text\">Servicio</span>",
+      "subtitle": "Condiciones de uso de la plataforma MetodologIA.",
+      "body": "Al acceder y utilizar metodologia.info, aceptas estos términos. El contenido educativo, herramientas de diagnóstico y recursos disponibles en la plataforma se proporcionan con fines informativos y formativos. MetodologIA se reserva el derecho de modificar o discontinuar cualquier servicio sin previo aviso. Todo el contenido, marcas, logotipos y material original están protegidos bajo la ley colombiana de propiedad intelectual."
+    },
+    "cookies": {
+      "badge": "Cookies · 03",
+      "title": "Política de <span class=\"gradient-text\">Cookies</span>",
+      "subtitle": "Cómo usamos cookies y almacenamiento local.",
+      "body": "Utilizamos cookies esenciales para el funcionamiento del sitio: mdg_consent (consentimiento de analítica, 180 días), mdg_returning (SHA-256 del email tras diagnóstico, 180 días), y almacenamiento local para preferencias de tema, idioma y audiencia (mdg_theme, mdg_locale, mdg_audience). Google Analytics 4 solo se activa si das consentimiento explícito. Puedes usar bloqueadores de rastreo o modo incógnito sin afectar tu experiencia."
+    },
+    "datos": {
+      "badge": "Datos · 04",
+      "title": "Tratamiento de <span class=\"gradient-text\">Datos</span>",
+      "subtitle": "Qué datos recopilamos y por qué.",
+      "body": "Recopilamos datos voluntarios: nombre, email y mensaje si decides contactarnos; datos de diagnóstico (respuestas y resultado) con consentimiento explícito; y métricas anonimizadas de GA4 (país, páginas visitadas, rendimiento del sitio). Los datos del diagnóstico se almacenan en Firebase Firestore con autenticación anónima y reglas de seguridad append-only. Jamás almacenamos datos de tarjeta ni compartimos información con terceros para fines comerciales."
+    },
+    "derechos": {
+      "badge": "Derechos · 05",
+      "title": "Tus <span class=\"gradient-text\">Derechos</span> (Habeas Data)",
+      "subtitle": "Derechos bajo la Ley 1581 de 2012 de Colombia.",
+      "body": "Tienes derecho a conocer, actualizar, rectificar, suprimir y revocar tus datos personales. El acceso a tus datos es Sin Riesgo. Para ejercer estos derechos, escribe a contacto@metodologia.info. Tiempo máximo de respuesta: 10 días hábiles (consultas) o 15 días hábiles (reclamos). Responsable: MetodologIA / Javier Montaño."
+    },
+    "cambios": {
+      "badge": "Cambios · 06",
+      "title": "<span class=\"gradient-text\">Cambios</span> a estas Políticas",
+      "subtitle": "Cómo te informamos de actualizaciones.",
+      "body": "Podemos actualizar estas políticas periódicamente. Los cambios serán publicados en esta página con la fecha de actualización correspondiente. Te recomendamos revisar esta página ocasionalmente para estar informado."
+    },
+    "contacto": {
+      "badge": "Contacto · 07",
+      "title": "Contacto <span class=\"gradient-text\">Legal</span>",
+      "subtitle": "Canal oficial para consultas de privacidad y datos.",
+      "body": "Para cualquier consulta sobre privacidad, tratamiento de datos o ejercicio de derechos, contacta al Oficial de Privacidad:",
+      "email": "contacto@metodologia.info"
+    }
+  },
+  "err": {
+    "eyebrow": "Error",
+    "title": "Página no encontrada",
+    "body": "La página que buscas no existe o fue movida. Vuelve al inicio y explora todo lo que MetodologIA tiene para ti.",
+    "cta": "Volver al home →"
   }
 }

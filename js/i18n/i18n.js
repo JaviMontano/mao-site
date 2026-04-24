@@ -19,6 +19,8 @@
     var scripts = document.querySelectorAll('script[src*="i18n/i18n.js"]');
     if (scripts.length > 0) {
       var src = scripts[scripts.length - 1].getAttribute('src');
+      // Strip query string before extracting base path
+      src = src.replace(/\?.*$/, '');
       return src.replace(/js\/i18n\/i18n\.js$/, '').replace(/\/$/, '') || '.';
     }
     return '.';
@@ -65,7 +67,7 @@
       xhr.responseType = 'json';
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
-          var data = xhr.response || JSON.parse(xhr.responseText);
+          var data = xhr.response;
           resolve(data);
         } else {
           reject(new Error('i18n: failed to load ' + url + ' (' + xhr.status + ')'));

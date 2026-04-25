@@ -2363,6 +2363,10 @@
       "badge": "Nivel 0 · Entrada",
       "title": "Descubre dónde estás para diseñar <span class=\"gradient-text\">hacia dónde vas</span>",
       "lead": "Diagnóstico estratégico sin costo. Mapeamos tu situación real antes de proponer soluciones.",
+      "kpi1": "Formularios",
+      "kpi2": "Minutos total",
+      "kpi3": "Costo",
+      "kpi4": "Potencial",
       "card_title": "Diagnóstico Estratégico",
       "card_desc": "Madurez digital, fricciones operativas, quick wins y sesión 1:1.",
       "card_link": "Sin costo · 2 semanas"

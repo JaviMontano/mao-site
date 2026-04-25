@@ -2363,6 +2363,10 @@
       "badge": "Level 0 · Entry",
       "title": "Discover where you are to design <span class=\"gradient-text\">where you're going</span>",
       "lead": "No-cost strategic diagnosis. We map your real situation before proposing solutions.",
+      "kpi1": "Forms",
+      "kpi2": "Minutes total",
+      "kpi3": "Cost",
+      "kpi4": "Potential",
       "card_title": "Strategic Diagnosis",
       "card_desc": "Digital maturity, operational frictions, quick wins and 1:1 session.",
       "card_link": "No cost · 2 weeks"

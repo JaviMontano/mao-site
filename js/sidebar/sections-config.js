@@ -32,6 +32,7 @@ const SECTIONS = {
 
   personas: [
     { id: 'autodiagnostico', icon: 'scan-search', i18nKey: 'sidebar.personas.autodiagnostico' },
+    { id: 'ruta-entrada', icon: 'footprints', i18nKey: 'sidebar.personas.ruta_entrada' },
     { id: 'recursos', icon: 'book-open', i18nKey: 'sidebar.personas.recursos' },
     { id: 'programas', icon: 'graduation-cap', i18nKey: 'sidebar.personas.programas' },
     { id: 'comunidad', icon: 'heart-handshake', i18nKey: 'sidebar.personas.comunidad' },

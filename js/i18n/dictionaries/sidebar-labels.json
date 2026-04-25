@@ -30,6 +30,7 @@
     },
     "personas": {
       "autodiagnostico": { "es": "Autodiagnóstico", "en": "Self-assessment" },
+      "ruta_entrada": { "es": "Ruta de Entrada", "en": "Entry Path" },
       "recursos": { "es": "Recursos", "en": "Resources" },
       "programas": { "es": "Programas", "en": "Programs" },
       "comunidad": { "es": "Comunidad", "en": "Community" },

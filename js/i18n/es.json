@@ -2061,6 +2061,26 @@
       "cta_cotizador": "Disenar mi Inversion",
       "cta_programas": "Ver Programas ↓"
     },
+    "ruta": {
+      "badge": "Tu Primer Paso",
+      "title": "Ruta de <span class=\"gradient-text\">Entrada</span>",
+      "lead": "3 pasos progresivos. Empieza sin riesgo, avanza a tu ritmo.",
+      "s0_meta": "Step 0",
+      "s0_title": "Autodiagnóstico",
+      "s0_org": "Sin Riesgo · 1 hora",
+      "s0_desc": "Detectamos dónde estás perdiendo tiempo y dinero. <strong>Primera conversación sin costo</strong>.",
+      "s0_risk": "Riesgo: $0",
+      "s1_meta": "Step 1",
+      "s1_title": "Taller EstrategIA Personal",
+      "s1_org": "Coaching · 3 horas",
+      "s1_desc": "Define tu hoja de ruta. El <strong>100% se acredita</strong> al Bootcamp.",
+      "s1_level": "Exploración",
+      "s2_meta": "Step 2",
+      "s2_title": "Bootcamp Amplificación Profesional",
+      "s2_org": "Inmersión · 18 horas",
+      "s2_desc": "Domina herramientas y conviértete en <strong>Digital Champion</strong>.",
+      "s2_level": "Compromiso Total"
+    },
     "recursos": {
       "badge": "Recursos · 02",
       "title": "Recursos para <span class=\"gradient-text\">Profesionales</span>",
@@ -2103,7 +2123,8 @@
       "e2_meta": "Elite 02",
       "e2_title": "Digital Champions",
       "e2_org": "Elite · Programa avanzado",
-      "e2_desc": "Para lideres que buscan <strong>transformar organizaciones</strong> desde la excelencia individual."
+      "e2_desc": "Para lideres que buscan <strong>transformar organizaciones</strong> desde la excelencia individual.",
+      "proximamente": "Próximamente"
     },
     "comunidad": {
       "badge": "Comunidad · 04",

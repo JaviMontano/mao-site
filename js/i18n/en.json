@@ -2061,6 +2061,26 @@
       "cta_cotizador": "Design my Investment",
       "cta_programas": "View Programs ↓"
     },
+    "ruta": {
+      "badge": "Your First Step",
+      "title": "Entry <span class=\"gradient-text\">Path</span>",
+      "lead": "3 progressive steps. Start risk-free, advance at your pace.",
+      "s0_meta": "Step 0",
+      "s0_title": "Self-Assessment",
+      "s0_org": "No Risk · 1 hour",
+      "s0_desc": "We detect where you're losing time and money. <strong>First conversation at no cost</strong>.",
+      "s0_risk": "Risk: $0",
+      "s1_meta": "Step 1",
+      "s1_title": "Personal StrategIA Workshop",
+      "s1_org": "Coaching · 3 hours",
+      "s1_desc": "Define your roadmap. <strong>100% credited</strong> toward the Bootcamp.",
+      "s1_level": "Exploration",
+      "s2_meta": "Step 2",
+      "s2_title": "Professional Amplification Bootcamp",
+      "s2_org": "Immersion · 18 hours",
+      "s2_desc": "Master tools and become a <strong>Digital Champion</strong>.",
+      "s2_level": "Full Commitment"
+    },
     "recursos": {
       "badge": "Resources · 02",
       "title": "Resources for <span class=\"gradient-text\">Professionals</span>",
@@ -2103,7 +2123,8 @@
       "e2_meta": "Elite 02",
       "e2_title": "Digital Champions",
       "e2_org": "Elite · Advanced Program",
-      "e2_desc": "For leaders seeking to <strong>transform organizations</strong> from individual excellence."
+      "e2_desc": "For leaders seeking to <strong>transform organizations</strong> from individual excellence.",
+      "proximamente": "Coming Soon"
     },
     "comunidad": {
       "badge": "Community · 04",

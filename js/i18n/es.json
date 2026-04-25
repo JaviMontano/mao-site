@@ -2369,7 +2369,21 @@
       "kpi4": "Potencial",
       "card_title": "Diagnóstico Estratégico",
       "card_desc": "Madurez digital, fricciones operativas, quick wins y sesión 1:1.",
-      "card_link": "Sin costo · 2 semanas"
+      "card_link": "Sin costo · 2 semanas",
+      "forms_label": "4 Formularios · Personas",
+      "f1_meta": "Paso 01 · 3-4 min",
+      "f1_title": "Ficha Personal",
+      "f1_impact": "Tu contexto, rol, industria y objetivos. <strong>Punto de partida</strong>.",
+      "f2_meta": "Paso 02 · 4-5 min",
+      "f2_title": "Madurez en IA",
+      "f2_impact": "Nivel de adopción, herramientas y <strong>confianza con IA</strong>.",
+      "f3_meta": "Paso 03 · 4-5 min",
+      "f3_title": "Método y Formas de Trabajo",
+      "f3_impact": "Organización, priorización y <strong>nivel de sistematización</strong>.",
+      "f4_meta": "Paso 04 · 8-9 min",
+      "f4_title": "Capacidades Digitales",
+      "f4_impact": "Evaluación profunda de <strong>competencias digitales</strong> en 5 áreas.",
+      "cta": "Iniciar diagnóstico →"
     },
     "fundamentar": {
       "badge": "Fase 1 · Fundamentar",

@@ -2369,7 +2369,21 @@
       "kpi4": "Potential",
       "card_title": "Strategic Diagnosis",
       "card_desc": "Digital maturity, operational frictions, quick wins and 1:1 session.",
-      "card_link": "No cost · 2 weeks"
+      "card_link": "No cost · 2 weeks",
+      "forms_label": "4 Forms · Individuals",
+      "f1_meta": "Step 01 · 3-4 min",
+      "f1_title": "Personal Profile",
+      "f1_impact": "Your context, role, industry and goals. <strong>Starting point</strong>.",
+      "f2_meta": "Step 02 · 4-5 min",
+      "f2_title": "AI Maturity",
+      "f2_impact": "Adoption level, tools and <strong>AI confidence</strong>.",
+      "f3_meta": "Step 03 · 4-5 min",
+      "f3_title": "Methodology & Ways of Working",
+      "f3_impact": "Organization, prioritization and <strong>systematization level</strong>.",
+      "f4_meta": "Step 04 · 8-9 min",
+      "f4_title": "Digital Capabilities",
+      "f4_impact": "Deep assessment of <strong>digital skills</strong> across 5 areas.",
+      "cta": "Start diagnosis →"
     },
     "fundamentar": {
       "badge": "Phase 1 · Foundation",

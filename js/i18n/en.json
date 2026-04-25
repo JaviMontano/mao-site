@@ -2358,6 +2358,103 @@
       "body": "Archive under construction. The first articles are on their way."
     }
   },
+  "rut": {
+    "diagnostico": {
+      "badge": "Level 0 · Entry",
+      "title": "Discover where you are to design <span class=\"gradient-text\">where you're going</span>",
+      "lead": "No-cost strategic diagnosis. We map your real situation before proposing solutions.",
+      "kpi1": "Forms",
+      "kpi2": "Minutes total",
+      "kpi3": "Cost",
+      "kpi4": "Potential",
+      "card_title": "Strategic Diagnosis",
+      "card_desc": "Digital maturity, operational frictions, quick wins and 1:1 session.",
+      "card_link": "No cost · 2 weeks",
+      "forms_label": "4 Forms · Individuals",
+      "f1_meta": "Step 01 · 3-4 min",
+      "f1_title": "Personal Profile",
+      "f1_impact": "Your context, role, industry and goals. <strong>Starting point</strong>.",
+      "f2_meta": "Step 02 · 4-5 min",
+      "f2_title": "AI Maturity",
+      "f2_impact": "Adoption level, tools and <strong>AI confidence</strong>.",
+      "f3_meta": "Step 03 · 4-5 min",
+      "f3_title": "Methodology & Ways of Working",
+      "f3_impact": "Organization, prioritization and <strong>systematization level</strong>.",
+      "f4_meta": "Step 04 · 8-9 min",
+      "f4_title": "Digital Capabilities",
+      "f4_impact": "Deep assessment of <strong>digital skills</strong> across 5 areas.",
+      "cta": "Start diagnosis →"
+    },
+    "fundamentar": {
+      "badge": "Phase 1 · Foundation",
+      "title": "From reactivity to <span class=\"gradient-text\">strategy</span>",
+      "lead": "1:1 coaching to design your career plan with AI as the vehicle.",
+      "n1_meta": "N1 · Coaching · 18h",
+      "n1_title": "Personal StrategyIA",
+      "n1_impact": "Career plan + OKRs + <strong>100+ prompts</strong>."
+    },
+    "acelerar": {
+      "badge": "Phase 2 · Accelerate",
+      "title": "Quick wins with <span class=\"gradient-text\">immediate impact</span>",
+      "lead": "3 tactical bootcamps. Recover hours, accelerate sales, systematize processes.",
+      "n2_meta": "N2 · Bootcamp · 18h",
+      "n2_title": "Office Suite with AI",
+      "n2_impact": "Recover <strong>5-10h weekly</strong>. M365 + Copilot.",
+      "n3_meta": "N3 · Bootcamp · 18h",
+      "n3_title": "Sales Management with AI",
+      "n3_impact": "Automated pipeline. <strong>Genuine connection</strong> at scale.",
+      "n4_meta": "N4 · Bootcamp · 18h",
+      "n4_title": "Ways of Working",
+      "n4_impact": "Agile + GTD + 2nd Brain. <strong>Total predictability</strong>."
+    },
+    "catalizar": {
+      "badge": "Phase 3 · Catalyze",
+      "title": "From user to <span class=\"gradient-text\">architect</span>",
+      "lead": "Master generative AI, lead data-driven projects and design your sovereignty.",
+      "n5_meta": "N5 · Bootcamp · 18h",
+      "n5_title": "Amplified Work",
+      "n5_impact": "Custom GPTs + agents + n8n. <strong>Own solutions</strong>.",
+      "n6_meta": "N6 · Bootcamp · 18h",
+      "n6_title": "Project ManagementIA",
+      "n6_impact": "Dashboards + orchestration. <strong>Data-driven decisions</strong>.",
+      "n7_meta": "N7 · Elite · 48h",
+      "n7_title": "Empowerment Program",
+      "n7_impact": "14 modules. From doer → <strong>impact strategist</strong>."
+    },
+    "amplificar": {
+      "badge": "Phase 4 · Amplify",
+      "title": "From operator to <span class=\"gradient-text\">change agent</span>",
+      "lead": "Build your own software and lead your organization's digital transformation.",
+      "n8_meta": "N8 · Bootcamp · 18h",
+      "n8_title": "Vibe Coding",
+      "n8_impact": "Idea to app in hours. <strong>Total independence</strong> from IT.",
+      "n9_meta": "N9 · Elite · 48h",
+      "n9_title": "Digital Champions",
+      "n9_impact": "Champion Certification. <strong>Recognized authority, multiplied impact</strong>."
+    },
+    "personalizable": {
+      "badge": "Your Route · 06",
+      "title": "Not a fixed path, it's a <span class=\"gradient-text\">modular system</span>",
+      "lead": "These are our services and reference for sovereignty. Each route is customized to your context, goals and pace.",
+      "c1_label": "Flexible entry",
+      "c1_title": "Start at any level",
+      "c1_desc": "You don't need to complete all previous levels. Your diagnosis defines your optimal entry point.",
+      "c2_label": "Own pace",
+      "c2_title": "At your speed",
+      "c2_desc": "One bootcamp per quarter or several in parallel. You set the intensity.",
+      "c3_label": "Unique context",
+      "c3_title": "Adjusted to your reality",
+      "c3_desc": "Individuals or companies. Freelancer or corporate. Content adapts, excellence remains."
+    },
+    "contacto": {
+      "badge": "Next step · 07",
+      "title": "Begin your <span class=\"gradient-text\">(R)Evolution</span>",
+      "lead": "No friction. Your free diagnosis reveals the best entry point for your context.",
+      "cta1": "No-Risk Diagnosis →",
+      "cta2": "First Conversation",
+      "muted": "Response within 2 business days."
+    }
+  },
   "leg": {
     "privacidad": {
       "badge": "Privacy · 01",

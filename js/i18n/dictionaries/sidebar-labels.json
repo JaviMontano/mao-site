@@ -55,6 +55,15 @@
       "automatizacion": { "es": "Automatización", "en": "Automation" },
       "comunidad": { "es": "Comunidad", "en": "Community" }
     },
+    "ruta": {
+      "diagnostico": { "es": "Nivel Cero", "en": "Level Zero" },
+      "fundamentar": { "es": "Fundamentar", "en": "Foundation" },
+      "acelerar": { "es": "Acelerar", "en": "Accelerate" },
+      "catalizar": { "es": "Catalizar", "en": "Catalyze" },
+      "amplificar": { "es": "Amplificar", "en": "Amplify" },
+      "personalizable": { "es": "Tu Ruta", "en": "Your Route" },
+      "contacto": { "es": "Contacto", "en": "Contact" }
+    },
     "vision": {
       "hero": { "es": "Visión", "en": "Vision" },
       "problema": { "es": "Problema", "en": "Problem" },

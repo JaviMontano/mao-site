@@ -46,8 +46,11 @@ export function checkRedirect(pathname) {
     }
   }
 
-  // 2. Catch-all: /ruta/* → /diagnostico/
-  if (pathname.startsWith('/ruta/') || pathname === '/ruta') {
+  // 2. Catch-all: /ruta/*.html → /diagnostico/ (but NOT /ruta/ itself)
+  if (pathname === '/ruta') {
+    return { target: '/ruta/', code: 301 };
+  }
+  if (pathname.startsWith('/ruta/') && pathname !== '/ruta/' && pathname !== '/ruta/index.html') {
     return { target: RUTA_CATCH_ALL_TARGET, code: 301 };
   }
 

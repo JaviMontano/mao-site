@@ -2358,6 +2358,103 @@
       "body": "Archivo en construcción. Los primeros artículos están en camino."
     }
   },
+  "rut": {
+    "diagnostico": {
+      "badge": "Nivel 0 · Entrada",
+      "title": "Descubre dónde estás para diseñar <span class=\"gradient-text\">hacia dónde vas</span>",
+      "lead": "Diagnóstico estratégico sin costo. Mapeamos tu situación real antes de proponer soluciones.",
+      "kpi1": "Formularios",
+      "kpi2": "Minutos total",
+      "kpi3": "Costo",
+      "kpi4": "Potencial",
+      "card_title": "Diagnóstico Estratégico",
+      "card_desc": "Madurez digital, fricciones operativas, quick wins y sesión 1:1.",
+      "card_link": "Sin costo · 2 semanas",
+      "forms_label": "4 Formularios · Personas",
+      "f1_meta": "Paso 01 · 3-4 min",
+      "f1_title": "Ficha Personal",
+      "f1_impact": "Tu contexto, rol, industria y objetivos. <strong>Punto de partida</strong>.",
+      "f2_meta": "Paso 02 · 4-5 min",
+      "f2_title": "Madurez en IA",
+      "f2_impact": "Nivel de adopción, herramientas y <strong>confianza con IA</strong>.",
+      "f3_meta": "Paso 03 · 4-5 min",
+      "f3_title": "Método y Formas de Trabajo",
+      "f3_impact": "Organización, priorización y <strong>nivel de sistematización</strong>.",
+      "f4_meta": "Paso 04 · 8-9 min",
+      "f4_title": "Capacidades Digitales",
+      "f4_impact": "Evaluación profunda de <strong>competencias digitales</strong> en 5 áreas.",
+      "cta": "Iniciar diagnóstico →"
+    },
+    "fundamentar": {
+      "badge": "Fase 1 · Fundamentar",
+      "title": "De la reactividad a la <span class=\"gradient-text\">estrategia</span>",
+      "lead": "Coaching 1:1 para diseñar tu plan de carrera con IA como vehículo.",
+      "n1_meta": "N1 · Coaching · 18h",
+      "n1_title": "EstrategIA Personal",
+      "n1_impact": "Plan de carrera + OKRs + <strong>100+ prompts</strong>."
+    },
+    "acelerar": {
+      "badge": "Fase 2 · Acelerar",
+      "title": "Victorias rápidas con <span class=\"gradient-text\">impacto inmediato</span>",
+      "lead": "3 bootcamps tácticos. Recupera horas, acelera ventas, sistematiza procesos.",
+      "n2_meta": "N2 · Bootcamp · 18h",
+      "n2_title": "Ofimática con IA",
+      "n2_impact": "Recupera <strong>5-10h semanales</strong>. M365 + Copilot.",
+      "n3_meta": "N3 · Bootcamp · 18h",
+      "n3_title": "Gestión Comercial con IA",
+      "n3_impact": "Pipeline automatizado. <strong>Conexión genuina</strong> a escala.",
+      "n4_meta": "N4 · Bootcamp · 18h",
+      "n4_title": "Formas de Trabajo",
+      "n4_impact": "Agile + GTD + 2º Cerebro. <strong>Predictibilidad total</strong>."
+    },
+    "catalizar": {
+      "badge": "Fase 3 · Catalizar",
+      "title": "De usuario a <span class=\"gradient-text\">arquitecto</span>",
+      "lead": "Domina la IA generativa, lidera proyectos con datos y diseña tu soberanía.",
+      "n5_meta": "N5 · Bootcamp · 18h",
+      "n5_title": "Trabajar Amplificado",
+      "n5_impact": "Custom GPTs + agentes + n8n. <strong>Soluciones propias</strong>.",
+      "n6_meta": "N6 · Bootcamp · 18h",
+      "n6_title": "GerencIA de Proyectos",
+      "n6_impact": "Dashboards + orquestación. <strong>Decisiones con datos</strong>.",
+      "n7_meta": "N7 · Élite · 48h",
+      "n7_title": "Programa de Empoderamiento",
+      "n7_impact": "14 módulos. De ejecutante → <strong>estratega de impacto</strong>."
+    },
+    "amplificar": {
+      "badge": "Fase 4 · Amplificar",
+      "title": "Del operador al <span class=\"gradient-text\">agente de cambio</span>",
+      "lead": "Construye software propio y lidera la transformación digital de tu organización.",
+      "n8_meta": "N8 · Bootcamp · 18h",
+      "n8_title": "Vibe Coding",
+      "n8_impact": "De idea a app en horas. <strong>Independencia total</strong> de TI.",
+      "n9_meta": "N9 · Élite · 48h",
+      "n9_title": "Digital Champions",
+      "n9_impact": "Certificación Champion. <strong>Autoridad reconocida, impacto multiplicado</strong>."
+    },
+    "personalizable": {
+      "badge": "Tu Ruta · 06",
+      "title": "No es un camino fijo, es un <span class=\"gradient-text\">sistema modular</span>",
+      "lead": "Estos son nuestros servicios y referencia para la soberanía. Cada ruta se personaliza según tu contexto, objetivos y ritmo.",
+      "c1_label": "Entrada flexible",
+      "c1_title": "Empieza en cualquier nivel",
+      "c1_desc": "No necesitas completar todos los niveles previos. Tu diagnóstico define tu punto de entrada óptimo.",
+      "c2_label": "Ritmo propio",
+      "c2_title": "A tu velocidad",
+      "c2_desc": "Un bootcamp por trimestre o varios en paralelo. La intensidad la decides tú.",
+      "c3_label": "Contexto único",
+      "c3_title": "Ajustado a tu realidad",
+      "c3_desc": "Personas o empresas. Freelancer o corporativo. El contenido se adapta, la excelencia se mantiene."
+    },
+    "contacto": {
+      "badge": "Siguiente paso · 07",
+      "title": "Comienza tu <span class=\"gradient-text\">(R)Evolución</span>",
+      "lead": "Sin fricción. Tu diagnóstico gratuito revela el mejor punto de entrada para tu contexto.",
+      "cta1": "Diagnóstico Sin Riesgo →",
+      "cta2": "Primera Conversación",
+      "muted": "Respuesta en 2 días hábiles."
+    }
+  },
   "leg": {
     "privacidad": {
       "badge": "Privacidad · 01",

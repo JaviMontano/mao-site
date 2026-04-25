@@ -1818,8 +1818,8 @@
       "s1_desc": "We map your pain points, goals and current context to understand your starting point.",
       "s2_title": "Roadmap",
       "s2_desc": "We define priorities and a route plan aligned with bootcamps, pathways and AI projects.",
-      "s3_title": "Document",
-      "s3_desc": "You receive an Understanding Document with the map and priorities at the end."
+      "s3_title": "Understanding Document",
+      "s3_desc": "We review the context (challenges, capabilities, urgencies, expectations) and condense it into a Document that maps out where to invest first and with what type of custom experience."
     },
     "ubicacion": {
       "badge": "Location · 03",
@@ -1986,8 +1986,12 @@
       "s3_meta": "Step 03",
       "s3_title": "Commercial Management Bootcamp with AI",
       "s3_org": "Immersion · 18 hours",
+      "s1_desc": "We identify gaps and manual friction. Map of time losses and <strong>immediate action plan</strong>.",
+      "s1_risk": "Risk: $0",
       "s2_desc": "AI-assisted commercial system to <strong>accelerate pipeline velocity</strong> in your team.",
-      "s3_desc": "Complete corporate training. A <strong>replicable and scalable</strong> system for high-performance teams."
+      "s2_level": "Exploration",
+      "s3_desc": "Complete corporate training. A <strong>replicable and scalable</strong> system for high-performance teams.",
+      "s3_level": "Full Commitment"
     },
     "diagnostico": {
       "badge": "Diagnosis · 03",
@@ -2044,6 +2048,9 @@
       "badge": "Next step · 07",
       "lead": "No friction. Just strategic clarity. Schedule your no-risk diagnosis and receive a personalized roadmap.",
       "cta": "Schedule No-Risk Diagnosis →"
+    },
+    "pyme": {
+      "text": "<strong>Universal Access:</strong> Companies ≤ 10 employees / ≤ 3 years may qualify for <a href=\"../personas/\" style=\"text-decoration:underline;\">Individual</a> pricing. (Subject to validation)."
     }
   },
   "pers": {
@@ -2053,6 +2060,26 @@
       "cta_diagnostico": "No-Risk Diagnosis →",
       "cta_cotizador": "Design my Investment",
       "cta_programas": "View Programs ↓"
+    },
+    "ruta": {
+      "badge": "Your First Step",
+      "title": "Entry <span class=\"gradient-text\">Path</span>",
+      "lead": "3 progressive steps. Start risk-free, advance at your pace.",
+      "s0_meta": "Step 0",
+      "s0_title": "Self-Assessment",
+      "s0_org": "No Risk · 1 hour",
+      "s0_desc": "We detect where you're losing time and money. <strong>First conversation at no cost</strong>.",
+      "s0_risk": "Risk: $0",
+      "s1_meta": "Step 1",
+      "s1_title": "Personal StrategIA Workshop",
+      "s1_org": "Coaching · 3 hours",
+      "s1_desc": "Define your roadmap. <strong>100% credited</strong> toward the Bootcamp.",
+      "s1_level": "Exploration",
+      "s2_meta": "Step 2",
+      "s2_title": "Professional Amplification Bootcamp",
+      "s2_org": "Immersion · 18 hours",
+      "s2_desc": "Master tools and become a <strong>Digital Champion</strong>.",
+      "s2_level": "Full Commitment"
     },
     "recursos": {
       "badge": "Resources · 02",
@@ -2096,7 +2123,8 @@
       "e2_meta": "Elite 02",
       "e2_title": "Digital Champions",
       "e2_org": "Elite · Advanced Program",
-      "e2_desc": "For leaders seeking to <strong>transform organizations</strong> from individual excellence."
+      "e2_desc": "For leaders seeking to <strong>transform organizations</strong> from individual excellence.",
+      "proximamente": "Coming Soon"
     },
     "comunidad": {
       "badge": "Community · 04",
@@ -2506,5 +2534,124 @@
     "title": "Page not found",
     "body": "The page you're looking for doesn't exist or was moved. Go back to the homepage and explore everything MetodologIA has for you.",
     "cta": "Back to home →"
+  },
+  "vis": {
+    "hero": {
+      "badge": "The Science of Augmented Work",
+      "title": "<span style=\"color:var(--brand-gold)\">Method</span> + Technolog<span style=\"color:var(--brand-gold)\">y</span> = <span class=\"gradient-text\">Sovereignty</span>",
+      "description": "<strong>Spoiler alert:</strong> Technology without method is just speed in the wrong direction. We design systems for <strong style=\"color:var(--brand-gold)\">Digital, Professional and Strategic Sovereignty</strong>.",
+      "cta1": "Explore the System ↓",
+      "cta2": "Let's Talk"
+    },
+    "problema": {
+      "badge": "Diagnosis · 02",
+      "title": "The Operational <span style=\"color:#ef4444\">Fracture</span>",
+      "subtitle": "\"Chaos\" is not bad luck. It's a design flaw in your work system.",
+      "card1": {
+        "num": "01 · Critical Alert",
+        "title": "Chronic Multitasking",
+        "desc": "The silent killer of strategic depth. Each interruption costs 23 minutes of refocus."
+      },
+      "card2": {
+        "num": "02 · Resource Drain",
+        "title": "Repetitive Friction",
+        "desc": "Zombie tasks that drain senior talent. Your most valuable team spends 4 hours a day on copy-paste."
+      },
+      "card3": {
+        "num": "03 · Institutional Amnesia",
+        "title": "Information Silos",
+        "desc": "Knowledge trapped in chats, emails and heads. When someone leaves, they take everything."
+      },
+      "card4": {
+        "num": "04 · Tool Fallacy",
+        "title": "Cosmetic AI",
+        "desc": "Powerful tools, broken processes. Buying software doesn't fix a behavior problem."
+      }
+    },
+    "trampa": {
+      "badge": "The Trap · 03",
+      "title": "Chaos + <span style=\"color:var(--brand-gold)\">AI</span> = Chaos<sup style=\"color:var(--brand-gold)\">²</sup>",
+      "description": "Technology is an <strong>amplifier</strong>.<br>If your process is solid, it scales it.<br>If your process is garbage, <strong style=\"color:#ef4444\">it scales the garbage</strong>.",
+      "quote": "\"Believing that buying software will fix a behavior problem.\"",
+      "quote_author": "— The Tool Fallacy"
+    },
+    "sistema": {
+      "badge": "The System · 04",
+      "title": "The 4 Phases of <span class=\"gradient-text\">Sovereignty</span>",
+      "subtitle": "From reactive chaos to strategic design. Each phase builds on the previous one.",
+      "f1": {
+        "meta": "Phase 1 · Diagnosis",
+        "title": "GROUND",
+        "desc": "We map pains, flows and real opportunities. <strong>No assumptions</strong> — only measurable evidence."
+      },
+      "f2": {
+        "meta": "Phase 2 · Traction",
+        "title": "ACCELERATE",
+        "desc": "We eliminate friction and activate <strong>quick wins</strong>. The team feels the change in weeks, not months."
+      },
+      "f3": {
+        "meta": "Phase 3 · Systematization",
+        "title": "CATALYZE",
+        "desc": "We turn tacit knowledge into <strong>replicable digital assets</strong>. Playbooks, templates, agents."
+      },
+      "f4": {
+        "meta": "Phase 4 · Scale & Sovereignty",
+        "title": "AMPLIFY",
+        "desc": "Metodolog<span style=\"color:var(--brand-gold)\">IA</span> agents work <strong>24/7</strong> for you. You design, they execute."
+      }
+    },
+    "pivote": {
+      "badge": "Framework · 05",
+      "title": "Framework <span class=\"gradient-text\">P.I.V.O.T.E.</span>",
+      "subtitle": "Human First, <span style=\"color:var(--brand-gold)\">AI</span> Next. We clean the signal before amplifying it. Every decision is evaluated in this order — technology is <em>always</em> second to last.",
+      "phase_a": "Phase A · Ground",
+      "phase_b": "Phase B · Amplify",
+      "p": { "title": "People", "desc": "Mindset, roles and capabilities. Who decides, who executes, who learns?" },
+      "i": { "title": "Interactions", "desc": "Flows, friction and dependencies. Where is time, energy and context lost?" },
+      "v": { "title": "Value", "desc": "Measurable real impact. Which activities generate ROI and which are noise?" },
+      "o": { "title": "Organization", "desc": "Systematization and structure. Playbooks, SOPs and living knowledge base." },
+      "t": { "title": "Technology", "desc": "Automation and AI. Only after cleaning the signal do we amplify it." },
+      "e": { "title": "Evolution", "desc": "Continuous improvement. Metrics, retrospectives and data-driven pivoting." }
+    },
+    "principios": {
+      "badge": "Principles · 06",
+      "title": "What <span class=\"gradient-text\">Defines</span> Us",
+      "subtitle": "Four non-negotiable pillars of Metodolog<span style=\"color:var(--brand-gold)\">IA</span>.",
+      "metodo": {
+        "num": "01 · Method",
+        "title": "First order, then the tool.",
+        "desc": "If the process is broken, AI only scales the chaos. A clear method turns AI into leverage."
+      },
+      "soberania": {
+        "num": "02 · Sovereignty",
+        "title": "I finish when you no longer need me.",
+        "desc": "We build installed capacity, not dependency. Every engagement transfers explicit knowledge."
+      },
+      "dignidad": {
+        "num": "03 · Dignity",
+        "title": "Performance doesn't justify burnout.",
+        "desc": "Productivity without wellbeing is disguised exploitation. We design cadences with sustainable rhythm."
+      },
+      "evidencia": {
+        "num": "04 · Evidence",
+        "title": "Without data, there's no truth.",
+        "desc": "Everything we claim has a measurable before and after. CSAT, ROI, TTFW, Lead Time."
+      }
+    },
+    "resultado": {
+      "title": "The destination: <span class=\"gradient-text\">Strategic Sovereignty</span>",
+      "subtitle": "From reactive operator to impact designer. The systems work for you.",
+      "card1": { "title": "Free strategic hours", "desc": "Intelligent automation so your talent focuses on what matters." },
+      "card2": { "title": "Exponential growth", "desc": "Without increasing fixed costs. Agents multiply your delivery capacity." },
+      "card3": { "title": "Antifragile organization", "desc": "That learns continuously. Knowledge never leaves with people." }
+    },
+    "contacto": {
+      "badge": "Connect · 07",
+      "title": "Let's Accelerate your <span class=\"gradient-text\">Strateg<span style=\"color:var(--brand-gold)\">y</span></span>",
+      "lead": "No risk, no friction. 60 minutes to connect your pains and goals with real possibilities.",
+      "cta1": "Let's Talk →",
+      "cta2": "Explore Resources",
+      "response": "Response within 2 business days."
+    }
   }
 }

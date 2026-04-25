@@ -32,6 +32,7 @@ const SECTIONS = {
 
   personas: [
     { id: 'autodiagnostico', icon: 'scan-search', i18nKey: 'sidebar.personas.autodiagnostico' },
+    { id: 'ruta-entrada', icon: 'footprints', i18nKey: 'sidebar.personas.ruta_entrada' },
     { id: 'recursos', icon: 'book-open', i18nKey: 'sidebar.personas.recursos' },
     { id: 'programas', icon: 'graduation-cap', i18nKey: 'sidebar.personas.programas' },
     { id: 'comunidad', icon: 'heart-handshake', i18nKey: 'sidebar.personas.comunidad' },
@@ -67,6 +68,13 @@ const SECTIONS = {
     { id: 'embajadores', icon: 'award', i18nKey: 'sidebar.embajadores.embajadores' },
     { id: 'programa', icon: 'graduation-cap', i18nKey: 'sidebar.embajadores.programa' },
     { id: 'aplicar', icon: 'mail', i18nKey: 'sidebar.embajadores.aplicar' }
+  ],
+
+  servicios: [
+    { id: 'workshops', icon: 'rocket', i18nKey: 'sidebar.servicios.workshops' },
+    { id: 'bootcamps', icon: 'zap', i18nKey: 'sidebar.servicios.bootcamps' },
+    { id: 'programas', icon: 'crown', i18nKey: 'sidebar.servicios.programas' },
+    { id: 'consultoria', icon: 'briefcase', i18nKey: 'sidebar.servicios.consultoria' }
   ],
 
   ruta: [

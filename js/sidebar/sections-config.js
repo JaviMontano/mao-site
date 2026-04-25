@@ -60,6 +60,16 @@ const SECTIONS = {
     { id: 'comunidad', icon: 'heart-handshake', i18nKey: 'sidebar.recursos.comunidad' }
   ],
 
+  ruta: [
+    { id: 'diagnostico', icon: 'stethoscope', i18nKey: 'sidebar.ruta.diagnostico' },
+    { id: 'fundamentar', icon: 'compass', i18nKey: 'sidebar.ruta.fundamentar' },
+    { id: 'acelerar', icon: 'zap', i18nKey: 'sidebar.ruta.acelerar' },
+    { id: 'catalizar', icon: 'layers', i18nKey: 'sidebar.ruta.catalizar' },
+    { id: 'amplificar', icon: 'rocket', i18nKey: 'sidebar.ruta.amplificar' },
+    { id: 'personalizable', icon: 'settings', i18nKey: 'sidebar.ruta.personalizable' },
+    { id: 'contacto', icon: 'mail', i18nKey: 'sidebar.ruta.contacto' }
+  ],
+
   vision: [
     { id: 'hero', icon: 'eye', i18nKey: 'sidebar.vision.hero' },
     { id: 'problema', icon: 'alert-triangle', i18nKey: 'sidebar.vision.problema' },

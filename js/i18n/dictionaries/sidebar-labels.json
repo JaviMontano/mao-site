@@ -55,6 +55,14 @@
       "automatizacion": { "es": "Automatización", "en": "Automation" },
       "comunidad": { "es": "Comunidad", "en": "Community" }
     },
+    "embajadores": {
+      "red": { "es": "Red", "en": "Network" },
+      "creador": { "es": "Creador", "en": "Creator" },
+      "founders": { "es": "Cofounders", "en": "Cofounders" },
+      "embajadores": { "es": "Embajadores", "en": "Ambassadors" },
+      "programa": { "es": "Programa", "en": "Program" },
+      "aplicar": { "es": "Únete", "en": "Join" }
+    },
     "ruta": {
       "diagnostico": { "es": "Nivel Cero", "en": "Level Zero" },
       "fundamentar": { "es": "Fundamentar", "en": "Foundation" },

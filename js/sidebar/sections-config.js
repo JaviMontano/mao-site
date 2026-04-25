@@ -60,6 +60,15 @@ const SECTIONS = {
     { id: 'comunidad', icon: 'heart-handshake', i18nKey: 'sidebar.recursos.comunidad' }
   ],
 
+  embajadores: [
+    { id: 'red', icon: 'network', i18nKey: 'sidebar.embajadores.red' },
+    { id: 'creador', icon: 'star', i18nKey: 'sidebar.embajadores.creador' },
+    { id: 'founders', icon: 'users', i18nKey: 'sidebar.embajadores.founders' },
+    { id: 'embajadores', icon: 'award', i18nKey: 'sidebar.embajadores.embajadores' },
+    { id: 'programa', icon: 'graduation-cap', i18nKey: 'sidebar.embajadores.programa' },
+    { id: 'aplicar', icon: 'mail', i18nKey: 'sidebar.embajadores.aplicar' }
+  ],
+
   ruta: [
     { id: 'diagnostico', icon: 'stethoscope', i18nKey: 'sidebar.ruta.diagnostico' },
     { id: 'fundamentar', icon: 'compass', i18nKey: 'sidebar.ruta.fundamentar' },

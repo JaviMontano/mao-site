@@ -38,6 +38,12 @@
       "casos": { "es": "Casos de éxito", "en": "Case studies" },
       "contacto": { "es": "Contacto", "en": "Contact" }
     },
+    "servicios": {
+      "workshops": { "es": "Workshops", "en": "Workshops" },
+      "bootcamps": { "es": "Bootcamps", "en": "Bootcamps" },
+      "programas": { "es": "Programas Élite", "en": "Elite Programs" },
+      "consultoria": { "es": "Consultoría", "en": "Consulting" }
+    },
     "programas": {
       "catalogo": { "es": "Catálogo", "en": "Catalog" },
       "detalle": { "es": "Detalle", "en": "Details" },

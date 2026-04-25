@@ -70,6 +70,13 @@ const SECTIONS = {
     { id: 'aplicar', icon: 'mail', i18nKey: 'sidebar.embajadores.aplicar' }
   ],
 
+  servicios: [
+    { id: 'workshops', icon: 'rocket', i18nKey: 'sidebar.servicios.workshops' },
+    { id: 'bootcamps', icon: 'zap', i18nKey: 'sidebar.servicios.bootcamps' },
+    { id: 'programas', icon: 'crown', i18nKey: 'sidebar.servicios.programas' },
+    { id: 'consultoria', icon: 'briefcase', i18nKey: 'sidebar.servicios.consultoria' }
+  ],
+
   ruta: [
     { id: 'diagnostico', icon: 'stethoscope', i18nKey: 'sidebar.ruta.diagnostico' },
     { id: 'fundamentar', icon: 'compass', i18nKey: 'sidebar.ruta.fundamentar' },

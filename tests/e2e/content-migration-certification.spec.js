@@ -94,7 +94,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.1: vision page has ≥80 data-i18n attributes', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act
     const i18nCount = await page.locator('[data-i18n], [data-i18n-html]').count();
@@ -105,7 +105,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.2: all 7 vision sections are present', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act + Assert (structural verification)
     const sectionIds = ['hero', 'problema', 'trampa', 'sistema', 'pivote', 'principios', 'contacto'];
@@ -122,7 +122,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
     await page.evaluate(() => {
       try { localStorage.removeItem('mdg_locale'); } catch {}
     }).catch(() => {});
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act
     await switchToEN(page);
@@ -134,7 +134,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.4: zero raw i18n keys in EN mode', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act
     await switchToEN(page);
@@ -145,7 +145,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.5: PIVOTE framework shows 6 letters (P-I-V-O-T-E)', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act
     const axisLabels = page.locator('#pivote .axis__label');
@@ -162,7 +162,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.6: 4 problema cards render with translated nums', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act + Assert
     await assertMinCount(page, '#problema .principle', 4, 'problema cards');
@@ -173,7 +173,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
   });
   test('AC-1.7: vision modals open on card click', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act — click problema card 4 (IA Cosmética)
     await page.locator('#card-prob4').click();
@@ -195,7 +195,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.8: vision modal content is bilingual', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
     await switchToEN(page);
 
     // Act — click trampa quote card
@@ -211,7 +211,7 @@ test.describe('Phase 1: Vision — i18n Completeness', () => {
 
   test('AC-1.9: sidebar translates to EN on locale toggle', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/vision/index.html');
+    await navigateTo(page, '/vision/');
 
     // Act — wait for i18n, switch locale, then force sidebar re-render
     await page.waitForFunction(() => !!window.i18n?.setLang, { timeout: 5000 });
@@ -465,7 +465,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.1: page has data-page-slug="servicios"', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act
     const slug = await page.locator('html').getAttribute('data-page-slug');
@@ -476,7 +476,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.2: site-sidebar component is present', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act + Assert
     await expect(page.locator('site-sidebar')).toBeAttached();
@@ -486,7 +486,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.3: only ONE site-footer in DOM', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act
     const footerCount = await page.locator('site-footer').count();
@@ -497,7 +497,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.4: workshop modal opens and closes', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act — click first workshop card
     await page.locator('button[onclick*="ws01"]').click();
@@ -517,7 +517,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.5: all 4 service sections exist', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act + Assert
     const sectionIds = ['workshops', 'bootcamps', 'programas', 'consultoria'];
@@ -528,7 +528,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.6: 12 workshop cards rendered', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act
     const wsCards = page.locator('#workshops button[onclick*="openModal"]');
@@ -539,7 +539,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.7: 5 bootcamp cards rendered', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act
     const bcCards = page.locator('#bootcamps button[onclick*="openModal"]');
@@ -556,7 +556,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
     });
 
     // Act
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Assert
     expect(cssResponses.length).toBeGreaterThanOrEqual(1);
@@ -565,7 +565,7 @@ test.describe('Phase 5: Servicios — NeoSwiss Shell', () => {
 
   test('AC-5.9: skip-link for accessibility', async ({ page }) => {
     // Arrange
-    await navigateTo(page, '/servicios/index.html');
+    await navigateTo(page, '/servicios/');
 
     // Act + Assert
     await expect(page.locator('a.sr-only[href="#main"]')).toBeAttached();
@@ -629,14 +629,13 @@ test.describe('Phase 6: Home — Modal Completeness', () => {
 
 test.describe('Cross-Cutting: NeoSwiss Contract', () => {
 
-  // NOTE: /vision/ → /metodo/ and /servicios/ → /programas/ via legacy-router.js
   const PAGES = [
     { path: '/', slug: 'home', name: 'Home' },
     { path: '/empresas/', slug: 'empresas', name: 'Empresas' },
     { path: '/personas/', slug: 'personas', name: 'Personas' },
     { path: '/contacto/', slug: 'contacto', name: 'Contacto' },
-    { path: '/metodo/', slug: 'metodo', name: 'Metodo (ex-Vision)' },
-    { path: '/programas/', slug: 'programas', name: 'Programas (ex-Servicios)' },
+    { path: '/vision/', slug: 'vision', name: 'Vision' },
+    { path: '/servicios/', slug: 'servicios', name: 'Servicios' },
   ];
 
   for (const pg of PAGES) {

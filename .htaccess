@@ -28,7 +28,7 @@
     RewriteRule ^ruta/a-medida\.html$                   /contacto/     [R=301,L]
 
     # Directory-level redirects
-    RewriteRule ^servicios/(.*)$                        /programas/$1  [R=301,L]
+    # servicios/ redirect removed — page now serves its own NeoSwiss content
 
     # /ruta/ catch-all (after specific /ruta/ rules)
     RewriteRule ^ruta/(.*)$                             /diagnostico/  [R=301,L]

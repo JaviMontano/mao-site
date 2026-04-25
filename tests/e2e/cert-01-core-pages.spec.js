@@ -30,8 +30,8 @@ const CORE_PAGES = [
   { slug: 'legal',       path: '/legal/',                   name: 'Legal' },
   { slug: 'ruta',        path: '/ruta/',                    name: 'Ruta' },
   { slug: 'embajadores', path: '/nosotros/embajadores/',    name: 'Embajadores' },
-  { slug: 'vision',      path: '/vision/index.html',        name: 'Vision' },
-  { slug: 'servicios',   path: '/servicios/index.html',     name: 'Servicios' },
+  { slug: 'vision',      path: '/vision/',                   name: 'Vision' },
+  { slug: 'servicios',   path: '/servicios/',                name: 'Servicios' },
 ];
 
 for (const pg of CORE_PAGES) {

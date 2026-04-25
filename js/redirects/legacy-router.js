@@ -10,8 +10,6 @@
 /** @type {Array<[string, string]>} Specific path → target pairs (checked before catch-all) */
 const REDIRECT_MAP = [
   ['/vision.html', '/metodo/'],
-  ['/vision/', '/metodo/'],
-  ['/servicios/', '/programas/'],
   ['/metodologia.html', '/metodo/'],
   ['/empresas/diagnostico-gratuito.html', '/diagnostico/?audiencia=empresa'],
   ['/personas/autodiagnostico.html', '/diagnostico/?audiencia=persona'],

@@ -252,3 +252,9 @@ html[data-theme="light"] .home-cta--tertiary {
 
 /* ── Modal CTA ── */
 .dialog-cta { margin-top: 1.25rem; }
+
+/* ── Shared gold text span (IA brand accent) ── */
+.text-gold { color: var(--brand-gold); }
+
+/* ── Diagnóstico cards flex ── */
+.diag-card { cursor: pointer; flex: 1; }

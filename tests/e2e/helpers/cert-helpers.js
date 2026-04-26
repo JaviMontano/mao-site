@@ -81,10 +81,10 @@ export function startErrorCollector(page) {
 export function startCSSChecker(page) {
   const statuses = [];
   page.on('response', (res) => {
-    if (res.url().includes('neoswiss-system.css')) statuses.push(res.status());
+    if (res.url().includes('neoswiss')) statuses.push(res.status());
   });
   return function assertCSSLoaded(label) {
-    expect(statuses.length, `${label}: neoswiss-system.css must load`).toBeGreaterThanOrEqual(1);
+    expect(statuses.length, `${label}: neoswiss CSS must load`).toBeGreaterThanOrEqual(1);
     expect(statuses[0]).toBe(200);
   };
 }

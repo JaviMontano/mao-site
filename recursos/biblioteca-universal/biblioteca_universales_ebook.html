@@ -1,0 +1,2107 @@
+<!--
+  MetodologIA | Guia Universal de Prompting + Biblioteca de 445 Prompts — E-Book v1
+  Metodo SPEC (Situacion · Pedido · Ejecucion · Criterio) + Pipeline 0-9 + 42 Aceleradores
+  Estetica: Neo-Swiss Clean · Paleta MetodologIA
+  Fuentes: Poppins (titulos) · Montserrat (cuerpo) · Trebuchet MS (notas)
+  Default: Light · Espanol
+  Formato: Pagina a pagina, optimizado para smartphone vertical
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Universal de Prompting + 445 Prompts | MetodologIA</title>
+<meta name="description" content="Guia universal de prompting de alto rendimiento + biblioteca de 445 prompts en formato SPEC. MetodologIA 2026.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#122562">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Crect width='36' height='36' rx='10' fill='%23122562'/%3E%3Cpath d='M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z' fill='%23fff'/%3E%3Ccircle cx='18' cy='8' r='2' fill='%23FFD700'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@700;800&display=swap"></noscript>
+<script>
+window._iconReady = false;
+window._initIcons = function() {
+  if (window._iconReady) return;
+  try { if (typeof lucide !== 'undefined') { lucide.createIcons(); window._iconReady = true; } } catch(e) {}
+};
+</script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.js" async onload="window._initIcons()"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════
+   E-BOOK EXPERIENCE — Design System + Layout
+   ═══════════════════════════════════════════════════ */
+
+/* ── TOKENS LIGHT (default) ── */
+:root {
+  --navy: #122562;
+  --gold: #FFD700;
+  --gold-dark: #B8860B;
+  --blue: #137DC5;
+  --dark: #1F2833;
+  --lilac: #BBA0CC;
+  --gray: #808080;
+  --white: #FFFFFF;
+  --bg: #F9FAFB;
+  --bg-soft: #F0F0EC;
+  --bg-card: rgba(255,255,255,0.88);
+  --text: #1F2833;
+  --text-sec: #4A5568;
+  --text-muted: #808080;
+  --border: rgba(18,37,98,0.08);
+  --glass-bg: rgba(255,255,255,0.82);
+  --glass-border: rgba(18,37,98,0.06);
+  --shadow-card: 0 1px 3px rgba(0,0,0,.04), 0 6px 16px rgba(0,0,0,.06);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --max-w: 430px;
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-head: 'Poppins', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-note: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  --page-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bar-h: 3rem;
+}
+
+/* ── TOKENS DARK ── */
+html.dark {
+  --bg: #0B2545;
+  --bg-soft: #071A33;
+  --bg-card: rgba(11,37,69,0.6);
+  --text: #F0F4F8;
+  --text-sec: #A0B4CC;
+  --text-muted: #6B8AB0;
+  --border: rgba(255,215,0,0.15);
+  --glass-bg: rgba(11,37,69,0.55);
+  --glass-border: rgba(255,215,0,0.12);
+  --shadow-card: 0 1px 3px rgba(0,0,0,.2), 0 6px 16px rgba(0,0,0,.3);
+  --gold-dark: #FFA000;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow: hidden; height: 100vh; height: 100dvh; }
+
+/* ── BASE TYPOGRAPHY ── */
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--bg);
+  transition: background var(--transition), color var(--transition);
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--navy);
+}
+html.dark h1, html.dark h2, html.dark h3, html.dark h4 { color: var(--text); }
+h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.3rem, 4.5vw, 1.6rem); margin-bottom: .75rem; }
+h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+h4 { font-size: .95rem; color: var(--blue); }
+a { color: var(--blue); font-weight: 600; text-decoration: none; }
+strong { color: var(--text); font-weight: 700; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ═══════════════════════════════════════════════════
+   E-BOOK LAYOUT
+   ═══════════════════════════════════════════════════ */
+
+/* ── TOP BAR ── */
+.ebook-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--bar-h); z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 .75rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+.ebook-bar button {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); padding: .4rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: color .2s, background .2s;
+}
+.ebook-bar button:hover { color: var(--navy); background: var(--bg-soft); }
+html.dark .ebook-bar button:hover { color: var(--gold); }
+.page-indicator {
+  font-family: var(--font-note);
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: .05em;
+}
+
+/* ── PROGRESS BAR (micro) ── */
+.progress-track {
+  position: fixed; top: var(--bar-h); left: 0; right: 0;
+  height: 2px; z-index: 199;
+  background: var(--border);
+}
+.progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--blue));
+  transition: width var(--page-transition);
+}
+
+/* ── VIEWPORT ── */
+.ebook-viewport {
+  position: fixed;
+  top: calc(var(--bar-h) + 2px);
+  left: 0; right: 0;
+  bottom: 3.5rem;
+  bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ── PAGES ── */
+.page {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem 1.5rem 4.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+  transition: opacity var(--page-transition), transform var(--page-transition);
+  -webkit-overflow-scrolling: touch;
+}
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.page.exit-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.page.exit-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* ── PAGE CONTENT ── */
+.page-inner {
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+  max-height: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.page-inner::-webkit-scrollbar { display: none; }
+.page p { margin-bottom: .75rem; color: var(--text-sec); font-size: .92rem; }
+.page p:last-child { margin-bottom: 0; }
+
+/* ── CHAPTER TITLE PAGES ── */
+.page-chapter {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.page-chapter .chapter-num {
+  font-family: var(--font-note);
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: var(--gold-dark);
+  margin-bottom: .5rem;
+}
+
+/* ── COVER PAGE ── */
+.page-cover {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+}
+.page-cover .cover-logo {
+  width: 80px; height: 80px;
+  margin-bottom: 2rem;
+}
+.page-cover h1 { margin-bottom: .5rem; }
+.page-cover .cover-subtitle {
+  font-size: .85rem; color: var(--text-muted);
+  font-family: var(--font-note);
+  margin-bottom: 2rem;
+}
+.page-cover .cover-chip {
+  display: inline-block;
+  font-family: var(--font-note);
+  font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .15em;
+  padding: .3rem .8rem;
+  border-radius: 100px;
+  background: rgba(255,215,0,.08);
+  color: var(--gold-dark);
+  border: 1px solid rgba(255,215,0,.2);
+  margin-bottom: 3rem;
+}
+.page-cover .cover-tap {
+  font-family: var(--font-note);
+  font-size: .72rem;
+  color: var(--text-muted);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MICRO-INTERACTIONS ── */
+.page.active .page-inner > *,
+.page.active > h1,
+.page.active > h2,
+.page.active > p,
+.page.active .accel-grid .accel-item {
+  animation: fadeInUp .4s ease-out both;
+}
+.page.active .page-inner > *:nth-child(1) { animation-delay: .05s; }
+.page.active .page-inner > *:nth-child(2) { animation-delay: .1s; }
+.page.active .page-inner > *:nth-child(3) { animation-delay: .15s; }
+.page.active .page-inner > *:nth-child(4) { animation-delay: .2s; }
+.page.active .page-inner > *:nth-child(5) { animation-delay: .25s; }
+.page.active .page-inner > *:nth-child(6) { animation-delay: .3s; }
+.page.active .page-inner > *:nth-child(7) { animation-delay: .35s; }
+.page.active .page-inner > *:nth-child(8) { animation-delay: .38s; }
+.page.active .page-inner > *:nth-child(9) { animation-delay: .4s; }
+.page.active .page-inner > *:nth-child(10) { animation-delay: .42s; }
+.page.active .page-inner > *:nth-child(n+11) { animation-delay: .44s; }
+.page.active .accel-grid .accel-item:nth-child(1) { animation-delay: .05s; }
+.page.active .accel-grid .accel-item:nth-child(2) { animation-delay: .08s; }
+.page.active .accel-grid .accel-item:nth-child(3) { animation-delay: .11s; }
+.page.active .accel-grid .accel-item:nth-child(4) { animation-delay: .14s; }
+.page.active .accel-grid .accel-item:nth-child(5) { animation-delay: .17s; }
+.page.active .accel-grid .accel-item:nth-child(6) { animation-delay: .2s; }
+.page.active .accel-grid .accel-item:nth-child(7) { animation-delay: .23s; }
+.page.active .accel-grid .accel-item:nth-child(8) { animation-delay: .26s; }
+.page.active .accel-grid .accel-item:nth-child(9) { animation-delay: .29s; }
+.page.active .accel-grid .accel-item:nth-child(10) { animation-delay: .32s; }
+.page.active .accel-grid .accel-item:nth-child(11) { animation-delay: .34s; }
+.page.active .accel-grid .accel-item:nth-child(12) { animation-delay: .36s; }
+.page.active .accel-grid .accel-item:nth-child(13) { animation-delay: .38s; }
+.page.active .accel-grid .accel-item:nth-child(14) { animation-delay: .4s; }
+@media (prefers-reduced-motion: reduce) {
+  .page.active .page-inner > *,
+  .page.active .accel-grid .accel-item { animation: none !important; }
+}
+
+/* ── CARDS ── */
+.ebook-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-bottom: .75rem;
+  box-shadow: var(--shadow-card);
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  cursor: pointer;
+  position: relative;
+}
+.ebook-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+.ebook-card:active { transform: scale(.98); }
+.ebook-card[data-expand]::after {
+  content: '';
+  position: absolute;
+  top: .75rem; right: .75rem;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .6;
+}
+.ebook-card h4 { margin-bottom: .35rem; }
+.ebook-card p { font-size: .85rem; margin-bottom: .25rem; }
+.ebook-card:last-child { margin-bottom: 0; }
+
+/* ── STORY CARDS (before/after) ── */
+.ebook-card.card-red { border-left: 3px solid #EF4444; }
+.ebook-card.card-green { border-left: 3px solid #10B981; }
+.ebook-card .card-label {
+  font-family: var(--font-note);
+  font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: .5rem;
+  display: flex; align-items: center; gap: .3rem;
+}
+.card-red .card-label { color: #EF4444; }
+.card-green .card-label { color: #10B981; }
+
+/* ── HIGHLIGHT BOX ── */
+.ebook-highlight {
+  text-align: center;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(255,215,0,.06), rgba(19,125,197,.04));
+  border: 1px solid rgba(255,215,0,.15);
+  margin-top: .75rem;
+}
+.ebook-highlight p {
+  font-size: .88rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--navy);
+}
+html.dark .ebook-highlight p { color: var(--gold); }
+
+/* ── AUTHOR ROW ── */
+.author-row {
+  display: flex; gap: .75rem; align-items: center;
+  margin-bottom: 1rem;
+}
+.author-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%; overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--gold);
+}
+.author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.author-avatar.cyan { border-color: #00FFFF; }
+.author-meta {
+  font-size: .8rem;
+}
+.author-meta strong {
+  font-family: var(--font-head);
+  font-size: .9rem;
+  display: block;
+}
+.author-meta span {
+  font-family: var(--font-note);
+  font-size: .68rem;
+  color: var(--text-muted);
+}
+
+/* ── LIST STYLING ── */
+.ebook-list {
+  list-style: none; padding: 0;
+}
+.ebook-list li {
+  font-size: .85rem;
+  color: var(--text-sec);
+  padding: .25rem 0;
+  padding-left: 1.4rem;
+  position: relative;
+}
+.ebook-list li::before {
+  content: '';
+  position: absolute; left: 0; top: .55rem;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ── STEP BADGES (reused from original) ── */
+.step-badge {
+  display: inline-flex; align-items: center; gap: .25rem;
+  font-family: var(--font-note); font-size: .65rem; font-weight: 600;
+  padding: .12rem .45rem; border-radius: 100px;
+}
+.step-badge svg, .step-badge i { width: 11px; height: 11px; }
+.sb-chat { background: rgba(96,165,250,.08); color: #60a5fa; border: 1px solid rgba(96,165,250,.15); }
+.sb-voice { background: rgba(168,139,250,.08); color: #a78bfa; border: 1px solid rgba(168,139,250,.15); }
+.sb-agent { background: rgba(251,146,60,.08); color: #fb923c; border: 1px solid rgba(251,146,60,.15); }
+.sb-time { background: rgba(107,114,128,.06); color: var(--text-muted); border: 1px solid rgba(107,114,128,.12); }
+.sb-parallel { background: rgba(16,185,129,.08); color: #10b981; border: 1px solid rgba(16,185,129,.15); }
+
+/* ── TOC PANEL ── */
+.toc-overlay {
+  position: fixed; inset: 0; z-index: 299;
+  background: rgba(0,0,0,.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.toc-overlay.open { opacity: 1; pointer-events: auto; }
+
+.toc-panel {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: min(85vw, 320px);
+  z-index: 300;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  padding: 1.5rem 1rem;
+}
+.toc-overlay.open .toc-panel { transform: translateX(0); }
+
+.toc-panel h3 {
+  font-size: .9rem;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--gold);
+}
+html.dark .toc-panel h3 { color: var(--gold); }
+
+.toc-chapter {
+  margin-bottom: .75rem;
+}
+.toc-chapter-title {
+  font-family: var(--font-note);
+  font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--text-muted);
+  margin-bottom: .25rem;
+  padding-left: .25rem;
+}
+.toc-link {
+  display: block;
+  font-size: .82rem;
+  color: var(--text-sec);
+  padding: .35rem .5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  font-weight: 400;
+}
+.toc-link:hover { background: var(--bg-soft); color: var(--navy); }
+html.dark .toc-link:hover { color: var(--gold); }
+.toc-link.active { background: rgba(255,215,0,.08); color: var(--gold-dark); font-weight: 600; }
+
+/* ── DESKTOP CENTERING ── */
+@media (min-width: 600px) {
+  .ebook-viewport {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .ebook-bar {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .progress-track {
+    max-width: var(--max-w);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ── NAVIGATION BUTTONS ── */
+.nav-buttons {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 3.5rem;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .5rem .9rem;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-sec);
+  font-family: var(--font-note);
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-btn:hover { background: var(--bg-soft); color: var(--text); border-color: var(--gold); }
+.nav-btn:active { transform: scale(.95); }
+.nav-btn.primary {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+html.dark .nav-btn.primary { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+.nav-btn:disabled { opacity: .3; pointer-events: none; }
+.nav-btn i { width: 14px; height: 14px; }
+@media (min-width: 600px) {
+  .nav-buttons {
+    max-width: var(--max-w);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ── ACCELERATOR GRID ── */
+.accel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+  width: 100%;
+}
+.accel-item {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  padding: .45rem .75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.accel-item { position: relative; }
+.accel-item:hover { border-color: #34d399; transform: translateX(4px); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.accel-item:active { transform: scale(.97); }
+.accel-item[data-expand]::after {
+  content: '';
+  position: absolute;
+  top: .4rem; right: .4rem;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .6;
+}
+
+/* ── EXPAND MODAL ── */
+.expand-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+.expand-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.expand-box {
+  background: var(--bg);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  max-width: var(--max-w);
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem 2rem;
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 -8px 40px rgba(0,0,0,.15);
+}
+.expand-overlay.open .expand-box {
+  transform: translateY(0);
+}
+.expand-close {
+  position: absolute;
+  top: .75rem; right: .75rem;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  transition: background .2s;
+}
+.expand-close:hover { background: var(--border); }
+.expand-box .expand-title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .5rem;
+  padding-right: 2rem;
+}
+.expand-box .expand-tag {
+  display: inline-block;
+  font-family: var(--font-note);
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: .2rem .5rem;
+  border-radius: 100px;
+  margin-bottom: .75rem;
+}
+.expand-box .expand-body {
+  font-size: .88rem;
+  color: var(--text-sec);
+  line-height: 1.7;
+}
+.expand-box .expand-body strong { color: var(--text); }
+.expand-box .expand-body ul {
+  margin: .5rem 0;
+  padding-left: 1.25rem;
+}
+.expand-box .expand-body li {
+  margin-bottom: .35rem;
+  font-size: .85rem;
+}
+.expand-box .expand-body li::marker { color: var(--gold); }
+html.dark .expand-box { box-shadow: 0 -8px 40px rgba(0,0,0,.4); }
+.accel-word {
+  font-family: var(--font-note);
+  font-size: .78rem;
+  font-weight: 700;
+  color: #34d399;
+  white-space: nowrap;
+  min-width: 5.5rem;
+}
+.accel-desc {
+  font-size: .72rem;
+  color: var(--text-sec);
+  line-height: 1.3;
+}
+
+/* ── SMALL SCREENS ── */
+@media (max-height: 800px) {
+  .page { padding: .75rem 1.25rem 4rem; }
+  .ebook-card { padding: .75rem 1rem; margin-bottom: .5rem; }
+  .ebook-card p { font-size: .8rem; }
+  .page p { font-size: .88rem; }
+}
+
+/* ── PRINT ── */
+@media print {
+  .ebook-bar, .progress-track, .toc-overlay { display: none; }
+  .ebook-viewport { position: static; overflow: visible; max-width: 100%; border: none; }
+  .page { position: static; opacity: 1; transform: none; pointer-events: auto; page-break-after: always; padding: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<header class="ebook-bar">
+  <button onclick="toggleTOC()" aria-label="Tabla de contenidos">
+    <i data-lucide="menu" style="width:20px;height:20px"></i>
+  </button>
+  <span class="page-indicator" id="pageIndicator">1 / 42</span>
+  <button onclick="toggleTheme()" aria-label="Cambiar tema">
+    <i data-lucide="sun" id="themeIcon" style="width:18px;height:18px"></i>
+  </button>
+</header>
+
+<!-- ═══ PROGRESS BAR ═══ -->
+<div class="progress-track">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- ═══ TOC PANEL ═══ -->
+<div class="toc-overlay" id="tocOverlay" onclick="closeTOC(event)">
+  <aside class="toc-panel" id="tocPanel">
+    <h3><i data-lucide="book-open" style="width:16px;height:16px;vertical-align:middle;margin-right:.3rem"></i> Contenido</h3>
+    <div id="tocList"></div>
+  </aside>
+</div>
+
+<!-- ═══ PAGES ═══ -->
+<main class="ebook-viewport" id="viewport">
+
+  <!-- ── PG 1: PORTADA ── -->
+  <article class="page page-cover active" data-page="1" data-chapter="Apertura" data-title="Portada">
+    <div class="page-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <svg class="cover-logo" viewBox="0 0 36 36" width="80" height="80">
+        <rect width="36" height="36" rx="10" fill="#122562"/>
+        <path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="#fff"/>
+        <circle cx="18" cy="8" r="2" fill="#FFD700"/>
+      </svg>
+      <div class="cover-chip">Guia de Prompting · Formato SPEC · 445 Prompts</div>
+      <h1>Guia Universal de Prompting</h1>
+      <p class="cover-subtitle">MetodologIA 2026 — Aprende el metodo + usa la biblioteca</p>
+      <p class="cover-tap"><i data-lucide="chevron-right" style="width:14px;height:14px;vertical-align:middle"></i> Toca para empezar</p>
+    </div>
+  </article>
+
+  <!-- ── PG 2: CARTA DE LOS AUTORES ── -->
+  <article class="page" data-page="2" data-chapter="Apertura" data-title="Carta de los autores">
+    <div class="page-inner">
+      <div class="author-row">
+        <div class="author-avatar">
+          <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_javier-montano.webp?raw=true" alt="Javier" loading="lazy">
+        </div>
+        <div class="author-avatar cyan">
+          <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_german-sepulveda.png?raw=true" alt="German" loading="lazy">
+        </div>
+        <div class="author-meta">
+          <strong style="color:var(--navy)">Una carta para ti</strong>
+          <span>Javier Montano &amp; German Sepulveda</span>
+        </div>
+      </div>
+
+      <p>Querido profesional,</p>
+      <p>Somos un <strong>contador publico que hoy es vibe coder</strong> y un <strong>toxicologo que hoy es cientifico de datos</strong>. Ni ingenieros, ni programadores. Dos profesionales que, como tu, un dia se encontraron con la IA y decidieron actuar.</p>
+      <p>Javier migro de contabilidad a construir MetodologIA desde cero. German migro de toxicologia a ciencia de datos. Ambos finalmente emprendedores. Lo que descubrimos nos cambio la forma de trabajar — y queremos compartirlo contigo.</p>
+      <p style="font-weight:600;color:var(--navy)">Las competencias duras ya son blandas.</p>
+      <p>Lo que llamabamos "competencias duras" es cada vez mas reemplazable con IA. Lo que llamabamos "competencias blandas" — comunicacion, liderazgo, pensamiento critico — es lo que la IA <em>no puede</em> reemplazar.</p>
+    </div>
+  </article>
+
+  <!-- ── PG 3: CARTA (cont.) ── -->
+  <article class="page" data-page="3" data-chapter="Apertura" data-title="Carta (cont.)">
+    <div class="page-inner">
+      <p style="font-weight:600;color:var(--navy)">El arma de doble filo.</p>
+      <p>La IA automatiza. Eso es un riesgo: tu puesto puede ser automatizado. Y es una oportunidad: <strong>tu</strong> puedes automatizar y generar mas valor. No es la IA la que te reemplaza — son <strong>personas que usan IA</strong>.</p>
+
+      <p style="font-weight:600;color:var(--navy);margin-top:.5rem">La oportunidad real.</p>
+      <p>Con mentalidad de intra-emprendimiento, cualquier persona con IA puede ayudar a su entorno a cumplir la meta del mes. No se trata de trabajar mas. Se trata de <strong>cambiar como hacemos lo que hacemos</strong>.</p>
+
+      <p>Esta biblioteca es nuestra forma de compartir eso. <strong>445 prompts</strong>, un pipeline de 10 pasos, 5 AI Native Workflows, y un sistema que se mejora a si mismo cada vez que lo usas.</p>
+
+      <div style="margin-top:1rem;display:flex;flex-direction:column;gap:.5rem;font-size:.82rem">
+        <div><strong>Javier Montano</strong><br><span style="font-family:var(--font-note);font-size:.68rem;color:var(--text-muted)">Contador Publico → Vibe Coder · Emprendedor</span></div>
+        <div><strong>German Sepulveda</strong><br><span style="font-family:var(--font-note);font-size:.68rem;color:var(--text-muted)">Toxicologo → Cientifico de Datos · Emprendedor</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 4: HERO ── -->
+  <article class="page page-chapter" data-page="4" data-chapter="Apertura" data-title="Guia + Biblioteca">
+    <div class="page-inner" style="text-align:center">
+      <div class="cover-chip">Metodo + Biblioteca · 445 Prompts</div>
+      <h1 style="margin-bottom:.75rem;font-size:clamp(1.5rem,5.5vw,2rem)">Guia de Prompting<br>+ Biblioteca Universal</h1>
+      <p style="max-width:360px;margin:0 auto;font-size:.9rem">La tecnologia es el pincel. Tu forma de trabajar es la tecnica. Tus resultados son la obra.</p>
+      <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:.5rem;text-align:left;max-width:340px;margin-left:auto;margin-right:auto">
+        <div class="ebook-card" style="padding:.65rem .9rem;margin-bottom:0">
+          <h4 style="font-size:.78rem;margin-bottom:.15rem"><i data-lucide="compass" style="width:13px;height:13px;vertical-align:middle;margin-right:.25rem"></i> La Guia</h4>
+          <p style="font-size:.75rem;margin-bottom:0">Aprende el metodo SPEC, el pipeline 0-9, y los 9 principios de prompting de alto rendimiento.</p>
+        </div>
+        <div class="ebook-card" style="padding:.65rem .9rem;margin-bottom:0">
+          <h4 style="font-size:.78rem;margin-bottom:.15rem"><i data-lucide="library" style="width:13px;height:13px;vertical-align:middle;margin-right:.25rem"></i> La Biblioteca</h4>
+          <p style="font-size:.75rem;margin-bottom:0">445 prompts listos para usar: 26 comandos, 10 pasos de pipeline, 42 aceleradores, 365 SPECs.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 5: QUE ES METODOLOGIA ── -->
+  <article class="page" data-page="5" data-chapter="Apertura" data-title="Que es MetodologIA">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem">Que es MetodologIA</h2>
+      <p><strong>MetodologIA</strong> es una consultora lider en metodologias de alto rendimiento e inteligencia artificial.</p>
+      <p>Su mision: <strong>disenar sistemas (IA + metodo + disciplina) que vuelven el trabajo mas digno y competitivo</strong>, recuperando tiempo y claridad sin sacrificar salud ni etica.</p>
+      <div class="ebook-highlight">
+        <p>Caos + IA = Caos al cuadrado</p>
+      </div>
+      <p style="margin-top:.75rem;font-size:.85rem">La tecnologia amplifica lo que ya existe. MetodologIA limpia la senal antes de amplificarla. <strong>Human First, AI Next.</strong></p>
+    </div>
+  </article>
+
+  <!-- ── PG 6: STORYTELLING ── -->
+  <article class="page" data-page="6" data-chapter="El Metodo" data-title="La Diferencia es el Metodo">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem">La Diferencia es el Metodo</h2>
+      <p style="font-size:.85rem">Dos profesionales con la misma herramienta. Uno produce resultados inconsistentes. El otro produce entregables de calidad ejecutiva en minutos. La diferencia no es talento — es metodo.</p>
+      <div class="ebook-card card-red">
+        <div class="card-label"><i data-lucide="alert-triangle" style="width:13px;height:13px"></i> SIN METODO</div>
+        <ul class="ebook-list">
+          <li>Prompts vagos, resultados aleatorios</li>
+          <li>Cada vez empieza de cero</li>
+          <li>80% del tiempo editando el output</li>
+        </ul>
+      </div>
+      <div class="ebook-card card-green">
+        <div class="card-label"><i data-lucide="check-circle" style="width:13px;height:13px"></i> CON METODO SPEC</div>
+        <ul class="ebook-list">
+          <li>Instrucciones precisas, resultados consistentes</li>
+          <li>Biblioteca reutilizable</li>
+          <li>Output listo para usar</li>
+        </ul>
+      </div>
+      <div class="ebook-highlight">
+        <p>"La brecha entre hacer mucho y lograr mucho se cierra con metodo."</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 7: DOS MUNDOS ── -->
+  <article class="page" data-page="7" data-chapter="El Metodo" data-title="Dos Mundos de Prompting">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem">Dos Mundos de Prompting</h2>
+      <p style="font-size:.85rem">No es lo mismo hablar con un chatbot que dirigir un agente. Cada modo tiene su logica.</p>
+      <div class="ebook-card">
+        <h4><i data-lucide="message-square" style="width:15px;height:15px;vertical-align:middle;margin-right:.25rem"></i> Chatbots: Output-Driven</h4>
+        <p>Usas ChatGPT, Claude o Gemini para producir un entregable concreto. Tu estas al mando de cada paso.</p>
+        <p style="font-size:.78rem;color:var(--text-muted)">Ideal para: documentos, emails, analisis, contenido</p>
+      </div>
+      <div class="ebook-card">
+        <h4><i data-lucide="bot" style="width:15px;height:15px;vertical-align:middle;margin-right:.25rem"></i> Agentes: Outcome-Driven</h4>
+        <p>Diriges un agente que opera con autonomia. Tu defines el resultado, el agente disena el camino.</p>
+        <p style="font-size:.78rem;color:var(--text-muted)">Ideal para: sistemas, pipelines, automatizaciones</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 8: META-PROMPTING ── -->
+  <article class="page" data-page="8" data-chapter="El Metodo" data-title="Meta-Prompting">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem">Meta-Prompting</h2>
+      <p style="font-size:.88rem">Si el prompting crea valor <strong>una vez</strong>, el meta-prompting crea valor <strong>infinitas veces</strong>. No es escribir prompts — es disenar el sistema que los genera.</p>
+      <div class="ebook-card">
+        <h4><i data-lucide="wand-2" style="width:14px;height:14px;vertical-align:middle;margin-right:.2rem;color:#a78bfa"></i> Templates Parametrizables</h4>
+        <p>Disenas <strong>SPECs con {{PARAMETROS}}</strong> que se adaptan a cualquier contexto. Un meta-prompt se convierte en 100 investigaciones cambiando los inputs.</p>
+      </div>
+      <div class="ebook-card">
+        <h4><i data-lucide="git-branch" style="width:14px;height:14px;vertical-align:middle;margin-right:.2rem;color:#10b981"></i> Pipeline 0-9</h4>
+        <p>10 pasos de co-creacion metacognitiva:</p>
+        <p style="font-size:.75rem;color:var(--text-muted)"><strong>0</strong> Priming &rarr; <strong>1</strong> Entender &rarr; <strong>2</strong> Definir &rarr; <strong>3</strong> Planificar &rarr; <strong>4</strong> Ejecutar &rarr; <strong>5</strong> Robustecer &rarr; <strong>6</strong> Simplificar &rarr; <strong>7</strong> Validar &rarr; <strong>8</strong> Entregar &rarr; <strong>9</strong> Cristalizar</p>
+      </div>
+      <div class="ebook-card">
+        <h4><i data-lucide="rotate-ccw" style="width:14px;height:14px;vertical-align:middle;margin-right:.2rem;color:var(--gold-dark)"></i> Ingenieria Inversa (paso 9)</h4>
+        <p>Al terminar, el paso 9 genera <strong>2 prompts reutilizables</strong>. El proceso de hoy construye el atajo de manana.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 9: PRINCIPIOS 1-5 ── -->
+  <article class="page" data-page="9" data-chapter="El Metodo" data-title="Principios 1-5">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">9 Principios del Prompting de Alto Rendimiento</h2>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 1: Rol Hibrido y Acreditado" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">1.</span> Rol Hibrido y Acreditado</h4>
+        <p>Todo prompt empieza con un <strong>arquetipo experto</strong> que combina disciplinas y credenciales reales. El rol calibra tono, profundidad y metodologia.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 2: Contexto Prospectivo" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">2.</span> Contexto Prospectivo</h4>
+        <p>La Situacion define el <strong>"para que"</strong>, no el "por que". Que se desbloquea, quienes son los stakeholders, que restricciones existen.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 3: Tarea Orientada a Entregable" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">3.</span> Tarea Orientada a Entregable</h4>
+        <p>La mision se define en torno a un <strong>entregable concreto</strong>: documento, tabla, analisis, plan. Especifico, medible, accionable.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 4: Estructura Completa (SPEC)" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">4.</span> Estructura Completa (SPEC)</h4>
+        <p><strong>Situacion + Pedido + Ejecucion + Criterio</strong> + [inputs] + [checklist]. Nada queda implicito.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 5: Protocolo Metacognitivo" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">5.</span> Protocolo Metacognitivo</h4>
+        <p>La IA primero <strong>interpreta > planifica > ejecuta</strong>. Previene outputs superficiales y garantiza co-creacion.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 10: PRINCIPIOS 6-10 ── -->
+  <article class="page" data-page="10" data-chapter="El Metodo" data-title="Principios 6-10">
+    <div class="page-inner">
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 6: Parametrizar para Reutilizar" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">6.</span> Parametrizar para Reutilizar</h4>
+        <p>Usa <strong>{{PLACEHOLDERS}}</strong>. Un prompt parametrizado se ejecuta 100 veces con diferentes inputs; uno fijo, solo una.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 7: Prompt Chaining" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">7.</span> Prompt Chaining</h4>
+        <p>Para entregables complejos, <strong>encadena prompts</strong>: el output de uno es el input del siguiente. Cada prompt hace UNA cosa bien.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 8: Pipeline 0-9" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">8.</span> Pipeline 0-9</h4>
+        <p>El proceso estandar de 10 pasos: Priming &rarr; Entender &rarr; Definir &rarr; Planificar &rarr; Ejecutar &rarr; Robustecer &rarr; Simplificar &rarr; Validar &rarr; Entregar &rarr; Cristalizar.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 9: Cristalizar para Escalar" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:var(--gold-dark);font-weight:800">9.</span> Cristalizar para Escalar</h4>
+        <p>Despues de cada buen resultado, haz <strong>ingenieria inversa</strong>: extrae un prompt reutilizable. Cada sesion produce el entregable Y el prompt que lo replica.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Principio 10: Prompt Stacking" data-etag="Principio" data-ecolor="#f59e0b">
+        <h4><span style="color:#a78bfa;font-weight:800">10.</span> Prompt Stacking</h4>
+        <p>Inserta un prompt dentro de otro. El externo orquesta, el interno ejecuta. Crea <strong>sistemas recursivos</strong>: prompts que generan prompts.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 11: SPEC pt1 ── -->
+  <article class="page" data-page="11" data-chapter="Formato SPEC" data-title="El Formato SPEC">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem">El Formato SPEC</h2>
+      <p style="font-size:.88rem">SPEC no es un template — es un <strong>contrato de co-creacion</strong> entre tu intencion y la capacidad de la IA.</p>
+      <div class="ebook-card" style="border-left:3px solid #60a5fa" data-expand="1" data-etitle="S — Situacion" data-etag="SPEC" data-ecolor="#60a5fa">
+        <h4 style="color:#60a5fa"><span style="font-size:1.3rem;font-weight:800">S</span> Situacion</h4>
+        <p><strong>Para que?</strong> Define que se desbloquea, stakeholders, restricciones, y que pasa si NO se hace. Sin Situacion, la IA inventa contexto.</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #f59e0b" data-expand="1" data-etitle="P — Pedido" data-etag="SPEC" data-ecolor="#f59e0b">
+        <h4 style="color:#f59e0b"><span style="font-size:1.3rem;font-weight:800">P</span> Pedido</h4>
+        <p><strong>Que necesito?</strong> El arquetipo experto (rol + credenciales) y la especificacion del entregable (componentes, estructura, alcance).</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #10b981" data-expand="1" data-etitle="E — Ejecucion" data-etag="SPEC" data-ecolor="#10b981">
+        <h4 style="color:#10b981"><span style="font-size:1.3rem;font-weight:800">E</span> Ejecucion</h4>
+        <p><strong>Como se hace?</strong> Protocolo MetodologIA (Interpreta > Planifica > Ejecuta) + frameworks a aplicar + decisiones que requieren validacion humana.</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #8b5cf6" data-expand="1" data-etitle="C — Criterio" data-etag="SPEC" data-ecolor="#8b5cf6">
+        <h4 style="color:#8b5cf6"><span style="font-size:1.3rem;font-weight:800">C</span> Criterio</h4>
+        <p><strong>Como se que esta listo?</strong> Formato, tono, audiencia, accion esperada + [checklist] de auto-auditoria. El quality gate integrado.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 12: SPEC EJEMPLO ── -->
+  <article class="page" data-page="12" data-chapter="Formato SPEC" data-title="Ejemplo SPEC">
+    <div class="page-inner">
+      <h3 style="color:var(--navy);margin-bottom:.5rem"><i data-lucide="eye" style="width:16px;height:16px;vertical-align:middle;margin-right:.25rem"></i> Ejemplo: SPEC Completo</h3>
+      <div style="background:var(--bg-card);border:1px solid var(--glass-border);border-radius:var(--radius-md);padding:.75rem;font-size:.72rem;line-height:1.6;font-family:var(--font-note);overflow-y:auto;max-height:70vh">
+<span style="color:#94a3b8;font-weight:600">[inputs]</span>
+SECTOR: <span style="color:var(--gold-dark)">{{SECTOR}}</span>
+COMPETIDORES: <span style="color:var(--gold-dark)">{{COMPETIDORES}}</span>
+
+<span style="color:#60a5fa;font-weight:700">--- S | SITUACION ---</span>
+Para tomar decisiones de posicionamiento en <span style="color:var(--gold-dark)">{{SECTOR}}</span>.
+La inteligencia desbloquea decisiones de inversion.
+
+<span style="color:#f59e0b;font-weight:700">--- P | PEDIDO ---</span>
+Arquetipo: <strong>Analista Senior de Inteligencia Competitiva</strong>
+con MBA y certificacion SCIP (15+ anos).
+Producir Dossier: resumen ejecutivo + scoring + tabla.
+
+<span style="color:#10b981;font-weight:700">--- E | EJECUCION ---</span>
+Protocolo MetodologIA: Interpreta > Planifica > Ejecuta.
+Metodo: Porter + PESTEL + scoring comparativo.
+
+<span style="color:#8b5cf6;font-weight:700">--- C | CRITERIO ---</span>
+Max 10 pags. Tono: ejecutivo. Audiencia: director.
+
+<span style="color:#94a3b8;font-weight:600">[checklist]</span>
+<span style="color:#10b981">&#9744;</span> Scoring numerico por competidor
+<span style="color:#10b981">&#9744;</span> Min. 5 fuentes verificables
+<span style="color:#10b981">&#9744;</span> Recomendaciones accionables
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 13: 4 CLAUSULAS ── -->
+  <article class="page" data-page="13" data-chapter="Formato SPEC" data-title="4 Clausulas Universales">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">4 Clausulas Universales</h2>
+      <p style="font-size:.85rem">Cada SPEC hereda 4 clausulas que <strong>remueven friccion</strong> sin que el usuario las pida.</p>
+      <div class="ebook-card" style="border-left:3px solid #60a5fa">
+        <h4 style="color:#60a5fa"><i data-lucide="user" style="width:13px;height:13px;vertical-align:middle"></i> Perfil</h4>
+        <p>Usa tu contexto (rol, industria, pais) sin repetirlo. Espanol LatAm. Terminos tecnicos en ingles.</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #10b981">
+        <h4 style="color:#10b981"><i data-lucide="eye" style="width:13px;height:13px;vertical-align:middle"></i> Sensorial</h4>
+        <p>Detecta adjuntos automaticamente (texto, imagen, datos, codigo). Extrae, analiza, confirma.</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid var(--gold)">
+        <h4 style="color:var(--gold-dark)"><i data-lucide="zap" style="width:13px;height:13px;vertical-align:middle"></i> Capacidades</h4>
+        <p>Activa search, code interpreter, vision proactivamente. Usa la herramienta correcta cuando el SPEC lo requiere.</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #a78bfa">
+        <h4 style="color:#a78bfa"><i data-lucide="brain" style="width:13px;height:13px;vertical-align:middle"></i> Memoria</h4>
+        <p>Al finalizar, genera KEY FACTS: entidades, decisiones, numeros, proximos pasos. Copy-paste para la siguiente sesion.</p>
+      </div>
+      <p style="font-size:.75rem;color:var(--text-muted);text-align:center;font-style:italic;margin-top:.5rem">Las clausulas se inyectan automaticamente — la friccion desaparece por diseno.</p>
+    </div>
+  </article>
+
+  <!-- ── PG 14: 4 CAPAS ── -->
+  <article class="page page-chapter" data-page="14" data-chapter="Formato SPEC" data-title="4 Capas de Prompts">
+    <div class="page-inner" style="text-align:center">
+      <h2 style="border:none;padding:0;margin-bottom:1rem">4 Capas de Prompts</h2>
+      <div style="display:flex;flex-direction:column;gap:.75rem;text-align:left">
+        <div class="ebook-card" style="display:flex;align-items:center;gap:.75rem">
+          <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:var(--gold-dark);min-width:50px;text-align:center">27</div>
+          <div><h4 style="margin:0">Letras (a-z + n)</h4><p style="margin:0;font-size:.78rem">Micro-commands. Una tecla, una accion. Friccion cero.</p></div>
+        </div>
+        <div class="ebook-card" style="display:flex;align-items:center;gap:.75rem">
+          <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:var(--blue);min-width:50px;text-align:center">10</div>
+          <div><h4 style="margin:0">Pipeline (0-9)</h4><p style="margin:0;font-size:.78rem">Co-creacion metacognitiva. Del input vago al output concreto.</p></div>
+        </div>
+        <div class="ebook-card" style="display:flex;align-items:center;gap:.75rem">
+          <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:#10b981;min-width:50px;text-align:center">42</div>
+          <div><h4 style="margin:0">Aceleradores</h4><p style="margin:0;font-size:.78rem">Una palabra, accion directa. Mas que un comando, menos que un SPEC.</p></div>
+        </div>
+        <div class="ebook-card" style="display:flex;align-items:center;gap:.75rem">
+          <div style="font-family:var(--font-head);font-size:1.8rem;font-weight:800;color:var(--navy);min-width:50px;text-align:center">365</div>
+          <div><h4 style="margin:0">SPECs</h4><p style="margin:0;font-size:.78rem">Prompts completos en formato S-P-E-C. Alto rendimiento.</p></div>
+        </div>
+      </div>
+      <div class="ebook-highlight" style="margin-top:1rem">
+        <p style="font-size:.82rem">27 + 10 + 42 + 365 = <strong>445 prompts universales</strong></p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 15: COMO USAR ── -->
+  <article class="page" data-page="15" data-chapter="Formato SPEC" data-title="Como Usar esta Biblioteca">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Como Usar esta Biblioteca</h2>
+      <p style="font-size:.85rem">No es solo para leer — es para <strong>ejecutar</strong>. Cada prompt esta disenado para copiar, pegar y usar inmediatamente.</p>
+      <div class="ebook-card">
+        <h4><span style="color:var(--gold-dark);font-weight:800">1.</span> Copiar y Pegar</h4>
+        <p>Busca el prompt, abrelo, copia, pega en ChatGPT/Claude/Gemini. Reemplaza los <strong style="color:var(--gold-dark)">{{PARAMETROS}}</strong>.</p>
+      </div>
+      <div class="ebook-card">
+        <h4><span style="color:var(--gold-dark);font-weight:800">2.</span> Text Expander</h4>
+        <p>Configura como <strong>shortcuts</strong>: <code style="background:var(--bg-soft);padding:1px 4px;border-radius:3px;font-size:.75rem">;prod-ritual</code> &rarr; SPEC completo. Funciona en cualquier app.</p>
+      </div>
+      <div class="ebook-card">
+        <h4><span style="color:var(--gold-dark);font-weight:800">3.</span> Prompster</h4>
+        <p>Importa el JSON completo. Organiza por categorias, busca, filtra y ejecuta desde una sola interfaz.</p>
+      </div>
+      <div class="ebook-card">
+        <h4><span style="color:var(--gold-dark);font-weight:800">4.</span> JSON + Scripts</h4>
+        <p>Descarga el JSON para automatizaciones o integraciones custom.</p>
+      </div>
+      <p style="font-size:.75rem;color:var(--text-muted);text-align:center;margin-top:.5rem"><i data-lucide="zap" style="width:12px;height:12px;vertical-align:middle"></i> Herramientas: Espanso (gratis), Raycast, Alfred, TextExpander</p>
+    </div>
+  </article>
+
+  <!-- ── PG 16: AI NATIVE WORKFLOW ── -->
+  <article class="page" data-page="16" data-chapter="Herramientas" data-title="AI Native Workflows">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Que es un AI Native Workflow</h2>
+      <p style="font-size:.88rem">Un flujo de trabajo disenado <strong>CON IA desde el origen</strong> — no un proceso manual al que le "agregan IA" despues.</p>
+      <p style="font-size:.85rem">El humano disena, dirige y valida. La IA investiga, genera, itera y ejecuta.</p>
+      <div style="margin-top:.75rem;display:flex;flex-direction:column;gap:.5rem">
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:flex-start;padding:.75rem">
+          <i data-lucide="link" style="width:16px;height:16px;color:var(--blue);flex-shrink:0;margin-top:2px"></i>
+          <div><strong style="font-size:.82rem">Encadenado:</strong><span style="font-size:.82rem;color:var(--text-sec)"> output de un paso = input del siguiente</span></div>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:flex-start;padding:.75rem">
+          <i data-lucide="layers" style="width:16px;height:16px;color:var(--gold);flex-shrink:0;margin-top:2px"></i>
+          <div><strong style="font-size:.82rem">Multimodal:</strong><span style="font-size:.82rem;color:var(--text-sec)"> mezcla chat, voz, video, agentes</span></div>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:flex-start;padding:.75rem">
+          <i data-lucide="clock" style="width:16px;height:16px;color:#10b981;flex-shrink:0;margin-top:2px"></i>
+          <div><strong style="font-size:.82rem">Asincrono:</strong><span style="font-size:.82rem;color:var(--text-sec)"> algunos pasos toman minutos — paralelizas</span></div>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:flex-start;padding:.75rem">
+          <i data-lucide="refresh-cw" style="width:16px;height:16px;color:#a78bfa;flex-shrink:0;margin-top:2px"></i>
+          <div><strong style="font-size:.82rem">Auto-mejora:</strong><span style="font-size:.82rem;color:var(--text-sec)"> cada ejecucion cristaliza prompts reutilizables</span></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 17: MODOS DE INTERACCION ── -->
+  <article class="page" data-page="17" data-chapter="Herramientas" data-title="Modos de Interaccion">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Modos de Interaccion</h2>
+      <p style="font-size:.82rem">No todo es chat de texto. Cada modo tiene su momento optimo.</p>
+      <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="message-square" style="width:15px;height:15px;color:#fff"></i></div>
+        <div><h4 style="margin:0;font-size:.85rem">Chat (texto)</h4><p style="margin:0;font-size:.75rem">Ida y vuelta. Tareas rapidas, iteracion, precision.</p></div>
+      </div>
+      <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#f59e0b;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="mic" style="width:15px;height:15px;color:#fff"></i></div>
+        <div><h4 style="margin:0;font-size:.85rem">Voz (dictado)</h4><p style="margin:0;font-size:.75rem">Brainstorming, captura rapida de ideas.</p></div>
+      </div>
+      <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="phone" style="width:15px;height:15px;color:#fff"></i></div>
+        <div><h4 style="margin:0;font-size:.85rem">Conversacion en tiempo real</h4><p style="margin:0;font-size:.75rem">Coaching, pensar en voz alta, explorar ideas.</p></div>
+      </div>
+      <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#8b5cf6;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="video" style="width:15px;height:15px;color:#fff"></i></div>
+        <div><h4 style="margin:0;font-size:.85rem">Live Video</h4><p style="margin:0;font-size:.75rem">La IA ve tu pantalla o camara. Debugging visual.</p></div>
+      </div>
+      <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i data-lucide="bot" style="width:15px;height:15px;color:var(--gold)"></i></div>
+        <div><h4 style="margin:0;font-size:.85rem">Agentico (autonomo)</h4><p style="margin:0;font-size:.75rem">La IA opera sola. 30 min - 2h. Te notifica al terminar.</p></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 18: CHATBOTS ── -->
+  <article class="page" data-page="18" data-chapter="Herramientas" data-title="Chatbots Recomendados">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Chatbots (todos gratis)</h2>
+      <div class="ebook-card" data-expand="1" data-etitle="ChatGPT" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>ChatGPT</h4>
+        <p><strong>Free:</strong> 10 msgs/5h avanzado + ilimitado basico. Voz, vision, search, code, GPT Store.</p>
+        <p style="font-size:.72rem;color:var(--text-muted)">Modos: chat, voz, vision</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Gemini" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>Gemini</h4>
+        <p><strong>Free:</strong> ~30 prompts/dia. Deep Research 5/mes, Canvas, 20 imgs/dia, Gems, Extensions Google.</p>
+        <p style="font-size:.72rem;color:var(--text-muted)">Modos: chat, Live voice, video, Deep Research</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="NotebookLM" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>NotebookLM</h4>
+        <p><strong>100% gratis.</strong> 50 fuentes/cuaderno. Audio overview, video, slides, infografias, quiz, flashcards.</p>
+        <p style="font-size:.72rem;color:var(--text-muted)">Modos: chat con fuentes, audio overview</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="Kimi" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>Kimi</h4>
+        <p><strong>Free:</strong> Unlimited basico, 256K contexto. PDF, imagenes, video. Sin registro.</p>
+        <p style="font-size:.72rem;color:var(--text-muted)">Modos: chat, voz mobile, multimodal</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 19: AGENTES + EMPLEADO DIGITAL ── -->
+  <article class="page" data-page="19" data-chapter="Herramientas" data-title="Agentes + Tu Primer Empleado Digital">
+    <div class="page-inner">
+      <h3 style="color:var(--navy);margin-bottom:.5rem"><i data-lucide="bot" style="width:16px;height:16px;vertical-align:middle;margin-right:.25rem;color:var(--gold-dark)"></i> Agentes Autonomos</h3>
+      <div class="ebook-card" data-expand="1" data-etitle="Manus" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>Manus</h4>
+        <p><strong>Free:</strong> 300 creditos/dia. Web browsing, codigo, web apps.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="GenSpark" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>GenSpark</h4>
+        <p><strong>Free:</strong> 100-200 creditos/dia. GPT+Claude+Gemini. Sparkpages.</p>
+      </div>
+      <div class="ebook-card" data-expand="1" data-etitle="MiniMax" data-etag="Herramienta" data-ecolor="#137DC5">
+        <h4>MiniMax</h4>
+        <p><strong>Free:</strong> Creditos diarios. Video, musica, audio, imagenes.</p>
+      </div>
+      <div style="margin-top:.75rem;padding:1rem;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(19,125,197,.04));border:2px solid var(--gold)">
+        <h4 style="color:var(--gold-dark);margin-bottom:.35rem;font-size:.9rem"><i data-lucide="unlock" style="width:15px;height:15px;vertical-align:middle"></i> Tu Primer Empleado Digital</h4>
+        <p style="font-size:.82rem">Con ~$10-20 USD/mes (un streaming o dos Starbucks), desbloqueas limites mas altos, modelos mas capaces y agentes mas autonomos.</p>
+        <p style="font-size:.72rem;color:var(--text-muted);font-style:italic;margin-top:.35rem">Empieza gratis, domina el metodo, y cuando el free tier se quede corto — ahi inviertes.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 20: TIEMPOS REALISTAS ── -->
+  <article class="page" data-page="20" data-chapter="Herramientas" data-title="Tiempos Realistas">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Tiempos Realistas</h2>
+      <p style="font-size:.85rem">Un AI Native Workflow NO es instantaneo. La clave: <strong>paralelizar</strong>.</p>
+      <div class="ebook-card"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.82rem">Chat simple</span><strong style="font-size:.82rem;color:var(--blue)">5-30 seg</strong></div></div>
+      <div class="ebook-card"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.82rem">Documento largo</span><strong style="font-size:.82rem;color:var(--blue)">1-3 min</strong></div></div>
+      <div class="ebook-card"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.82rem">Deep Research</span><strong style="font-size:.82rem;color:var(--blue)">10-20 min</strong></div></div>
+      <div class="ebook-card"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.82rem">Audio/Video (NLM)</span><strong style="font-size:.82rem;color:var(--blue)">3-10 min</strong></div></div>
+      <div class="ebook-card"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.82rem">Tarea agentica</span><strong style="font-size:.82rem;color:var(--blue)">30m - 2h</strong></div></div>
+      <div class="ebook-highlight" style="margin-top:.5rem">
+        <p style="font-size:.78rem"><strong style="color:var(--gold-dark)">Pro tip:</strong> Mientras Gemini investiga (20 min), tu preparas el cuaderno en NotebookLM. El secreto es orquestar tareas simultaneas.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══ CAP 5: GLOSARIOS ═══ -->
+
+  <!-- ── PG 21: LETRAS A-M ── -->
+  <article class="page" data-page="21" data-chapter="Glosarios" data-title="Letras a-m">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">27 Comandos de Una Tecla</h2>
+      <p style="font-size:.82rem">Cada letra es un micro-command. Friccion cero.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;font-size:.78rem">
+        <div><strong style="color:var(--gold-dark)">a</strong> <span style="color:var(--text-sec)">Aprobar</span></div>
+        <div><strong style="color:var(--gold-dark)">b</strong> <span style="color:var(--text-sec)">Buscar</span></div>
+        <div><strong style="color:var(--gold-dark)">c</strong> <span style="color:var(--text-sec)">Corregir</span></div>
+        <div><strong style="color:var(--gold-dark)">d</strong> <span style="color:var(--text-sec)">Desglosar</span></div>
+        <div><strong style="color:var(--gold-dark)">e</strong> <span style="color:var(--text-sec)">Excelencia</span></div>
+        <div><strong style="color:var(--gold-dark)">f</strong> <span style="color:var(--text-sec)">Formatear</span></div>
+        <div><strong style="color:var(--gold-dark)">g</strong> <span style="color:var(--text-sec)">Generar alternativas</span></div>
+        <div><strong style="color:var(--gold-dark)">h</strong> <span style="color:var(--text-sec)">Hacer checklist</span></div>
+        <div><strong style="color:var(--gold-dark)">i</strong> <span style="color:var(--text-sec)">Identificar</span></div>
+        <div><strong style="color:var(--gold-dark)">j</strong> <span style="color:var(--text-sec)">Justificar</span></div>
+        <div><strong style="color:var(--gold-dark)">k</strong> <span style="color:var(--text-sec)">Key takeaways</span></div>
+        <div><strong style="color:var(--gold-dark)">l</strong> <span style="color:var(--text-sec)">Lista pros/contras</span></div>
+        <div><strong style="color:var(--gold-dark)">m</strong> <span style="color:var(--text-sec)">Mejorar</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 22: LETRAS N-Z+N ── -->
+  <article class="page" data-page="22" data-chapter="Glosarios" data-title="Letras n-z">
+    <div class="page-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;font-size:.78rem">
+        <div><strong style="color:var(--gold-dark)">n</strong> <span style="color:var(--text-sec)">Next step</span></div>
+        <div><strong style="color:var(--gold-dark)">o</strong> <span style="color:var(--text-sec)">Organizar</span></div>
+        <div><strong style="color:var(--gold-dark)">p</strong> <span style="color:var(--text-sec)">Profundizar</span></div>
+        <div><strong style="color:var(--gold-dark)">q</strong> <span style="color:var(--text-sec)">Preguntar</span></div>
+        <div><strong style="color:var(--gold-dark)">r</strong> <span style="color:var(--text-sec)">Resume</span></div>
+        <div><strong style="color:var(--gold-dark)">s</strong> <span style="color:var(--text-sec)">Sintetizar</span></div>
+        <div><strong style="color:var(--gold-dark)">t</strong> <span style="color:var(--text-sec)">Traducir</span></div>
+        <div><strong style="color:var(--gold-dark)">u</strong> <span style="color:var(--text-sec)">Unificar</span></div>
+        <div><strong style="color:var(--gold-dark)">v</strong> <span style="color:var(--text-sec)">Validar</span></div>
+        <div><strong style="color:var(--gold-dark)">w</strong> <span style="color:var(--text-sec)">What if</span></div>
+        <div><strong style="color:var(--gold-dark)">x</strong> <span style="color:var(--text-sec)">Extraer datos</span></div>
+        <div><strong style="color:var(--gold-dark)">y</strong> <span style="color:var(--text-sec)">Ya casi (final)</span></div>
+        <div><strong style="color:var(--gold-dark)">z</strong> <span style="color:var(--text-sec)">Zoom out</span></div>
+        <div style="grid-column:1/-1;margin-top:.25rem;padding:.5rem;border-radius:var(--radius-sm);background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.15)"><strong style="color:var(--gold-dark);font-size:1rem">n</strong> <span style="color:var(--text-sec)">Traductor inteligente LatAm (bidireccional)</span></div>
+      </div>
+      <div class="ebook-highlight" style="margin-top:.75rem">
+        <p style="font-size:.78rem">Escribe solo la letra en el chat. La IA ejecuta la accion.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 23: PIPELINE 0-9 ── -->
+  <article class="page" data-page="23" data-chapter="Glosarios" data-title="Pipeline 0-9">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Pipeline 0-9</h2>
+      <p style="font-size:.8rem;margin-bottom:.5rem">10 pasos de la idea vaga al entregable profesional.</p>
+      <div style="display:flex;flex-direction:column;gap:.3rem;font-size:.78rem">
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">0</strong><div><strong>Priming</strong> — Setear contexto</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">1</strong><div><strong>Entender</strong> — Que + Para Que + Para Quien</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">2</strong><div><strong>Definir</strong> — Construir el SPEC</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">3</strong><div><strong>Planificar</strong> — Fases y dependencias</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">4</strong><div><strong>Ejecutar</strong> — Primera version completa</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">5</strong><div><strong>Robustecer</strong> — Datos y fuentes</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">6</strong><div><strong>Simplificar</strong> — Destilar valor</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">7</strong><div><strong>Validar</strong> — Checklist OK/FALLA</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">8</strong><div><strong>Entregar</strong> — Formato final</div></div>
+        <div class="ebook-card" style="padding:.5rem .75rem;display:flex;gap:.5rem;align-items:center"><strong style="color:var(--gold-dark);font-size:1rem;min-width:18px">9</strong><div><strong>Cristalizar</strong> — 1 priming + 1 SPEC</div></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 24: ACELERADORES ── -->
+  <!-- ── PG 24: ACELERADORES 1-14 ── -->
+  <article class="page" data-page="24" data-chapter="Glosarios" data-title="Aceleradores 1-14">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid #34d399;padding-left:.75rem;font-size:1.15rem">42 Aceleradores <span style="font-size:.7rem;color:var(--text-muted);font-weight:400">(1-14)</span></h2>
+      <p style="font-size:.78rem;margin-bottom:.6rem;color:var(--text-sec)">Una palabra, accion detallada. Mas que un micro-command, menos que un SPEC.</p>
+      <div class="accel-grid">
+        <div class="accel-item" data-expand="1" data-etitle="compara" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">compara</span><span class="accel-desc">Tabla comparativa con scoring y recomendacion</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="prioriza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">prioriza</span><span class="accel-desc">Top 3 por impacto, esfuerzo y urgencia</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="reformula" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">reformula</span><span class="accel-desc">Mismo mensaje, mejor claridad profesional</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="debate" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">debate</span><span class="accel-desc">3 perspectivas confrontadas + sintesis</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="investiga" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">investiga</span><span class="accel-desc">Hallazgos con fuentes verificables + gaps</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="documenta" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">documenta</span><span class="accel-desc">Formaliza en documento profesional</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="diagrama" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">diagrama</span><span class="accel-desc">Flujo, mapa, matriz o timeline en Mermaid</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="evalua" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">evalua</span><span class="accel-desc">Rubrica sistematica con scoring</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="optimiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">optimiza</span><span class="accel-desc">Ineficiencias + mejoras priorizadas</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="automatiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">automatiza</span><span class="accel-desc">Lo automatizable + herramienta + ROI</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="desafia" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">desafia</span><span class="accel-desc">Ataca desde 3 angulos: tecnico, financiero, operativo</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="calibra" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">calibra</span><span class="accel-desc">Ajusta tono y profundidad a la audiencia</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="prototipa" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">prototipa</span><span class="accel-desc">Version minima viable para validar</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="escala" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">escala</span><span class="accel-desc">Disena para 10x volumen</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 25: ACELERADORES 15-28 ── -->
+  <article class="page" data-page="25" data-chapter="Glosarios" data-title="Aceleradores 15-28">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid #34d399;padding-left:.75rem;font-size:1.15rem">42 Aceleradores <span style="font-size:.7rem;color:var(--text-muted);font-weight:400">(15-28)</span></h2>
+      <div class="accel-grid">
+        <div class="accel-item" data-expand="1" data-etitle="aterriza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">aterriza</span><span class="accel-desc">De abstracto a concreto: acciones + fechas</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="conecta" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">conecta</span><span class="accel-desc">Relaciones entre conceptos separados</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="auditoria" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">auditoria</span><span class="accel-desc">Revision exhaustiva: completo / faltante / incorrecto</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="narrativa" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">narrativa</span><span class="accel-desc">Datos a historia: situacion > tension > resolucion</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="benchmark" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">benchmark</span><span class="accel-desc">Compara contra mejores practicas del sector</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="diagnostica" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">diagnostica</span><span class="accel-desc">Fortalezas, debilidades, sintomas, causas</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="estrategia" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">estrategia</span><span class="accel-desc">Objetivo, palancas, trade-offs, timeline</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="feedback" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">feedback</span><span class="accel-desc">SBI: Situacion + Comportamiento + Impacto</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="reversa" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">reversa</span><span class="accel-desc">Ingenieria inversa: genera 1 priming + 1 SPEC</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="defiende" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">defiende</span><span class="accel-desc">5 objeciones anticipadas con respuesta</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="empatiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">empatiza</span><span class="accel-desc">Reformula desde la perspectiva del otro</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="resume" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">resume</span><span class="accel-desc">3 parrafos: conclusion, evidencia, proximos pasos</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="traduce" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">traduce</span><span class="accel-desc">Al otro idioma, preservando tono y matices</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="profundiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">profundiza</span><span class="accel-desc">Nivel experto: datos, casos, matices</span></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 26: ACELERADORES 29-42 ── -->
+  <article class="page" data-page="26" data-chapter="Glosarios" data-title="Aceleradores 29-42">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid #34d399;padding-left:.75rem;font-size:1.15rem">42 Aceleradores <span style="font-size:.7rem;color:var(--text-muted);font-weight:400">(29-42)</span></h2>
+      <div class="accel-grid">
+        <div class="accel-item" data-expand="1" data-etitle="simplifica" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">simplifica</span><span class="accel-desc">Cada palabra gana su lugar. Mas corto que el input.</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="pareto" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">pareto</span><span class="accel-desc">80/20: el 20% que produce el 80% del resultado</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="verifica" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">verifica</span><span class="accel-desc">Marca: verificado / requiere fuente / incorrecto</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="operacionaliza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">operacionaliza</span><span class="accel-desc">Quien, que, cuando, como se mide. Cero ambiguedad.</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="sintetiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">sintetiza</span><span class="accel-desc">Multiples fuentes a 1 pagina. Solo lo esencial.</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="segmenta" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">segmenta</span><span class="accel-desc">Divide en partes manejables con dependencias</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="escenarios" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">escenarios</span><span class="accel-desc">Conservador, base, agresivo con probabilidades</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="contextualiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">contextualiza</span><span class="accel-desc">Antecedentes, marco, tendencias, por que ahora</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="cuantifica" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">cuantifica</span><span class="accel-desc">Cualitativo a cuantitativo. Numeros, no adjetivos.</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="visualiza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">visualiza</span><span class="accel-desc">Describe representacion visual optima</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="personaliza" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">personaliza</span><span class="accel-desc">Adapta a tu contexto especifico, no generico</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="estructura" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">estructura</span><span class="accel-desc">Piramide: conclusion, argumentos, evidencia. MECE.</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="argumenta" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">argumenta</span><span class="accel-desc">Tesis + 3 puntos + contra-argumentos + conclusion</span></div>
+        <div class="accel-item" data-expand="1" data-etitle="mapea" data-etag="Acelerador" data-ecolor="#34d399"><span class="accel-word">mapea</span><span class="accel-desc">Elementos, relaciones, jerarquias en Mermaid</span></div>
+      </div>
+      <div class="ebook-highlight" style="margin-top:.75rem">
+        <p style="font-size:.78rem;text-align:center">42 aceleradores. Cada uno activa un protocolo completo con una sola palabra.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══ CAP 6: AI NATIVE WORKFLOWS ═══ -->
+
+  <!-- ── PG 25: WORKFLOWS INTRO ── -->
+  <article class="page page-chapter" data-page="27" data-chapter="Workflows" data-title="5 AI Native Workflows">
+    <div class="page-inner" style="text-align:center">
+      <div class="chapter-num">Capitulo 6</div>
+      <h1 style="font-size:1.6rem;margin-bottom:1rem">5 AI Native Workflows</h1>
+      <p style="font-size:.88rem;max-width:360px;margin:0 auto">Flujos de trabajo disenados CON IA desde el origen. Gratuitos. Producen entregables profesionales.</p>
+      <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem;text-align:left">
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center;padding:.65rem .75rem">
+          <i data-lucide="book-open" style="width:16px;height:16px;color:var(--blue);flex-shrink:0"></i>
+          <span style="font-size:.82rem"><strong>1.</strong> Aprende Cualquier Cosa</span>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center;padding:.65rem .75rem">
+          <i data-lucide="presentation" style="width:16px;height:16px;color:#f59e0b;flex-shrink:0"></i>
+          <span style="font-size:.82rem"><strong>2.</strong> Prepara una Exposicion</span>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center;padding:.65rem .75rem">
+          <i data-lucide="file-text" style="width:16px;height:16px;color:#10b981;flex-shrink:0"></i>
+          <span style="font-size:.82rem"><strong>3.</strong> Informe + Email Profesional</span>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center;padding:.65rem .75rem">
+          <i data-lucide="swords" style="width:16px;height:16px;color:#ef4444;flex-shrink:0"></i>
+          <span style="font-size:.82rem"><strong>4.</strong> Problema Complejo (coach adversarial)</span>
+        </div>
+        <div class="ebook-card" style="display:flex;gap:.5rem;align-items:center;padding:.65rem .75rem">
+          <i data-lucide="message-circle" style="width:16px;height:16px;color:#a78bfa;flex-shrink:0"></i>
+          <span style="font-size:.82rem"><strong>5.</strong> Preguntas Cotidianas</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 26: WF1 pt1 ── -->
+  <article class="page" data-page="28" data-chapter="Workflows" data-title="WF1: Aprende (pasos 0-3)">
+    <div class="page-inner">
+      <h3 style="color:var(--blue);margin-bottom:.25rem"><i data-lucide="book-open" style="width:16px;height:16px;vertical-align:middle"></i> Workflow 1: Aprende Cualquier Cosa</h3>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:.75rem">De cero a competente. Ejemplo: IA Generativa. | 2-3h total | $0</p>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">0.</span> Priming</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>Define quien eres, que quieres aprender, por que. La IA reformula y hace 3 preguntas.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">1.</span> Deep Research</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15-20 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>Gemini Deep Research produce un body of knowledge completo.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">2.</span> Plan de Estudio</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Con el research, genera plan personalizado de aprendizaje.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">3.</span> Cuaderno NLM</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Importa todo a NotebookLM. Conversa, pregunta, profundiza.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 27: WF1 pt2 ── -->
+  <article class="page" data-page="29" data-chapter="Workflows" data-title="WF1: Aprende (pasos 4-9)">
+    <div class="page-inner">
+      <h3 style="color:var(--blue);font-size:.95rem;margin-bottom:.5rem">WF1: Aprende (continuacion)</h3>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">4.</span> Audio Overview</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5-10 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>NotebookLM genera podcast de estudio personalizado.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">5.</span> Infografia</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 3-5 min</span></div>
+        <p>Genera mapa visual del tema con NLM o Kimi.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">6.</span> Quiz de Validacion</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Genera quiz con NLM. Valida tu comprension real.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.85rem"><span style="color:var(--gold-dark)">9.</span> Cristalizar</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>Genera 1 priming + 1 SPEC reutilizable. El proximo tema sera mas rapido.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 28: WF2 ── -->
+  <article class="page" data-page="30" data-chapter="Workflows" data-title="WF2: Exposicion">
+    <div class="page-inner">
+      <h3 style="color:#f59e0b;margin-bottom:.25rem"><i data-lucide="presentation" style="width:16px;height:16px;vertical-align:middle"></i> Workflow 2: Prepara una Exposicion</h3>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:.75rem">De la investigacion a slides profesionales. | 1.5-2h | $0</p>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">0.</span> Priming + Research</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span></div>
+        <p>Contexto + Deep Research con Gemini.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">1.</span> Guion de Exposicion</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+        <p>Genera narrativa con Kimi. Estructura por slides.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">2.</span> Slides + Infografia</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>NLM genera slides y/o Gamma.app produce deck visual.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">3.</span> Ensayo + Audio</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-voice"><i data-lucide="mic"></i> Voz</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+        <p>Ensaya con ChatGPT Voice. Recibe feedback en tiempo real.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">9.</span> Cristalizar</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>Priming + SPEC reutilizable para futuras exposiciones.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 29: WF3 ── -->
+  <article class="page" data-page="31" data-chapter="Workflows" data-title="WF3: Informe + Email">
+    <div class="page-inner">
+      <h3 style="color:#10b981;margin-bottom:.25rem"><i data-lucide="file-text" style="width:16px;height:16px;vertical-align:middle"></i> Workflow 3: Informe + Email</h3>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:.75rem">Entregable profesional con email ejecutivo. | 45-60 min | $0</p>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">0-2.</span> Priming + SPEC</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Contexto + definir el SPEC del informe.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">3-4.</span> Investigar + Ejecutar</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+        <p>Research + primera version del informe.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">5-7.</span> Robustecer + Validar</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Datos, simplificacion, checklist de calidad.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">8.</span> Email Ejecutivo</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>Genera email que presenta el informe al stakeholder.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">9.</span> Cristalizar</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>SPEC reutilizable para futuros informes.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 30: WF4 ── -->
+  <article class="page" data-page="32" data-chapter="Workflows" data-title="WF4: Problema Complejo">
+    <div class="page-inner">
+      <h3 style="color:#ef4444;margin-bottom:.25rem"><i data-lucide="swords" style="width:16px;height:16px;vertical-align:middle"></i> Workflow 4: Problema Complejo</h3>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:.75rem">Coach adversarial que desafia tu pensamiento. | 1-2h | $0</p>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">0.</span> Priming del Problema</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Describe el problema. La IA reformula y pregunta.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">1.</span> Analisis Multi-Angulo</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+        <p>3 perspectivas: tecnica, financiera, operativa.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">2.</span> Coach Adversarial</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-voice"><i data-lucide="mic"></i> Voz</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span></div>
+        <p>Usa <code style="font-size:.72rem">desafia</code>. La IA ataca tu propuesta desde 3 angulos.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">3.</span> Plan de Accion</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Sintetiza y produce plan accionable + escenarios.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">9.</span> Cristalizar</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>SPEC de resolucion de problemas complejos.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 31: WF5 ── -->
+  <article class="page" data-page="33" data-chapter="Workflows" data-title="WF5: Preguntas Cotidianas">
+    <div class="page-inner">
+      <h3 style="color:#a78bfa;margin-bottom:.25rem"><i data-lucide="message-circle" style="width:16px;height:16px;vertical-align:middle"></i> Workflow 5: Preguntas Cotidianas</h3>
+      <p style="font-size:.78rem;color:var(--text-muted);margin-bottom:.75rem">Modo conversacional para el dia a dia. | 5-15 min | $0</p>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">?</span> Pregunta con Contexto</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-voice"><i data-lucide="mic"></i> Voz</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 2 min</span></div>
+        <p>Pregunta con contexto minimo: quien eres + que necesitas + para que.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">+</span> Profundiza</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 3-5 min</span></div>
+        <p>Usa aceleradores: <code style="font-size:.72rem">simplifica</code>, <code style="font-size:.72rem">contextualiza</code>, <code style="font-size:.72rem">profundiza</code>.</p>
+      </div>
+      <div class="ebook-card">
+        <h4 style="font-size:.82rem"><span style="color:var(--gold-dark)">!</span> Accion</h4>
+        <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.15rem 0"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 2 min</span></div>
+        <p>Cierra con <code style="font-size:.72rem">resume</code> o <code style="font-size:.72rem">aterriza</code>. Accion concreta.</p>
+      </div>
+      <div class="ebook-highlight">
+        <p style="font-size:.78rem">El 80% del uso diario de IA es este workflow. No necesitas un SPEC para cada cosa.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 32: RESUMEN WORKFLOWS ── -->
+  <article class="page page-chapter" data-page="34" data-chapter="Workflows" data-title="5 Workflows de un Vistazo">
+    <div class="page-inner" style="text-align:center">
+      <h2 style="border:none;padding:0;font-size:1.2rem;margin-bottom:1rem">5 Workflows de un Vistazo</h2>
+      <div style="display:flex;flex-direction:column;gap:.5rem;text-align:left">
+        <div class="ebook-card" style="display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem">
+          <span style="font-size:.82rem"><strong>1.</strong> Aprende</span>
+          <span style="font-size:.72rem;color:var(--text-muted)">2-3h · 7 pasos</span>
+        </div>
+        <div class="ebook-card" style="display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem">
+          <span style="font-size:.82rem"><strong>2.</strong> Exposicion</span>
+          <span style="font-size:.72rem;color:var(--text-muted)">1.5-2h · 5 pasos</span>
+        </div>
+        <div class="ebook-card" style="display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem">
+          <span style="font-size:.82rem"><strong>3.</strong> Informe</span>
+          <span style="font-size:.72rem;color:var(--text-muted)">45-60m · 5 pasos</span>
+        </div>
+        <div class="ebook-card" style="display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem">
+          <span style="font-size:.82rem"><strong>4.</strong> Problema</span>
+          <span style="font-size:.72rem;color:var(--text-muted)">1-2h · 5 pasos</span>
+        </div>
+        <div class="ebook-card" style="display:flex;justify-content:space-between;align-items:center;padding:.65rem .75rem">
+          <span style="font-size:.82rem"><strong>5.</strong> Cotidiano</span>
+          <span style="font-size:.72rem;color:var(--text-muted)">5-15m · 3 pasos</span>
+        </div>
+      </div>
+      <div class="ebook-highlight" style="margin-top:.75rem">
+        <p style="font-size:.78rem">Todos son gratuitos. Todos terminan con <strong>Cristalizar</strong>: el proceso de hoy construye el atajo de manana.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ═══ CAP 7: PRACTICA ═══ -->
+
+  <!-- ── PG 33: KATA ── -->
+  <article class="page" data-page="35" data-chapter="Practica" data-title="Tu Primer SPEC">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Tu Primer SPEC</h2>
+      <p style="font-size:.85rem">La mejor forma de aprender es hacer. 10 minutos, 3 pasos:</p>
+      <div class="ebook-card" style="border-left:3px solid #60a5fa">
+        <h4><span style="color:#60a5fa;font-weight:800">1.</span> Elige un problema real</h4>
+        <p>Algo de esta semana. Un email, un analisis, una presentacion. No un ejercicio teorico.</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #f59e0b">
+        <h4><span style="color:#f59e0b;font-weight:800">2.</span> Aplica el formato SPEC</h4>
+        <p>Escribe las 4 secciones: <strong style="color:#60a5fa">S</strong> (para que), <strong style="color:#f59e0b">P</strong> (que + quien), <strong style="color:#10b981">E</strong> (como), <strong style="color:#8b5cf6">C</strong> (criterio).</p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #10b981">
+        <h4><span style="color:#10b981;font-weight:800">3.</span> Ejecuta y evalua</h4>
+        <p>Pega en ChatGPT/Claude/Gemini. El output fue profesional? Listo para usar sin edicion?</p>
+      </div>
+      <div class="ebook-highlight" style="margin-top:.5rem">
+        <p style="font-size:.78rem">Si no, ajusta tu SPEC y repite. Cada iteracion te hace mejor.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 34: AGENDAMIENTO ── -->
+  <article class="page" data-page="36" data-chapter="Practica" data-title="Plan de Entrenamiento">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Tu Plan de Entrenamiento</h2>
+      <p style="font-size:.85rem">4 sesiones de 30 minutos. Agenda la primera hoy.</p>
+      <div class="ebook-card" style="border-left:3px solid #60a5fa">
+        <h4><span style="color:#60a5fa;font-weight:800">1.</span> Aprende el Pipeline</h4>
+        <p>Ejecuta Workflow 1 o 2. Sigue el pipeline 0-9 con una tarea real. <strong>30 min.</strong></p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #f59e0b">
+        <h4><span style="color:#f59e0b;font-weight:800">2.</span> Resuelve una Tarea Real</h4>
+        <p>Ejecuta Workflow 3 o 4. Produce un entregable profesional. <strong>30 min.</strong></p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #10b981">
+        <h4><span style="color:#10b981;font-weight:800">3.</span> Crea tu Primer SPEC</h4>
+        <p>Usa el meta-prompt para disenar un prompt propio. <strong>30 min.</strong></p>
+      </div>
+      <div class="ebook-card" style="border-left:3px solid #8b5cf6">
+        <h4><span style="color:#8b5cf6;font-weight:800">4.</span> Cristaliza tu Sistema</h4>
+        <p>Paso 9: genera priming + SPEC personal. Cada tema futuro sera mas rapido. <strong>30 min.</strong></p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 35: FAQ 1-6 ── -->
+  <article class="page" data-page="37" data-chapter="Practica" data-title="FAQ (1-6)">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Preguntas Frecuentes</h2>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Que es un prompt?</h4><p style="font-size:.78rem">La instruccion que le das a la IA. Claro y especifico = 10x mejores resultados.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Puedo modificar los prompts?</h4><p style="font-size:.78rem">Si. Adapta los {{PARAMETROS}} a tu contexto. Es la mejor forma de aprender.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Funcionan con cualquier IA?</h4><p style="font-size:.78rem">Si. ChatGPT, Claude, Gemini, Perplexity. El formato SPEC es universal.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Como elijo el prompt correcto?</h4><p style="font-size:.78rem">Busca por palabra clave o navega las 24 categorias en la biblioteca completa.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Puedo compartir estos prompts?</h4><p style="font-size:.78rem">Si. Licencia copyleft: comparte, modifica, usa. Solo requiere atribucion.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Necesito experiencia con IA?</h4><p style="font-size:.78rem">No. Empieza con letras (a-z) y aceleradores. Progresa a SPECs naturalmente.</p></div>
+    </div>
+  </article>
+
+  <!-- ── PG 36: FAQ 7-12 ── -->
+  <article class="page" data-page="38" data-chapter="Practica" data-title="FAQ (7-12)">
+    <div class="page-inner">
+      <div class="ebook-card"><h4 style="font-size:.82rem">Cuantos prompts incluye?</h4><p style="font-size:.78rem"><strong>445</strong>: 27 letras + 10 pipeline + 42 aceleradores + 365 SPECs en 24 categorias.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Como mejorar mis propios prompts?</h4><p style="font-size:.78rem">Estudia la estructura SPEC. Usa el paso 9 (Cristalizar) para ingenieria inversa.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Los prompts consumen muchos tokens?</h4><p style="font-size:.78rem">SPECs: 800-1500 tokens. Comandos: 50-200. Para reducir, usa el Protocolo en 1 linea.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Puedo usarlos comercialmente?</h4><p style="font-size:.78rem">Si. Copyleft permite uso comercial y no comercial con atribucion.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Hay un GPT especializado?</h4><p style="font-size:.78rem">Si. El GPT de Prompting de MetodologIA esta disenado con la metodologia SPEC.</p></div>
+      <div class="ebook-card"><h4 style="font-size:.82rem">Como contribuir?</h4><p style="font-size:.78rem">contacto@metodologia.info o la comunidad WhatsApp. Tu feedback mejora la biblioteca.</p></div>
+    </div>
+  </article>
+
+  <!-- ═══ CAP 8: CIERRE ═══ -->
+
+  <!-- ── PG 37: AUTORES ── -->
+  <article class="page" data-page="39" data-chapter="Cierre" data-title="Los Autores">
+    <div class="page-inner" style="text-align:center">
+      <h2 style="border:none;padding:0;font-size:1.2rem;margin-bottom:1.5rem">Los Autores</h2>
+      <div style="display:flex;flex-direction:column;gap:1.5rem;align-items:center">
+        <div>
+          <div style="width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);overflow:hidden;margin:0 auto .75rem">
+            <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_javier-montano.webp?raw=true" alt="Javier" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+          </div>
+          <strong style="font-family:var(--font-head);font-size:.95rem">Javier Montano</strong>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:.15rem">Contador Publico → Vibe Coder<br>Emprendedor</p>
+        </div>
+        <div>
+          <div style="width:72px;height:72px;border-radius:50%;border:3px solid #00FFFF;overflow:hidden;margin:0 auto .75rem">
+            <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_german-sepulveda.png?raw=true" alt="German" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+          </div>
+          <strong style="font-family:var(--font-head);font-size:.95rem">German Sepulveda</strong>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:.15rem">Toxicologo → Cientifico de Datos<br>Emprendedor</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 38: COPYRIGHT ── -->
+  <article class="page" data-page="40" data-chapter="Cierre" data-title="Copyleft">
+    <div class="page-inner">
+      <h2 style="border-left:4px solid var(--gold);padding-left:.75rem;font-size:1.15rem">Copyright y Derechos</h2>
+      <p style="font-size:.85rem">Licencia <strong>Copyleft</strong>. Es libre: usalo, modificalo y distribuyelo.</p>
+      <div class="ebook-card"><h4 style="color:#10b981">Uso Libre</h4><p>Cualquier proposito, comercial o no comercial.</p></div>
+      <div class="ebook-card"><h4 style="color:#60a5fa">Modificacion</h4><p>Adapta y personaliza segun tus necesidades.</p></div>
+      <div class="ebook-card"><h4 style="color:#f59e0b">Distribucion</h4><p>Comparte libremente, incluso con modificaciones.</p></div>
+      <div class="ebook-card"><h4 style="color:#a78bfa">Atribucion</h4><p>Menciona la fuente: metodologia.info</p></div>
+      <p style="font-size:.75rem;color:var(--text-muted);text-align:center;margin-top:.5rem">No impongas restricciones adicionales sobre estos prompts.</p>
+    </div>
+  </article>
+
+  <!-- ── PG 39: PALABRAS DE CIERRE ── -->
+  <article class="page page-chapter" data-page="41" data-chapter="Cierre" data-title="Palabras de Cierre">
+    <div class="page-inner" style="text-align:center">
+      <h2 style="border:none;padding:0;font-size:1.2rem;margin-bottom:1rem">Palabras de Cierre</h2>
+      <p style="font-size:.92rem">Este documento no es un catalogo de prompts — es un <strong>sistema de entrenamiento</strong>.</p>
+      <p style="font-size:.92rem;margin-top:.75rem">Con 445 prompts, el pipeline 0-9, los 5 workflows y el meta-prompt, tienes todo para pasar de cero a competente.</p>
+      <p style="font-size:.95rem;margin-top:.75rem">La IA no te reemplaza — te <strong>amplifica</strong>. Pero solo si tienes metodo.</p>
+      <p style="font-family:var(--font-head);font-size:1.1rem;font-weight:800;color:var(--gold-dark);margin-top:1.5rem;font-style:italic">"El futuro no se predice, se disena."</p>
+      <div style="margin-top:1.5rem;display:flex;justify-content:center;gap:1.5rem">
+        <div class="author-avatar" style="width:40px;height:40px"><img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_javier-montano.webp?raw=true" alt="Javier" loading="lazy"></div>
+        <div class="author-avatar cyan" style="width:40px;height:40px"><img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_german-sepulveda.png?raw=true" alt="German" loading="lazy"></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 40: REFERENCIA ── -->
+  <article class="page" data-page="42" data-chapter="Cierre" data-title="Referencia Rapida">
+    <div class="page-inner" style="text-align:center">
+      <h2 style="border:none;padding:0;font-size:1.15rem;margin-bottom:1rem">Referencia Rapida</h2>
+      <p style="font-size:.88rem">Este e-book es la guia de estudio. Para buscar, filtrar y copiar los <strong>445 prompts</strong>, usa la biblioteca interactiva completa:</p>
+      <div style="margin-top:1.5rem;padding:1.25rem;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(19,125,197,.06),rgba(255,215,0,.04));border:2px solid var(--blue)">
+        <p style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--blue);margin-bottom:.5rem">Biblioteca Interactiva</p>
+        <p style="font-size:.82rem;color:var(--text-sec)">Busqueda por palabra clave, filtro por 24 categorias, modal con detalle completo, boton de copiar.</p>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:.5rem;font-family:var(--font-note)">biblioteca_universales_estudio.html</p>
+      </div>
+      <div style="margin-top:1.5rem">
+        <p style="font-size:.82rem;color:var(--text-sec)"><strong>Links utiles:</strong></p>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem">metodologia.info · GPT de Prompting · Comunidad WhatsApp</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ── PG 41: CONTRAPORTADA ── -->
+  <article class="page page-cover" data-page="43" data-chapter="Cierre" data-title="Contraportada">
+    <div class="page-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <svg viewBox="0 0 36 36" width="64" height="64" style="margin-bottom:1.5rem">
+        <rect width="36" height="36" rx="10" fill="#122562"/>
+        <path d="M10 12h3v12h-3V12zm6 0h3v8h-3v-8zm0 10h3v2h-3v-2zm6-10h3v6h-3v-6zm0 8h3v4h-3v-4z" fill="#fff"/>
+        <circle cx="18" cy="8" r="2" fill="#FFD700"/>
+      </svg>
+      <h2 style="text-align:center;border:none;padding:0;margin-bottom:.5rem">MetodologIA</h2>
+      <p style="text-align:center;font-family:var(--font-note);font-size:.82rem;color:var(--text-muted)">metodologia.info</p>
+      <p style="text-align:center;font-family:var(--font-note);font-size:.72rem;color:var(--text-muted);margin-top:1rem">Success as a Service</p>
+      <p style="text-align:center;font-family:var(--font-note);font-size:.68rem;color:var(--text-muted);margin-top:2rem">Javier Montano &amp; German Sepulveda · 2026</p>
+      <p style="text-align:center;font-family:var(--font-note);font-size:.65rem;color:var(--text-muted);margin-top:.5rem">Copyleft — compartir libremente con atribucion</p>
+    </div>
+  </article>
+
+</main>
+
+<!-- ═══ NAVIGATION BUTTONS ═══ -->
+<nav class="nav-buttons" id="navButtons">
+  <button class="nav-btn" id="btnPrev" onclick="window._prevPage()" disabled>
+    <i data-lucide="chevron-left"></i> Anterior
+  </button>
+  <button class="nav-btn primary" id="btnNext" onclick="window._nextPage()">
+    Siguiente <i data-lucide="chevron-right"></i>
+  </button>
+</nav>
+
+<!-- ═══ EXPAND MODAL ═══ -->
+<div class="expand-overlay" id="expandOverlay" onclick="window._closeExpand(event)">
+  <div class="expand-box" id="expandBox">
+    <button class="expand-close" onclick="window._closeExpand()">&times;</button>
+    <div class="expand-tag" id="expandTag"></div>
+    <div class="expand-title" id="expandTitle"></div>
+    <div class="expand-body" id="expandBody"></div>
+  </div>
+</div>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+(function() {
+  'use strict';
+
+  var EXPAND_DATA = {
+  'Principio 1: Rol Hibrido y Acreditado': {t:'Principio',c:'#f59e0b',b:'<p>Combina 2-3 disciplinas en un solo arquetipo. Ejemplo: <strong>Analista Senior de Inteligencia Competitiva con MBA y certificacion SCIP (15+ anos)</strong>. Las credenciales calibran la profundidad de la respuesta.</p>'},
+  'Principio 2: Contexto Prospectivo': {t:'Principio',c:'#f59e0b',b:'<p>La Situacion responde: que se desbloquea, quienes son los stakeholders, que restricciones existen, y que pasa si NO se hace. Sin contexto, la IA llena vacios con suposiciones genericas.</p>'},
+  'Principio 3: Tarea Orientada a Entregable': {t:'Principio',c:'#f59e0b',b:'<p>Define el output concreto: documento, tabla, analisis, plan. Incluye componentes, estructura y alcance. <strong>\'Produce un informe de 5 paginas\' &gt; \'Ayudame con esto\'</strong>.</p>'},
+  'Principio 4: Estructura Completa (SPEC)': {t:'Principio',c:'#f59e0b',b:'<p>Las 4 secciones cubren: <strong>Situacion</strong> (para que), <strong>Pedido</strong> (que necesito), <strong>Ejecucion</strong> (como se hace), <strong>Criterio</strong> (como se que esta listo). Agregar [inputs] y [checklist] para parametrizar.</p>'},
+  'Principio 5: Protocolo Metacognitivo': {t:'Principio',c:'#f59e0b',b:'<p>La IA debe: <strong>1)</strong> Interpretar la intencion real, <strong>2)</strong> Planificar la estructura del output, <strong>3)</strong> Ejecutar con rigor. Esto previene respuestas superficiales y activa co-creacion.</p>'},
+  'Principio 6: Parametrizar para Reutilizar': {t:'Principio',c:'#f59e0b',b:'<p>Usa <strong>{{PLACEHOLDERS}}</strong> en tus prompts. Un prompt parametrizado se ejecuta 100 veces con diferentes inputs. Ejemplo: {{SECTOR}}, {{COMPETIDORES}}, {{AUDIENCIA}}.</p>'},
+  'Principio 7: Prompt Chaining': {t:'Principio',c:'#f59e0b',b:'<p>Divide tareas complejas en cadenas: el output de un prompt es el input del siguiente. Cada eslabon hace <strong>UNA cosa bien</strong>. Pipeline de calidad, no un prompt monolitico.</p>'},
+  'Principio 8: Pipeline 0-9': {t:'Principio',c:'#f59e0b',b:'<p>10 pasos estandar: <strong>0</strong>-Priming, <strong>1</strong>-Entender, <strong>2</strong>-Definir, <strong>3</strong>-Planificar, <strong>4</strong>-Ejecutar, <strong>5</strong>-Robustecer, <strong>6</strong>-Simplificar, <strong>7</strong>-Validar, <strong>8</strong>-Entregar, <strong>9</strong>-Cristalizar. No todos los proyectos necesitan los 10.</p>'},
+  'Principio 9: Cristalizar para Escalar': {t:'Principio',c:'#f59e0b',b:'<p>Despues de cada buen resultado, haz ingenieria inversa: extrae el prompt reutilizable. Cada sesion produce el entregable <strong>Y</strong> el prompt que lo replica. Acumulas activos, no solo outputs.</p>'},
+  'Principio 10: Prompt Stacking': {t:'Principio',c:'#f59e0b',b:'<p>Un prompt puede contener otro prompt dentro. El externo orquesta, el interno ejecuta. Crea <strong>sistemas recursivos</strong>: meta-prompts que generan prompts especializados.</p>'},
+  'S — Situacion': {t:'SPEC',c:'#60a5fa',b:'<p>Contexto prospectivo. Responde: <strong>para que</strong> existe este pedido, que se desbloquea, quienes son los stakeholders, que restricciones aplican, y que pasa si NO se hace. Es el \'norte\' del prompt.</p>'},
+  'P — Pedido': {t:'SPEC',c:'#f59e0b',b:'<p>Define el <strong>arquetipo experto</strong> (rol + credenciales + experiencia) y la especificacion del entregable (componentes, estructura, formato, alcance). El rol calibra tono y profundidad.</p>'},
+  'E — Ejecucion': {t:'SPEC',c:'#10b981',b:'<p>Protocolo MetodologIA: <strong>Interpreta &gt; Planifica &gt; Ejecuta</strong>. Incluye frameworks a aplicar, decisiones que requieren validacion humana, y el nivel de autonomia permitido.</p>'},
+  'C — Criterio': {t:'SPEC',c:'#8b5cf6',b:'<p>Quality gate integrado. Define formato de salida, tono, audiencia, accion esperada. Incluye <strong>[checklist]</strong> de auto-auditoria para que la IA verifique antes de entregar.</p>'},
+  'ChatGPT': {t:'Herramienta',c:'#137DC5',b:'<p>El chatbot mas popular del mundo. <strong>Fortaleza:</strong> versatilidad, GPT Store con miles de asistentes especializados, y modo voz natural para brainstorming. Ideal para documentos, emails y analisis rapidos.</p>'},
+  'Gemini': {t:'Herramienta',c:'#137DC5',b:'<p>La IA de Google con <strong>Deep Research</strong> — investigacion autonoma de 15-20 min que produce reportes con fuentes verificables. Integrado con Gmail, Drive, Calendar. Ideal para investigacion profunda y analisis de datos.</p>'},
+  'NotebookLM': {t:'Herramienta',c:'#137DC5',b:'<p>Laboratorio de conocimiento de Google. Importa hasta 50 fuentes y <strong>conversa con ellas</strong>. Genera audio overviews (podcasts), videos, slides, infografias, quiz y flashcards. 100% gratis, sin limites significativos.</p>'},
+  'Kimi': {t:'Herramienta',c:'#137DC5',b:'<p>Chatbot chino con <strong>256K de contexto</strong> — puede procesar documentos enormes de una sola vez. Sin registro requerido. Ideal para PDFs largos, transcripciones extensas y analisis de documentos complejos.</p>'},
+  'Manus': {t:'Herramienta',c:'#137DC5',b:'<p>Agente autonomo que <strong>navega la web, escribe codigo y crea web apps</strong> por ti. Le describes el resultado y el disena el camino. Ideal para tareas que requieren multiples pasos y herramientas.</p>'},
+  'GenSpark': {t:'Herramienta',c:'#137DC5',b:'<p>Agente multi-modelo que combina <strong>GPT + Claude + Gemini</strong> en un solo flujo. Genera Sparkpages (mini-sitios web) como entregable visual. Ideal para investigacion comparativa y contenido visual rapido.</p>'},
+  'MiniMax': {t:'Herramienta',c:'#137DC5',b:'<p>Agente creativo especializado en <strong>contenido multimedia</strong>: genera videos, musica, audio y imagenes. Ideal para crear material visual y audiovisual para presentaciones, redes sociales o proyectos creativos.</p>'},
+  'compara': {t:'Acelerador',c:'#34d399',b:'<p>Genera una tabla con criterios ponderados, scoring numerico por opcion, y recomendacion fundamentada. Ideal para decisiones de tecnologia, proveedores o estrategias.</p>'},
+  'prioriza': {t:'Acelerador',c:'#34d399',b:'<p>Ordena por impacto (alto/medio/bajo), esfuerzo requerido, y urgencia. Produce un <strong>top 3 accionable</strong> con justificacion. Evita la paralisis por analisis.</p>'},
+  'reformula': {t:'Acelerador',c:'#34d399',b:'<p>Reescribe el mismo mensaje con mejor claridad, estructura y tono profesional. Preserva la intencion original. Ideal para emails, presentaciones y documentos.</p>'},
+  'debate': {t:'Acelerador',c:'#34d399',b:'<p>Genera 3 perspectivas confrontadas (a favor, en contra, alternativa) y luego sintetiza. Produce pensamiento mas robusto que un analisis unidireccional.</p>'},
+  'investiga': {t:'Acelerador',c:'#34d399',b:'<p>Produce hallazgos estructurados con fuentes verificables, gaps de informacion identificados, y proximos pasos de investigacion.</p>'},
+  'documenta': {t:'Acelerador',c:'#34d399',b:'<p>Formaliza cualquier contenido en documento profesional con estructura, formato y tono apropiado para la audiencia objetivo.</p>'},
+  'diagrama': {t:'Acelerador',c:'#34d399',b:'<p>Genera flujos, mapas mentales, matrices o timelines en formato <strong>Mermaid</strong>, listos para renderizar en cualquier herramienta compatible.</p>'},
+  'evalua': {t:'Acelerador',c:'#34d399',b:'<p>Crea una rubrica sistematica con criterios, pesos y scoring numerico. Produce evaluacion objetiva y reproducible.</p>'},
+  'optimiza': {t:'Acelerador',c:'#34d399',b:'<p>Identifica ineficiencias en procesos, documentos o sistemas. Produce <strong>mejoras priorizadas</strong> por impacto y esfuerzo, con plan de implementacion.</p>'},
+  'automatiza': {t:'Acelerador',c:'#34d399',b:'<p>Analiza que tareas son automatizables, recomienda la <strong>herramienta adecuada</strong> (Zapier, Make, scripts) y calcula el ROI estimado en horas ahorradas.</p>'},
+  'desafia': {t:'Acelerador',c:'#34d399',b:'<p>Ataca tu propuesta desde 3 angulos: tecnico, financiero y operativo. Identifica debilidades antes de que otros lo hagan. <strong>Coach adversarial.</strong></p>'},
+  'calibra': {t:'Acelerador',c:'#34d399',b:'<p>Ajusta automaticamente el <strong>tono, profundidad y vocabulario</strong> al perfil de la audiencia. Un mismo contenido puede calibrarse para CEO, equipo tecnico o cliente final.</p>'},
+  'prototipa': {t:'Acelerador',c:'#34d399',b:'<p>Genera una <strong>version minima viable</strong> para validar la idea antes de invertir tiempo completo. Incluye estructura, contenido clave y puntos de validacion.</p>'},
+  'escala': {t:'Acelerador',c:'#34d399',b:'<p>Redisena un proceso, documento o sistema para funcionar a <strong>10x volumen</strong>. Identifica cuellos de botella y propone arquitectura escalable.</p>'},
+  'aterriza': {t:'Acelerador',c:'#34d399',b:'<p>Transforma ideas abstractas en <strong>acciones concretas con fechas y responsables</strong>. Produce un plan ejecutable inmediatamente, eliminando la brecha entre estrategia y operacion.</p>'},
+  'conecta': {t:'Acelerador',c:'#34d399',b:'<p>Identifica <strong>relaciones ocultas</strong> entre conceptos aparentemente separados. Genera un mapa de conexiones que revela patrones, sinergias y dependencias no evidentes.</p>'},
+  'auditoria': {t:'Acelerador',c:'#34d399',b:'<p>Revision exhaustiva que clasifica cada elemento como <strong>completo, faltante o incorrecto</strong>. Produce un reporte de hallazgos con prioridad de correccion y recomendaciones.</p>'},
+  'narrativa': {t:'Acelerador',c:'#34d399',b:'<p>Convierte datos frios en <strong>historia persuasiva</strong>: situacion inicial, tension o problema, resolucion. Ideal para presentaciones ejecutivas y reportes de impacto.</p>'},
+  'benchmark': {t:'Acelerador',c:'#34d399',b:'<p>Compara tu estado actual contra <strong>mejores practicas del sector</strong>. Identifica brechas, fortalezas relativas y oportunidades de mejora con referencias concretas.</p>'},
+  'diagnostica': {t:'Acelerador',c:'#34d399',b:'<p>Analisis estructurado de <strong>fortalezas, debilidades, sintomas y causas raiz</strong>. Distingue lo que se ve (sintomas) de lo que lo causa. Produce recomendaciones priorizadas.</p>'},
+  'estrategia': {t:'Acelerador',c:'#34d399',b:'<p>Genera un plan estrategico con <strong>objetivo claro, palancas de accion, trade-offs</strong> explicitos y timeline realista. De la vision al roadmap en una sola interaccion.</p>'},
+  'feedback': {t:'Acelerador',c:'#34d399',b:'<p>Usa el framework <strong>SBI: Situacion + Comportamiento + Impacto</strong>. Produce feedback profesional, constructivo y accionable. Ideal para reviews, retrospectivas y coaching.</p>'},
+  'reversa': {t:'Acelerador',c:'#34d399',b:'<p>Ingenieria inversa: analiza un output exitoso y genera <strong>1 priming + 1 SPEC</strong> que lo replican. Convierte resultados en activos reutilizables.</p>'},
+  'defiende': {t:'Acelerador',c:'#34d399',b:'<p>Anticipa las <strong>5 objeciones mas probables</strong> que enfrentara tu propuesta y genera respuestas solidas para cada una. Preparacion para negociaciones y presentaciones.</p>'},
+  'empatiza': {t:'Acelerador',c:'#34d399',b:'<p>Reformula tu mensaje o propuesta desde <strong>la perspectiva del otro</strong> (cliente, jefe, equipo). Revela puntos ciegos y mejora la comunicacion efectiva.</p>'},
+  'resume': {t:'Acelerador',c:'#34d399',b:'<p>Produce 3 parrafos: <strong>conclusion principal, evidencia de soporte, y proximos pasos concretos</strong>. De largo a accionable.</p>'},
+  'traduce': {t:'Acelerador',c:'#34d399',b:'<p>Traduce al otro idioma <strong>preservando tono, matices culturales y terminologia tecnica</strong>. No es traduccion literal — es adaptacion profesional con contexto.</p>'},
+  'profundiza': {t:'Acelerador',c:'#34d399',b:'<p>Lleva el analisis a <strong>nivel experto</strong>: datos duros, casos de referencia, matices y excepciones. Produce contenido con la profundidad de un especialista senior.</p>'},
+  'simplifica': {t:'Acelerador',c:'#34d399',b:'<p>Reduce al minimo sin perder significado. Cada palabra gana su lugar. El output <strong>siempre es mas corto que el input</strong>.</p>'},
+  'pareto': {t:'Acelerador',c:'#34d399',b:'<p>Aplica el principio <strong>80/20</strong>: identifica el 20% de acciones, factores o elementos que producen el 80% del resultado. Elimina el ruido, enfoca la energia.</p>'},
+  'verifica': {t:'Acelerador',c:'#34d399',b:'<p>Clasifica cada afirmacion como <strong>verificado, requiere fuente, o incorrecto</strong>. Produce un reporte de confiabilidad que separa hechos de suposiciones.</p>'},
+  'operacionaliza': {t:'Acelerador',c:'#34d399',b:'<p>Convierte planes vagos en <strong>quien, que, cuando, como se mide</strong>. Cero ambiguedad. Cada accion tiene responsable, fecha limite y metrica de exito.</p>'},
+  'sintetiza': {t:'Acelerador',c:'#34d399',b:'<p>Condensa <strong>multiples fuentes en 1 pagina</strong>. Extrae solo lo esencial, elimina redundancias y produce una vista unificada. Ideal para briefs ejecutivos.</p>'},
+  'segmenta': {t:'Acelerador',c:'#34d399',b:'<p>Divide un problema o proyecto grande en <strong>partes manejables con dependencias claras</strong>. Produce un mapa de segmentos que se pueden abordar en paralelo o en secuencia.</p>'},
+  'escenarios': {t:'Acelerador',c:'#34d399',b:'<p>Genera 3 escenarios: <strong>conservador, base y agresivo</strong>, cada uno con probabilidad estimada, supuestos clave e implicaciones. Prepara para multiples futuros.</p>'},
+  'contextualiza': {t:'Acelerador',c:'#34d399',b:'<p>Agrega <strong>antecedentes, marco teorico, tendencias relevantes</strong> y responde la pregunta clave: por que ahora. Transforma informacion aislada en conocimiento situado.</p>'},
+  'cuantifica': {t:'Acelerador',c:'#34d399',b:'<p>Transforma lo cualitativo en <strong>cuantitativo</strong>. Numeros, no adjetivos. Metricas, no opiniones. Produce datos medibles que soportan decisiones informadas.</p>'},
+  'visualiza': {t:'Acelerador',c:'#34d399',b:'<p>Describe la <strong>representacion visual optima</strong> para tus datos: grafico de barras, timeline, heatmap, diagrama de flujo. Recomienda formato y herramienta.</p>'},
+  'personaliza': {t:'Acelerador',c:'#34d399',b:'<p>Adapta contenido generico a <strong>tu contexto especifico</strong>: industria, rol, empresa, region. Elimina lo irrelevante y enfoca en lo que aplica a tu situacion.</p>'},
+  'estructura': {t:'Acelerador',c:'#34d399',b:'<p>Organiza en <strong>piramide: conclusion, argumentos, evidencia</strong>. Aplica principio MECE (mutuamente excluyente, colectivamente exhaustivo). Claridad maxima.</p>'},
+  'argumenta': {t:'Acelerador',c:'#34d399',b:'<p>Construye argumento completo: <strong>tesis + 3 puntos de soporte + contra-argumentos + conclusion</strong>. Produce razonamiento solido y defendible para cualquier postura.</p>'},
+  'mapea': {t:'Acelerador',c:'#34d399',b:'<p>Genera un mapa visual de <strong>elementos, relaciones y jerarquias</strong> en formato Mermaid. Ideal para entender sistemas complejos, organigramas o arquitecturas.</p>'}
+};
+
+  // ── STATE ──
+  const pages = document.querySelectorAll('.page');
+  const totalPages = pages.length;
+  let currentPage = 1;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  // ── INIT ──
+  function init() {
+    // Resume reading
+    const saved = localStorage.getItem('ebook-page');
+    if (saved && parseInt(saved) > 1 && parseInt(saved) <= totalPages) {
+      currentPage = parseInt(saved);
+    }
+    goToPage(currentPage, false);
+    buildTOC();
+    restoreTheme();
+    window._initIcons();
+  }
+
+  // ── NAVIGATION ──
+  function goToPage(n, animate = true) {
+    if (n < 1 || n > totalPages) return;
+    const direction = n > currentPage ? 'forward' : 'back';
+    const prev = document.querySelector('.page.active');
+
+    if (prev && animate) {
+      prev.classList.remove('active');
+      prev.classList.add(direction === 'forward' ? 'exit-left' : 'exit-right');
+      setTimeout(() => {
+        prev.classList.remove('exit-left', 'exit-right');
+      }, 350);
+    } else if (prev) {
+      prev.classList.remove('active');
+    }
+
+    currentPage = n;
+    const target = pages[n - 1];
+
+    if (animate) {
+      target.style.transform = direction === 'forward' ? 'translateX(40px)' : 'translateX(-40px)';
+      target.offsetHeight; // force reflow
+      target.classList.add('active');
+      target.style.transform = '';
+    } else {
+      target.classList.add('active');
+    }
+
+    // Scroll to top of page content
+    target.scrollTop = 0;
+
+    updateUI();
+    localStorage.setItem('ebook-page', n);
+  }
+
+  function nextPage() { goToPage(currentPage + 1); }
+  function prevPage() { goToPage(currentPage - 1); }
+
+  // ── UI UPDATES ──
+  function updateUI() {
+    document.getElementById('pageIndicator').textContent = currentPage + ' / ' + totalPages;
+    document.getElementById('progressFill').style.width = ((currentPage / totalPages) * 100) + '%';
+    // Update TOC active
+    document.querySelectorAll('.toc-link').forEach(function(l) {
+      l.classList.toggle('active', parseInt(l.dataset.page) === currentPage);
+    });
+    // Update nav buttons
+    var btnP = document.getElementById('btnPrev');
+    var btnN = document.getElementById('btnNext');
+    if (btnP) btnP.disabled = (currentPage <= 1);
+    if (btnN) btnN.disabled = (currentPage >= totalPages);
+  }
+
+  // ── TOUCH / SWIPE ──
+  document.addEventListener('touchstart', function(e) {
+    if (document.getElementById('tocOverlay').classList.contains('open')) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isSwiping = false;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!touchStartX) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 15) {
+      isSwiping = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    // Ignore taps on interactive elements
+    var t = e.target;
+    if (t.closest('[data-expand], .nav-btn, .nav-buttons, button, a, .toc-overlay, .expand-overlay')) {
+      touchStartX = 0; touchStartY = 0; isSwiping = false;
+      return;
+    }
+
+    if (!isSwiping) {
+      // Tap navigation (only on empty page areas)
+      var x = e.changedTouches[0].clientX;
+      var w = window.innerWidth;
+      var barH = 48;
+      var y = e.changedTouches[0].clientY;
+      var bottomH = 56;
+      if (y < barH + 10 || y > window.innerHeight - bottomH) return;
+
+      if (x < w * 0.35) {
+        prevPage();
+      } else if (x > w * 0.65) {
+        nextPage();
+      }
+    } else {
+      // Swipe navigation
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      if (dx < -50) nextPage();
+      else if (dx > 50) prevPage();
+    }
+    touchStartX = 0;
+    touchStartY = 0;
+    isSwiping = false;
+  });
+
+  // ── KEYBOARD ──
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextPage(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevPage(); }
+    else if (e.key === 'Escape') { closeTOCDirect(); }
+    else if (e.key === 'Home') { e.preventDefault(); goToPage(1); }
+    else if (e.key === 'End') { e.preventDefault(); goToPage(totalPages); }
+  });
+
+  // ── CLICK NAV (desktop) ──
+  document.getElementById('viewport').addEventListener('click', function(e) {
+    if (e.target.closest('a, button, .toc-panel')) return;
+    const x = e.clientX;
+    const w = window.innerWidth;
+    if (w >= 600) { // only desktop
+      if (x < w * 0.35) prevPage();
+      else if (x > w * 0.65) nextPage();
+    }
+  });
+
+  // ── TOC ──
+  function buildTOC() {
+    const list = document.getElementById('tocList');
+    let currentChapter = '';
+    let html = '';
+
+    pages.forEach(function(p) {
+      const chapter = p.dataset.chapter || '';
+      const title = p.dataset.title || ('Pagina ' + p.dataset.page);
+      const pageNum = p.dataset.page;
+
+      if (chapter !== currentChapter) {
+        if (currentChapter) html += '</div>';
+        html += '<div class="toc-chapter"><div class="toc-chapter-title">' + chapter + '</div>';
+        currentChapter = chapter;
+      }
+      html += '<div class="toc-link" data-page="' + pageNum + '" onclick="window._goToPage(' + pageNum + ');window._closeTOC()">' + title + '</div>';
+    });
+    if (currentChapter) html += '</div>';
+    list.innerHTML = html;
+  }
+
+  window._goToPage = function(n) { goToPage(n); };
+  window._nextPage = function() { nextPage(); };
+  window._prevPage = function() { prevPage(); };
+  window._closeTOC = function() { closeTOCDirect(); };
+
+  // ── EXPAND MODAL ──
+  window._openExpand = function(title, tag, tagColor, body) {
+    var overlay = document.getElementById('expandOverlay');
+    document.getElementById('expandTitle').innerHTML = title;
+    var tagEl = document.getElementById('expandTag');
+    tagEl.textContent = tag;
+    tagEl.style.background = tagColor + '15';
+    tagEl.style.color = tagColor;
+    tagEl.style.border = '1px solid ' + tagColor + '30';
+    document.getElementById('expandBody').innerHTML = body;
+    overlay.classList.add('open');
+  };
+  window._closeExpand = function(e) {
+    if (e && e.target !== document.getElementById('expandOverlay') && e.target.className !== 'expand-close') return;
+    document.getElementById('expandOverlay').classList.remove('open');
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('expandOverlay').classList.contains('open')) {
+      document.getElementById('expandOverlay').classList.remove('open');
+    }
+  });
+
+  function closeTOCDirect() {
+    document.getElementById('tocOverlay').classList.remove('open');
+  }
+
+  // ── THEME ──
+  function restoreTheme() {
+    const saved = localStorage.getItem('ebook-theme');
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+      updateThemeIcon();
+    }
+  }
+
+  function updateThemeIcon() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const icon = document.getElementById('themeIcon');
+    icon.setAttribute('data-lucide', isDark ? 'moon' : 'sun');
+    window._iconReady = false; window._initIcons();
+  }
+
+  // ── GLOBALS ──
+  window.toggleTheme = function() {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('ebook-theme', isDark ? 'dark' : 'light');
+    updateThemeIcon();
+  };
+
+  window.toggleTOC = function() {
+    document.getElementById('tocOverlay').classList.toggle('open');
+  };
+
+  window.closeTOC = function(e) {
+    if (e.target === document.getElementById('tocOverlay')) {
+      closeTOCDirect();
+    }
+  };
+
+  // ── HASH DEEP LINKS ──
+  function handleHash() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#page-')) {
+      const n = parseInt(hash.replace('#page-', ''));
+      if (n >= 1 && n <= totalPages) goToPage(n, false);
+    }
+  }
+  window.addEventListener('hashchange', handleHash);
+
+  // ── CARD EXPAND DELEGATION ──
+  document.addEventListener('click', function(e) {
+    if (document.getElementById('expandOverlay').classList.contains('open')) return;
+    var card = e.target.closest('[data-expand]');
+    if (!card) return;
+    e.stopPropagation();
+    var title = card.dataset.etitle || '';
+    var data = EXPAND_DATA[title];
+    if (data) window._openExpand(title, data.t, data.c, data.b);
+  });
+
+  // ── GO ──
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { init(); handleHash(); });
+  } else {
+    init(); handleHash();
+  }
+})();
+</script>
+
+</body>
+</html>

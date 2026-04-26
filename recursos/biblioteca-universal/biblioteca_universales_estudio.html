@@ -1,6 +1,6 @@
 <!--
-  MetodologIA | Biblioteca Universal v4 — Scaffolding
-  443 Prompts en Formato SPEC (Situacion · Pedido · Ejecucion · Criterio)
+  MetodologIA | Guia Universal de Prompting + Biblioteca de 445 Prompts — v4
+  Metodo SPEC (Situacion · Pedido · Ejecucion · Criterio) + Pipeline 0-9 + 42 Aceleradores
   Estetica: Neo-Swiss Clean · Paleta MetodologIA
   Fuentes: Poppins (titulos) · Montserrat (cuerpo) · Trebuchet MS (notas)
   Default: Light · Espanol
@@ -11,8 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Biblioteca Universal — 443 Prompts SPEC | MetodologIA</title>
-<meta name="description" content="443 prompts de alto rendimiento en formato SPEC. MetodologIA 2026.">
+<title>Guia Universal de Prompting + 445 Prompts SPEC | MetodologIA</title>
+<meta name="description" content="Guia universal de prompting de alto rendimiento + biblioteca de 445 prompts en formato SPEC. MetodologIA 2026.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#122562">
 <meta name="color-scheme" content="light dark">
@@ -493,6 +493,17 @@ html.dark .edu-step { background: var(--bg-card); }
 }
 .edu-step h4 { font-size: 1rem; margin-bottom: .25rem; color: var(--text); }
 .edu-step p { font-size: .88rem; color: var(--text-sec); line-height: 1.6; }
+.step-badge {
+  display: inline-flex; align-items: center; gap: .25rem;
+  font-family: var(--font-note); font-size: .68rem; font-weight: 600;
+  padding: .15rem .5rem; border-radius: 100px;
+}
+.step-badge svg, .step-badge i { width: 12px; height: 12px; }
+.sb-chat { background: rgba(96,165,250,.08); color: #60a5fa; border: 1px solid rgba(96,165,250,.15); }
+.sb-voice { background: rgba(168,139,250,.08); color: #a78bfa; border: 1px solid rgba(168,139,250,.15); }
+.sb-agent { background: rgba(251,146,60,.08); color: #fb923c; border: 1px solid rgba(251,146,60,.15); }
+.sb-time { background: rgba(107,114,128,.06); color: var(--text-muted); border: 1px solid rgba(107,114,128,.12); }
+.sb-parallel { background: rgba(16,185,129,.08); color: #10b981; border: 1px solid rgba(16,185,129,.15); }
 
 /* ── CONCEPT CARDS (prompting/meta-prompting) ── */
 .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
@@ -551,6 +562,312 @@ html.dark .author-role { color: var(--gold); }
   text-underline-offset: 3px;
 }
 .concept-trigger:hover { color: var(--gold); }
+
+/* ── PROMPTING TAXONOMY (chatbot vs agentic + types) ── */
+.tax-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+@media (max-width: 768px) { .tax-grid { grid-template-columns: 1fr; } }
+.tax-card {
+  padding: 2rem; border-radius: var(--radius-lg);
+  background: var(--white); position: relative; overflow: hidden;
+  border: 2px solid var(--border); transition: var(--transition);
+}
+html.dark .tax-card { background: var(--bg-card); }
+.tax-card:hover { transform: translateY(-4px); }
+.tax-card::after {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 120px; height: 120px; border-radius: 50%;
+  opacity: .06; transform: translate(30%, -30%);
+}
+.tax-card.chatbot { border-color: var(--blue); }
+.tax-card.chatbot::after { background: var(--blue); }
+.tax-card.agentic { border-color: var(--gold); }
+.tax-card.agentic::after { background: var(--gold); }
+.tax-badge {
+  font-family: var(--font-note); font-size: .65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: .3rem .8rem; border-radius: 100px; display: inline-block; margin-bottom: 1rem;
+}
+.tax-card.chatbot .tax-badge { color: var(--blue); background: rgba(19,125,197,.08); border: 1px solid rgba(19,125,197,.15); }
+.tax-card.agentic .tax-badge { color: var(--gold-dark); background: rgba(255,215,0,.08); border: 1px solid rgba(255,215,0,.2); }
+html.dark .tax-card.agentic .tax-badge { color: var(--gold); }
+.tax-card h3 { font-size: 1.2rem; margin-bottom: .75rem; }
+.tax-card p { font-size: .88rem; color: var(--text-sec); line-height: 1.7; }
+.tax-traits { margin-top: 1rem; display: flex; flex-direction: column; gap: .4rem; }
+.tax-trait {
+  font-size: .82rem; color: var(--text-sec); display: flex; align-items: flex-start; gap: .5rem;
+  padding: .3rem 0;
+}
+.tax-trait i { flex-shrink: 0; margin-top: 2px; }
+.tax-approach {
+  margin-top: 1.25rem; padding: .75rem 1rem; border-radius: var(--radius-sm);
+  font-family: var(--font-note); font-size: .78rem; font-weight: 600;
+}
+.tax-card.chatbot .tax-approach { background: rgba(19,125,197,.06); color: var(--blue); }
+.tax-card.agentic .tax-approach { background: rgba(255,215,0,.06); color: var(--gold-dark); }
+html.dark .tax-card.agentic .tax-approach { color: var(--gold); }
+
+/* ── TYPES STRIP ── */
+.types-strip { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; justify-content: center; }
+.type-chip {
+  padding: .6rem 1.2rem; border-radius: var(--radius-md);
+  background: var(--white); border: 1px solid var(--border);
+  font-family: var(--font-note); font-size: .75rem; font-weight: 700;
+  color: var(--text-sec); display: flex; align-items: center; gap: .5rem;
+  transition: var(--transition); cursor: default;
+}
+html.dark .type-chip { background: var(--bg-card); }
+.type-chip:hover { border-color: var(--gold); transform: translateY(-2px); }
+.type-chip i { opacity: .6; }
+
+/* ── SPEC WOW CARDS (clickable, expandable) ── */
+.spec-wow-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 2.5rem; border-radius: var(--radius-xl); overflow: hidden;
+  box-shadow: 0 8px 40px rgba(18,37,98,.08);
+}
+@media (max-width: 768px) { .spec-wow-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .spec-wow-grid { grid-template-columns: 1fr; } }
+.spec-wow {
+  padding: 2rem 1.5rem; text-align: center; cursor: pointer;
+  transition: all .3s; position: relative; border: 1px solid transparent;
+}
+.spec-wow:hover { transform: scale(1.05); z-index: 2; border-radius: var(--radius-lg); border-color: currentColor; }
+.spec-wow-letter {
+  font-family: var(--font-head); font-size: 3.5rem; font-weight: 800;
+  line-height: 1; margin-bottom: .5rem;
+}
+.spec-wow-name {
+  font-family: var(--font-head); font-size: .95rem; font-weight: 700;
+  margin-bottom: .5rem;
+}
+.spec-wow-q {
+  font-family: var(--font-note); font-size: .78rem; color: var(--text-muted);
+  font-style: italic; margin-bottom: .75rem;
+}
+.spec-wow-detail {
+  font-size: .82rem; color: var(--text-sec); line-height: 1.6;
+  max-height: 0; overflow: hidden; transition: max-height .4s ease;
+}
+.spec-wow.expanded .spec-wow-detail { max-height: 300px; }
+.spec-wow-expand {
+  font-family: var(--font-note); font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; margin-top: .75rem;
+  opacity: .5; transition: opacity .2s;
+}
+.spec-wow:hover .spec-wow-expand { opacity: 1; }
+
+.spec-s { background: rgba(96,165,250,.06); color: #60a5fa; }
+.spec-p { background: rgba(245,158,11,.06); color: #f59e0b; }
+.spec-e { background: rgba(16,185,129,.06); color: #10b981; }
+.spec-c { background: rgba(139,92,246,.06); color: #8b5cf6; }
+html.dark .spec-s { background: rgba(96,165,250,.12); }
+html.dark .spec-p { background: rgba(245,158,11,.12); }
+html.dark .spec-e { background: rgba(16,185,129,.12); }
+html.dark .spec-c { background: rgba(139,92,246,.12); }
+
+.spec-example {
+  margin-top: 2rem; padding: 1.5rem 2rem; border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(18,37,98,.03), rgba(255,215,0,.03));
+  border: 1px solid var(--border);
+}
+html.dark .spec-example { background: linear-gradient(135deg, rgba(255,215,0,.06), rgba(19,125,197,.04)); }
+.spec-example-label {
+  font-family: var(--font-note); font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--gold-dark);
+  margin-bottom: .75rem; display: flex; align-items: center; gap: .5rem;
+}
+html.dark .spec-example-label { color: var(--gold); }
+
+/* ── GLOSSARY (letters + accelerators) ── */
+.glossary-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: .5rem; margin-top: 1.5rem;
+}
+.g-item {
+  padding: .6rem .75rem; border-radius: var(--radius-sm);
+  background: var(--white); border: 1px solid var(--border);
+  font-size: .78rem; line-height: 1.4; transition: var(--transition); cursor: default;
+}
+html.dark .g-item { background: var(--bg-card); }
+.g-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+.g-key {
+  font-family: var(--font-head); font-weight: 800; font-size: 1rem;
+  color: var(--gold-dark); display: inline-block; margin-right: .4rem;
+}
+html.dark .g-key { color: var(--gold); }
+.g-desc { color: var(--text-sec); }
+
+.accel-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: .75rem; margin-top: 1.5rem;
+}
+.accel-item {
+  padding: .75rem 1rem; border-radius: var(--radius-sm);
+  background: var(--white); border: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: .75rem;
+  font-size: .82rem; transition: var(--transition);
+}
+html.dark .accel-item { background: var(--bg-card); }
+.accel-item:hover { border-color: var(--blue); }
+.accel-word {
+  font-family: 'Courier New', monospace; font-weight: 700;
+  color: var(--blue); white-space: nowrap; min-width: 80px;
+}
+.accel-desc { color: var(--text-sec); line-height: 1.5; }
+
+/* ── HOW TO USE (text expanders) ── */
+.howto-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem; margin-top: 2rem;
+}
+.howto-card {
+  padding: 1.5rem; border-radius: var(--radius-lg);
+  background: var(--white); border: 1px solid var(--border);
+  box-shadow: var(--shadow-card); transition: var(--transition);
+}
+html.dark .howto-card { background: var(--bg-card); }
+.howto-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+.howto-num {
+  font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+  color: var(--gold); line-height: 1;
+}
+.howto-card h4 { margin: .5rem 0 .25rem; }
+.howto-card p { font-size: .85rem; color: var(--text-sec); line-height: 1.6; }
+.howto-code {
+  margin-top: .75rem; padding: .5rem .75rem; border-radius: var(--radius-sm);
+  background: var(--bg-soft); font-family: 'Courier New', monospace;
+  font-size: .78rem; color: var(--text); border: 1px solid var(--border);
+}
+
+/* ── COLLAPSIBLE SECTION ── */
+.collapse-trigger {
+  cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  padding: .75rem 0; color: var(--blue); font-weight: 600; font-size: .92rem;
+}
+.collapse-trigger:hover { color: var(--gold); }
+.collapse-content { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+.collapse-content.open { max-height: 2000px; }
+
+/* ── FAQ ACCORDION ── */
+.faq-list { margin-top: 1.5rem; }
+.faq-item {
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  margin-bottom: .75rem; overflow: hidden; transition: var(--transition);
+}
+.faq-item:hover { border-color: var(--gold); }
+.faq-q {
+  width: 100%; padding: 1rem 1.25rem; background: none; border: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  font-family: var(--font-body); font-size: .92rem; font-weight: 600;
+  color: var(--text); cursor: pointer; text-align: left;
+}
+.faq-q:hover { color: var(--gold-dark); }
+html.dark .faq-q:hover { color: var(--gold); }
+.faq-q i { flex-shrink: 0; transition: transform .3s; color: var(--text-muted); }
+.faq-item.open .faq-q i { transform: rotate(180deg); color: var(--gold); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height .35s ease;
+  padding: 0 1.25rem; font-size: .88rem; color: var(--text-sec); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 1rem; }
+
+/* ── COPYLEFT/COPYRIGHT ── */
+.copy-section {
+  padding: 2.5rem 2rem; border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(18,37,98,.03), rgba(255,215,0,.03));
+  border: 1px solid var(--border); margin-top: 2rem; text-align: center;
+}
+html.dark .copy-section { background: linear-gradient(135deg, rgba(255,215,0,.06), rgba(19,125,197,.04)); }
+.copy-section h3 { margin-bottom: 1rem; }
+.copy-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem; margin-top: 1.5rem; text-align: left;
+}
+.copy-item { padding: 1rem; border-radius: var(--radius-sm); background: var(--bg); }
+html.dark .copy-item { background: var(--bg-card); }
+.copy-item strong { color: var(--gold-dark); font-size: .85rem; display: block; margin-bottom: .25rem; }
+html.dark .copy-item strong { color: var(--gold); }
+.copy-item p { font-size: .82rem; color: var(--text-sec); line-height: 1.5; }
+
+/* ── KATA SECTION ── */
+.kata-box {
+  margin-top: 2rem; padding: 2.5rem; border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--navy), #1a3580);
+  color: #fff; position: relative; overflow: hidden;
+}
+.kata-box::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,215,0,.1), transparent 70%);
+  transform: translate(30%, -30%);
+}
+.kata-box h3 { color: var(--gold); font-size: 1.3rem; margin-bottom: 1rem; }
+.kata-steps { display: flex; flex-direction: column; gap: .75rem; margin: 1.5rem 0; }
+.kata-step {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: .75rem 1rem; border-radius: var(--radius-sm);
+  background: rgba(255,255,255,.06);
+}
+.kata-step-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--gold); color: var(--navy);
+  font-family: var(--font-head); font-weight: 800; font-size: .9rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.kata-step p { font-size: .88rem; color: rgba(255,255,255,.85); line-height: 1.6; }
+.kata-cta {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .85rem 1.75rem; border-radius: 100px;
+  background: var(--gold); color: var(--navy);
+  font-family: var(--font-head); font-weight: 700; font-size: .9rem;
+  text-decoration: none; transition: all .3s; border: none; cursor: pointer;
+}
+.kata-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,215,0,.3); }
+.kata-secondary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .7rem 1.5rem; border-radius: 100px;
+  background: transparent; border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.8); font-family: var(--font-head);
+  font-weight: 600; font-size: .82rem; text-decoration: none; transition: all .3s;
+}
+.kata-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── ANTESALA (shared context) ── */
+.antesala {
+  padding: 2rem; border-radius: var(--radius-lg);
+  background: var(--bg-soft); border: 1px solid var(--border);
+  margin-top: 2rem; text-align: center;
+}
+html.dark .antesala { background: var(--bg-card); }
+.antesala p { font-size: .88rem; color: var(--text-sec); line-height: 1.7; max-width: 700px; margin: 0 auto; }
+
+/* ── SITE FOOTER (cartilla standard) ── */
+.site-footer {
+  background: #1f2833; border-top: 6px solid var(--gold);
+  color: rgba(255,255,255,.6); padding: 2.5rem 2rem;
+}
+.footer-inner { max-width: var(--max-w); margin: 0 auto; }
+.footer-row {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; color: #fff; }
+.footer-badges { display: flex; gap: .5rem; flex-wrap: wrap; }
+.footer-badge {
+  font-family: var(--font-note);
+  background: rgba(255,215,0,.12); color: var(--gold);
+  padding: .25rem .65rem; border-radius: var(--radius-sm);
+  font-size: .68rem; font-weight: 600;
+}
+.footer-bottom {
+  font-family: var(--font-note);
+  margin-top: 1.25rem; padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: .72rem; color: rgba(255,255,255,.55);
+  display: flex; gap: 2rem; flex-wrap: wrap;
+}
+.footer-bottom a { color: rgba(255,255,255,.55); text-decoration: none; }
+.footer-bottom a:hover { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -563,11 +880,67 @@ html.dark .author-role { color: var(--gold); }
   <i data-lucide="sun" style="width:20px;height:20px"></i>
 </button>
 
+<!-- ═══ S0: CARTA DE LOS AUTORES ═══ -->
+<section id="carta" class="container" style="padding-top:4rem;padding-bottom:2rem">
+  <div style="max-width:800px;margin:0 auto;padding:2.5rem;border-radius:var(--radius-xl);background:linear-gradient(135deg,rgba(18,37,98,.03),rgba(255,215,0,.02));border:1px solid var(--border)">
+
+    <div style="display:flex;gap:1rem;align-items:center;margin-bottom:2rem">
+      <div style="width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);overflow:hidden;flex-shrink:0">
+        <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_javier-montano.webp?raw=true" alt="Javier" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+      </div>
+      <div style="width:56px;height:56px;border-radius:50%;border:2px solid #00FFFF;overflow:hidden;flex-shrink:0">
+        <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_german-sepulveda.png?raw=true" alt="German" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+      </div>
+      <div>
+        <div style="font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:var(--navy)">Una carta para ti</div>
+        <div style="font-family:var(--font-note);font-size:.78rem;color:var(--text-muted)">Javier Montano &amp; German Sepulveda</div>
+      </div>
+    </div>
+
+    <div style="font-size:.95rem;color:var(--text-sec);line-height:1.9">
+
+      <p>Querido profesional,</p>
+
+      <p style="margin-top:1rem">Somos un <strong>contador publico que hoy es vibe coder</strong> y un <strong>toxicologo que hoy es cientifico de datos</strong>. Ni ingenieros, ni programadores. Dos profesionales que, como tu, un dia se encontraron con la IA y decidieron actuar.</p>
+
+      <p style="margin-top:1rem">Javier migro de contabilidad a construir MetodologIA desde cero. German migro de toxicologia a ciencia de datos. Ambos finalmente emprendedores. Lo que descubrimos nos cambio la forma de trabajar — y queremos compartirlo contigo.</p>
+
+      <p style="margin-top:1.5rem;font-weight:600;color:var(--navy)">Las competencias duras ya son blandas.</p>
+
+      <p>Lo que llamabamos "competencias duras" — el conocimiento tecnico, los calculos, el analisis de datos — es cada vez mas reemplazable con IA. Lo que llamabamos "competencias blandas" — la comunicacion, el liderazgo, el pensamiento critico, la empatia — es lo que la IA <em>no puede</em> reemplazar. La dicotomia se invirtio.</p>
+
+      <p style="margin-top:1.5rem;font-weight:600;color:var(--navy)">El arma de doble filo.</p>
+
+      <p>La IA automatiza. Eso es un riesgo: tu puesto puede ser automatizado. Y es una oportunidad: <strong>tu</strong> puedes automatizar y generar mas valor. No es la IA la que te reemplaza — son <strong>personas que usan IA</strong>. Incluso involuntariamente: alguien que produce 3x con IA ocupa el espacio de 3 personas que no la usan.</p>
+
+      <p style="margin-top:1.5rem;font-weight:600;color:var(--navy)">La oportunidad real.</p>
+
+      <p>Con mentalidad de intra-emprendimiento, cualquier persona con IA puede ayudar a su entorno a cumplir la meta del mes. Con claridad, precision, y poca inversion economica — las herramientas gratuitas son suficientes. No se trata de trabajar mas. Se trata de <strong>cambiar como hacemos lo que hacemos</strong>, y lograr mas, con menos tiempo, mas calidad.</p>
+
+      <p style="margin-top:1.5rem">Esta biblioteca es nuestra forma de compartir eso. <strong>445 prompts</strong>, un pipeline de 10 pasos, 5 AI Native Workflows auto-guiados, y un sistema que se mejora a si mismo cada vez que lo usas.</p>
+
+      <p style="margin-top:1.5rem;font-style:italic;color:var(--text-muted)">Una nota sobre autenticidad: no tenemos certificaciones formales en prompting. Somos competentes por practica — hemos formado personas que hoy estan certificadas. Las certificaciones son una senal. La competencia demostrada es la prueba. Y es la verdad.</p>
+
+      <div style="margin-top:2rem;display:flex;gap:2rem;font-family:var(--font-head);font-size:.9rem;color:var(--navy)">
+        <div>
+          <strong>Javier Montano</strong><br>
+          <span style="font-family:var(--font-note);font-size:.72rem;color:var(--text-muted)">Contador Publico → Vibe Coder · Emprendedor</span>
+        </div>
+        <div>
+          <strong>German Sepulveda</strong><br>
+          <span style="font-family:var(--font-note);font-size:.72rem;color:var(--text-muted)">Toxicologo → Cientifico de Datos · Emprendedor</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══ S1: HERO ═══ -->
 <section id="hero" class="hero">
-  <div class="hero-chip">Formato SPEC · 24 categorias · 443 Prompts</div>
-  <h1>Biblioteca Universal de <span>Prompts</span></h1>
-  <p>La tecnologia es el pincel. Tu forma de trabajar es la tecnica. Tus resultados son la obra. 443 prompts de alto rendimiento en formato SPEC — listos para usar, replicables y profesionales.</p>
+  <div class="hero-chip">Guia de Prompting · Formato SPEC · 445 Prompts</div>
+  <h1>Guia Universal de <span>Prompting</span></h1>
+  <p>La tecnologia es el pincel. Tu forma de trabajar es la tecnica. Tus resultados son la obra. Aprende el metodo + usa la biblioteca: 445 prompts de alto rendimiento en formato SPEC.</p>
 </section>
 
 <hr class="divider">
@@ -577,7 +950,7 @@ html.dark .author-role { color: var(--gold); }
   <h2>Que es MetodologIA</h2>
   <p style="color:var(--text-sec);font-size:1.05rem;max-width:750px"><strong>MetodologIA</strong> es una consultora lider en metodologias de alto rendimiento e inteligencia artificial. Su mision: <strong>disenar sistemas (IA + metodo + disciplina) que vuelven el trabajo mas digno y competitivo</strong>, recuperando tiempo y claridad sin sacrificar salud ni etica.</p>
   <p style="color:var(--text-sec);font-size:1.05rem;max-width:750px;margin-top:1rem">La premisa: <strong>Caos + IA = Caos al cuadrado</strong>. La tecnologia amplifica lo que ya existe — si hay desorden, lo escala. MetodologIA limpia la senal antes de amplificarla. Human First, AI Next.</p>
-  <p style="color:var(--text-sec);font-size:1.05rem;max-width:750px;margin-top:1rem">Esta biblioteca es uno de sus activos publicos: <strong>443 prompts</strong> disenados con el formato SPEC, listos para usar en cualquier herramienta de IA (ChatGPT, Claude, Gemini, Perplexity). Desde comandos de una tecla hasta especificaciones completas de alto rendimiento.</p>
+  <p style="color:var(--text-sec);font-size:1.05rem;max-width:750px;margin-top:1rem">Esta biblioteca es uno de sus activos publicos: <strong>445 prompts</strong> disenados con el formato SPEC, listos para usar en cualquier herramienta de IA (ChatGPT, Claude, Gemini, Perplexity). Desde comandos de una tecla hasta especificaciones completas de alto rendimiento.</p>
 </section>
 
 <hr class="divider">
@@ -615,50 +988,77 @@ html.dark .author-role { color: var(--gold); }
 
 <hr class="divider">
 
-<!-- ═══ S4: QUE ES EL PROMPTING ═══ -->
+<!-- ═══ S4: DOS MUNDOS DE PROMPTING ═══ -->
 <div class="section-bg">
 <section id="prompting" class="container">
-  <h2>Que es el Prompting</h2>
-  <p style="color:var(--text-sec);max-width:750px">El <strong>prompting</strong> es el arte y la ciencia de comunicarte con inteligencia artificial. No es "pedirle cosas a un chatbot" — es disenar instrucciones que produzcan resultados profesionales, consistentes y listos para usar.</p>
-  <div class="concept-grid">
-    <div class="concept-card">
-      <div class="concept-icon" style="background:rgba(19,125,197,.08)">
-        <i data-lucide="message-square" style="width:28px;height:28px;color:var(--blue)"></i>
+  <h2>Dos Mundos de Prompting</h2>
+  <p style="color:var(--text-sec);max-width:750px">No es lo mismo hablar con un chatbot que dirigir un agente. Cada modo tiene su logica, su ritmo y su tipo de prompt.</p>
+  <div class="tax-grid">
+    <div class="tax-card chatbot">
+      <span class="tax-badge">Chatbots Inteligentes</span>
+      <h3>Output-Driven</h3>
+      <p>Usas ChatGPT, Claude o Gemini para producir un entregable concreto: un email, un analisis, una presentacion. Tu estas al mando de cada paso.</p>
+      <div class="tax-traits">
+        <div class="tax-trait"><i data-lucide="check" style="width:14px;height:14px;color:var(--blue)"></i> Tu defines la tarea y revisas cada output</div>
+        <div class="tax-trait"><i data-lucide="check" style="width:14px;height:14px;color:var(--blue)"></i> Ideal para: documentos, emails, analisis, contenido</div>
+        <div class="tax-trait"><i data-lucide="check" style="width:14px;height:14px;color:var(--blue)"></i> Iterativo: planifica, revisa, mejora paso a paso</div>
       </div>
-      <h3>Prompting Basico</h3>
-      <p>Escribir instrucciones en lenguaje natural para que la IA ejecute una tarea. Es el punto de partida — util pero limitado. Los resultados varian con cada ejecucion y dependen de la habilidad del usuario para comunicar.</p>
+      <div class="tax-approach"><i data-lucide="list-checks" style="width:14px;height:14px"></i> Enfoque: task-driven, plan-and-check, iteracion controlada</div>
     </div>
-    <div class="concept-card">
-      <div class="concept-icon" style="background:rgba(255,215,0,.08)">
-        <i data-lucide="sparkles" style="width:28px;height:28px;color:var(--gold-dark)"></i>
+    <div class="tax-card agentic">
+      <span class="tax-badge">Agentes Autonomos</span>
+      <h3>Outcome-Driven</h3>
+      <p>Diriges un agente (Custom GPT, Gem, Pristino, Claude Code) que opera con autonomia. Tu defines el resultado, el agente disena el camino.</p>
+      <div class="tax-traits">
+        <div class="tax-trait"><i data-lucide="check" style="width:14px;height:14px;color:var(--gold-dark)"></i> Tu defines el outcome, el agente ejecuta</div>
+        <div class="tax-trait"><i data-lucide="check" style="width:14px;height:14px;color:var(--gold-dark)"></i> Ideal para: sistemas, pipelines, automatizaciones</div>
+        <div class="tax-trait"><i data-lucide="check" style="width:14px;height:14px;color:var(--gold-dark)"></i> Spec-driven: un SPEC bien escrito produce el resultado sin intervencion</div>
       </div>
-      <h3>Prompting de Alto Rendimiento</h3>
-      <p>Instrucciones estructuradas con contexto, rol, formato y criterios de exito. Produce resultados <strong>predecibles y replicables</strong>. La diferencia entre pedir un deseo y especificar un resultado.</p>
+      <div class="tax-approach"><i data-lucide="target" style="width:14px;height:14px"></i> Enfoque: spec-driven, outcome-first, autonomia con guardrails</div>
     </div>
+  </div>
+
+  <h3 style="margin-top:3rem;text-align:center;color:var(--text-sec)">Tipos de Prompting</h3>
+  <p style="color:var(--text-muted);text-align:center;font-size:.88rem;max-width:600px;margin:.5rem auto 0">El prompting no es uno solo. Cada tipo tiene su logica y su formato:</p>
+  <div class="types-strip">
+    <div class="type-chip"><i data-lucide="message-square" style="width:14px;height:14px"></i> Conversacional</div>
+    <div class="type-chip"><i data-lucide="file-text" style="width:14px;height:14px"></i> De documentos</div>
+    <div class="type-chip"><i data-lucide="image" style="width:14px;height:14px"></i> Multimedia (imagen, video, audio)</div>
+    <div class="type-chip"><i data-lucide="cpu" style="width:14px;height:14px"></i> De sistemas (system prompts)</div>
+    <div class="type-chip"><i data-lucide="sparkles" style="width:14px;height:14px"></i> Meta-prompting</div>
+    <div class="type-chip" style="border-color:var(--gold);color:var(--gold-dark);font-weight:800"><i data-lucide="zap" style="width:14px;height:14px"></i> Alto Rendimiento (SPEC)</div>
   </div>
 </section>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ S5: QUE ES EL META-PROMPTING ═══ -->
+<!-- ═══ S5: META-PROMPTING ═══ -->
 <section id="metaprompting" class="container">
-  <h2>Que es el Meta-Prompting</h2>
-  <p style="color:var(--text-sec);max-width:750px">Si el prompting es escribir una buena instruccion, el <strong>meta-prompting</strong> es disenar el sistema que genera buenas instrucciones. Es la habilidad multiplicadora: un buen prompt crea valor una vez; un buen meta-prompt crea valor infinitas veces.</p>
+  <h2>Meta-Prompting: La Habilidad Multiplicadora</h2>
+  <p style="color:var(--text-sec);max-width:750px">Si el prompting crea valor <strong>una vez</strong>, el meta-prompting crea valor <strong>infinitas veces</strong>. No es escribir prompts — es disenar el sistema que los genera.</p>
   <div class="concept-grid">
     <div class="concept-card">
       <div class="concept-icon" style="background:rgba(168,139,250,.08)">
         <i data-lucide="wand-2" style="width:28px;height:28px;color:#a78bfa"></i>
       </div>
-      <h3>Prompts que generan Prompts</h3>
-      <p>En vez de escribir cada instruccion manualmente, disenas <strong>templates parametrizables</strong> que se adaptan a diferentes contextos. Un meta-prompt de investigacion se convierte en 100 prompts de investigacion especificos con solo cambiar los parametros.</p>
+      <h3>Templates Parametrizables</h3>
+      <p>En vez de escribir cada instruccion, disenas <strong>SPECs con {{PARAMETROS}}</strong> que se adaptan a cualquier contexto. Un meta-prompt de investigacion se convierte en 100 investigaciones especificas cambiando solo los inputs.</p>
     </div>
     <div class="concept-card">
       <div class="concept-icon" style="background:rgba(16,185,129,.08)">
         <i data-lucide="git-branch" style="width:28px;height:28px;color:#10b981"></i>
       </div>
-      <h3>Pipeline de Co-Creacion</h3>
-      <p>Un flujo de 10 pasos (nuestro Pipeline 0-9) que transforma una idea vaga en un entregable profesional. Cada paso tiene su comando: <strong>Priming &#8594; Entender &#8594; Definir &#8594; Planificar &#8594; Ejecutar &#8594; Robustecer &#8594; Simplificar &#8594; Validar &#8594; Entregar &#8594; Cristalizar</strong>.</p>
+      <h3>Pipeline 0-9</h3>
+      <p>Nuestro flujo de co-creacion metacognitiva en 10 pasos. De la idea vaga al entregable profesional. Cada paso es un digito-comando:</p>
+      <p style="font-size:.82rem;color:var(--text-sec);margin-top:.5rem"><strong>0</strong> Priming &#8594; <strong>1</strong> Entender &#8594; <strong>2</strong> Definir &#8594; <strong>3</strong> Planificar &#8594; <strong>4</strong> Ejecutar &#8594; <strong>5</strong> Robustecer &#8594; <strong>6</strong> Simplificar &#8594; <strong>7</strong> Validar &#8594; <strong>8</strong> Entregar &#8594; <strong>9</strong> Cristalizar</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-icon" style="background:rgba(255,215,0,.08)">
+        <i data-lucide="rotate-ccw" style="width:28px;height:28px;color:var(--gold-dark)"></i>
+      </div>
+      <h3>Ingenieria Inversa (paso 9)</h3>
+      <p>El poder real: al terminar un entregable, el paso 9 analiza todo el proceso y genera <strong>2 prompts reutilizables</strong> — uno de priming y uno SPEC completo. El proceso de hoy construye el atajo de manana.</p>
     </div>
   </div>
 </section>
@@ -668,49 +1068,77 @@ html.dark .author-role { color: var(--gold); }
 <!-- ═══ S6: BEST PRACTICES ═══ -->
 <div class="section-bg">
 <section id="practices" class="container">
-  <h2>Best Practices de Prompting</h2>
-  <p style="color:var(--text-sec);max-width:750px">Las practicas que separan al usuario casual del profesional de alto rendimiento:</p>
+  <h2>9 Principios del Prompting de Alto Rendimiento</h2>
+  <p style="color:var(--text-sec);max-width:750px">Los principios que separan al usuario casual del profesional. Basados en el meta-prompt de MetodologIA y validados en 6 ediciones del programa:</p>
   <div class="edu-steps">
     <div class="edu-step">
       <div class="edu-num">1</div>
       <div>
-        <h4>Contexto antes que tarea</h4>
-        <p>Sin contexto, la IA inventa. Siempre empieza con el <strong>para que</strong> (situacion prospectiva) antes del <strong>que</strong> (pedido). El contexto calibra toda la respuesta.</p>
+        <h4>Rol Hibrido y Acreditado</h4>
+        <p>Todo prompt empieza con un <strong>arquetipo experto</strong> que combina disciplinas y especifica credenciales reales (profesion + posgrado + certificaciones). El rol calibra tono, profundidad, metodologia y prioridades. "Actua como Analista Senior con MBA de INCAE y certificacion SCIP" produce resultados radicalmente distintos a "ayudame".</p>
       </div>
     </div>
     <div class="edu-step">
       <div class="edu-num">2</div>
       <div>
-        <h4>Rol calibra profundidad</h4>
-        <p>Definir un <strong>arquetipo experto</strong> con profesion real y experiencia especifica. "Actua como Analista Senior con 15 anos" produce resultados mas profundos que "ayudame con esto".</p>
+        <h4>Contexto Prospectivo Primero</h4>
+        <p>Sin contexto, la IA inventa. La Situacion (S del SPEC) define el <strong>"para que"</strong>, no el "por que". Que se desbloquea, quienes son los stakeholders, que restricciones existen. El contexto prospectivo orienta toda la respuesta hacia el futuro, no hacia el pasado.</p>
       </div>
     </div>
     <div class="edu-step">
       <div class="edu-num">3</div>
       <div>
-        <h4>Parametrizar para reutilizar</h4>
-        <p>Usa <strong>{{PLACEHOLDERS}}</strong> en tus prompts para hacerlos reutilizables. Un prompt parametrizado se ejecuta 100 veces; uno fijo, solo una.</p>
+        <h4>Tarea Orientada a Entregable</h4>
+        <p>La mision del prompt se define en torno a un <strong>entregable final concreto</strong>: documento, tabla, analisis, plan, dashboard. Especifico, medible, accionable. No "analiza esto" sino "produce un dossier de 5 secciones con scoring numerico listo para comite directivo".</p>
       </div>
     </div>
     <div class="edu-step">
       <div class="edu-num">4</div>
       <div>
-        <h4>Protocolo antes de ejecucion</h4>
-        <p>Instruye a la IA a <strong>interpretar, planificar y luego ejecutar</strong>. Esto previene outputs superficiales y garantiza que la IA piense antes de actuar.</p>
+        <h4>Estructura Completa (SPEC)</h4>
+        <p>El prompt contiene TODAS las secciones necesarias: <strong>Situacion + Pedido + Ejecucion + Criterio</strong> + [inputs] parametrizados + [checklist] de auto-auditoria. Nada queda implicito. El SPEC es el contrato entre tu intencion y la IA.</p>
       </div>
     </div>
     <div class="edu-step">
       <div class="edu-num">5</div>
       <div>
-        <h4>Criterio de exito medible</h4>
-        <p>Define <strong>como se ve "listo"</strong> antes de empezar. Un checklist de auto-auditoria integrado en el prompt asegura calidad sin revision humana adicional.</p>
+        <h4>Protocolo Metacognitivo</h4>
+        <p>Instruye a la IA a <strong>interpretar > planificar > ejecutar</strong> (Protocolo MetodologIA). La IA primero reformula lo que entendio, luego presenta su plan, y solo despues ejecuta. Esto previene outputs superficiales y garantiza co-creacion, no delegacion ciega.</p>
       </div>
     </div>
     <div class="edu-step">
       <div class="edu-num">6</div>
       <div>
-        <h4>Cristalizar para escalar</h4>
-        <p>Despues de lograr un buen resultado, haz <strong>ingenieria inversa</strong>: extrae un prompt reutilizable. El proceso de hoy construye el atajo de manana.</p>
+        <h4>Parametrizar para Reutilizar</h4>
+        <p>Usa <strong>{{PLACEHOLDERS}}</strong> en tus prompts. Un prompt parametrizado se ejecuta 100 veces con diferentes inputs; uno fijo, solo una. Los parametros convierten cada SPEC en un template universal.</p>
+      </div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num">7</div>
+      <div>
+        <h4>Prompt Chaining (encadenamiento)</h4>
+        <p>Para entregables complejos, <strong>encadena multiples prompts</strong> donde el output de uno es el input del siguiente. Cada prompt en la cadena hace UNA cosa bien. Ejemplo: investigar > analizar > sintetizar > presentar = 4 prompts encadenados que producen un entregable superior a 1 prompt que intenta hacer todo.</p>
+      </div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num">8</div>
+      <div>
+        <h4>Pipeline 0-9: El Proceso Estandar</h4>
+        <p>Para cualquier tarea con IA, usa el <strong>pipeline de 10 pasos</strong> (digitos 0-9): Priming > Entender > Definir > Planificar > Ejecutar > Robustecer > Simplificar > Validar > Entregar > Cristalizar. Es el proceso estandar para resolver cualquier problema, consistentemente, con IA.</p>
+      </div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num">9</div>
+      <div>
+        <h4>Cristalizar para Escalar</h4>
+        <p>Despues de cada buen resultado, haz <strong>ingenieria inversa</strong> (paso 9): extrae un prompt de priming + un SPEC de alto rendimiento reutilizable. El proceso de hoy construye el atajo de manana. Cada sesion con IA debe producir no solo el entregable, sino tambien el prompt que lo replica.</p>
+      </div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num" style="background:#a78bfa;color:#fff">10</div>
+      <div>
+        <h4>Prompt Stacking (anidamiento)</h4>
+        <p>Inserta un prompt dentro de otro prompt. Ejemplo: usa el meta-prompt de "crear SPEC" (que es un SPEC en si mismo) para generar nuevos SPECs. El prompt externo orquesta, el interno ejecuta. Esto crea <strong>sistemas recursivos</strong>: un prompt que genera prompts que generan entregables. Es la frontera entre prompting y programacion.</p>
       </div>
     </div>
   </div>
@@ -719,47 +1147,133 @@ html.dark .author-role { color: var(--gold); }
 
 <hr class="divider">
 
-<!-- ═══ S7: FORMATO SPEC (enhanced) ═══ -->
+<!-- ═══ S7: FORMATO SPEC (WOW) ═══ -->
 <div class="section-bg">
 <section id="spec" class="container">
   <h2>El Formato SPEC</h2>
-  <p style="color:var(--text-sec);max-width:750px">Cada prompt de alto rendimiento sigue el formato SPEC — 4 secciones que convierten tu intencion en un entregable profesional:</p>
-  <div class="spec-grid">
-    <div class="spec-card" style="border-color:#60a5fa">
-      <div class="spec-letter" style="color:#60a5fa">S</div>
-      <div class="spec-name">Situacion</div>
-      <div class="spec-q">Para que? Que se desbloquea?</div>
+  <p style="color:var(--text-sec);max-width:750px">SPEC no es un template — es un <strong>contrato de co-creacion</strong> entre tu intencion y la capacidad de la IA. Cada seccion implementa un principio de diseno. Click en cada letra para entender por que existe.</p>
+
+  <div class="spec-wow-grid">
+    <div class="spec-wow spec-s" onclick="toggleSpec(this)">
+      <div class="spec-wow-letter">S</div>
+      <div class="spec-wow-name">Situacion</div>
+      <div class="spec-wow-q">Para que? Que se desbloquea?</div>
+      <div class="spec-wow-detail">
+        <p><strong>Principio: Contexto Prospectivo.</strong> No "por que paso" sino <strong>"para que lo hacemos"</strong>. La Situacion define: que se desbloquea si se ejecuta bien, quienes son los stakeholders, que restricciones existen, y que pasa si NO se hace (costo de inaccion). Sin Situacion, la IA inventa contexto — y cada invencion desvirtua el output. <em>Regla: si la IA no puede reformular tu Situacion en 1 oracion, falta claridad.</em></p>
+      </div>
+      <div class="spec-wow-expand">&#9660; Click para expandir</div>
     </div>
-    <div class="spec-card" style="border-color:#f59e0b">
-      <div class="spec-letter" style="color:#f59e0b">P</div>
-      <div class="spec-name">Pedido</div>
-      <div class="spec-q">Que necesito? Quien lo hace?</div>
+    <div class="spec-wow spec-p" onclick="toggleSpec(this)">
+      <div class="spec-wow-letter">P</div>
+      <div class="spec-wow-name">Pedido</div>
+      <div class="spec-wow-q">Que necesito? Quien lo hace?</div>
+      <div class="spec-wow-detail">
+        <p><strong>Principios: Rol Hibrido + Tarea Orientada a Entregable.</strong> Dos componentes criticos: (1) El <strong>arquetipo experto</strong> — profesion real + credenciales + experiencia que calibra tono, profundidad y metodologia; (2) La <strong>especificacion del entregable</strong> — componentes, estructura, alcance, que SI incluye y que NO incluye. El Pedido transforma "ayudame con algo" en "produce un dossier de 5 secciones con scoring numerico para comite directivo".</p>
+      </div>
+      <div class="spec-wow-expand">&#9660; Click para expandir</div>
     </div>
-    <div class="spec-card" style="border-color:#10b981">
-      <div class="spec-letter" style="color:#10b981">E</div>
-      <div class="spec-name">Ejecucion</div>
-      <div class="spec-q">Como se hace? Que metodo?</div>
+    <div class="spec-wow spec-e" onclick="toggleSpec(this)">
+      <div class="spec-wow-letter">E</div>
+      <div class="spec-wow-name">Ejecucion</div>
+      <div class="spec-wow-q">Como se hace? Que metodo?</div>
+      <div class="spec-wow-detail">
+        <p><strong>Principios: Protocolo Metacognitivo + Inteligencia Dinamica.</strong> Empieza con el <strong>Protocolo MetodologIA</strong> (Interpreta > Planifica > Ejecuta) que obliga a la IA a pensar antes de actuar. Luego define el metodo: que frameworks aplicar (Porter, PESTEL, SCAMPER), que fases seguir, que decisiones requieren validacion humana. La Ejecucion convierte al prompt en co-creacion dirigida — no en delegacion ciega.</p>
+      </div>
+      <div class="spec-wow-expand">&#9660; Click para expandir</div>
     </div>
-    <div class="spec-card" style="border-color:#8b5cf6">
-      <div class="spec-letter" style="color:#8b5cf6">C</div>
-      <div class="spec-name">Criterio</div>
-      <div class="spec-q">Como se que esta listo?</div>
+    <div class="spec-wow spec-c" onclick="toggleSpec(this)">
+      <div class="spec-wow-letter">C</div>
+      <div class="spec-wow-name">Criterio</div>
+      <div class="spec-wow-q">Como se que esta listo?</div>
+      <div class="spec-wow-detail">
+        <p><strong>Principio: Criterio de Exito Medible.</strong> Cuatro elementos: <strong>Formato</strong> (max paginas, estructura, idioma), <strong>Tono</strong> (ejecutivo, tecnico, pedagocico), <strong>Audiencia</strong> (quien lo lee y donde se publica), <strong>Accion esperada</strong> (que decision habilita). Mas el <strong>[checklist] de auto-auditoria</strong> — items verificables que el output debe cumplir ANTES de ser entregado. Si no pasa el checklist, no se entrega. Es el quality gate built-in.</p>
+      </div>
+      <div class="spec-wow-expand">&#9660; Click para expandir</div>
     </div>
   </div>
-  <p style="font-family:var(--font-note);font-size:.88rem;color:var(--text-muted);margin-top:1.5rem;font-style:italic">Protocolo MetodologIA: Interpreta &gt; Planifica &gt; Ejecuta. La IA piensa antes de actuar.</p>
+
+  <div class="spec-example">
+    <div class="spec-example-label"><i data-lucide="eye" style="width:14px;height:14px"></i> EJEMPLO VIVO: ASI SE VE UN SPEC COMPLETO</div>
+    <div class="sh" style="font-size:.78rem;line-height:1.6">
+<span style="color:#94a3b8;font-weight:600">[inputs]</span>
+- SECTOR: <span class="sh-param">{{SECTOR}}</span> > Sector a analizar
+- COMPETIDORES: <span class="sh-param">{{COMPETIDORES}}</span> > (opcional)
+- ADJUNTOS: <span class="sh-param">{{ADJUNTOS}}</span> > Reportes o "Sin adjuntos"
+
+<span style="color:#94a3b8;font-weight:600">[prompt]</span>
+
+<span style="color:#60a5fa;font-weight:700">--- S | SITUACION ---</span>
+Para tomar decisiones de posicionamiento en <span class="sh-param">{{SECTOR}}</span>.
+La inteligencia resultante desbloquea decisiones de inversion o alianzas.
+Sin esto, se decide con intuicion en lugar de evidencia.
+
+<span style="color:#f59e0b;font-weight:700">--- P | PEDIDO ---</span>
+Arquetipo: <strong style="color:var(--gold-dark)">Analista Senior de Inteligencia Competitiva</strong>
+con MBA de INCAE y certificacion SCIP (15+ anos).
+
+Producir Dossier de Inteligencia Competitiva:
+1. Resumen ejecutivo (max 300 palabras)
+2. Perfil por competidor con scoring (1-5)
+3. Tabla de positioning + tendencias + recomendaciones
+
+<span style="color:#10b981;font-weight:700">--- E | EJECUCION ---</span>
+<span style="font-style:italic;color:var(--text-muted)">>> Protocolo MetodologIA: Interpreta > Planifica > Ejecuta.</span>
+Metodo: 5 Fuerzas de Porter + PESTEL + scoring comparativo.
+Cada hallazgo con [FUENTE] verificable.
+
+<span style="color:#8b5cf6;font-weight:700">--- C | CRITERIO ---</span>
+Formato: max 10 paginas. Tono: ejecutivo-analitico.
+Audiencia: director de estrategia. Accion: decisiones de inversion.
+
+<span style="color:#94a3b8;font-weight:600">[checklist]</span>
+<span style="color:#10b981">&#9744;</span> Cada competidor tiene scoring numerico
+<span style="color:#10b981">&#9744;</span> Min. 5 fuentes verificables citadas
+<span style="color:#10b981">&#9744;</span> Resumen ejecutivo permite decidir sin leer el resto
+<span style="color:#10b981">&#9744;</span> Recomendaciones son accionables (quien, que, cuando)
+    </div>
+  </div>
 </section>
 </div>
 
 <hr class="divider">
 
-<!-- ═══ S4: LAS 4 CAPAS ═══ -->
+<!-- ═══ 4 CLAUSULAS UNIVERSALES ═══ -->
+<section id="clauses" class="container">
+  <h2>4 Clausulas Universales</h2>
+  <p style="color:var(--text-sec);max-width:750px">Cada SPEC hereda automaticamente 4 clausulas que <strong>remueven friccion sin que el usuario las pida</strong>. Son instrucciones invisibles que hacen que la IA trabaje mejor desde el primer mensaje.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:2rem">
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);border-left:5px solid #60a5fa;background:var(--white);box-shadow:var(--shadow-card)">
+      <h4 style="color:#60a5fa;font-size:.95rem;margin-bottom:.5rem"><i data-lucide="user" style="width:16px;height:16px"></i> Perfil</h4>
+      <p style="font-size:.82rem;color:var(--text-sec);line-height:1.6">Usa tu contexto (rol, industria, pais) sin que lo repitas cada vez. Responde en espanol LatAm. Preserva terminos tecnicos en ingles.</p>
+    </div>
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);border-left:5px solid #10b981;background:var(--white);box-shadow:var(--shadow-card)">
+      <h4 style="color:#10b981;font-size:.95rem;margin-bottom:.5rem"><i data-lucide="eye" style="width:16px;height:16px"></i> Sensorial</h4>
+      <p style="font-size:.82rem;color:var(--text-sec);line-height:1.6">Detecta adjuntos automaticamente (texto, imagen, datos, codigo, audio). Extrae, analiza, cruza con el objetivo. Confirma antes de continuar.</p>
+    </div>
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);border-left:5px solid var(--gold);background:var(--white);box-shadow:var(--shadow-card)">
+      <h4 style="color:var(--gold-dark);font-size:.95rem;margin-bottom:.5rem"><i data-lucide="zap" style="width:16px;height:16px"></i> Capacidades</h4>
+      <p style="font-size:.82rem;color:var(--text-sec);line-height:1.6">Activa proactivamente search, code interpreter, vision, file reader. No espera a que lo pidas — usa la herramienta correcta cuando el SPEC lo requiere.</p>
+    </div>
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);border-left:5px solid #a78bfa;background:var(--white);box-shadow:var(--shadow-card)">
+      <h4 style="color:#a78bfa;font-size:.95rem;margin-bottom:.5rem"><i data-lucide="brain" style="width:16px;height:16px"></i> Memoria</h4>
+      <p style="font-size:.82rem;color:var(--text-sec);line-height:1.6">Al finalizar, genera KEY FACTS: entidades, decisiones, numeros, proximos pasos. Copy-paste para retomar en la siguiente sesion sin perder contexto.</p>
+    </div>
+  </div>
+
+  <p style="font-family:var(--font-note);font-size:.82rem;color:var(--text-muted);margin-top:1.5rem;font-style:italic;text-align:center">Las clausulas se inyectan automaticamente en cada SPEC. El usuario no tiene que hacer nada — la friccion desaparece por diseno.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ 4 CAPAS ═══ -->
 <section id="layers" class="container">
   <h2>4 Capas de Prompts</h2>
   <p style="color:var(--text-sec);max-width:750px">La biblioteca esta organizada en 4 capas de complejidad creciente:</p>
   <div class="layer-grid">
     <div class="layer-card">
-      <div class="layer-num">26</div>
-      <div class="layer-label">Letras (a-z)</div>
+      <div class="layer-num">27</div>
+      <div class="layer-label">Letras (a-z + ñ)</div>
       <div class="layer-desc">Micro-commands. Una tecla, una accion. Friccion cero.</div>
     </div>
     <div class="layer-card">
@@ -782,6 +1296,331 @@ html.dark .author-role { color: var(--gold); }
 
 <hr class="divider">
 
+<!-- ═══ COMO USAR + TEXT EXPANDERS ═══ -->
+<div class="section-bg">
+<section id="howto" class="container">
+  <h2>Como Usar esta Biblioteca</h2>
+  <p style="color:var(--text-sec);max-width:750px">No es solo para leer — es para <strong>ejecutar</strong>. Cada prompt esta disenado para copiar, pegar y usar inmediatamente. Pero el verdadero poder esta en integrarlo a tu flujo con text expanders.</p>
+
+  <div class="howto-grid">
+    <div class="howto-card">
+      <div class="howto-num">1</div>
+      <h4>Copiar y Pegar</h4>
+      <p>El camino mas rapido: busca el prompt, abre el modal, click en <strong>Copiar Prompt</strong>, pegalo en ChatGPT, Claude o Gemini. Reemplaza los <span style="color:var(--gold-dark);font-weight:600">{{PARAMETROS}}</span> con tu contexto.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-num">2</div>
+      <h4>Text Expander / Slash / Keyboard</h4>
+      <p>Configura tus prompts como <strong>text expanders</strong>, <strong>slash commands (/)</strong>, o <strong>combinaciones de teclas</strong>. Escribe un shortcut y el prompt aparece completo. Funciona en cualquier app.</p>
+      <div class="howto-code">;prod-ritual → SPEC completo | /resume → resumen ejecutivo | Ctrl+Shift+E → bucle excelencia</div>
+    </div>
+    <div class="howto-card">
+      <div class="howto-num">3</div>
+      <h4>Prompster</h4>
+      <p>Importa el JSON completo en <strong>Prompster</strong> (app de gestion de prompts). Organiza por categorias, busca, filtra y ejecuta desde una sola interfaz.</p>
+      <div class="howto-code">Importar → prompts_universales_v4.json → 445 prompts listos</div>
+    </div>
+    <div class="howto-card">
+      <div class="howto-num">4</div>
+      <h4>JSON + Scripts</h4>
+      <p>Descarga el JSON para scripts, automatizaciones o integraciones custom. Cada prompt: id, categoria, tipo, contenido, conteo de parametros.</p>
+      <div class="howto-code">prompts_universales_v4.json → 443 entradas parseables</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.5rem 2rem;border-radius:var(--radius-md);background:linear-gradient(135deg,rgba(19,125,197,.04),rgba(255,215,0,.04));border:1px solid var(--border)">
+    <h4 style="color:var(--navy);margin-bottom:.75rem"><i data-lucide="zap" style="width:16px;height:16px;color:var(--gold)"></i> Herramientas Recomendadas</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-bottom:1rem">
+      <div style="padding:.6rem .8rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-size:.82rem">
+        <strong style="color:var(--blue)">Espanso</strong> <span style="color:var(--text-muted);font-size:.7rem">(gratis, open source)</span><br>
+        <span style="color:var(--text-sec)">Text expander con YAML. Ideal para los 445 prompts.</span>
+      </div>
+      <div style="padding:.6rem .8rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-size:.82rem">
+        <strong style="color:var(--blue)">Raycast</strong> <span style="color:var(--text-muted);font-size:.7rem">(Mac, free tier)</span><br>
+        <span style="color:var(--text-sec)">Launcher + snippets + AI integrado. Slash commands nativos.</span>
+      </div>
+      <div style="padding:.6rem .8rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-size:.82rem">
+        <strong style="color:var(--blue)">Alfred</strong> <span style="color:var(--text-muted);font-size:.7rem">(Mac, powerpack)</span><br>
+        <span style="color:var(--text-sec)">Text expander + workflows. Keyboard combos custom.</span>
+      </div>
+      <div style="padding:.6rem .8rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);font-size:.82rem">
+        <strong style="color:var(--blue)">TextExpander</strong> <span style="color:var(--text-muted);font-size:.7rem">(cross-platform)</span><br>
+        <span style="color:var(--text-sec)">Fill-in fields para {{PARAMS}}. Teams sync.</span>
+      </div>
+    </div>
+    <p style="font-size:.85rem;color:var(--text-sec);line-height:1.7"><strong>Naming sugerido:</strong> <code style="background:var(--bg-soft);padding:2px 6px;border-radius:3px;font-size:.8rem">;a</code> letras | <code style="background:var(--bg-soft);padding:2px 6px;border-radius:3px;font-size:.8rem">;0</code> pipeline | <code style="background:var(--bg-soft);padding:2px 6px;border-radius:3px;font-size:.8rem">;resume</code> aceleradores | <code style="background:var(--bg-soft);padding:2px 6px;border-radius:3px;font-size:.8rem">;prod-ritual</code> SPECs. Tambien funcionan como <strong>slash commands</strong> (<code style="background:var(--bg-soft);padding:2px 6px;border-radius:3px;font-size:.8rem">/a</code>) o <strong>keyboard combos</strong> (<code style="background:var(--bg-soft);padding:2px 6px;border-radius:3px;font-size:.8rem">Ctrl+Shift+E</code> para excelencia).</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ QUE ES UN AI NATIVE WORKFLOW ═══ -->
+<div class="section-bg">
+<section id="ai-native" class="container">
+  <h2>Que es un AI Native Workflow</h2>
+  <p style="color:var(--text-sec);max-width:750px">Un <strong>AI Native Workflow</strong> es un flujo de trabajo disenado CON IA desde el origen — no un proceso manual al que le "agregan IA" despues. Cada paso fue pensado para ser ejecutado con un modelo de IA, encadenado con el siguiente, y optimizado para producir un entregable profesional.</p>
+
+  <p style="color:var(--text-sec);max-width:750px;margin-top:1rem">La diferencia clave: en un workflow tradicional, la IA es un parche. En un AI Native Workflow, la IA es parte integral del diseno. El humano disena, dirige y valida. La IA investiga, genera, itera y ejecuta.</p>
+
+  <div style="margin-top:2rem;padding:1.5rem 2rem;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(19,125,197,.04),rgba(255,215,0,.03));border:1px solid var(--border)">
+    <h4 style="color:var(--navy);margin-bottom:.75rem">Caracteristicas de un AI Native Workflow</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.75rem;font-size:.88rem;color:var(--text-sec)">
+      <div style="display:flex;gap:.5rem;align-items:flex-start"><i data-lucide="link" style="width:16px;height:16px;color:var(--blue);flex-shrink:0;margin-top:3px"></i> <span><strong>Encadenado:</strong> el output de un paso es el input del siguiente</span></div>
+      <div style="display:flex;gap:.5rem;align-items:flex-start"><i data-lucide="layers" style="width:16px;height:16px;color:var(--gold);flex-shrink:0;margin-top:3px"></i> <span><strong>Multimodal:</strong> mezcla chat, voz, video, agentes segun el paso</span></div>
+      <div style="display:flex;gap:.5rem;align-items:flex-start"><i data-lucide="clock" style="width:16px;height:16px;color:#10b981;flex-shrink:0;margin-top:3px"></i> <span><strong>Asincrono:</strong> algunos pasos toman minutos u horas — paralelizas</span></div>
+      <div style="display:flex;gap:.5rem;align-items:flex-start"><i data-lucide="refresh-cw" style="width:16px;height:16px;color:#a78bfa;flex-shrink:0;margin-top:3px"></i> <span><strong>Auto-mejora:</strong> cada ejecucion cristaliza prompts reutilizables</span></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ MODOS DE INTERACCION ═══ -->
+<section id="modes" class="container">
+  <h2>Modos de Interaccion con IA</h2>
+  <p style="color:var(--text-sec);max-width:750px">No todo es chat de texto. La IA moderna ofrece multiples formas de interactuar — y cada modo tiene su momento optimo. Algunos pasos del workflow se hacen mejor conversando, otros dictando, otros dejando que la IA opere sola.</p>
+
+  <div class="edu-steps" style="margin-top:1.5rem">
+    <div class="edu-step">
+      <div class="edu-num" style="background:var(--blue)"><i data-lucide="message-square" style="width:18px;height:18px;color:#fff"></i></div>
+      <div><h4>Chat (texto)</h4><p>Conversacion escrita, ida y vuelta. El modo mas comun. Ideal para tareas rapidas, iteracion, y cuando necesitas precision. <strong>Todas las herramientas lo soportan.</strong></p></div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num" style="background:#f59e0b"><i data-lucide="mic" style="width:18px;height:18px;color:#fff"></i></div>
+      <div><h4>Voz (dictado)</h4><p>Habla en lugar de escribir. Ideal para brainstorming, cuando escribir es incomodo, o para capturar ideas rapido. <strong>ChatGPT Voice, Gemini Live, Kimi mobile.</strong></p></div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num" style="background:#10b981"><i data-lucide="phone" style="width:18px;height:18px;color:#fff"></i></div>
+      <div><h4>Conversacion en tiempo real</h4><p>Dialogo hablado bidireccional — como hablar con un colega. Ideal para coaching, pensar en voz alta, explorar ideas. <strong>ChatGPT Advanced Voice, Gemini Live.</strong></p></div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num" style="background:#8b5cf6"><i data-lucide="video" style="width:18px;height:18px;color:#fff"></i></div>
+      <div><h4>Live Video</h4><p>La IA ve tu pantalla o camara. Ideal para debugging visual, analizar documentos fisicos, mostrar un dashboard. <strong>Gemini Live (video), ChatGPT Vision.</strong></p></div>
+    </div>
+    <div class="edu-step">
+      <div class="edu-num" style="background:var(--navy)"><i data-lucide="bot" style="width:18px;height:18px;color:var(--gold)"></i></div>
+      <div><h4>Agentico (autonomo)</h4><p>La IA opera sola: navega web, ejecuta codigo, produce entregables. Tu defines el objetivo, el agente ejecuta. <strong>Puede tomar 30 min a 2 horas.</strong> Haz otra cosa — te notifica cuando termina. <strong>Manus, GenSpark, MiniMax, Deep Research.</strong></p></div>
+    </div>
+  </div>
+
+  <p style="font-family:var(--font-note);font-size:.82rem;color:var(--text-muted);margin-top:1.5rem;font-style:italic;text-align:center">Sugerencia: muchos pasos de los workflows puedes hacerlos CONVERSANDO con la IA en vez de escribir. Prueba el modo voz para brainstorming y el modo chat para precision.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ TOOL LANDSCAPE ═══ -->
+<div class="section-bg">
+<section id="tools" class="container">
+  <h2>Herramientas Recomendadas (todas con plan gratuito)</h2>
+  <p style="color:var(--text-sec);max-width:750px">Todas las herramientas de los workflows tienen plan gratuito suficiente para completar cualquier tarea. No necesitas pagar nada para empezar.</p>
+
+  <h3 style="margin-top:2rem;font-size:1.05rem"><i data-lucide="message-square" style="width:18px;height:18px;color:var(--blue)"></i> Chatbots / Asistentes</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem">
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">ChatGPT</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>Free:</strong> 10 msgs/5h (modelo avanzado) + unlimited basico. Voz, vision, search, code, 2-3 imagenes/dia. Acceso a GPT Store.</p>
+      <div style="font-family:var(--font-note);font-size:.68rem;color:var(--text-muted);margin-top:.5rem">Modos: chat, voz, vision</div>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">Gemini</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>Free:</strong> ~30 prompts/dia. Deep Research (5/mes), Canvas, 20 imagenes/dia, Gems, Extensions Google. Live voice + video.</p>
+      <div style="font-family:var(--font-note);font-size:.68rem;color:var(--text-muted);margin-top:.5rem">Modos: chat, Live voice, video, Deep Research</div>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">NotebookLM</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>100% gratis.</strong> 50 fuentes/cuaderno, 100 cuadernos. Audio overview 3/dia, video 3/dia, slides, infografias, quiz, flashcards.</p>
+      <div style="font-family:var(--font-note);font-size:.68rem;color:var(--text-muted);margin-top:.5rem">Modos: chat con fuentes, audio overview</div>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">Kimi</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>Free:</strong> Unlimited basico, 256K contexto. PDF, imagenes, video. Sin registro necesario. Voz en mobile.</p>
+      <div style="font-family:var(--font-note);font-size:.68rem;color:var(--text-muted);margin-top:.5rem">Modos: chat, voz mobile, multimodal</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem;font-size:1.05rem"><i data-lucide="bot" style="width:18px;height:18px;color:var(--gold-dark)"></i> Agentes Autonomos</h3>
+  <p style="font-size:.85rem;color:var(--text-sec);margin-bottom:1rem">Para tareas complejas que requieren autonomia: navegacion web, ejecucion de codigo, produccion de entregables multi-paso.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">Manus</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>Free:</strong> 300 creditos/dia. Web browsing, codigo Python, creacion de web apps. Deep research con sintesis.</p>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">GenSpark</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>Free:</strong> 100-200 creditos/dia. Mezcla GPT+Claude+Gemini. Sparkpages, presentaciones, busqueda sintetica.</p>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <h4 style="font-size:.95rem;margin-bottom:.5rem">MiniMax</h4>
+      <p style="font-size:.78rem;color:var(--text-sec);line-height:1.5"><strong>Free:</strong> Creditos diarios. Video (Hailuo), musica, audio, imagenes — todo multimedia bajo una plataforma.</p>
+    </div>
+  </div>
+
+  <!-- Upgrade callout -->
+  <div style="margin-top:2rem;padding:1.5rem 2rem;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(19,125,197,.04));border:2px solid var(--gold)">
+    <h4 style="color:var(--gold-dark);margin-bottom:.5rem"><i data-lucide="unlock" style="width:18px;height:18px"></i> Tu Primer Empleado Digital</h4>
+    <p style="font-size:.92rem;color:var(--text-sec);line-height:1.7">Todo lo anterior funciona <strong>gratis</strong>. Pero con una inversion comparable a una suscripcion de streaming (~$10-20 USD/mes) o un par de idas a Starbucks, desbloqueas tu primer <strong>empleado digital</strong>: limites mas altos, modelos mas capaces, agentes mas autonomos, y acceso prioritario. Es la herramienta profesional con mejor relacion costo-impacto que existe hoy.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;margin-top:1rem">
+      <div style="font-size:.78rem;color:var(--text-sec);padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft)"><strong style="color:var(--text-pri)">ChatGPT Plus</strong><br>$20/mes — GPT-4o ilimitado, Deep Research, voz avanzada, 50 imgs/dia</div>
+      <div style="font-size:.78rem;color:var(--text-sec);padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft)"><strong style="color:var(--text-pri)">Gemini Advanced</strong><br>$20/mes — Flash 2.5, Deep Research ilimitado, 1M contexto, Gems pro</div>
+      <div style="font-size:.78rem;color:var(--text-sec);padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft)"><strong style="color:var(--text-pri)">Claude Pro</strong><br>$20/mes — Opus/Sonnet ilimitado, Projects, analisis de archivos, uso extendido</div>
+    </div>
+    <p style="font-size:.78rem;color:var(--text-muted);margin-top:.75rem;font-style:italic">No necesitas pagar para empezar. Empieza gratis, domina el metodo, y cuando el free tier se quede corto — ahi inviertes. La herramienta no te hace competente; el metodo si. La herramienta te hace mas rapido.</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ TIEMPOS REALISTAS ═══ -->
+<section id="times" class="container">
+  <h2>Tiempos Realistas: No Todo es Instantaneo</h2>
+  <p style="color:var(--text-sec);max-width:750px">Un AI Native Workflow NO es instantaneo. Algunos pasos toman segundos, otros minutos, otros horas. La clave: <strong>paralelizar</strong>. Mientras la IA investiga (20 min), tu preparas el siguiente paso.</p>
+
+  <div style="margin-top:1.5rem;overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+      <thead>
+        <tr style="border-bottom:2px solid var(--border);text-align:left">
+          <th style="padding:.6rem;font-family:var(--font-note);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)">Tipo de tarea</th>
+          <th style="padding:.6rem;font-family:var(--font-note);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)">Tiempo</th>
+          <th style="padding:.6rem;font-family:var(--font-note);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)">Que hacer mientras</th>
+        </tr>
+      </thead>
+      <tbody style="color:var(--text-sec)">
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:.6rem">Chat simple (pregunta → respuesta)</td><td style="padding:.6rem"><strong>5-30 seg</strong></td><td style="padding:.6rem;color:var(--text-muted)">Nada — es instantaneo</td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:.6rem">Generacion de documento largo</td><td style="padding:.6rem"><strong>1-3 min</strong></td><td style="padding:.6rem;color:var(--text-muted)">Revisar el paso anterior</td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:.6rem">Deep Research (Gemini, Manus)</td><td style="padding:.6rem"><strong>10-20 min</strong></td><td style="padding:.6rem;color:var(--text-muted)">Trabajar en otro paso del workflow</td></tr>
+        <tr style="border-bottom:1px solid var(--border)"><td style="padding:.6rem">Audio/Video overview (NotebookLM)</td><td style="padding:.6rem"><strong>3-10 min</strong></td><td style="padding:.6rem;color:var(--text-muted)">Preparar el siguiente paso</td></tr>
+        <tr><td style="padding:.6rem">Tarea agentica compleja (Manus, GenSpark)</td><td style="padding:.6rem"><strong>30 min - 2h</strong></td><td style="padding:.6rem;color:var(--text-muted)">Hacer otra cosa — te notifica al terminar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1rem 1.5rem;border-radius:var(--radius-md);background:rgba(255,215,0,.04);border:1px solid var(--border)">
+    <p style="font-size:.88rem;color:var(--text-sec)"><strong style="color:var(--gold-dark)">Pro tip:</strong> Los AI Native Workflows estan disenados para <strong>paralelizar</strong>. Mientras Gemini hace Deep Research (20 min), tu puedes estar configurando el cuaderno en NotebookLM. Mientras Manus genera un reporte (1h), tu puedes estar en otra tarea. El secreto no es la velocidad de la IA — es tu capacidad de orquestar multiples tareas simultaneas.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ GLOSARIO: LETRAS a-z ═══ -->
+<section id="glossary-letters" class="container">
+  <h2>27 Comandos de Una Tecla</h2>
+  <p style="color:var(--text-sec);max-width:750px">Cada letra es un micro-command de friccion cero. Escribe la letra y la IA ejecuta la accion.</p>
+  <div class="glossary-grid">
+    <div class="g-item"><span class="g-key">a</span> <span class="g-desc">Aprobar y proceder</span></div>
+    <div class="g-item"><span class="g-key">b</span> <span class="g-desc">Buscar informacion</span></div>
+    <div class="g-item"><span class="g-key">c</span> <span class="g-desc">Corregir y mejorar</span></div>
+    <div class="g-item"><span class="g-key">d</span> <span class="g-desc">Desglosar en partes</span></div>
+    <div class="g-item"><span class="g-key">e</span> <span class="g-desc">Bucle de Excelencia</span></div>
+    <div class="g-item"><span class="g-key">f</span> <span class="g-desc">Formatear profesional</span></div>
+    <div class="g-item"><span class="g-key">g</span> <span class="g-desc">Generar alternativas</span></div>
+    <div class="g-item"><span class="g-key">h</span> <span class="g-desc">Hacer checklist</span></div>
+    <div class="g-item"><span class="g-key">i</span> <span class="g-desc">Identificar contexto</span></div>
+    <div class="g-item"><span class="g-key">j</span> <span class="g-desc">Justificar con evidencia</span></div>
+    <div class="g-item"><span class="g-key">k</span> <span class="g-desc">Key takeaways</span></div>
+    <div class="g-item"><span class="g-key">l</span> <span class="g-desc">Lista pros y contras</span></div>
+    <div class="g-item"><span class="g-key">m</span> <span class="g-desc">Mejorar significativamente</span></div>
+    <div class="g-item"><span class="g-key">n</span> <span class="g-desc">Next step inmediato</span></div>
+    <div class="g-item"><span class="g-key">o</span> <span class="g-desc">Organizar cronologicamente</span></div>
+    <div class="g-item"><span class="g-key">p</span> <span class="g-desc">Profundizar</span></div>
+    <div class="g-item"><span class="g-key">q</span> <span class="g-desc">Preguntar lo que falta</span></div>
+    <div class="g-item"><span class="g-key">r</span> <span class="g-desc">Resume ejecutivo</span></div>
+    <div class="g-item"><span class="g-key">s</span> <span class="g-desc">Sintetizar opciones</span></div>
+    <div class="g-item"><span class="g-key">t</span> <span class="g-desc">Traducir</span></div>
+    <div class="g-item"><span class="g-key">u</span> <span class="g-desc">Unificar y consolidar</span></div>
+    <div class="g-item"><span class="g-key">v</span> <span class="g-desc">Validar veracidad</span></div>
+    <div class="g-item"><span class="g-key">w</span> <span class="g-desc">What if (3 escenarios)</span></div>
+    <div class="g-item"><span class="g-key">x</span> <span class="g-desc">Extraer datos clave</span></div>
+    <div class="g-item"><span class="g-key">y</span> <span class="g-desc">Ya casi (revision final)</span></div>
+    <div class="g-item"><span class="g-key">z</span> <span class="g-desc">Zoom out estrategico</span></div>
+    <div class="g-item" style="border-color:var(--gold);background:rgba(255,215,0,.04)"><span class="g-key" style="font-size:1.2rem">ñ</span> <span class="g-desc">Traductor inteligente LatAm (bidireccional)</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ GLOSARIO: PIPELINE 0-9 ═══ -->
+<div class="section-bg">
+<section id="glossary-pipeline" class="container">
+  <h2>Pipeline 0-9: Co-Creacion Paso a Paso</h2>
+  <p style="color:var(--text-sec);max-width:750px">10 comandos que transforman una idea vaga en un entregable profesional. Cada digito es un paso del proceso metacognitivo.</p>
+  <div class="edu-steps">
+    <div class="edu-step"><div class="edu-num">0</div><div><h4>Priming</h4><p>Setear contexto. La IA lee todo, reformula lo que entiende, pregunta max 3 ambiguedades. Si el priming es correcto, todo fluye.</p></div></div>
+    <div class="edu-step"><div class="edu-num">1</div><div><h4>Entender</h4><p>Comprender la necesidad real. Reformular en 1 oracion: Que + Para Que + Para Quien. Validar antes de continuar.</p></div></div>
+    <div class="edu-step"><div class="edu-num">2</div><div><h4>Definir</h4><p>Construir el SPEC completo: S (situacion) + P (pedido + arquetipo) + E (ejecucion + metodo) + C (criterio). El SPEC es el contrato.</p></div></div>
+    <div class="edu-step"><div class="edu-num">3</div><div><h4>Planificar</h4><p>Plan de accion con fases, dependencias y riesgos. No ejecutar sin plan aprobado.</p></div></div>
+    <div class="edu-step"><div class="edu-num">4</div><div><h4>Ejecutar</h4><p>Primera version completa. Completitud sobre perfeccion. Marcar [PENDIENTE] y [VERIFICAR] donde aplique.</p></div></div>
+    <div class="edu-step"><div class="edu-num">5</div><div><h4>Robustecer</h4><p>Datos, fuentes, ejemplos, matices. Resolver todos los pendientes. Mas solido, no mas largo.</p></div></div>
+    <div class="edu-step"><div class="edu-num">6</div><div><h4>Simplificar</h4><p>Destilar valor. Duplicados, pasivos, relleno — eliminados. El output DEBE ser mas corto que el input.</p></div></div>
+    <div class="edu-step"><div class="edu-num">7</div><div><h4>Validar</h4><p>Ejecutar checklist punto por punto: OK / AJUSTE / FALLA. Si hay fallas, volver al paso 5 o 6.</p></div></div>
+    <div class="edu-step"><div class="edu-num">8</div><div><h4>Entregar</h4><p>Formato final para la audiencia. Si alguien exigente lo recibe, lo aceptaria tal cual?</p></div></div>
+    <div class="edu-step"><div class="edu-num">9</div><div><h4>Cristalizar</h4><p>Ingenieria inversa del historial. Genera 2 prompts reutilizables: 1 priming + 1 SPEC de alto rendimiento. El proceso de hoy = el atajo de manana.</p></div></div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ GLOSARIO: ACELERADORES ═══ -->
+<section id="glossary-accel" class="container">
+  <h2>42 Aceleradores de Una Palabra</h2>
+  <p style="color:var(--text-sec);max-width:750px">Mas que un micro-command, menos que un SPEC. Una palabra, accion detallada.</p>
+  <div class="collapse-trigger" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('span').textContent=this.nextElementSibling.classList.contains('open')?'&#9650; Ocultar':'&#9660; Ver los 42 aceleradores'">
+    <span>&#9660; Ver los 42 aceleradores</span>
+    <i data-lucide="chevron-down" style="width:16px;height:16px"></i>
+  </div>
+  <div class="collapse-content">
+    <div class="accel-grid">
+      <div class="accel-item"><span class="accel-word">compara</span><span class="accel-desc">Tabla comparativa con scoring y recomendacion</span></div>
+      <div class="accel-item"><span class="accel-word">prioriza</span><span class="accel-desc">Top 3 por impacto, esfuerzo y urgencia</span></div>
+      <div class="accel-item"><span class="accel-word">reformula</span><span class="accel-desc">Mismo mensaje, mejor claridad profesional</span></div>
+      <div class="accel-item"><span class="accel-word">debate</span><span class="accel-desc">3 perspectivas confrontadas + sintesis</span></div>
+      <div class="accel-item"><span class="accel-word">investiga</span><span class="accel-desc">Hallazgos con fuentes verificables + gaps</span></div>
+      <div class="accel-item"><span class="accel-word">documenta</span><span class="accel-desc">Formaliza en documento profesional</span></div>
+      <div class="accel-item"><span class="accel-word">diagrama</span><span class="accel-desc">Flujo, mapa, matriz o timeline en Mermaid</span></div>
+      <div class="accel-item"><span class="accel-word">evalua</span><span class="accel-desc">Rubrica sistematica con scoring</span></div>
+      <div class="accel-item"><span class="accel-word">optimiza</span><span class="accel-desc">Ineficiencias + mejoras priorizadas</span></div>
+      <div class="accel-item"><span class="accel-word">automatiza</span><span class="accel-desc">Lo automatizable + herramienta + ROI</span></div>
+      <div class="accel-item"><span class="accel-word">desafia</span><span class="accel-desc">Ataca desde 3 angulos: tecnico, financiero, operativo</span></div>
+      <div class="accel-item"><span class="accel-word">calibra</span><span class="accel-desc">Ajusta tono y profundidad a la audiencia</span></div>
+      <div class="accel-item"><span class="accel-word">prototipa</span><span class="accel-desc">Version minima viable para validar</span></div>
+      <div class="accel-item"><span class="accel-word">escala</span><span class="accel-desc">Disena para 10x volumen</span></div>
+      <div class="accel-item"><span class="accel-word">aterriza</span><span class="accel-desc">De abstracto a concreto: acciones + fechas</span></div>
+      <div class="accel-item"><span class="accel-word">conecta</span><span class="accel-desc">Relaciones entre conceptos separados</span></div>
+      <div class="accel-item"><span class="accel-word">auditoria</span><span class="accel-desc">Revision exhaustiva: completo / faltante / incorrecto</span></div>
+      <div class="accel-item"><span class="accel-word">narrativa</span><span class="accel-desc">Datos a historia: situacion &gt; tension &gt; resolucion</span></div>
+      <div class="accel-item"><span class="accel-word">benchmark</span><span class="accel-desc">Compara contra mejores practicas del sector</span></div>
+      <div class="accel-item"><span class="accel-word">diagnostica</span><span class="accel-desc">Fortalezas, debilidades, sintomas, causas</span></div>
+      <div class="accel-item"><span class="accel-word">estrategia</span><span class="accel-desc">Objetivo, palancas, trade-offs, timeline</span></div>
+      <div class="accel-item"><span class="accel-word">feedback</span><span class="accel-desc">SBI: Situacion + Comportamiento + Impacto</span></div>
+      <div class="accel-item"><span class="accel-word">reversa</span><span class="accel-desc">Ingenieria inversa: genera 1 priming + 1 SPEC</span></div>
+      <div class="accel-item"><span class="accel-word">defiende</span><span class="accel-desc">5 objeciones anticipadas con respuesta</span></div>
+      <div class="accel-item"><span class="accel-word">empatiza</span><span class="accel-desc">Reformula desde la perspectiva del otro</span></div>
+      <div class="accel-item"><span class="accel-word">resume</span><span class="accel-desc">3 parrafos: conclusion, evidencia, proximos pasos</span></div>
+      <div class="accel-item"><span class="accel-word">traduce</span><span class="accel-desc">Al otro idioma, preservando tono y matices</span></div>
+      <div class="accel-item"><span class="accel-word">profundiza</span><span class="accel-desc">Nivel experto: datos, casos, matices</span></div>
+      <div class="accel-item"><span class="accel-word">simplifica</span><span class="accel-desc">Cada palabra gana su lugar. Mas corto que el input.</span></div>
+      <div class="accel-item"><span class="accel-word">pareto</span><span class="accel-desc">80/20: el 20% que produce el 80% del resultado</span></div>
+      <div class="accel-item"><span class="accel-word">verifica</span><span class="accel-desc">Marca: verificado / requiere fuente / incorrecto</span></div>
+      <div class="accel-item"><span class="accel-word">operacionaliza</span><span class="accel-desc">Quien, que, cuando, como se mide. Cero ambiguedad.</span></div>
+      <div class="accel-item"><span class="accel-word">sintetiza</span><span class="accel-desc">Multiples fuentes a 1 pagina. Solo lo esencial.</span></div>
+      <div class="accel-item"><span class="accel-word">segmenta</span><span class="accel-desc">Divide en partes manejables con dependencias</span></div>
+      <div class="accel-item"><span class="accel-word">escenarios</span><span class="accel-desc">Conservador, base, agresivo con probabilidades</span></div>
+      <div class="accel-item"><span class="accel-word">contextualiza</span><span class="accel-desc">Antecedentes, marco, tendencias, por que ahora</span></div>
+      <div class="accel-item"><span class="accel-word">cuantifica</span><span class="accel-desc">Cualitativo a cuantitativo. Numeros, no adjetivos.</span></div>
+      <div class="accel-item"><span class="accel-word">visualiza</span><span class="accel-desc">Describe representacion visual optima</span></div>
+      <div class="accel-item"><span class="accel-word">personaliza</span><span class="accel-desc">Adapta a tu contexto especifico, no generico</span></div>
+      <div class="accel-item"><span class="accel-word">estructura</span><span class="accel-desc">Piramide: conclusion, argumentos, evidencia. MECE.</span></div>
+      <div class="accel-item"><span class="accel-word">argumenta</span><span class="accel-desc">Tesis + 3 puntos + contra-argumentos + conclusion</span></div>
+      <div class="accel-item"><span class="accel-word">mapea</span><span class="accel-desc">Elementos, relaciones, jerarquias en Mermaid</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- ═══ S5: SEARCH + GRID ═══ -->
 <div class="search-wrap" id="searchWrap">
   <div class="search-inner">
@@ -797,7 +1636,7 @@ html.dark .author-role { color: var(--gold); }
 </div>
 
 <section id="library" class="container" style="padding-top:1.5rem">
-  <div class="prompt-count" id="promptCount">443 prompts</div>
+  <div class="prompt-count" id="promptCount">445 prompts</div>
   <div class="prompt-grid" id="promptGrid"></div>
   <div class="empty" id="emptyState" style="display:none">
     <h3>Sin resultados</h3>
@@ -821,10 +1660,10 @@ html.dark .author-role { color: var(--gold); }
         </div>
         <div>
           <div class="author-name">Javier Montano</div>
-          <div class="author-role">Chief Empowerment Officer</div>
+          <div class="author-role">Contador Publico → Vibe Coder · Emprendedor</div>
         </div>
       </div>
-      <p class="author-bio">Arquitecto de sistemas y metodologias que transforman potencial en resultados. Especialista en integracion estrategica de IA y metodologias de alto rendimiento. Creador de MetodologIA y del formato SPEC.</p>
+      <p class="author-bio">Contador Publico que migro a vibe coder y emprendedor. Arquitecto de sistemas y metodologias que transforman potencial en resultados. Creador de MetodologIA y del formato SPEC.</p>
       <div class="author-tags">
         <span class="author-tag">Prompt Engineering</span>
         <span class="author-tag">SPEC Format</span>
@@ -836,14 +1675,14 @@ html.dark .author-role { color: var(--gold); }
       <i data-lucide="cpu" class="author-icon" style="width:48px;height:48px"></i>
       <div class="author-top">
         <div class="author-img" style="border-color:#00FFFF">
-          <img src="https://github.com/ejemplo-deo-repo/img/blob/main/german-sepulveda.png?raw=true" alt="German Sepulveda" loading="lazy">
+          <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_german-sepulveda.png?raw=true" alt="German Sepulveda" loading="lazy">
         </div>
         <div>
           <div class="author-name">German Sepulveda</div>
-          <div class="author-role" style="color:#00FFFF">Chief Ecosystem Officer</div>
+          <div class="author-role" style="color:#00FFFF">Toxicologo → Cientifico de Datos · Emprendedor</div>
         </div>
       </div>
-      <p class="author-bio">Constructor de ecosistemas que conectan talento, vision y proposito. Especialista en desarrollo de agentes IA, testing de calidad y mantenimiento del ecosistema de asistentes de MetodologIA.</p>
+      <p class="author-bio">Toxicologo que migro a cientifico de datos y emprendedor viendo las oportunidades de la era de la IA. Constructor de ecosistemas que conectan talento, vision y proposito. Especialista en agentes IA y mantenimiento del ecosistema de asistentes de MetodologIA.</p>
       <div class="author-tags">
         <span class="author-tag">Ecosistema IA</span>
         <span class="author-tag">QA de Agentes</span>
@@ -857,31 +1696,640 @@ html.dark .author-role { color: var(--gold); }
 
 <hr class="divider">
 
-<!-- ═══ DESCARGAS ═══ -->
-<section id="downloads" class="container">
-  <h2>Descargar Biblioteca</h2>
-  <div class="dl-grid">
-    <a href="prompts_universales_v4.json" download class="dl-card">
-      <div class="dl-icon">{ }</div>
-      <div class="dl-label">JSON</div>
-      <div class="dl-desc">Para text expanders y scripts</div>
-    </a>
-    <a href="biblioteca_universales_editorial.html" target="_blank" class="dl-card">
-      <div class="dl-icon">&#128424;</div>
-      <div class="dl-label">Editorial / PDF</div>
-      <div class="dl-desc">Version para imprimir</div>
-    </a>
-    <div class="dl-card" style="border-color:var(--gold)">
-      <div class="dl-icon">&#9889;</div>
-      <div class="dl-label">Online</div>
-      <div class="dl-desc">Ya estas aqui</div>
+<!-- ═══ FAQ ═══ -->
+<section id="faq" class="container">
+  <h2>Preguntas Frecuentes</h2>
+  <div class="faq-list">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Que es un prompt?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Un prompt es la instruccion que le das a la IA para realizar una tarea. La diferencia entre un prompt bueno y uno malo puede ser <strong>10x en calidad de resultados</strong>. Claro, especifico y con contexto = mejores resultados.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Puedo modificar los prompts?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Si. Son plantillas parametrizables. Adapta los <strong>{{PARAMETROS}}</strong> y personaliza segun tu contexto. Modificar prompts existentes es la mejor forma de aprender el metodo.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Funcionan con cualquier IA?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Si. ChatGPT, Claude, Gemini, Perplexity y la mayoria de LLMs. El formato SPEC se enfoca en estructura, no en comandos especificos de una plataforma. Ajustes minimos si se requieren.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Como elijo el prompt correcto?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Usa la <strong>busqueda</strong> por palabra clave o navega por <strong>categoria</strong> (24 disponibles). El titulo y la categoria te dicen cuando aplicarlo. Abre el modal para ver el detalle completo antes de copiar.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Puedo compartir estos prompts?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Si. Licencia <strong>copyleft</strong>: comparte, modifica y usa libremente. Solo requiere atribucion a la fuente (MetodologIA).</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Hay un GPT especializado en prompting?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Si. El <strong>GPT de Prompting</strong> de MetodologIA esta disenado con la metodologia SPEC. <a href="https://chatgpt.com/g/g-68f4434cf0348191a569cf526fa53654-prompting" target="_blank" style="color:var(--gold-dark);font-weight:600">Accede aqui</a>.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Cuantos prompts incluye esta biblioteca?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a"><strong>445 prompts</strong> organizados en 4 capas: 26 comandos de una tecla (a-z), 10 pasos del pipeline (0-9), 42 aceleradores de una palabra, y 365 SPECs de alto rendimiento en 21 categorias.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Necesito experiencia previa con IA?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">No. Los comandos de una tecla (a-z) y los aceleradores son accesibles para principiantes. Los SPECs completos son para uso intermedio-avanzado. Empieza simple, progresa naturalmente.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Como puedo mejorar mis propios prompts?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Estudia la estructura SPEC de estos 365 prompts. Observa como se combinan Situacion + Pedido + Ejecucion + Criterio. Usa el <strong>paso 9 (Cristalizar)</strong> del pipeline para hacer ingenieria inversa de tus mejores resultados.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Los prompts consumen muchos tokens?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Los SPECs completos usan 800-1500 tokens. Los comandos (a-z) y aceleradores usan 50-200 tokens. Para reducir tokens, usa el <strong>Protocolo MetodologIA</strong> en 1 linea en lugar de las instrucciones extensas.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Puedo usar estos prompts comercialmente?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Si. Licencia copyleft permite uso comercial y no comercial. Solo requiere atribucion a MetodologIA como fuente original.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <button class="faq-q"><span>Como puedo contribuir o sugerir nuevos prompts?</span><i data-lucide="chevron-down" style="width:16px;height:16px"></i></button>
+      <div class="faq-a">Contacta <a href="mailto:contacto@metodologia.info" style="color:var(--gold-dark);font-weight:600">contacto@metodologia.info</a> o unete a la <a href="https://chat.whatsapp.com/JWUMmpnbnec14Pd9pVuZo2" target="_blank" style="color:var(--gold-dark);font-weight:600">comunidad WhatsApp</a>. Tu feedback mejora esta biblioteca.</div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
-<footer class="footer">
-  &copy; 2026 <a href="https://metodologia.info" target="_blank" style="color:var(--gold-dark)">MetodologIA</a> — Success as a Service. Formato SPEC v4. 443 Prompts. <a href="https://metodologia.info/vision.html" target="_blank">Vision</a> · <a href="https://metodologia.info/nosotros/" target="_blank">Nosotros</a>
+<hr class="divider">
+
+<!-- ═══ COPYRIGHT / COPYLEFT ═══ -->
+<div class="section-bg">
+<section id="copyright" class="container">
+  <h2>Copyright y Derechos</h2>
+  <p style="color:var(--text-sec);max-width:750px">Este documento y todos los prompts estan bajo licencia <strong>Copyleft</strong>. Es libre: usalo, modificalo y distribuyelo.</p>
+  <div class="copy-section">
+    <h3 style="font-size:1.1rem"><i data-lucide="info" style="width:18px;height:18px;color:var(--gold)"></i> Licencia Copyleft</h3>
+    <div class="copy-grid">
+      <div class="copy-item">
+        <strong>Uso Libre</strong>
+        <p>Cualquier proposito, comercial o no comercial.</p>
+      </div>
+      <div class="copy-item">
+        <strong>Modificacion</strong>
+        <p>Adapta y personaliza segun tus necesidades.</p>
+      </div>
+      <div class="copy-item">
+        <strong>Distribucion</strong>
+        <p>Comparte libremente, incluso con modificaciones.</p>
+      </div>
+      <div class="copy-item">
+        <strong>Atribucion</strong>
+        <p>Menciona la fuente: <a href="https://metodologia.info" target="_blank" style="color:var(--blue)">metodologia.info</a></p>
+      </div>
+      <div class="copy-item">
+        <strong>Sin Restricciones</strong>
+        <p>No impongas restricciones adicionales sobre estos prompts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ KATA / PRACTICA ═══ -->
+<section id="kata" class="container">
+  <h2>Practica: Tu Primer SPEC</h2>
+  <p style="color:var(--text-sec);max-width:750px">La mejor forma de aprender es hacer. Crea tu primer prompt en formato SPEC con un problema real de tu trabajo.</p>
+
+  <div class="kata-box">
+    <h3><i data-lucide="target" style="width:20px;height:20px"></i> Kata: Crea un SPEC en 10 minutos</h3>
+    <p style="font-size:.92rem;color:rgba(255,255,255,.7);margin-bottom:1rem">No necesitas ser experto. Solo sigue los 3 pasos:</p>
+    <div class="kata-steps">
+      <div class="kata-step">
+        <div class="kata-step-num">1</div>
+        <div><p><strong style="color:#fff">Elige un problema real</strong> — algo que haces esta semana en tu trabajo. No un ejercicio teorico. Un email que debes escribir, un analisis que debes hacer, una presentacion que debes preparar.</p></div>
+      </div>
+      <div class="kata-step">
+        <div class="kata-step-num">2</div>
+        <div><p><strong style="color:#fff">Aplica el formato SPEC</strong> — escribe las 4 secciones: <strong style="color:#60a5fa">S</strong> (para que), <strong style="color:#f59e0b">P</strong> (que necesito + arquetipo), <strong style="color:#10b981">E</strong> (como + protocolo), <strong style="color:#8b5cf6">C</strong> (como se que esta listo). Usa los 445 prompts de esta biblioteca como referencia.</p></div>
+      </div>
+      <div class="kata-step">
+        <div class="kata-step-num">3</div>
+        <div><p><strong style="color:#fff">Ejecuta y evalua</strong> — pega tu SPEC en ChatGPT, Claude o Gemini. Evalua: el output fue profesional? Fue listo para usar sin edicion? Si no, ajusta tu SPEC y repite.</p></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
+      <a href="https://chatgpt.com/g/g-68f4434cf0348191a569cf526fa53654-prompting" target="_blank" rel="noopener" class="kata-cta">
+        <i data-lucide="sparkles" style="width:18px;height:18px"></i> Validar mi SPEC con el GPT de Prompting
+      </a>
+      <a href="https://forms.gle/yeZct7GWgGKQMfEz7" target="_blank" rel="noopener" class="kata-secondary">
+        <i data-lucide="calendar" style="width:16px;height:16px"></i> Inscribirme al taller gratuito
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ 5 AI NATIVE WORKFLOWS ═══ -->
+<div class="section-bg">
+<section id="ai-native-workflows" class="container">
+  <h2>5 AI Native Workflows</h2>
+  <p style="color:var(--text-sec);max-width:750px">5 flujos de trabajo disenados CON IA desde el origen. No son tareas manuales a las que se les "agrega IA" despues — cada paso fue concebido para ejecutarse con un modelo de IA como co-piloto. Producen entregables profesionales, son gratuitos, y el ultimo paso siempre cristaliza un prompt reutilizable.</p>
+
+  <!-- Intro conceptual -->
+  <div style="margin:1.5rem 0 2rem;padding:1.25rem 1.5rem;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(19,125,197,.04),rgba(255,215,0,.03));border:1px solid var(--border)">
+    <h4 style="font-size:.95rem;color:var(--blue);margin-bottom:.5rem"><i data-lucide="zap" style="width:16px;height:16px"></i> Que hace "nativo" a un workflow?</h4>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin-top:.75rem">
+      <div style="font-size:.82rem;color:var(--text-sec)"><strong style="color:var(--text-pri)">Encadenamiento:</strong> El output de un paso es el input del siguiente. No empiezas de cero cada vez.</div>
+      <div style="font-size:.82rem;color:var(--text-sec)"><strong style="color:var(--text-pri)">Multimodalidad:</strong> Algunos pasos son chat, otros son voz, otros usan video o agentes autonomos.</div>
+      <div style="font-size:.82rem;color:var(--text-sec)"><strong style="color:var(--text-pri)">Paralelizacion:</strong> Mientras un paso tarda 20 min (Deep Research), puedes avanzar otro en paralelo.</div>
+      <div style="font-size:.82rem;color:var(--text-sec)"><strong style="color:var(--text-pri)">Auto-mejora:</strong> El paso 9 (Cristalizar) genera un prompt que hace la proxima ejecucion mas rapida.</div>
+    </div>
+    <p style="font-size:.78rem;color:var(--text-muted);margin-top:.75rem">Consulta la seccion <a href="#ai-native" style="color:var(--blue)">Que es un AI Native Workflow</a> para entender los modos de interaccion y tiempos realistas.</p>
+  </div>
+
+  <h3 style="margin-top:2.5rem;color:var(--blue)"><i data-lucide="book-open" style="width:20px;height:20px"></i> Workflow 1: Aprende Cualquier Cosa con IA</h3>
+  <p style="color:var(--text-sec);font-size:.92rem">De cero a competente en cualquier tema. Ejemplo: <strong>IA Generativa</strong>. Funciona para marketing, finanzas, programacion, diseno, idiomas — lo que quieras aprender.</p>
+
+  <!-- Workflow 1 context box -->
+  <div style="margin:2rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold)"><i data-lucide="clock" style="width:20px;height:20px"></i></div>
+      <h4 style="font-size:.9rem;margin:.5rem 0 .25rem">Tiempo estimado</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">2-3 horas si sigues todos los pasos. 30 min si solo lees. Puedes hacerlo en varias sesiones.</p>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold)"><i data-lucide="wallet" style="width:20px;height:20px"></i></div>
+      <h4 style="font-size:.9rem;margin:.5rem 0 .25rem">Costo</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)"><strong>$0.</strong> Todas las herramientas tienen plan gratuito suficiente para completar el workflow.</p>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold)"><i data-lucide="graduation-cap" style="width:20px;height:20px"></i></div>
+      <h4 style="font-size:.9rem;margin:.5rem 0 .25rem">Que obtienes</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">Body of Knowledge, plan de estudio, infografia, eBook, presentacion, quiz, y un <strong>system prompt personal</strong> que aprende de ti.</p>
+    </div>
+    <div style="padding:1.25rem;border-radius:var(--radius-md);background:var(--white);border:1px solid var(--border)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--gold)"><i data-lucide="repeat" style="width:20px;height:20px"></i></div>
+      <h4 style="font-size:.9rem;margin:.5rem 0 .25rem">Reutilizable</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">El system prompt del paso 9 hace que <strong>cada tema nuevo sea mas rapido</strong>. Despues de 3 temas, tienes un sistema de aprendizaje calibrado a ti.</p>
+    </div>
+  </div>
+
+  <p style="font-family:var(--font-note);font-size:.82rem;color:var(--text-muted);text-align:center;margin-bottom:.5rem">Click en cada paso para ver el detalle: que prompt usar, que herramienta, que le dices, y que obtienes.</p>
+
+  <!-- Tool badges -->
+  <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 2rem;justify-content:center">
+    <a href="https://gemini.google.com" target="_blank" rel="noopener" style="padding:.4rem .8rem;border-radius:var(--radius-sm);background:rgba(96,165,250,.08);color:#60a5fa;font-family:var(--font-note);font-size:.72rem;font-weight:700;text-decoration:none">Gemini (gratis)</a>
+    <a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="padding:.4rem .8rem;border-radius:var(--radius-sm);background:rgba(16,185,129,.08);color:#10b981;font-family:var(--font-note);font-size:.72rem;font-weight:700;text-decoration:none">NotebookLM (gratis)</a>
+    <a href="https://kimi.moonshot.cn" target="_blank" rel="noopener" style="padding:.4rem .8rem;border-radius:var(--radius-sm);background:rgba(168,139,250,.08);color:#a78bfa;font-family:var(--font-note);font-size:.72rem;font-weight:700;text-decoration:none">Kimi (free tier)</a>
+    <a href="https://gamma.app" target="_blank" rel="noopener" style="padding:.4rem .8rem;border-radius:var(--radius-sm);background:rgba(251,146,60,.08);color:#fb923c;font-family:var(--font-note);font-size:.72rem;font-weight:700;text-decoration:none">Gamma.app (gratis)</a>
+  </div>
+
+  <div class="edu-steps">
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">0</div>
+      <div style="flex:1">
+        <h4>Priming — Setear tu Contexto</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>Define quien eres, que quieres aprender, y por que. La IA necesita entender TU contexto antes de poder ayudarte.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompt:</strong> <code>0</code> (pipeline) → <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('0')">Ver prompt</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini (gratis)<br>
+            <strong style="color:var(--blue)">Le dices:</strong> "Soy [tu profesion]. Quiero aprender IA Generativa desde cero para [tu objetivo]. Tengo [X] horas por semana."<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> La IA reformula tu contexto y hace 3 preguntas de clarificacion.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 1
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">1</div>
+      <div style="flex:1">
+        <h4>Entender — Investigacion Inicial</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>Investigacion profunda del campo: que es IA Generativa, que areas tiene, que profesiones demanda.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompts:</strong> <code>1</code> + <code>investiga</code> + <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('investigacion_protocolo_3_fases')">investigacion_protocolo_3_fases</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini Deep Research / Kimi (contexto largo)<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Body of Knowledge: mapa del campo, sub-areas, tendencias, profesiones, certificaciones. Capability model con skills requeridos por nivel.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 2 (scope de lo que aprender)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">2</div>
+      <div style="flex:1">
+        <h4>Definir — Skill Stack + Plan de Estudio</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+        <p>Con el Body of Knowledge, define tu skill stack personal y un plan de 90 dias estructurado.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompts:</strong> <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('aprendizaje_plan_90_dias_competencia')">aprendizaje_plan_90_dias</span> + <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('aprendizaje_skill_stack_personal')">skill_stack_personal</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Plan de 12 semanas con milestones, recursos curados (top 5 cursos, top 3 libros, top 3 canales), skill tree personalizado.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 3 (el plan detallado)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">3</div>
+      <div style="flex:1">
+        <h4>Planificar — Infografia del Campo</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>Visualiza todo el campo en una infografia que te sirva como mapa de navegacion.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompt:</strong> <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('visual_infografia_ejecutiva')">visual_infografia_ejecutiva</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> NotebookLM (infographic) / Napkin.ai (gratis)<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Infografia visual del campo: areas, sub-areas, herramientas por area, nivel de dificultad, ruta sugerida.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 4 (material de referencia visual)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">4</div>
+      <div style="flex:1">
+        <h4>Ejecutar — Material de Estudio (eBook)</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>Genera un documento de estudio completo que compile la investigacion en formato consumible.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompt:</strong> <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('escritura_white_paper_autoridad')">escritura_white_paper</span> + alimentar NotebookLM con fuentes<br>
+            <strong style="color:var(--blue)">Tool:</strong> NotebookLM (report + audio overview) — sube tus fuentes y genera un briefing document + podcast de estudio<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> eBook de estudio + audio overview (podcast para escuchar en el bus).<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 5
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">5</div>
+      <div style="flex:1">
+        <h4>Robustecer — Profundizar con Fuentes</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Agrega datos, fuentes verificables y casos reales al material de estudio.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompt:</strong> <code>5</code> (pipeline) + <code>profundiza</code><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Material enriquecido con fuentes, estadisticas, casos de uso reales, matices no explorados.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 6
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">6</div>
+      <div style="flex:1">
+        <h4>Simplificar — Destilar lo Esencial</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span></div>
+        <p>De todo lo investigado, queda SOLO lo que realmente importa. Material mas corto, mas denso, mas util.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompt:</strong> <code>6</code> (pipeline) + <code>simplifica</code><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Version destilada: los conceptos clave, las herramientas esenciales, el camino mas corto de cero a competente.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 7
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">7</div>
+      <div style="flex:1">
+        <h4>Validar — Fact-Check + Auto-Evaluacion</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-agent"><i data-lucide="bot"></i> NotebookLM</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>Verifica que la informacion es correcta y evalua tu comprension con un quiz.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompts:</strong> <code>7</code> + <code>verifica</code> + <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('investigacion_factcheck_afirmacion')">factcheck</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini + NotebookLM (quiz)<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Material fact-checked + quiz de auto-evaluacion + flashcards de repaso.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 8
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">8</div>
+      <div style="flex:1">
+        <h4>Entregar — Presentacion como eBook</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+        <p>Genera una presentacion profesional que funcione como material de estudio visual y compartible.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompt:</strong> <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('presentacion_pitch_cliente')">presentacion_pitch_deck</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> NotebookLM (slides) / Gamma.app (gratis)<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> Presentacion-eBook que puedes estudiar, compartir, o usar para ensenar a otros.<br>
+            <strong style="color:var(--blue)">Alimenta →</strong> Paso 9
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num" style="background:var(--gold);color:var(--navy)">9</div>
+      <div style="flex:1">
+        <h4>Cristalizar — Tu System Prompt Personal</h4>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+        <p>El paso final: genera un system prompt que aprenda de tus preferencias y haga que aprender el PROXIMO tema sea mas rapido.</p>
+        <div class="demo-detail collapse-content">
+          <div style="margin-top:.75rem;padding:.75rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.82rem">
+            <strong style="color:var(--blue)">Prompts:</strong> <code>9</code> (pipeline) + <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('meta_crear_system_prompt_agente')">meta_system_prompt</span><br>
+            <strong style="color:var(--blue)">Tool:</strong> Gemini<br>
+            <strong style="color:var(--blue)">Obtienes:</strong> (1) Prompt de priming con tu contexto de aprendizaje. (2) SPEC de alto rendimiento para aprender cualquier tema. (3) System prompt personal que conoce tu estilo de aprendizaje, herramientas preferidas, y nivel actual.<br>
+            <strong style="color:var(--gold-dark)">Resultado:</strong> La proxima vez que quieras aprender algo, empiezas desde el paso 0 con tu system prompt — y cada tema es mas rapido que el anterior.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WORKFLOW 2: EXPOSICION ═══ -->
+  <h3 style="margin-top:3rem;color:var(--blue)"><i data-lucide="presentation" style="width:20px;height:20px"></i> Workflow 2: Prepara una Exposicion sobre Algo que No Sabias</h3>
+  <p style="color:var(--text-sec);font-size:.92rem">Crea una presentacion profesional de 15 slides sobre un tema desconocido en 3 horas. Con guion del speaker y datos verificados.</p>
+  <div style="display:flex;gap:.5rem;margin:.75rem 0;flex-wrap:wrap">
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(19,125,197,.06);color:var(--blue);border:1px solid rgba(19,125,197,.12)">3 horas</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(16,185,129,.06);color:#10b981;border:1px solid rgba(16,185,129,.12)">$0</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(96,165,250,.06);color:#60a5fa;border:1px solid rgba(96,165,250,.12)">Gemini + Gamma</span>
+  </div>
+  <div class="edu-steps" style="margin-top:1rem">
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">0-1</div>
+      <div style="flex:1"><h4>Investigar el tema</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+      <p>Usa el pipeline 0 (priming) + 1 (entender) + el prompt <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('investigacion_protocolo_3_fases')">investigacion_protocolo_3_fases</span>. Produce un dossier con hallazgos clave, fuentes verificables y estructura del tema.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Tool:</strong> Gemini Deep Research (gratis)<br><strong>Le dices:</strong> "Investiga [TEMA] para preparar una presentacion de 20 min ante [AUDIENCIA]"<br><strong>Obtienes:</strong> Body of Knowledge + fuentes + estructura sugerida</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">2-3</div>
+      <div style="flex:1"><h4>Definir SPEC + Plan de la presentacion</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+      <p>Usa <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('presentacion_pitch_cliente')">presentacion_pitch_deck</span> para definir estructura de 15 slides con storytelling.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Tool:</strong> Gemini<br><strong>Le dices:</strong> "Diseña presentación de 15 slides sobre [TEMA] para [AUDIENCIA]. Formato: título + bullets + notas del speaker por slide"<br><strong>Obtienes:</strong> Estructura slide-by-slide + guión</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">4-6</div>
+      <div style="flex:1"><h4>Ejecutar + Robustecer + Simplificar</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 30 min</span></div>
+      <p>Genera el contenido completo, enriquece con datos verificados, y destila a lo esencial. Usa <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('escritura_storytelling_datos')">storytelling_datos</span> para narrativa.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Tool:</strong> Gemini + NotebookLM (fuentes)<br><strong>Obtienes:</strong> Contenido completo con datos, simplificado, listo para slides</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">7-8</div>
+      <div style="flex:1"><h4>Validar + Entregar presentacion</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-agent"><i data-lucide="bot"></i> Agentico</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span><span class="step-badge sb-parallel"><i data-lucide="git-branch"></i> Paralelizable</span></div>
+      <p>Fact-check con <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('investigacion_factcheck_afirmacion')">factcheck</span>. Genera slides en Gamma.app o NotebookLM slides.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Tool:</strong> Gamma.app (gratis) o NotebookLM slides<br><strong>Obtienes:</strong> Presentacion de 15 slides + guion del speaker + datos verificados. Lista para presentar.</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num" style="background:var(--gold);color:var(--navy)">9</div>
+      <div style="flex:1"><h4>Cristalizar — SPEC reutilizable para futuras exposiciones</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+      <p>El paso 9 genera un SPEC que te permite preparar la PROXIMA presentacion en la mitad del tiempo.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Output:</strong> 1 prompt de priming + 1 SPEC "Prepara exposicion" parametrizado. Listos para text expander.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WORKFLOW 3: INFORME + EMAIL ═══ -->
+  <h3 style="margin-top:3rem;color:var(--blue)"><i data-lucide="file-text" style="width:20px;height:20px"></i> Workflow 3: Crea un Informe de Avance + Email de Envio</h3>
+  <p style="color:var(--text-sec);font-size:.92rem">Produce un informe ejecutivo de proyecto de 2 paginas + email profesional de envio. La tarea mas recurrente de cualquier profesional.</p>
+  <div style="display:flex;gap:.5rem;margin:.75rem 0;flex-wrap:wrap">
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(19,125,197,.06);color:var(--blue);border:1px solid rgba(19,125,197,.12)">1 hora</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(16,185,129,.06);color:#10b981;border:1px solid rgba(16,185,129,.12)">$0</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(96,165,250,.06);color:#60a5fa;border:1px solid rgba(96,165,250,.12)">Gemini</span>
+  </div>
+  <div class="edu-steps" style="margin-top:1rem">
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">0-2</div>
+      <div style="flex:1"><h4>Priming + Definir SPEC del informe</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-voice"><i data-lucide="mic"></i> Voz OK</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+      <p>Setea contexto del proyecto. Define el SPEC del informe usando <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('escritura_informe_ejecutivo')">informe_ejecutivo</span>.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Le dices:</strong> "Soy [ROL] en [PROYECTO]. Necesito informe de avance para [STAKEHOLDER]. Periodo: [SEMANA/MES]. KPIs: [LISTA]"<br><strong>Obtienes:</strong> SPEC del informe con secciones definidas</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">4-6</div>
+      <div style="flex:1"><h4>Ejecutar + Robustecer + Simplificar informe</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span></div>
+      <p>Genera informe con datos, robustece con metricas, simplifica a 2 paginas max. Usa <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('productividad_weekly_review_sistema')">weekly_review</span> como referencia.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Obtienes:</strong> Informe ejecutivo de 2 pag con KPIs, status traffic light, logros, riesgos, proximos pasos</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">8</div>
+      <div style="flex:1"><h4>Entregar + Email de envio</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+      <p>Formato final del informe + email con <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('escritura_email_alto_impacto')">email_alto_impacto</span>.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Le dices:</strong> "Escribe email de envio del informe para [DESTINATARIO]. Incluye: TL;DR en 1 linea, 3 highlights, 1 decision requerida"<br><strong>Obtienes:</strong> Email listo para enviar + informe adjunto. Todo en 1 hora.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WORKFLOW 4: PROBLEMA COMPLEJO ═══ -->
+  <h3 style="margin-top:3rem;color:var(--blue)"><i data-lucide="brain" style="width:20px;height:20px"></i> Workflow 4: Resuelve un Problema Complejo (IA como Coach Adversarial)</h3>
+  <p style="color:var(--text-sec);font-size:.92rem">Analiza un problema complejo con la IA como <strong>coach radicalmente directo, honesto, critico y adversarial para tu mejora</strong>. Descompone, cuestiona supuestos, ataca tu propia solucion, y produce una recomendacion que sobrevivio al fuego.</p>
+  <div style="display:flex;gap:.5rem;margin:.75rem 0;flex-wrap:wrap">
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(19,125,197,.06);color:var(--blue);border:1px solid rgba(19,125,197,.12)">2 horas</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(16,185,129,.06);color:#10b981;border:1px solid rgba(16,185,129,.12)">$0</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(96,165,250,.06);color:#60a5fa;border:1px solid rgba(96,165,250,.12)">Gemini o Claude free</span>
+  </div>
+  <div class="edu-steps" style="margin-top:1rem">
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">0-1</div>
+      <div style="flex:1"><h4>Priming + Entender el problema</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-voice"><i data-lucide="mic"></i> Voz OK</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+      <p>Define el problema con claridad. Usa pipeline 0-1 para que la IA reformule y haga preguntas de clarificacion.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Le dices:</strong> "Tengo este problema: [DESCRIPCION]. Necesito tomar una decision sobre [QUE]. Los stakeholders son [QUIENES]"<br><strong>Obtienes:</strong> Problema reformulado como pregunta accionable + 3 preguntas de clarificacion</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">2-3</div>
+      <div style="flex:1"><h4>Descomponer con Issue Tree + Primeros Principios</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span></div>
+      <p>Usa <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('pensamiento_issue_tree_problema')">issue_tree</span> para descomponer. Luego <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('pensamiento_primeros_principios')">primeros_principios</span> para cuestionar suposiciones.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Obtienes:</strong> Issue tree MECE con 3+ niveles + lista de suposiciones cuestionadas + hipotesis testables</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">4</div>
+      <div style="flex:1"><h4>Evaluar opciones con matriz de decision</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 15 min</span></div>
+      <p>Usa <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('decision_matriz_ponderada')">decision_matriz_ponderada</span> para scoring objetivo de alternativas.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Obtienes:</strong> Tabla comparativa con 5-8 criterios, scoring 1-5, totales ponderados, recomendacion fundamentada</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">5-7</div>
+      <div style="flex:1"><h4>Pre-Mortem + Validar</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 20 min</span></div>
+      <p>Ataca tu propia recomendacion con <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('pensamiento_pre_mortem_proyecto')">pre_mortem</span>. Fortalece lo que sobrevive.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Obtienes:</strong> 10 causas de fallo identificadas + mitigaciones para top 5 + recomendacion fortalecida</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num">8</div>
+      <div style="flex:1"><h4>Entregar recomendacion ejecutiva</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+      <p>Formato final: recomendacion + plan de accion + riesgos mitigados. Listo para presentar a stakeholders.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Obtienes:</strong> Documento ejecutivo de 3 paginas: problema, analisis, opciones evaluadas, recomendacion, plan de accion, riesgos. Presentable sin edicion.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WORKFLOW 5: PREGUNTAS COTIDIANAS ═══ -->
+  <h3 style="margin-top:3rem;color:var(--blue)"><i data-lucide="message-circle" style="width:20px;height:20px"></i> Workflow 5: Responde Preguntas Cotidianas (Modo Conversacional)</h3>
+  <p style="color:var(--text-sec);font-size:.92rem">No toda interaccion con IA necesita un SPEC completo. Este workflow es para el uso diario: preguntas rapidas, consultas, dudas del momento. Aqui la IA es tu <strong>colega disponible 24/7</strong> — le preguntas como le preguntarias a alguien sentado al lado.</p>
+  <div style="display:flex;gap:.5rem;margin:.75rem 0;flex-wrap:wrap">
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(19,125,197,.06);color:var(--blue);border:1px solid rgba(19,125,197,.12)">5-30 seg por pregunta</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(16,185,129,.06);color:#10b981;border:1px solid rgba(16,185,129,.12)">$0</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(96,165,250,.06);color:#60a5fa;border:1px solid rgba(96,165,250,.12)">Cualquier chatbot</span>
+    <span style="font-family:var(--font-note);font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(139,92,246,.06);color:#8b5cf6;border:1px solid rgba(139,92,246,.12)">Voz recomendada</span>
+  </div>
+  <div class="edu-steps" style="margin-top:1rem">
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num" style="background:var(--blue);color:#fff">?</div>
+      <div style="flex:1"><h4>Pregunta directa — sin ceremonia</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-voice"><i data-lucide="mic"></i> Voz</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 5-30 seg</span></div>
+      <p>No necesitas un prompt elaborado. Solo pregunta: "Que significa TIR en finanzas?", "Como calculo margen bruto?", "Que diferencia hay entre OKR y KPI?". Usa los comandos de una tecla para mejorar la respuesta: <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('e')">e</span> (ejemplifica), <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('p')">p</span> (profundiza), <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('r')">r</span> (resume).</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Modo:</strong> Chat o Voz (ChatGPT Voice, Gemini Live)<br><strong>Tip:</strong> Si estas caminando, en el carro o cocinando, usa voz. Habla naturalmente — "Oye, explicame que es la cadena de valor de Porter como si tuviera 15 anos"<br><strong>Tiempo:</strong> 5-30 segundos por respuesta</div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num" style="background:var(--blue);color:#fff">+</div>
+      <div style="flex:1"><h4>Profundiza si necesitas mas</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 2-5 min</span></div>
+      <p>Si la respuesta te genero otra duda, sigue conversando. Usa los aceleradores: <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('compara')">compara</span> ("compara X vs Y"), <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('simplifica')">simplifica</span> ("explicalo mas simple"), <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('contextualiza')">contextualiza</span> ("aplicalo a mi industria").</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Ejemplo real:</strong><br>Tu: "Que es product-market fit?"<br>IA: [explica]<br>Tu: "compara con product-channel fit"<br>IA: [tabla comparativa]<br>Tu: "contextualiza para retail en LatAm"<br>IA: [ejemplo adaptado a retail latinoamericano]<br><strong>3 mensajes, 2 minutos, concepto dominado.</strong></div></div>
+      </div>
+    </div>
+    <div class="edu-step" style="cursor:pointer" onclick="this.querySelector('.demo-detail').classList.toggle('open')">
+      <div class="edu-num" style="background:var(--gold);color:var(--navy)">!</div>
+      <div style="flex:1"><h4>Escala si la pregunta crece</h4>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.25rem 0 .4rem"><span class="step-badge sb-chat"><i data-lucide="message-square"></i> Chat</span><span class="step-badge sb-time"><i data-lucide="clock"></i> 10 min</span></div>
+      <p>Si la pregunta cotidiana se convierte en algo mas complejo, <strong>escala a un SPEC</strong>. Usa <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="event.stopPropagation();openModal('meta_crear_spec_alto_rendimiento')">crear SPEC</span> para convertir tu pregunta en un prompt de alto rendimiento. Asi pasas del modo conversacional al modo estructurado sin perder contexto.</p>
+      <div class="demo-detail collapse-content"><div style="margin-top:.5rem;padding:.6rem;border-radius:var(--radius-sm);background:var(--bg-soft);font-size:.8rem"><strong>Senal de escalamiento:</strong> Si llevas mas de 5 mensajes sobre el mismo tema, o si necesitas un entregable (informe, plan, analisis), es hora de escalar a un SPEC o usar el pipeline 0-9.<br><strong>No pierdas el hilo:</strong> Copia los KEY FACTS de la conversacion actual y pegalos como contexto del nuevo SPEC.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.5rem 2rem;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(19,125,197,.04));border:2px solid var(--gold);text-align:center">
+    <h4 style="color:var(--gold-dark);margin-bottom:.5rem"><i data-lucide="refresh-cw" style="width:18px;height:18px"></i> El Sistema se Mejora a Si Mismo</h4>
+    <p style="font-size:.92rem;color:var(--text-sec);max-width:650px;margin:0 auto;line-height:1.7">Cada vez que completas un workflow, el paso 9 captura tus preferencias: como te gusta trabajar, que formato funciona mejor, cuanto contexto necesitas. <strong>La proxima ejecucion sera mas rapida.</strong> Despues de 3-4 workflows, tienes un sistema personal calibrado a ti.</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ AUTO-AGENDAMIENTO ═══ -->
+<section id="schedule" class="container">
+  <h2>Tu Plan de Entrenamiento</h2>
+  <p style="color:var(--text-sec);max-width:750px">4 sesiones de 30 minutos para pasar de cero a competente. Agenda la primera hoy.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2rem">
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);background:var(--white);border:2px solid rgba(96,165,250,.2);position:relative">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#60a5fa">1</div>
+      <h4 style="font-size:.95rem;margin:.5rem 0 .25rem">Aprende el Pipeline</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">Ejecuta el Workflow 1 o 2. Sigue el pipeline 0-9 paso a paso con una tarea real. <strong>30 min.</strong></p>
+    </div>
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);background:var(--white);border:2px solid rgba(245,158,11,.2)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#f59e0b">2</div>
+      <h4 style="font-size:.95rem;margin:.5rem 0 .25rem">Resuelve una Tarea Real</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">Ejecuta el Workflow 3 o 4. Produce un entregable profesional con IA. <strong>30 min.</strong></p>
+    </div>
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);background:var(--white);border:2px solid rgba(16,185,129,.2)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#10b981">3</div>
+      <h4 style="font-size:.95rem;margin:.5rem 0 .25rem">Crea tu Primer SPEC</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">Usa el meta-prompt <span style="cursor:pointer;color:var(--gold-dark);text-decoration:underline" onclick="openModal('meta_crear_spec_alto_rendimiento')">crear SPEC</span> para disenar un prompt propio. <strong>30 min.</strong></p>
+    </div>
+    <div style="padding:1.5rem;border-radius:var(--radius-lg);background:var(--white);border:2px solid rgba(139,92,246,.2)">
+      <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#8b5cf6">4</div>
+      <h4 style="font-size:.95rem;margin:.5rem 0 .25rem">Cristaliza tu Sistema</h4>
+      <p style="font-size:.82rem;color:var(--text-sec)">Usa el paso 9 para generar tu priming + SPEC personal. Cada tema futuro sera mas rapido. <strong>30 min.</strong></p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;justify-content:center">
+    <a href="https://chatgpt.com/g/g-68f4434cf0348191a569cf526fa53654-prompting" target="_blank" rel="noopener" class="kata-cta" style="font-size:.85rem;padding:.7rem 1.5rem">
+      <i data-lucide="sparkles" style="width:16px;height:16px"></i> Validar SPECs con el GPT de Prompting
+    </a>
+    <a href="https://forms.gle/yeZct7GWgGKQMfEz7" target="_blank" rel="noopener" class="kata-secondary" style="font-size:.82rem;padding:.6rem 1.25rem">
+      <i data-lucide="calendar" style="width:14px;height:14px"></i> Inscribirme al taller gratuito
+    </a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ PALABRAS DE CIERRE ═══ -->
+<section id="cierre" class="container" style="text-align:center;max-width:700px">
+  <h2 style="border:none;padding:0;text-align:center">Palabras de Cierre</h2>
+
+  <p style="font-size:1.05rem;color:var(--text-sec);line-height:1.9;margin-top:1.5rem">Este documento no es un catalogo de prompts — es un <strong>sistema de entrenamiento</strong>.</p>
+
+  <p style="font-size:1.05rem;color:var(--text-sec);line-height:1.9;margin-top:1rem">Con estos 445 prompts, el pipeline 0-9, los 5 AI Native Workflows y el meta-prompt de entrenamiento, tienes todo lo que necesitas para pasar de cero a competente en prompting, meta-prompting y resolucion de tareas con IA.</p>
+
+  <p style="font-size:1.05rem;color:var(--text-sec);line-height:1.9;margin-top:1rem">La IA no te reemplaza — te <strong>amplifica</strong>. Pero solo si tienes metodo.</p>
+
+  <p style="font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:var(--gold-dark);margin-top:2rem;font-style:italic">"El futuro no se predice, se disena."</p>
+
+  <div style="margin-top:2rem;display:flex;justify-content:center;gap:2rem">
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);overflow:hidden;margin:0 auto .5rem">
+        <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_javier-montano.webp?raw=true" alt="Javier" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+      </div>
+      <div style="font-family:var(--font-head);font-size:.82rem;font-weight:700">Javier</div>
+    </div>
+    <div style="text-align:center">
+      <div style="width:48px;height:48px;border-radius:50%;border:2px solid #00FFFF;overflow:hidden;margin:0 auto .5rem">
+        <img src="https://github.com/ejemplo-deo-repo/mao-brand-assets/blob/main/team_german-sepulveda.png?raw=true" alt="German" style="width:100%;height:100%;object-fit:cover" loading="lazy">
+      </div>
+      <div style="font-family:var(--font-head);font-size:.82rem;font-weight:700">German</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ ANTESALA (para lectores que recibieron este archivo compartido) ═══ -->
+<section class="container">
+  <div class="antesala">
+    <p><strong>Si alguien te compartio esta biblioteca</strong> — MetodologIA es una consultora lider en metodologias de alto rendimiento e inteligencia artificial. Nuestra mision: disenar sistemas que vuelven el trabajo mas digno y competitivo. Esta biblioteca de 445 prompts es uno de nuestros activos publicos bajo licencia copyleft.</p>
+    <p style="margin-top:.75rem"><a href="https://metodologia.info" target="_blank" style="color:var(--blue);font-weight:700">metodologia.info</a> · <a href="https://metodologia.info/vision" target="_blank" style="color:var(--blue)">Vision</a> · <a href="https://metodologia.info/nosotros/" target="_blank" style="color:var(--blue)">Nosotros</a> · <a href="https://metodologia.info/recursos/" target="_blank" style="color:var(--blue)">Recursos</a></p>
+  </div>
+</section>
+
+<!-- ═══ SITE FOOTER (cartilla standard) ═══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div class="footer-logo">Metodolog<span style="color:var(--gold)">IA</span></div>
+      <div class="footer-badges">
+        <span class="footer-badge">Human First, AI-Next</span>
+        <span class="footer-badge">Biblioteca Universal v4</span>
+        <span class="footer-badge">CC BY-NC-SA 4.0</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 MetodologIA. metodologia.info</span>
+      <a href="https://metodologia.info/nosotros/index" target="_blank" rel="noopener">Nosotros</a>
+      <a href="https://metodologia.info/vision" target="_blank" rel="noopener">Vision</a>
+      <a href="https://metodologia.info/legal/terminos" target="_blank" rel="noopener">Terminos</a>
+      <a href="https://metodologia.info/legal/privacidad" target="_blank" rel="noopener">Privacidad</a>
+    </div>
+  </div>
 </footer>
 
 <!-- ═══ MODAL ═══ -->
@@ -945,6 +2393,7 @@ const CATEGORIES = {
 
 // ── HELPERS ──
 function getCfg(c) { return CATEGORIES[c] || { label: c, color: '#94a3b8', icon: 'file-text' }; }
+function toggleSpec(el) { el.classList.toggle('expanded'); const exp = el.querySelector('.spec-wow-expand'); if (exp) exp.textContent = el.classList.contains('expanded') ? '▲ Click para colapsar' : '▼ Click para expandir'; }
 
 // ── STATE ──
 let allPrompts = [];

@@ -14,7 +14,7 @@ import { navigateTo, startErrorCollector } from './helpers/cert-helpers.js';
  * Reduced criteria: HTTP 200, has content, no fatal JS errors.
  */
 
-test.describe('Legacy: biblioteca-prompts', () => {
+test.describe('Biblioteca: prompts (migrated to NeoSwiss)', () => {
   const path = '/recursos/biblioteca-prompts/';
 
   test('loads HTTP 200', async ({ page }) => {
@@ -22,12 +22,19 @@ test.describe('Legacy: biblioteca-prompts', () => {
     expect(res?.status()).toBe(200);
   });
 
-  test('has heading with content', async ({ page }) => {
+  test('has site-header', async ({ page }) => {
     await navigateTo(page, path);
-    const heading = page.locator('h1, h2, h3').first();
-    await expect(heading).toBeAttached();
-    const text = await heading.textContent();
-    expect(text?.trim().length).toBeGreaterThan(0);
+    await expect(page.locator('site-header')).toBeAttached({ timeout: 3000 });
+  });
+
+  test('has site-footer', async ({ page }) => {
+    await navigateTo(page, path);
+    expect(await page.locator('site-footer').count()).toBeGreaterThanOrEqual(1);
+  });
+
+  test('has triple-toggle', async ({ page }) => {
+    await navigateTo(page, path);
+    await expect(page.locator('triple-toggle')).toBeAttached({ timeout: 3000 });
   });
 
   test('zero console errors', async ({ page }) => {
@@ -35,15 +42,9 @@ test.describe('Legacy: biblioteca-prompts', () => {
     await navigateTo(page, path);
     assertErrors('biblioteca-prompts');
   });
-
-  test('has body content (not blank)', async ({ page }) => {
-    await navigateTo(page, path);
-    const text = await page.locator('body').textContent();
-    expect(text?.trim().length).toBeGreaterThan(50);
-  });
 });
 
-test.describe('Legacy: biblioteca-universal', () => {
+test.describe('Biblioteca: universal (migrated to NeoSwiss)', () => {
   const path = '/recursos/biblioteca-universal/';
 
   test('loads HTTP 200', async ({ page }) => {
@@ -51,24 +52,25 @@ test.describe('Legacy: biblioteca-universal', () => {
     expect(res?.status()).toBe(200);
   });
 
-  test('has h1 with content', async ({ page }) => {
+  test('has site-header', async ({ page }) => {
     await navigateTo(page, path);
-    const h1 = page.locator('h1').first();
-    await expect(h1).toBeAttached();
-    const text = await h1.textContent();
-    expect(text?.trim().length).toBeGreaterThan(0);
+    await expect(page.locator('site-header')).toBeAttached({ timeout: 3000 });
+  });
+
+  test('has site-footer', async ({ page }) => {
+    await navigateTo(page, path);
+    expect(await page.locator('site-footer').count()).toBeGreaterThanOrEqual(1);
+  });
+
+  test('has triple-toggle', async ({ page }) => {
+    await navigateTo(page, path);
+    await expect(page.locator('triple-toggle')).toBeAttached({ timeout: 3000 });
   });
 
   test('zero console errors', async ({ page }) => {
     const assertErrors = startErrorCollector(page);
     await navigateTo(page, path);
     assertErrors('biblioteca-universal');
-  });
-
-  test('has body content (not blank)', async ({ page }) => {
-    await navigateTo(page, path);
-    const text = await page.locator('body').textContent();
-    expect(text?.trim().length).toBeGreaterThan(50);
   });
 });
 

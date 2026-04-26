@@ -7,7 +7,7 @@
   @poweredBy Pristino Agent
 -->
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es" data-page-slug="recursos">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,20 +39,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&family=Montserrat:wght@400;600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- MetodologIA Design System -->
-    <link rel="stylesheet" href="../../estilos/variables.css">
-    <link rel="stylesheet" href="../../estilos/sidebar.css">
-    <script src="../../js/dark-mode-toggle.js"></script>
-    <link rel="stylesheet" href="../../estilos/base.css">
-    <link rel="stylesheet" href="../../estilos/components.css">
-    
-    <!-- Tailwind (Local Build) -->
-    <link rel="stylesheet" href="../../dist/output.css">
+    <!-- NeoSwiss Design System -->
+    <link rel="stylesheet" href="../../estilos/neoswiss-v5.css">
+    <link rel="stylesheet" href="../../estilos/home-v5.css">
+    <link rel="stylesheet" href="../../estilos/toggle-v5.css">
 
-    <!-- Components -->
-    <script src="../../js/icons.js" defer></script>
-    <script src="../../components/SiteSidebar.js" defer></script>
-    <script src="../../components/SiteFooter.js" defer></script>
+    <script type="importmap">
+      {"imports":{"idb":"https://cdn.jsdelivr.net/npm/idb/build/index.js","firebase/app":"https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js","firebase/firestore":"https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js","firebase/analytics":"https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js"}}
+    </script>
+    <script>const t=localStorage.getItem('mdg_theme');if(t==='light')document.documentElement.dataset.theme='light';const l=localStorage.getItem('mdg_locale')||localStorage.getItem('lang');if(l==='en')document.documentElement.lang='en';</script>
     
     <style>
         /* ═══════════════════════════════════════════════════════════════
@@ -651,11 +646,14 @@
         }
     </style>
 </head>
-<body class="bg-[var(--bg)] text-slate-100 font-sans antialiased">
+<body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <a href="#main" class="sr-only">Saltar al contenido</a>
+  <site-header></site-header>
     <div class="mesh-bg"></div>
     <div class="grid-bg"></div>
 
-    <site-sidebar base-path="../.." theme="dark"></site-sidebar>
+    <site-sidebar data-page="recursos"></site-sidebar>
 
     <main id="main-content">
         <!-- Golden Layout: Quote & Breadcrumb -->
@@ -936,7 +934,15 @@
     </a>
 
 
-    <site-footer base-path="../.."></site-footer>
+    <triple-toggle></triple-toggle>
+    <offline-pill></offline-pill>
+    <consent-banner></consent-banner>
+    <site-footer></site-footer>
+
+    <script type="module">
+      import { initShell } from '../../js/blueprint/shell-v5.js';
+      initShell({ pageSlug: 'recursos' });
+    </script>
 
 </body>
 </html>
